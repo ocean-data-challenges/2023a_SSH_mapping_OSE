@@ -1,3 +1,10 @@
+## :warning: WORK in progress. This data-challenge is under construction
+
+
+<!---
+
+
+
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.5511905.svg)](https://doi.org/10.5281/zenodo.5511905)
 
 # SSH Mapping Data Challenge 2021a
@@ -85,3 +92,6 @@ Cross-functional modules are gathered in the `src` directory. They include tools
 ## Acknowledgement
 
 The structure of this data challenge was to a large extent inspired by [WeatherBench](https://github.com/pangeo-data/WeatherBench).
+
+
+--->
