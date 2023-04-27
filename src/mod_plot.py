@@ -2,6 +2,7 @@ import cartopy.crs as ccrs
 import hvplot.xarray
 import pandas as pd
 import xarray as xr
+import numpy as np
 
 
 def plot_stat_score_map(filename):
@@ -282,6 +283,59 @@ def plot_stat_score_map_uv(filename):
 #                                                               title='RMSE [65:500km]')
     
     return (fig1 + fig2 + fig3 + fig4).cols(2)
+
+
+
+def plot_psd_scores_currents(filename):
+    
+    ds_psd = xr.open_dataset(filename)
+    
+    
+    fig1 = np.log10(ds_psd.psd_ref).hvplot.quadmesh(x='wavenumber', y='lat', clim=(-4, 0), cmap='Spectral_r', width=400, height=600, title='Rotary Spectra Drifters', ylim=(-60, 60))
+    fig2 = np.log10(ds_psd.psd_study).hvplot.quadmesh(x='wavenumber', y='lat', clim=(-4, 0), cmap='Spectral_r', width=400, height=600, title='Rotary Spectra Maps', ylim=(-60, 60))
+    fig3 = np.log10(ds_psd.psd_diff).hvplot.quadmesh(x='wavenumber', y='lat', cmap='Reds', clim=(-4, 0), width=400, height=600, title='Rotary Spectra Error', ylim=(-60, 60))
+    fig4 = ds_psd.coherence.hvplot.quadmesh(x='wavenumber', y='lat', cmap='RdYlGn', clim=(0, 1), width=400, height=600, title='Coherence', ylim=(-60, 60))
+    fig5 = (1. - ds_psd.psd_diff/ds_psd.psd_ref).hvplot.quadmesh(x='wavenumber', y='lat', cmap='RdYlGn', clim=(0, 1), width=400, height=600, title='PSDerr/PSDref', ylim=(-60, 60))
+    
+    return (fig1+fig2+fig3+fig4+fig5).cols(3) 
+
+
+def plot_psd_scores_currents_1D(filename):
+    
+    ds_psd = xr.open_dataset(filename)
+    
+    ds_psd['psd_err_psd_ref'] = (1. - ds_psd.psd_diff/ds_psd.psd_ref)
+    fig1 = ds_psd.hvplot.line(x='wavenumber', y='psd_ref', logy=True, grid=True, label='PSD drifters', width=600)
+    fig2 = ds_psd.hvplot.line(x='wavenumber', y='psd_study', logy=True, grid=True, label='PSD maps', width=600)
+    
+    fig3 = ds_psd.hvplot.line(x='wavenumber', y='coherence', grid=True, label='Coherence', width=600, ylim=(0,1))
+    fig4 = ds_psd.hvplot.line(x='wavenumber', y='psd_err_psd_ref', grid=True, label='PSD_err/PSDref', width=600, ylim=(0,1))
+    return (fig1*fig2 + fig3*fig4).cols(2)
+
+
+def plot_polarization(filename):
+    ds_psd = xr.open_dataset(filename)
+    
+    Splus_ref = ds_psd.psd_ref.where(ds_psd.wavenumber > 0, drop=True)
+    Sminus_ref = ds_psd.psd_ref.where(ds_psd.wavenumber < 0, drop=True)
+    Sminus_ref = np.flip(Sminus_ref, axis=1)
+    Sminus_ref['wavenumber'] = np.abs(Sminus_ref['wavenumber'])
+    Sminus_ref = Sminus_ref.where(Sminus_ref.wavenumber == Splus_ref.wavenumber, drop=True)
+    
+    r_ref = (Sminus_ref - Splus_ref)/(Sminus_ref + Splus_ref)
+    
+    Splus_study = ds_psd.psd_study.where(ds_psd.wavenumber > 0, drop=True)
+    Sminus_study = ds_psd.psd_study.where(ds_psd.wavenumber < 0, drop=True)
+    Sminus_study = np.flip(Sminus_study, axis=1)
+    Sminus_study['wavenumber'] = np.abs(Sminus_study['wavenumber'])
+    Sminus_study = Sminus_study.where(Sminus_study.wavenumber == Splus_study.wavenumber, drop=True)
+    
+    r_study = (Sminus_study - Splus_study)/(Sminus_study + Splus_study)
+    
+    fig1 = r_ref.hvplot.quadmesh(x='wavenumber', y='lat', clim=(-1, 1), cmap='Spectral_r', width=400, height=600, title='Polarization of the rotary spectrum')
+    fig2 = r_study.hvplot.quadmesh(x='wavenumber', y='lat', clim=(-1, 1), cmap='Spectral_r', width=400, height=600, title='Polarization of the rotary spectrum')
+    
+    return fig1 + fig2
     
     
     

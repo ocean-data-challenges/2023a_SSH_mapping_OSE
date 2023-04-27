@@ -708,11 +708,120 @@ def compute_psd_scores_v2(ds_interp, output_filename, lenght_scale=1500. ):
 # fig1 + fig2).cols(2) 
 
 
+def spectral_computation_drifters_by_latbin(lon_segment, lat_segment, ref_segments, study_segments, delta_x, npt):
 
-def compute_psd_scores_current(ds_interp, output_filename, lenght_scale=np.timedelta64(20, 'D')):
+
+    delta_lat = 1.
+    nb_min_segment = 2
+    vlat = np.arange(-80., 91., 1)
+
+    list_mean_psd_ref = []
+    list_nb_segment = []
+    list_mean_frequency = []
+    list_mean_psd_study = []
+    list_mean_psd_diff_study_ref = []
+    list_mean_coherence = []
+    list_mean_cross_spectrum = []
+
+    fs = 1.0 / delta_x
+
+    # Loop over output lon/lat boxes and selection of the segment within the box plus/minus delta_lon/lat
+    for ilat in vlat:
+
+        lat_min = ilat - 0.5*delta_lat
+        lat_max = ilat + 0.5*delta_lat
+
+        selected_lat_index = np.where(np.logical_and(lat_segment >= lat_min, lat_segment <= lat_max))[0]
+        
+        if len(selected_lat_index) > nb_min_segment:
+            ref_segments_tmp = ref_segments[selected_lat_index]
+            if study_segments is not None:
+                study_segments_tmp = study_segments[selected_lat_index]
+            else:
+                study_segments_tmp = None
+        
+            selected_ref_segments = np.ma.masked_where(ref_segments_tmp.flatten() > 1.E10,
+                                                           ref_segments_tmp.flatten())
+
+            # Power spectrum density reference field
+            wavenumber, psd_ref = scipy.signal.welch(selected_ref_segments,
+                                                         fs=fs,
+                                                         nperseg=npt,
+                                                         scaling='density',
+                                                         noverlap=0)
+                
+            wavenumber_to_keep = wavenumber
+
+            list_mean_frequency.append(wavenumber)
+            list_mean_psd_ref.append(psd_ref)
+            list_nb_segment.append(selected_ref_segments.size)
+
+
+            selected_study_segments = np.ma.masked_where(
+                    study_segments_tmp.flatten() > 1.E10,
+                    study_segments_tmp.flatten())
+
+            # Compute diff study minus ref
+            diff_study_ref = selected_study_segments - selected_ref_segments
+
+            # Power spectrum density of the error between to field
+            wavenumber, psd_diff_study_ref = scipy.signal.welch(diff_study_ref,
+                                                                        fs=fs,
+                                                                        nperseg=npt,
+                                                                        scaling='density',
+                                                                        noverlap=0)
+
+            # Power spectrum density study field
+            wavenumber, psd_study = scipy.signal.welch(selected_study_segments,
+                                                               fs=fs,
+                                                               nperseg=npt,
+                                                               scaling='density',
+                                                               noverlap=0)
+
+            # Magnitude square coherence between the ref and study field
+            wavenumber, coherence = scipy.signal.coherence(selected_study_segments,
+                                                                   selected_ref_segments,
+                                                                   fs=fs,
+                                                                   nperseg=npt,
+                                                                   noverlap=0)
+
+            # Cross spectrum
+            wavenumber, cross_spectrum = scipy.signal.csd(selected_study_segments,
+                                                                  selected_ref_segments,
+                                                                  fs=fs,
+                                                                  nperseg=npt,
+                                                                  noverlap=0)
+
+            list_mean_psd_study.append(psd_study)
+            list_mean_psd_diff_study_ref.append(psd_diff_study_ref)
+            list_mean_coherence.append(coherence)
+            list_mean_cross_spectrum.append(cross_spectrum)
+                
+
+        else:
+
+            list_mean_frequency.append(np.zeros(npt))
+            list_mean_psd_ref.append(np.zeros(npt))
+            list_nb_segment.append(0.)
+            list_mean_psd_study.append(np.zeros(npt))
+            list_mean_psd_diff_study_ref.append(np.zeros(npt))
+            list_mean_coherence.append(np.zeros(npt))
+            list_mean_cross_spectrum.append(np.zeros(npt))
+                
+    nb_segment = np.asarray(list_nb_segment).reshape((vlat.size))
+    psd_ref = np.transpose(np.asarray(list_mean_psd_ref)).reshape((wavenumber_to_keep.size, vlat.size))
+    psd_study = np.transpose(np.asarray(list_mean_psd_study)).reshape((wavenumber_to_keep.size, vlat.size))
+    psd_diff = np.transpose(np.asarray(list_mean_psd_diff_study_ref)).reshape((wavenumber_to_keep.size, vlat.size))
+    coherence = np.transpose(np.asarray(list_mean_coherence)).reshape((wavenumber_to_keep.size, vlat.size))
+    cross_spectrum = np.transpose(np.asarray(list_mean_cross_spectrum)).reshape((wavenumber_to_keep.size, vlat.size))
+    
+    return wavenumber_to_keep, vlat, nb_segment, psd_ref, psd_study, psd_diff, coherence, cross_spectrum
+
+
+
+def compute_psd_scores_current(ds_interp, output_filename, lenght_scale=np.timedelta64(40, 'D')):
     
     logging.info('Segment computation...')
-    # delta_t = np.median(np.diff(ds_interp['time']))
     delta_t = np.median(np.diff(np.unique(ds_interp['time'])))
     delta_t_days = (delta_t / np.timedelta64(1, 'D')).astype(np.float64)
     npt = int(lenght_scale / delta_t)
@@ -731,7 +840,7 @@ def compute_psd_scores_current(ds_interp, output_filename, lenght_scale=np.timed
                                                                               ref_var_name='complex_current_drifter', 
                                                                               study_var_name='complex_current_maps',
                                                                               max_time_gap=np.timedelta64(10, 'h'),
-                                                                              segment_overlapping=0.1)
+                                                                              segment_overlapping=0.5)
         del ds_sel
         if (udfriter_segment.size > 0) and (umap_segment.size > 0):
             list_of_lon.append(lon_segment)
@@ -746,49 +855,173 @@ def compute_psd_scores_current(ds_interp, output_filename, lenght_scale=np.timed
     umap_segment = np.concatenate(list_of_umaps)
     
     logging.info('Spectral analysis...')
-    wavenumber, vlat, vlon, nb_segment, psd_ref, psd_study, psd_diff, coherence, cross_spectrum = spectral_computation(lon_segment,
+    wavenumber, vlat, nb_segment, psd_ref, psd_study, psd_diff, coherence, cross_spectrum = spectral_computation_drifters_by_latbin(lon_segment,
                                                                                                                        lat_segment,
                                                                                                                        udfriter_segment,
                                                                                                                        umap_segment, 
                                                                                                                        delta_t_days,
                                                                                                                        npt
                                                                                                                       )
-    logging.info('Saving ouput...')
-    write_psd_output(output_filename, wavenumber, vlat, vlon, nb_segment, psd_ref, psd_study, psd_diff, coherence, cross_spectrum, one_sided=False)
     
-    
-def plot_psd_scores_currents(filename):
-    
-    ds_psd = xr.open_dataset(filename)
-    
-    ds_clockwise = ds_psd.where(ds_psd['wavenumber'] <= 0., drop=True)
-    ds_counter_clockwise = ds_psd.where(ds_psd['wavenumber'] >= 0., drop=True)
+    logging.info('Write output...')
+    write_psd_current_output(output_filename, wavenumber, vlat, nb_segment, psd_ref, psd_study, psd_diff, coherence, cross_spectrum)
+    logging.info("PSD file saved as: %s", output_filename)
 
-    ds_clockwise['wavenumber'] = np.abs(ds_clockwise['wavenumber'] )
-    ds_clockwise['wavelenght'] = np.abs(1./ds_clockwise['wavenumber'])
-    ds_clockwise['wavelenght'].attrs['units'] = 'days'
-    ds_clockwise = ds_clockwise.assign_coords(wavelenght=ds_clockwise['wavelenght'])
 
-    ds_counter_clockwise['wavenumber'] = np.abs(ds_counter_clockwise['wavenumber'] )
-    ds_counter_clockwise['wavelenght'] = np.abs(1./ds_counter_clockwise['wavenumber'])
-    ds_counter_clockwise['wavelenght'].attrs['units'] = 'days'
-    ds_counter_clockwise = ds_counter_clockwise.assign_coords(wavelenght=ds_counter_clockwise['wavelenght'])
+def write_psd_current_output(output_netcdf_file, wavenumber, vlat, nb_segment, psd_ref, psd_study, psd_diff_ref_study, coherence, cross_spectrum):
+
+    nc_out = Dataset(output_netcdf_file, 'w', format='NETCDF4')
+    
+    # Reformate data
+    sorted_index = np.argsort(wavenumber)
+    wavenumber = wavenumber[sorted_index]
+    for jj in range(psd_ref[0, :].size):
+        psd_ref[:, jj] = psd_ref[sorted_index, jj]
+        psd_study[:, jj] = psd_study[sorted_index, jj]
+        psd_diff_ref_study[:, jj] = psd_diff_ref_study[sorted_index, jj]
+        coherence[:, jj] = coherence[sorted_index, jj]
+        cross_spectrum[:, jj] = cross_spectrum[sorted_index, jj]
+
+    nc_out.createDimension('wavenumber', wavenumber.size)
+    nc_out.createDimension('lat', vlat.size)
+
+    wavenumber_out = nc_out.createVariable('wavenumber', 'f8', 'wavenumber', zlib=True)
+    wavenumber_out.units = "1/day"
+    wavenumber_out.axis = 'T'
+    wavenumber_out[:] = wavenumber
+
+    nb_segment_out = nc_out.createVariable('nb_segment', 'f8', ('lat'), zlib=True)
+    nb_segment_out.long_name = "number of segment used in spectral computation"
+    nb_segment_out[:] = np.ma.masked_where(nb_segment == 0., nb_segment).filled(np.nan)
+
+    lat_out = nc_out.createVariable('lat', 'f4', 'lat', zlib=True)
+    lat_out[:] = vlat
+    lat_out.units = 'degree_north'
+
+    psd_ref_out = nc_out.createVariable('psd_ref', 'f8', ('lat', 'wavenumber'), zlib=True)
+    psd_ref_out.units = 'm2/km'
+    psd_ref_out.coordinates = "wavenumber lat lon"
+    psd_ref_out.long_name = "power spectrum density reference field"
+    psd_ref_out[:, :] = np.ma.masked_invalid(np.ma.masked_where(psd_ref.T == 0, psd_ref.T)).filled(np.nan)[:, :]
+    
+    psd_study_out = nc_out.createVariable('psd_study', 'f8', ('lat', 'wavenumber'), zlib=True)
+    psd_study_out.units = 'm2/km'
+    psd_study_out.coordinates = "wavenumber lat lon"
+    psd_study_out.long_name = "power spectrum density study field"
+    psd_study_out[:, :] = np.ma.masked_invalid(np.ma.masked_where(psd_study.T == 0, psd_study.T)).filled(np.nan)[:, :]
+    
+    psd_diff = nc_out.createVariable('psd_diff', 'f8', ('lat', 'wavenumber'), zlib=True)
+    psd_diff.units = 'm2/km'
+    psd_diff.coordinates = "wavenumber lat lon"
+    psd_diff.long_name = "power spectrum density of difference study minus reference field"
+    psd_diff[:, :] = np.ma.masked_invalid(np.ma.masked_where(psd_diff_ref_study.T == 0, psd_diff_ref_study.T))[:, :]
+    
+    # resolution = compute_resolution(vlon, vlat, wavenumber[positive_index], psd_diff_ref_study[positive_index, :, :], psd_ref[positive_index, :, :])
+    # resolution_out = nc_out.createVariable('effective_resolution', 'f8', ('lat'), zlib=True)
+    # resolution_out.units = 'km'
+    # resolution_out.coordinates = "lat lon"
+    # resolution_out.long_name = "Effective resolution computed as wavelenght where psd_err/psd_ref=0.5"
+    # resolution_out[:, :] = np.ma.masked_invalid(np.ma.masked_where(resolution == 0, resolution)).filled(np.nan)
+
+    coherence_out = nc_out.createVariable('coherence', 'f8', ('lat', 'wavenumber'), zlib=True)
+    coherence_out[:, :] = np.ma.masked_invalid(np.ma.masked_where(coherence.T == 0, coherence.T)).filled(np.nan)[:, :]
+    coherence_out.coordinates = "wavenumber lat lon"
+    coherence_out.long_name = "magnitude squared coherence between reference and study fields"
+
+    cross_spectrum_real_out = nc_out.createVariable('cross_spectrum_real', 'f8', ('lat', 'wavenumber'),
+                                                        zlib=True)
+    cross_spectrum_real_out[:, :] = np.ma.masked_invalid(np.ma.masked_where(np.real(cross_spectrum.T) == 0., np.real(cross_spectrum.T))).filled(np.nan)[:, :]
+    cross_spectrum_real_out.coordinates = "wavenumber lat lon"
+    cross_spectrum_real_out.long_name = "real part of cross_spectrum between reference and study fields"
+    cross_spectrum_imag_out = nc_out.createVariable('cross_spectrum_imag', 'f8', ('lat', 'wavenumber'),
+                                                        zlib=True)
+    cross_spectrum_imag_out[:, :] = np.ma.masked_invalid(np.ma.masked_where(np.imag(cross_spectrum.T) == 0., np.imag(cross_spectrum.T))).filled(np.nan)[:, :]
+    cross_spectrum_imag_out.coordinates = "wavenumber lat lon"
+    cross_spectrum_imag_out.long_name = "imaginary part of cross_spectrum between reference and study fields"
+
+    nc_out.close()
+
+
+# def compute_psd_scores_current(ds_interp, output_filename, lenght_scale=np.timedelta64(20, 'D')):
+    
+#     logging.info('Segment computation...')
+#     # delta_t = np.median(np.diff(ds_interp['time']))
+#     delta_t = np.median(np.diff(np.unique(ds_interp['time'])))
+#     delta_t_days = (delta_t / np.timedelta64(1, 'D')).astype(np.float64)
+#     npt = int(lenght_scale / delta_t)
+    
+#     ds_interp['complex_current_drifter'] = (("time"), ds_interp['EWCT'].data + 1j* ds_interp['NSCT'].data)
+#     ds_interp['complex_current_maps'] = (("time"), ds_interp['ugos_interpolated'].data + 1j* ds_interp['vgos_interpolated'].data)
+    
+#     list_of_lon = []
+#     list_of_lat = []
+#     list_of_udrifter = []
+#     list_of_umaps = []
+    
+#     for sensor_id in np.unique(ds_interp['sensor_id']):
+#         ds_sel = ds_interp.where(ds_interp['sensor_id'] == sensor_id, drop=True)
+#         lon_segment, lat_segment, udfriter_segment, umap_segment = compute_segment(ds_sel, npt, 
+#                                                                               ref_var_name='complex_current_drifter', 
+#                                                                               study_var_name='complex_current_maps',
+#                                                                               max_time_gap=np.timedelta64(10, 'h'),
+#                                                                               segment_overlapping=0.1)
+#         del ds_sel
+#         if (udfriter_segment.size > 0) and (umap_segment.size > 0):
+#             list_of_lon.append(lon_segment)
+#             list_of_lat.append(lat_segment)
+#             list_of_udrifter.append(udfriter_segment)
+#             list_of_umaps.append(umap_segment)
+#         del lon_segment, lat_segment, udfriter_segment, umap_segment
+            
+#     lon_segment = np.concatenate(list_of_lon)
+#     lat_segment = np.concatenate(list_of_lat)
+#     udfriter_segment = np.concatenate(list_of_udrifter)
+#     umap_segment = np.concatenate(list_of_umaps)
+    
+#     logging.info('Spectral analysis...')
+#     wavenumber, vlat, vlon, nb_segment, psd_ref, psd_study, psd_diff, coherence, cross_spectrum = spectral_computation(lon_segment,
+#                                                                                                                        lat_segment,
+#                                                                                                                        udfriter_segment,
+#                                                                                                                        umap_segment, 
+#                                                                                                                        delta_t_days,
+#                                                                                                                        npt
+#                                                                                                                       )
+#     logging.info('Saving ouput...')
+#     write_psd_output(output_filename, wavenumber, vlat, vlon, nb_segment, psd_ref, psd_study, psd_diff, coherence, cross_spectrum, one_sided=False)
+    
+    
+# def plot_psd_scores_currents(filename):
+    
+#     ds_psd = xr.open_dataset(filename)
+    
+#     ds_clockwise = ds_psd.where(ds_psd['wavenumber'] <= 0., drop=True)
+#     ds_counter_clockwise = ds_psd.where(ds_psd['wavenumber'] >= 0., drop=True)
+
+#     ds_clockwise['wavenumber'] = np.abs(ds_clockwise['wavenumber'] )
+#     ds_clockwise['wavelenght'] = np.abs(1./ds_clockwise['wavenumber'])
+#     ds_clockwise['wavelenght'].attrs['units'] = 'days'
+#     ds_clockwise = ds_clockwise.assign_coords(wavelenght=ds_clockwise['wavelenght'])
+
+#     ds_counter_clockwise['wavenumber'] = np.abs(ds_counter_clockwise['wavenumber'] )
+#     ds_counter_clockwise['wavelenght'] = np.abs(1./ds_counter_clockwise['wavenumber'])
+#     ds_counter_clockwise['wavelenght'].attrs['units'] = 'days'
+#     ds_counter_clockwise = ds_counter_clockwise.assign_coords(wavelenght=ds_counter_clockwise['wavelenght'])
     
     
     
-    fig1 = (ds_clockwise.psd_ref.hvplot.line(x='wavelenght', logx=True, logy=True, label='PSD ref (clockwise)', color='k', flip_xaxis=True, line_width=3)*\
-    ds_clockwise.psd_study.hvplot.line(x='wavelenght', logx=True, logy=True, label='PSD study (clockwise)', color='r', flip_xaxis=True)*\
-    ds_clockwise.psd_diff.hvplot.line(x='wavelenght', logx=True, logy=True, label='PSD err (clockwise)', color='grey', flip_xaxis=True)*\
-    ds_counter_clockwise.psd_ref.hvplot.line(x='wavelenght', logx=True, logy=True, label='PSD ref (counterclockwise)', line_dash='dashed', color='k', flip_xaxis=True, line_width=3)*\
-    ds_counter_clockwise.psd_study.hvplot.line(x='wavelenght', logx=True, logy=True, label='PSD study (counterclockwise)', line_dash='dashed', color='r', flip_xaxis=True)*\
-    ds_counter_clockwise.psd_diff.hvplot.line(x='wavelenght', logx=True, logy=True, label='PSD err (counterclockwise)', line_dash='dashed', color='grey', flip_xaxis=True)).opts(legend_position='bottom_left')
+#     fig1 = (ds_clockwise.psd_ref.hvplot.line(x='wavelenght', logx=True, logy=True, label='PSD ref (clockwise)', color='k', flip_xaxis=True, line_width=3)*\
+#     ds_clockwise.psd_study.hvplot.line(x='wavelenght', logx=True, logy=True, label='PSD study (clockwise)', color='r', flip_xaxis=True)*\
+#     ds_clockwise.psd_diff.hvplot.line(x='wavelenght', logx=True, logy=True, label='PSD err (clockwise)', color='grey', flip_xaxis=True)*\
+#     ds_counter_clockwise.psd_ref.hvplot.line(x='wavelenght', logx=True, logy=True, label='PSD ref (counterclockwise)', line_dash='dashed', color='k', flip_xaxis=True, line_width=3)*\
+#     ds_counter_clockwise.psd_study.hvplot.line(x='wavelenght', logx=True, logy=True, label='PSD study (counterclockwise)', line_dash='dashed', color='r', flip_xaxis=True)*\
+#     ds_counter_clockwise.psd_diff.hvplot.line(x='wavelenght', logx=True, logy=True, label='PSD err (counterclockwise)', line_dash='dashed', color='grey', flip_xaxis=True)).opts(legend_position='bottom_left')
     
-    fig2 = (ds_clockwise.coherence.hvplot.line(x='wavelenght', logx=True, logy=False, label='Coherence (clockwise) ', color='k', flip_xaxis=True, line_width=2, ylim=(0, 1))*\
-    (ds_clockwise.psd_diff/ds_clockwise.psd_ref).hvplot.line(x='wavelenght', logx=True, logy=False, label='PSD err/ PSD ref (clockwise)', color='r', flip_xaxis=True, line_width=2, ylim=(0, 1))*\
-    ds_counter_clockwise.coherence.hvplot.line(x='wavelenght', logx=True, logy=False, label='Coherence (counterclockwise) ', color='k', flip_xaxis=True, line_width=2, line_dash='dashed', ylim=(0, 1))*\
-    (ds_counter_clockwise.psd_diff/ds_clockwise.psd_ref).hvplot.line(x='wavelenght', logx=True, logy=False, label='PSD err/ PSD ref (counterclockwise)', color='r', flip_xaxis=True, line_width=2, line_dash='dashed', ylim=(0, 1))).opts(legend_position='bottom_left')
+#     fig2 = (ds_clockwise.coherence.hvplot.line(x='wavelenght', logx=True, logy=False, label='Coherence (clockwise) ', color='k', flip_xaxis=True, line_width=2, ylim=(0, 1))*\
+#     (ds_clockwise.psd_diff/ds_clockwise.psd_ref).hvplot.line(x='wavelenght', logx=True, logy=False, label='PSD err/ PSD ref (clockwise)', color='r', flip_xaxis=True, line_width=2, ylim=(0, 1))*\
+#     ds_counter_clockwise.coherence.hvplot.line(x='wavelenght', logx=True, logy=False, label='Coherence (counterclockwise) ', color='k', flip_xaxis=True, line_width=2, line_dash='dashed', ylim=(0, 1))*\
+#     (ds_counter_clockwise.psd_diff/ds_clockwise.psd_ref).hvplot.line(x='wavelenght', logx=True, logy=False, label='PSD err/ PSD ref (counterclockwise)', color='r', flip_xaxis=True, line_width=2, line_dash='dashed', ylim=(0, 1))).opts(legend_position='bottom_left')
     
-    return (ds_psd.effective_resolution.hvplot.quadmesh(x='lon', y='lat', clim=(100, 500), cmap='jet') +\
-ds_psd.nb_segment.hvplot.quadmesh(x='lon', y='lat', cmap='jet') +\
-fig1+fig2).cols(2) 
+#     return (ds_psd.effective_resolution.hvplot.quadmesh(x='lon', y='lat', clim=(100, 500), cmap='jet') +\
+# ds_psd.nb_segment.hvplot.quadmesh(x='lon', y='lat', cmap='jet') +\
+# fig1+fig2).cols(2) 
 
