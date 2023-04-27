@@ -506,7 +506,256 @@ def bin_data_uv(ds, output_file, lon_out=np.arange(0, 360, 1), lat_out=np.arange
     
     
     ds1.to_netcdf(output_file, group="all_scale", format="NETCDF4")
+
     
+def compute_stat_scores_uv_by_regimes(ds_interp, output_file): 
+    
+    distance_to_nearest_coast = '../data/sad/distance_to_nearest_coastline_60.nc'
+    land_sea_mask = '../data/sad/land_water_mask_60.nc'
+    variance_ssh = '../data/sad/variance_cmems_dt_allsat.nc'
+    variance_criteria = 0.02             # min variance contour in m**2 to define the high variability regions
+    coastal_distance_criteria = 200.     # max distance to coast in km to define the coastal regions
+    
+    lon_vector = ds_interp['longitude'].values
+    lat_vector = ds_interp['latitude'].values
+        
+    # interpolate distance_to_nearest_coast, land_sea_mask, variance_ssh to lon/lat alongtrack
+    ds = xr.open_dataset(land_sea_mask)
+    x_axis = pyinterp.Axis(ds['lon'][:], is_circle=True)
+    y_axis = pyinterp.Axis(ds['lat'][:])
+    lsm = ds.variables["mask"][:].T
+    
+    lsm = np.where(lsm > 1, 1.0, lsm)
+    # The undefined values must be set to nan.
+    # lsm[lsm.mask] = float("nan")
+    grid = pyinterp.Grid2D(x_axis, y_axis, lsm)
+    lsm_interp = pyinterp.bivariate(grid, lon_vector, lat_vector, interpolator='nearest').reshape(lon_vector.shape)
+    #plt.scatter(lon_vector[:10000], lat_vector[:10000], c=lsm_interp[:10000], s=10)
+    #plt.show()
+    
+    ds = xr.open_dataset(distance_to_nearest_coast)
+    x_axis = pyinterp.Axis(ds['lon'][:], is_circle=True)
+    y_axis = pyinterp.Axis(ds['lat'][:])
+    distance = ds.variables["distance"][:].T
+    # The undefined values must be set to nan.
+    # distance[distance.mask] = float("nan")
+    grid = pyinterp.Grid2D(x_axis, y_axis, distance.data)
+    distance_interp = pyinterp.bivariate(grid, lon_vector, lat_vector).reshape(lon_vector.shape)
+    
+    ds = xr.open_dataset(variance_ssh)
+    x_axis = pyinterp.Axis(ds['longitude'][:], is_circle=True)
+    y_axis = pyinterp.Axis(ds['latitude'][:])
+    variance = ds.variables["sla"][:].T
+    # The undefined values must be set to nan.
+    # distance[distance.mask] = float("nan")
+    grid = pyinterp.Grid2D(x_axis, y_axis, variance.data)
+    variance_interp = pyinterp.bivariate(grid, lon_vector, lat_vector).reshape(lon_vector.shape)
+    
+    # Clean with lsm
+    msk_land_data = np.ma.masked_where(lsm_interp == 1, lsm_interp).mask
+    msk_coastal_data = np.ma.masked_where(distance_interp <= coastal_distance_criteria, distance_interp).mask
+    msk_offshore_data = np.ma.masked_where(distance_interp >= coastal_distance_criteria, distance_interp).mask
+    msk_lowvar_data = np.ma.masked_where(variance_interp <= variance_criteria, variance_interp).mask
+    msk_highvar_data = np.ma.masked_where(variance_interp >= variance_criteria, variance_interp).mask
+    msk_extra_equatorial_band = np.ma.masked_where(np.abs(lat_vector) > 10, lat_vector).mask
+    msk_arctic = np.ma.masked_where(lat_vector < 70., lat_vector).mask
+    msk_antarctic = np.ma.masked_where(lat_vector > -70., lat_vector).mask
+    
+    for var_name in ['mapping_err_u', 'mapping_err_v', 'ugos_interpolated', 'EWCT', 'vgos_interpolated', 'NSCT']:
+        data_vector = ds_interp[var_name].values
+    
+        # distance <= 200km
+        msk = msk_land_data + msk_offshore_data
+        data_vector_selected = np.ma.masked_where(msk, data_vector).compressed()
+        if data_vector_selected.size > 0:
+            coastal_analysis = stats.describe(data_vector_selected, nan_policy='omit')
+            coastal_rmse = np.sqrt(np.nanmean((np.ma.masked_invalid(data_vector_selected))**2))
+            #lon_vector_selected = np.ma.masked_where(msk, lon_vector).compressed()
+            #lat_vector_selected = np.ma.masked_where(msk, lat_vector).compressed()
+            #plt.scatter(lon_vector_selected, lat_vector_selected, c=data_vector_selected, s=10)
+            #plt.show()
+        else:
+            coastal_analysis = [0, [np.nan, np.nan], np.nan, np.nan, np.nan, np.nan,]
+            coastal_rmse = np.nan
+    
+        # distance >= 200km & variance >= 0.02
+        msk = msk_land_data + msk_coastal_data + msk_lowvar_data
+        data_vector_selected = np.ma.masked_where(msk, data_vector).compressed()
+        if data_vector_selected.size > 0:
+            offshore_highvar_analysis = stats.describe(data_vector_selected, nan_policy='omit')
+            offshore_highvar_rmse = np.sqrt(np.nanmean((np.ma.masked_invalid(data_vector_selected))**2))
+            #lon_vector_selected = np.ma.masked_where(msk, lon_vector).compressed()
+            #lat_vector_selected = np.ma.masked_where(msk, lat_vector).compressed()
+            #plt.scatter(lon_vector_selected, lat_vector_selected, c=data_vector_selected, s=10)
+            #plt.show()
+        else:
+            offshore_highvar_analysis = [0, [np.nan, np.nan], np.nan, np.nan, np.nan, np.nan,]
+            offshore_highvar_rmse = np.nan
+    
+        # distance >= 200km & variance <= 0.02
+        msk = msk_land_data + msk_coastal_data + msk_highvar_data
+        data_vector_selected = np.ma.masked_where(msk, data_vector).compressed()
+        if data_vector_selected.size > 0:
+            offshore_lowvar_analysis = stats.describe(data_vector_selected, nan_policy='omit')
+            offshore_lowvar_rmse = np.sqrt(np.nanmean((np.ma.masked_invalid(data_vector_selected))**2))
+            #lon_vector_selected = np.ma.masked_where(msk, lon_vector).compressed()
+            #lat_vector_selected = np.ma.masked_where(msk, lat_vector).compressed()
+            #plt.scatter(lon_vector_selected, lat_vector_selected, c=data_vector_selected, s=10)
+            #plt.show()
+        else:
+            offshore_lowvar_analysis = [0, [np.nan, np.nan], np.nan, np.nan, np.nan, np.nan,]
+            offshore_lowvar_rmse = np.nan
+    
+        # Equatorial band
+        msk = msk_land_data + msk_extra_equatorial_band
+        data_vector_selected = np.ma.masked_where(msk, data_vector).compressed()
+        if data_vector_selected.size > 0:
+            equatorial_analysis = stats.describe(data_vector_selected, nan_policy='omit')
+            equatorial_rmse = np.sqrt(np.nanmean((np.ma.masked_invalid(data_vector_selected))**2))
+        else:
+            equatorial_analysis = [0, [np.nan, np.nan], np.nan, np.nan, np.nan, np.nan,]
+            equatorial_rmse = np.nan
+    
+        # Arctic
+        msk = msk_land_data + msk_arctic
+        data_vector_selected = np.ma.masked_where(msk, data_vector).compressed()
+        if data_vector_selected.size > 0:
+            arctic_analysis = stats.describe(data_vector_selected, nan_policy='omit')
+            arctic_rmse = np.sqrt(np.nanmean((np.ma.masked_invalid(data_vector_selected))**2))
+        else:
+            arctic_analysis = [0, [np.nan, np.nan], np.nan, np.nan, np.nan, np.nan,]
+            arctic_rmse = np.nan
+        
+        # AntArctic
+        msk = msk_land_data + msk_antarctic
+        data_vector_selected = np.ma.masked_where(msk, data_vector).compressed()
+        if data_vector_selected.size > 0:
+            antarctic_analysis = stats.describe(data_vector_selected, nan_policy='omit')
+            antarctic_rmse = np.sqrt(np.nanmean((np.ma.masked_invalid(data_vector_selected))**2))
+        else:
+            antarctic_analysis = [0, [np.nan, np.nan], np.nan, np.nan, np.nan, np.nan,]
+            antarctic_rmse = np.nan
+                
+        # make netCDF
+        nc = Dataset(output_file, "a")
+        coastal_grp = nc.createGroup(f"coastal_{var_name}")
+        coastal_grp.createDimension("x", 1)        
+        nobs = coastal_grp.createVariable("nobs", "i8", "x")
+        nobs[:] = coastal_analysis[0]
+        minval = coastal_grp.createVariable("min", "f8", "x")
+        minval[:] = coastal_analysis[1][0]
+        maxval = coastal_grp.createVariable("max", "f8", "x")
+        maxval[:] = coastal_analysis[1][1]
+        meanval = coastal_grp.createVariable("mean", "f8", "x")
+        meanval[:] = coastal_analysis[2]
+        variance = coastal_grp.createVariable("variance", "f8", "x")
+        variance[:] = coastal_analysis[3]
+        skewness = coastal_grp.createVariable("skewness", "f8", "x")
+        skewness[:] = coastal_analysis[4]
+        kurtosis = coastal_grp.createVariable("kurtosis", "f8", "x")
+        kurtosis[:] = coastal_analysis[5]
+        rmse = coastal_grp.createVariable("rmse", "f8", "x")
+        rmse[:] = coastal_rmse
+    
+    
+        offshore_highvar_grp = nc.createGroup(f"offshore_highvar_{var_name}")
+        offshore_highvar_grp.createDimension("x", 1)
+        nobs = offshore_highvar_grp.createVariable("nobs", "i8", "x")
+        nobs[:] = offshore_highvar_analysis[0]
+        minval = offshore_highvar_grp.createVariable("min", "f8", "x")
+        minval[:] = offshore_highvar_analysis[1][0]
+        maxval = offshore_highvar_grp.createVariable("max", "f8", "x")
+        maxval[:] = offshore_highvar_analysis[1][1]
+        meanval = offshore_highvar_grp.createVariable("mean", "f8", "x")
+        meanval[:] = offshore_highvar_analysis[2]
+        variance = offshore_highvar_grp.createVariable("variance", "f8", "x")
+        variance[:] = offshore_highvar_analysis[3]
+        skewness = offshore_highvar_grp.createVariable("skewness", "f8", "x")
+        skewness[:] = offshore_highvar_analysis[4]
+        kurtosis = offshore_highvar_grp.createVariable("kurtosis", "f8", "x")
+        kurtosis[:] = offshore_highvar_analysis[5]
+        rmse = offshore_highvar_grp.createVariable("rmse", "f8", "x")
+        rmse[:] = offshore_highvar_rmse
+    
+        offshore_lowvar_grp = nc.createGroup(f"offshore_lowvar_{var_name}")
+        offshore_lowvar_grp.createDimension("x", 1)
+        nobs = offshore_lowvar_grp.createVariable("nobs", "i8", "x")
+        nobs[:] = offshore_lowvar_analysis[0]
+        minval = offshore_lowvar_grp.createVariable("min", "f8", "x")
+        minval[:] = offshore_lowvar_analysis[1][0]
+        maxval = offshore_lowvar_grp.createVariable("max", "f8", "x")
+        maxval[:] = offshore_lowvar_analysis[1][1]
+        meanval = offshore_lowvar_grp.createVariable("mean", "f8", "x")
+        meanval[:] = offshore_lowvar_analysis[2]
+        variance = offshore_lowvar_grp.createVariable("variance", "f8", "x")
+        variance[:] = offshore_lowvar_analysis[3]
+        skewness = offshore_lowvar_grp.createVariable("skewness", "f8", "x")
+        skewness[:] = offshore_lowvar_analysis[4]
+        kurtosis = offshore_lowvar_grp.createVariable("kurtosis", "f8", "x")
+        kurtosis[:] = offshore_lowvar_analysis[5]
+        rmse = offshore_lowvar_grp.createVariable("rmse", "f8", "x")
+        rmse[:] = offshore_lowvar_rmse
+    
+        equatorial_grp = nc.createGroup(f"equatorial_band_{var_name}")
+        equatorial_grp.createDimension("x", 1)
+        nobs = equatorial_grp.createVariable("nobs", "i8", "x")
+        nobs[:] = equatorial_analysis[0]
+        minval = equatorial_grp.createVariable("min", "f8", "x")
+        minval[:] = equatorial_analysis[1][0]
+        maxval = equatorial_grp.createVariable("max", "f8", "x")
+        maxval[:] = equatorial_analysis[1][1]
+        meanval = equatorial_grp.createVariable("mean", "f8", "x")
+        meanval[:] = equatorial_analysis[2]
+        variance = equatorial_grp.createVariable("variance", "f8", "x")
+        variance[:] = equatorial_analysis[3]
+        skewness = equatorial_grp.createVariable("skewness", "f8", "x")
+        skewness[:] = equatorial_analysis[4]
+        kurtosis = equatorial_grp.createVariable("kurtosis", "f8", "x")
+        kurtosis[:] = equatorial_analysis[5]
+        rmse = equatorial_grp.createVariable("rmse", "f8", "x")
+        rmse[:] = equatorial_rmse
+    
+        arctic_grp = nc.createGroup(f"arctic_{var_name}")
+        arctic_grp.createDimension("x", 1)
+        nobs = arctic_grp.createVariable("nobs", "i8", "x")
+        nobs[:] = arctic_analysis[0]
+        minval = arctic_grp.createVariable("min", "f8", "x")
+        minval[:] = arctic_analysis[1][0]
+        maxval = arctic_grp.createVariable("max", "f8", "x")
+        maxval[:] = arctic_analysis[1][1]
+        meanval = arctic_grp.createVariable("mean", "f8", "x")
+        meanval[:] = arctic_analysis[2]
+        variance = arctic_grp.createVariable("variance", "f8", "x")
+        variance[:] = arctic_analysis[3]
+        skewness = arctic_grp.createVariable("skewness", "f8", "x")
+        skewness[:] = arctic_analysis[4]
+        kurtosis = arctic_grp.createVariable("kurtosis", "f8", "x")
+        kurtosis[:] = arctic_analysis[5]
+        rmse = arctic_grp.createVariable("rmse", "f8", "x")
+        rmse[:] = arctic_rmse
+    
+        antarctic_grp = nc.createGroup(f"antarctic_{var_name}")
+        antarctic_grp.createDimension("x", 1)
+        nobs = antarctic_grp.createVariable("nobs", "i8", "x")
+        nobs[:] = antarctic_analysis[0]
+        minval = antarctic_grp.createVariable("min", "f8", "x")
+        minval[:] = antarctic_analysis[1][0]
+        maxval = antarctic_grp.createVariable("max", "f8", "x")
+        maxval[:] = antarctic_analysis[1][1]
+        meanval = antarctic_grp.createVariable("mean", "f8", "x")
+        meanval[:] = antarctic_analysis[2]
+        variance = antarctic_grp.createVariable("variance", "f8", "x")
+        variance[:] = antarctic_analysis[3]
+        skewness = antarctic_grp.createVariable("skewness", "f8", "x")
+        skewness[:] = antarctic_analysis[4]
+        kurtosis = antarctic_grp.createVariable("kurtosis", "f8", "x")
+        kurtosis[:] = antarctic_analysis[5]
+        rmse = antarctic_grp.createVariable("rmse", "f8", "x")
+        rmse[:] = antarctic_rmse
+    
+        nc.close()
+        
+        
     
 def compute_stat_scores_uv(ds_interp, output_file):
      
@@ -518,5 +767,8 @@ def compute_stat_scores_uv(ds_interp, output_file):
     # Bin data maps
     bin_data_uv(ds_interp, output_file)
     logging.info("Stat file saved as: %s", output_file)
+    
+    logging.info("Compute statistics by oceanic regime")
+    compute_stat_scores_uv_by_regimes(ds_interp, output_file)
  
     

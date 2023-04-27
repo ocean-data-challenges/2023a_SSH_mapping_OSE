@@ -105,6 +105,25 @@ def plot_stat_by_regimes(stat_output_filename):
         my_dictionary[region]['var_score_filtered'] = 1. - my_dictionary[region]['mapping_err_filtered_var [m²]']/my_dictionary[region]['sla_filtered_var [m²]']
     
     return pd.DataFrame(my_dictionary.values(), index=my_dictionary.keys())
+
+
+
+def plot_stat_uv_by_regimes(stat_output_filename):
+    my_dictionary = {}
+    for region in ['coastal', 'offshore_highvar', 'offshore_lowvar', 'equatorial_band', 'arctic', 'antarctic']:
+        my_dictionary[f'{region}'] = {}
+        for var_name in ['mapping_err_u', 'mapping_err_v', 'ugos_interpolated', 'EWCT', 'vgos_interpolated', 'NSCT']:
+        
+            ds = xr.open_dataset(stat_output_filename, group=f'{region}_{var_name}')
+
+            my_dictionary[f'{region}'][f'{var_name}_var [m²/s²]'] =  ds['variance'].values[0]
+            #my_dictionary[f'{region}'][f'{var_name}_rms'] =  ds['rmse'].values[0]
+    
+    for region in ['coastal', 'offshore_highvar', 'offshore_lowvar', 'equatorial_band', 'arctic', 'antarctic']:
+        my_dictionary[region]['var_score_u_allscale'] = 1. - my_dictionary[region]['mapping_err_u_var [m²/s²]']/my_dictionary[region]['EWCT_var [m²/s²]']
+        my_dictionary[region]['var_score_v_allscale'] = 1. - my_dictionary[region]['mapping_err_v_var [m²/s²]']/my_dictionary[region]['NSCT_var [m²/s²]']
+    
+    return pd.DataFrame(my_dictionary.values(), index=my_dictionary.keys())
     
 
 
