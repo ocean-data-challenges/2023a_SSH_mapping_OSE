@@ -3,6 +3,13 @@ import hvplot.xarray
 import pandas as pd
 import xarray as xr
 import numpy as np
+import cartopy
+import matplotlib.axes
+import matplotlib.pyplot as plt
+import matplotlib.ticker as mticker
+from cartopy.mpl.gridliner import LONGITUDE_FORMATTER, LATITUDE_FORMATTER
+import cartopy.feature as cfeature
+from mpl_toolkits.axes_grid1 import make_axes_locatable
 
 
 def plot_stat_score_map(filename):
@@ -143,6 +150,44 @@ def plot_effective_resolution(filename):
                                                    coastline=True)
     
     return fig0
+
+
+def plot_effective_resolution_png(filename):
+
+    ds = xr.open_dataset(filename)
+    
+    fig, axs = plt.subplots(nrows=1,ncols=1,
+                        subplot_kw={'projection': ccrs.PlateCarree()},
+                        figsize=(5.5,3.25))
+
+    
+    vmin = 100.
+    vmax= 500.
+    p0 = axs.pcolormesh(ds.lon, ds.lat, ds.effective_resolution, vmin=vmin, vmax=vmax, cmap='Spectral_r')
+    axs.set_title('SSH Map Effective resolution')
+    axs.add_feature(cfeature.LAND, color='w', zorder=12)
+    axs.coastlines(resolution='10m', lw=0.5, zorder=13)
+    # optional add grid lines
+    p0.axes.gridlines(color='black', alpha=0., linestyle='--')
+    # draw parallels/meridiens and write labels
+    gl = p0.axes.gridlines(crs=ccrs.PlateCarree(), draw_labels=True,
+                          linewidth=0.1, color='black', alpha=0.5, linestyle='--')
+    # adjust labels to taste
+    gl.xlabels_top = False
+    gl.ylabels_right = False
+    gl.ylocator = mticker.FixedLocator([-90, -60, -30, 0, 30, 60, 90])
+    gl.xformatter = LONGITUDE_FORMATTER
+    gl.yformatter = LATITUDE_FORMATTER
+    gl.xlabel_style = {'size': 10, 'color': 'black'}
+    gl.ylabel_style = {'size': 10, 'color': 'black'}
+    
+    
+    cax = fig.add_axes([0.92, 0.25, 0.04, 0.6])
+    fig.colorbar(p0, cax=cax, orientation='vertical')
+    cax.set_ylabel('Effective resolution [km]', fontweight='bold')
+    
+    fig.subplots_adjust(bottom=0.2, top=0.9, left=0.1, right=0.9,
+                    wspace=0.02, hspace=0.01)
 
 
 def plot_psd_scores(filename):
@@ -355,6 +400,352 @@ def plot_polarization(filename):
     fig2 = r_study.hvplot.quadmesh(x='wavenumber', y='lat', clim=(-1, 1), cmap='Spectral_r', width=400, height=600, title='Polarization of the rotary spectrum')
     
     return fig1 + fig2
+
+
+
+
+def plot_stat_score_map_uv_png(filename):
+
+    ds_binning_allscale = xr.open_dataset(filename, group='all_scale')
+    
+    
+    
+    
+    fig, axs = plt.subplots(nrows=2,ncols=2,
+                        subplot_kw={'projection': ccrs.PlateCarree()},
+                        figsize=(11,7.5))
+
+    axs=axs.flatten()
+    
+    vmin = 0.
+    vmax= 0.1
+    p0 = axs[0].pcolormesh(ds_binning_allscale.lon, ds_binning_allscale.lat, ds_binning_allscale.variance_mapping_err_u, vmin=vmin, vmax=vmax, cmap='Reds')
+    axs[0].set_title('Zonal current [All scale]')
+    axs[0].coastlines(resolution='10m', lw=0.5)
+    # optional add grid lines
+    p0.axes.gridlines(color='black', alpha=0., linestyle='--')
+    # draw parallels/meridiens and write labels
+    gl = p0.axes.gridlines(crs=ccrs.PlateCarree(), draw_labels=True,
+                          linewidth=0.1, color='black', alpha=0.5, linestyle='--')
+    # adjust labels to taste
+    gl.xlabels_top = False
+    gl.ylabels_right = False
+    gl.xlabels_bottom = False
+    gl.ylocator = mticker.FixedLocator([-90, -60, -30, 0, 30, 60, 90])
+    gl.xformatter = LONGITUDE_FORMATTER
+    gl.yformatter = LATITUDE_FORMATTER
+    gl.xlabel_style = {'size': 10, 'color': 'black'}
+    gl.ylabel_style = {'size': 10, 'color': 'black'}
+    
+    p1 = axs[1].pcolormesh(ds_binning_allscale.lon, ds_binning_allscale.lat, ds_binning_allscale.variance_mapping_err_v, vmin=vmin, vmax=vmax, cmap='Reds')
+    axs[1].set_title('Meridional current [All scale]')
+    axs[1].coastlines(resolution='10m', lw=0.5)
+    # optional add grid lines
+    p1.axes.gridlines(color='black', alpha=0., linestyle='--')
+    # draw parallels/meridiens and write labels
+    gl = p1.axes.gridlines(crs=ccrs.PlateCarree(), draw_labels=True,
+                          linewidth=0.1, color='black', alpha=0.5, linestyle='--')
+    # adjust labels to taste
+    gl.xlabels_top = False
+    gl.ylabels_right = False
+    gl.ylabels_left = False
+    gl.xlabels_bottom = False
+    gl.ylocator = mticker.FixedLocator([-90, -60, -30, 0, 30, 60, 90])
+    gl.xformatter = LONGITUDE_FORMATTER
+    gl.yformatter = LATITUDE_FORMATTER
+    gl.xlabel_style = {'size': 10, 'color': 'black'}
+    gl.ylabel_style = {'size': 10, 'color': 'black'}
+    
+    vmin = 0.
+    vmax= 1
+    p2 = axs[2].pcolormesh(ds_binning_allscale.lon, ds_binning_allscale.lat, (1 - ds_binning_allscale['variance_mapping_err_u']/ds_binning_allscale['variance_drifter_u']), vmin=vmin, vmax=vmax, cmap='RdYlGn')
+    axs[2].set_title('Zonal current [All scale]')
+    axs[2].coastlines(resolution='10m', lw=0.5)
+    # optional add grid lines
+    p2.axes.gridlines(color='black', alpha=0., linestyle='--')
+    # draw parallels/meridiens and write labels
+    gl = p2.axes.gridlines(crs=ccrs.PlateCarree(), draw_labels=True,
+                          linewidth=0.1, color='black', alpha=0.5, linestyle='--')
+    # adjust labels to taste
+    gl.xlabels_top = False
+    gl.ylabels_right = False
+    gl.ylocator = mticker.FixedLocator([-90, -60, -30, 0, 30, 60, 90])
+    gl.xformatter = LONGITUDE_FORMATTER
+    gl.yformatter = LATITUDE_FORMATTER
+    gl.xlabel_style = {'size': 10, 'color': 'black'}
+    gl.ylabel_style = {'size': 10, 'color': 'black'}
+    
+    
+    p3 = axs[3].pcolormesh(ds_binning_allscale.lon, ds_binning_allscale.lat, (1 - ds_binning_allscale['variance_mapping_err_v']/ds_binning_allscale['variance_drifter_v']), vmin=vmin, vmax=vmax, cmap='RdYlGn')
+    axs[3].set_title('Meridional current [All scale]')
+    axs[3].coastlines(resolution='10m', lw=0.5)
+    # optional add grid lines
+    p3.axes.gridlines(color='black', alpha=0., linestyle='--')
+    # draw parallels/meridiens and write labels
+    gl = p3.axes.gridlines(crs=ccrs.PlateCarree(), draw_labels=True,
+                          linewidth=0.1, color='black', alpha=0.5, linestyle='--')
+    # adjust labels to taste
+    gl.xlabels_top = False
+    gl.ylabels_left = False
+    gl.ylabels_right = False
+    gl.ylocator = mticker.FixedLocator([-90, -60, -30, 0, 30, 60, 90])
+    gl.xformatter = LONGITUDE_FORMATTER
+    gl.yformatter = LATITUDE_FORMATTER
+    gl.xlabel_style = {'size': 10, 'color': 'black'}
+    gl.ylabel_style = {'size': 10, 'color': 'black'}
+    
+    cax = fig.add_axes([0.92, 0.25, 0.02, 0.25])
+    fig.colorbar(p3, cax=cax, orientation='vertical')
+    cax.set_ylabel('Explained variance', fontweight='bold')
+    
+    cax = fig.add_axes([0.92, 0.6, 0.02, 0.25])
+    cbar = fig.colorbar(p1, cax=cax, orientation='vertical')
+    cax.set_ylabel('Error variance [m$^2$.s$^{-2}$]', fontweight='bold')
+    
+    fig.subplots_adjust(bottom=0.2, top=0.9, left=0.1, right=0.9,
+                    wspace=0.02, hspace=0.01)
+    
+    
+    
+def plot_psd_scores_currents_png(filename):
+    
+    def coriolis_parameter(lat):
+        """
+        Compute the Coriolis parameter for the given latitude:
+        ``f = 2*omega*sin(lat)``, where omega is the angular velocity
+        of the Earth.
+
+        Parameters
+        ----------
+        lat : array
+        Latitude [degrees].
+        """
+        omega = 7.2921159e-05  # angular velocity of the Earth [rad/s]
+        fc = 2 * omega * np.sin(lat * np.pi / 180.0)
+        # avoid zero near equator, bound fc by min val as 1.e-8
+        return np.maximum(abs(fc), 1.0e-8) * ((fc >= 0) * 2 - 1)*(24*3600)
+    
+    
+    ds_psd = xr.open_dataset(filename)
+    #print(np.ma.masked_invalid(1./ds_psd.wavenumber))
+    fig, axs = plt.subplots(nrows=2,ncols=3,figsize=(11,20))
+
+    axs=axs.flatten()
+    
+    vmin = -4.
+    vmax= 0.
+    p0 = axs[0].pcolormesh(ds_psd.wavenumber, ds_psd.lat, np.log10(ds_psd.psd_ref), vmin=vmin, vmax=vmax, cmap='Spectral_r')
+    axs[0].set_xscale('symlog', linthresh=0.05)
+    axs[0].set_title('Zonally averaged rotary spectra\n DRIFTERS')
+    axs[0].set_ylim(-60, 60)
+    axs[0].set_xlim(-2, 2)
+    axs[0].set_xticklabels([-1, -0.1, '',0, '',0.1, 1])
+    axs[0].set_yticklabels(['60°S', '40°S', '20°S' ,'0°', '20°N', '40°N', '60°N'])
+    axs[0].set_xlabel('wavenumber [cpd]')
+    axs[0].grid(alpha=0.5)
+    ax2 = axs[0].twiny()
+    ax2.pcolormesh(ds_psd.wavenumber, ds_psd.lat, np.log10(ds_psd.psd_ref), vmin=vmin, vmax=vmax, cmap='Spectral_r')
+    ax2.plot(-coriolis_parameter(ds_psd.lat)/6, ds_psd.lat, color='k', alpha=0.5, ls='--')
+    ax2.set_xlim(-2, 2)
+    ax2.set_xscale('symlog', linthresh=0.05)
+    ax2.set_xticklabels(['1d', '10d', '','inf', '','10d', '1d'])
+   
+    
+    
+    p1 = axs[1].pcolormesh(ds_psd.wavenumber, ds_psd.lat, np.log10(ds_psd.psd_study), vmin=vmin, vmax=vmax, cmap='Spectral_r')
+    axs[1].set_xscale('symlog', linthresh=0.05)
+    axs[1].set_title('Zonally averaged rotary spectra \n MAP')
+    axs[1].set_ylim(-60, 60)
+    axs[1].set_xlim(-2, 2)
+    axs[1].set_xticklabels([-1, -0.1, '',0, '',0.1, 1])
+    axs[1].set_xlabel('wavenumber [cpd]')
+    axs[1].grid(alpha=0.5)
+    axs[1].set_yticks([])
+    ax2 = axs[1].twiny()
+    ax2.pcolormesh(ds_psd.wavenumber, ds_psd.lat, np.log10(ds_psd.psd_study), vmin=vmin, vmax=vmax, cmap='Spectral_r')
+    ax2.plot(-coriolis_parameter(ds_psd.lat)/6, ds_psd.lat, color='k', alpha=0.5, ls='--')
+    ax2.set_xlim(-2, 2)
+    ax2.set_xscale('symlog', linthresh=0.05)
+    ax2.set_xticklabels(['1d', '10d', '','inf', '','10d', '1d'])
+    ax2.set_yticks([])
+    
+    
+    p2 = axs[2].pcolormesh(ds_psd.wavenumber, ds_psd.lat, np.log10(ds_psd.psd_diff), vmin=vmin, vmax=vmax, cmap='Reds')
+    axs[2].set_xscale('symlog', linthresh=0.05)
+    axs[2].set_title('Zonally averaged rotary spectra \n ERR MAP-DRIFTERS')
+    axs[2].set_ylim(-60, 60)
+    axs[2].set_xlim(-2, 2)
+    axs[2].set_xticklabels([-1, -0.1, '',0, '',0.1, 1])
+    axs[2].set_xlabel('wavenumber [cpd]')
+    axs[2].grid(alpha=0.5)
+    axs[2].set_yticks([])
+    ax2 = axs[2].twiny()
+    ax2.pcolormesh(ds_psd.wavenumber, ds_psd.lat, np.log10(ds_psd.psd_diff), vmin=vmin, vmax=vmax, cmap='Reds')
+    ax2.plot(-coriolis_parameter(ds_psd.lat)/6, ds_psd.lat, color='k', alpha=0.5, ls='--')
+    ax2.set_xlim(-2, 2)
+    ax2.set_xscale('symlog', linthresh=0.05)
+    ax2.set_xticklabels(['1d', '10d', '','inf', '','10d', '1d'])
+    ax2.set_yticks([])
+    
+    
+    p3 = axs[3].pcolormesh(ds_psd.wavenumber, ds_psd.lat, ds_psd.coherence, vmin=0, vmax=1, cmap='RdYlGn')
+    axs[3].set_xscale('symlog', linthresh=0.05)
+    axs[3].set_title('Zonally averaged Coherence')
+    axs[3].set_ylim(-60, 60)
+    axs[3].set_xlim(-2, 2)
+    axs[3].set_xticklabels([-1, -0.1, '',0, '',0.1, 1])
+    axs[3].set_yticklabels(['60°S', '40°S', '20°S' ,'0°', '20°N', '40°N', '60°N'])
+    axs[3].set_xlabel('wavenumber [cpd]')
+    axs[3].grid(alpha=0.5)
+    ax2 = axs[3].twiny()
+    ax2.pcolormesh(ds_psd.wavenumber, ds_psd.lat, ds_psd.coherence, vmin=0, vmax=1, cmap='RdYlGn')
+    ax2.contour(ds_psd.wavenumber, ds_psd.lat, ds_psd.coherence, levels=[0.5], colors='k', lws=2)
+    ax2.plot(-coriolis_parameter(ds_psd.lat)/6, ds_psd.lat, color='k', alpha=0.5, ls='--')
+    ax2.set_xlim(-2, 2)
+    ax2.set_xscale('symlog', linthresh=0.05)
+    ax2.set_xticklabels(['1d', '10d', '','inf', '','10d', '1d'])
+    
+    p4 = axs[4].pcolormesh(ds_psd.wavenumber, ds_psd.lat, (1. - ds_psd.psd_diff/ds_psd.psd_ref), vmin=0, vmax=1, cmap='RdYlGn')
+    axs[4].set_xscale('symlog', linthresh=0.05)
+    axs[4].set_title('Zonally averaged PSD$_{err}$/PSD$_{uv}$')
+    axs[4].set_ylim(-60, 60)
+    axs[4].set_xlim(-2, 2)
+    axs[4].set_xticklabels([-1, -0.1, '',0, '',0.1, 1])
+    axs[4].set_xlabel('wavenumber [cpd]')
+    axs[4].grid(alpha=0.5)
+    ax2 = axs[4].twiny()
+    ax2.pcolormesh(ds_psd.wavenumber, ds_psd.lat, (1. - ds_psd.psd_diff/ds_psd.psd_ref), vmin=0, vmax=1, cmap='RdYlGn')
+    c = ax2.contour(ds_psd.wavenumber, ds_psd.lat, (1. - ds_psd.psd_diff/ds_psd.psd_ref), levels=[0.5], colors='k', lws=2)
+    ax2.plot(-coriolis_parameter(ds_psd.lat)/6, ds_psd.lat, color='k', alpha=0.5, ls='--')
+    ax2.set_xlim(-2, 2)
+    ax2.set_xscale('symlog', linthresh=0.05)
+    ax2.set_xticklabels(['1d', '10d', '','inf', '','10d', '1d'])
+    ax2.set_yticks([])
+    
+    
+    cax = fig.add_axes([0.12, 0.56, 0.47, 0.01])
+    fig.colorbar(p0, cax=cax, orientation='horizontal')
+    cax.set_xlabel('log10(PSD) [m$^2$.s$^{-2}$/cpd]', fontweight='bold')
+    
+    cax = fig.add_axes([0.65, 0.56, 0.47*0.5, 0.01])
+    fig.colorbar(p2, cax=cax, orientation='horizontal')
+    cax.set_xlabel('log10(PSD$_{err}$) [m$^2$.s$^{-2}$/cpd]', fontweight='bold')
+    
+    cax = fig.add_axes([0.12, 0.16, 0.47, 0.01])
+    cbar = fig.colorbar(p3, cax=cax, orientation='horizontal')
+    cax.set_xlabel('Unresolved scales <          0.5         < Resolved scales     ', fontweight='bold')
+    cbar.add_lines(c)
+    
+    fig.subplots_adjust(bottom=0.2, top=0.9, left=0.1, right=0.9,
+                    wspace=0.02, hspace=0.3)
+    
+    fig.delaxes(axs[-1])
+    
+    
+    
+def plot_stat_score_map_png(filename):
+
+    ds_binning_allscale = xr.open_dataset(filename, group='all_scale')
+    ds_binning_filtered = xr.open_dataset(filename, group='filtered')
+    
+    
+    
+    
+    fig, axs = plt.subplots(nrows=2,ncols=2,
+                        subplot_kw={'projection': ccrs.PlateCarree()},
+                        figsize=(11,7.5))
+
+    axs=axs.flatten()
+    
+    vmin = 0.
+    vmax= 0.002
+    p0 = axs[0].pcolormesh(ds_binning_allscale.lon, ds_binning_allscale.lat, ds_binning_allscale.variance_mapping_err, vmin=vmin, vmax=vmax, cmap='Reds')
+    axs[0].set_title('SSH [All scale]')
+    axs[0].coastlines(resolution='10m', lw=0.5)
+    # optional add grid lines
+    p0.axes.gridlines(color='black', alpha=0., linestyle='--')
+    # draw parallels/meridiens and write labels
+    gl = p0.axes.gridlines(crs=ccrs.PlateCarree(), draw_labels=True,
+                          linewidth=0.1, color='black', alpha=0.5, linestyle='--')
+    # adjust labels to taste
+    gl.xlabels_top = False
+    gl.ylabels_right = False
+    gl.xlabels_bottom = False
+    gl.ylocator = mticker.FixedLocator([-90, -60, -30, 0, 30, 60, 90])
+    gl.xformatter = LONGITUDE_FORMATTER
+    gl.yformatter = LATITUDE_FORMATTER
+    gl.xlabel_style = {'size': 10, 'color': 'black'}
+    gl.ylabel_style = {'size': 10, 'color': 'black'}
+    
+    p1 = axs[1].pcolormesh(ds_binning_filtered.lon, ds_binning_filtered.lat, ds_binning_filtered.variance_mapping_err, vmin=vmin, vmax=vmax, cmap='Reds')
+    axs[1].set_title('SSH [65-500km]')
+    axs[1].coastlines(resolution='10m', lw=0.5)
+    # optional add grid lines
+    p1.axes.gridlines(color='black', alpha=0., linestyle='--')
+    # draw parallels/meridiens and write labels
+    gl = p1.axes.gridlines(crs=ccrs.PlateCarree(), draw_labels=True,
+                          linewidth=0.1, color='black', alpha=0.5, linestyle='--')
+    # adjust labels to taste
+    gl.xlabels_top = False
+    gl.ylabels_right = False
+    gl.ylabels_left = False
+    gl.xlabels_bottom = False
+    gl.ylocator = mticker.FixedLocator([-90, -60, -30, 0, 30, 60, 90])
+    gl.xformatter = LONGITUDE_FORMATTER
+    gl.yformatter = LATITUDE_FORMATTER
+    gl.xlabel_style = {'size': 10, 'color': 'black'}
+    gl.ylabel_style = {'size': 10, 'color': 'black'}
+    
+    vmin = 0.
+    vmax= 1
+    p2 = axs[2].pcolormesh(ds_binning_allscale.lon, ds_binning_allscale.lat, (1 - ds_binning_allscale['variance_mapping_err']/ds_binning_allscale['variance_track']), vmin=vmin, vmax=vmax, cmap='RdYlGn')
+    axs[2].set_title('SSH [All scale]')
+    axs[2].coastlines(resolution='10m', lw=0.5)
+    # optional add grid lines
+    p2.axes.gridlines(color='black', alpha=0., linestyle='--')
+    # draw parallels/meridiens and write labels
+    gl = p2.axes.gridlines(crs=ccrs.PlateCarree(), draw_labels=True,
+                          linewidth=0.1, color='black', alpha=0.5, linestyle='--')
+    # adjust labels to taste
+    gl.xlabels_top = False
+    gl.ylabels_right = False
+    gl.ylocator = mticker.FixedLocator([-90, -60, -30, 0, 30, 60, 90])
+    gl.xformatter = LONGITUDE_FORMATTER
+    gl.yformatter = LATITUDE_FORMATTER
+    gl.xlabel_style = {'size': 10, 'color': 'black'}
+    gl.ylabel_style = {'size': 10, 'color': 'black'}
+    
+    
+    p3 = axs[3].pcolormesh(ds_binning_allscale.lon, ds_binning_allscale.lat, (1 - ds_binning_filtered['variance_mapping_err']/ds_binning_filtered['variance_track']), vmin=vmin, vmax=vmax, cmap='RdYlGn')
+    axs[3].set_title('SSH [65-500km]')
+    axs[3].coastlines(resolution='10m', lw=0.5)
+    # optional add grid lines
+    p3.axes.gridlines(color='black', alpha=0., linestyle='--')
+    # draw parallels/meridiens and write labels
+    gl = p3.axes.gridlines(crs=ccrs.PlateCarree(), draw_labels=True,
+                          linewidth=0.1, color='black', alpha=0.5, linestyle='--')
+    # adjust labels to taste
+    gl.xlabels_top = False
+    gl.ylabels_left = False
+    gl.ylabels_right = False
+    gl.ylocator = mticker.FixedLocator([-90, -60, -30, 0, 30, 60, 90])
+    gl.xformatter = LONGITUDE_FORMATTER
+    gl.yformatter = LATITUDE_FORMATTER
+    gl.xlabel_style = {'size': 10, 'color': 'black'}
+    gl.ylabel_style = {'size': 10, 'color': 'black'}
+    
+    cax = fig.add_axes([0.92, 0.25, 0.02, 0.25])
+    fig.colorbar(p3, cax=cax, orientation='vertical')
+    cax.set_ylabel('Explained variance', fontweight='bold')
+    
+    cax = fig.add_axes([0.92, 0.6, 0.02, 0.25])
+    cbar = fig.colorbar(p1, cax=cax, orientation='vertical')
+    cax.set_ylabel('Error variance [m$^2$]', fontweight='bold')
+    
+    fig.subplots_adjust(bottom=0.2, top=0.9, left=0.1, right=0.9,
+                    wspace=0.02, hspace=0.01)
+        
+
     
     
     
