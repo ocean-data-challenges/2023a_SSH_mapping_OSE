@@ -10,6 +10,9 @@ from netCDF4 import Dataset
 
 from src.mod_interp import *
 
+import warnings
+warnings.filterwarnings("ignore")
+
 
 def compute_median_dx(dataset):
         
@@ -370,66 +373,6 @@ def spectral_computation_v2(lon_segment, lat_segment, ref_segments, study_segmen
     vlon = np.arange(0., 360., 1.)
     vlat = np.arange(-80., 91., 1)
 
-    list_psd_ref = []
-    list_nb_segment = []
-    list_frequency = []
-    list_psd_study = []
-    list_psd_diff_study_ref = []
-    list_coherence = []
-    list_cross_spectrum = []
-
-    fs = 1.0 / delta_x
-    
-    # Compute individual spectrum
-    for iseg in range(lon_segment.size):
-        
-        # Power spectrum density reference field
-        wavenumber, psd_ref = scipy.signal.welch(ref_segments[iseg, :],
-                                                         fs=fs,
-                                                         nperseg=npt,
-                                                         scaling='density',
-                                                         noverlap=0)
-        
-        list_psd_ref.append(psd_ref)
-        list_frequency.append(wavenumber)
-        
-        diff_study_ref = study_segments[iseg, :] - ref_segments[iseg, :]
-
-        # Power spectrum density of the error between to field
-        _, psd_diff_study_ref = scipy.signal.welch(diff_study_ref,
-                                                                        fs=fs,
-                                                                        nperseg=npt,
-                                                                        scaling='density',
-                                                                        noverlap=0)
-
-        # Power spectrum density study field
-        _, psd_study = scipy.signal.welch(study_segments[iseg, :],
-                                                               fs=fs,
-                                                               nperseg=npt,
-                                                               scaling='density',
-                                                               noverlap=0)
-
-        # Magnitude square coherence between the ref and study field
-        _, coherence = scipy.signal.coherence(study_segments[iseg, :],
-                                              ref_segments[iseg, :],
-                                              fs=fs,
-                                              nperseg=npt,
-                                              noverlap=0)
-
-        # Cross spectrum
-        _, cross_spectrum = scipy.signal.csd(study_segments[iseg, :],
-                                                                  ref_segments[iseg, :],
-                                                                  fs=fs,
-                                                                  nperseg=npt,
-                                                                  noverlap=0)
-
-        list_psd_study.append(psd_study)
-        list_psd_diff_study_ref.append(psd_diff_study_ref)
-        list_coherence.append(coherence)
-        list_cross_spectrum.append(cross_spectrum)
-    
-    
-    print(np.shape(np.asarray(list_psd_ref)))
     list_mean_psd_ref = []
     list_nb_segment = []
     list_mean_frequency = []
@@ -437,20 +380,21 @@ def spectral_computation_v2(lon_segment, lat_segment, ref_segments, study_segmen
     list_mean_psd_diff_study_ref = []
     list_mean_coherence = []
     list_mean_cross_spectrum = []
-    
-    
+
+    fs = 1.0 / delta_x
+
     # Loop over output lon/lat boxes and selection of the segment within the box plus/minus delta_lon/lat
     for ilat in vlat:
 
         lat_min = ilat - 0.5*delta_lat
         lat_max = ilat + 0.5*delta_lat
 
-        selected_lat_index = np.where(np.logical_and(np.asarray(lat_segment) >= lat_min, np.asarray(lat_segment) <= lat_max))[0]
-        # ref_segments_tmp = ref_segments[selected_lat_index]
-        # if study_segments is not None:
-        #     study_segments_tmp = study_segments[selected_lat_index]
-        # else:
-        #     study_segments_tmp = None
+        selected_lat_index = np.where(np.logical_and(lat_segment >= lat_min, lat_segment <= lat_max))[0]
+        ref_segments_tmp = ref_segments[selected_lat_index]
+        if study_segments is not None:
+            study_segments_tmp = study_segments[selected_lat_index]
+        else:
+            study_segments_tmp = None
 
         for ilon in vlon:
 
@@ -468,33 +412,81 @@ def spectral_computation_v2(lon_segment, lat_segment, ref_segments, study_segmen
                                                            lon_segment[selected_lat_index] % 360. <= lon_max))[0]
 
             if len(selected_segment) > nb_min_segment:
+                selected_ref_segments = np.ma.masked_where(ref_segments_tmp[selected_segment].flatten() > 1.E10,
+                                                           ref_segments_tmp[selected_segment].flatten())
+
+                # Power spectrum density reference field
+                wavenumber, psd_ref = scipy.signal.welch(selected_ref_segments,
+                                                         fs=fs,
+                                                         nperseg=npt,
+                                                         scaling='density',
+                                                         noverlap=0)
                 
+                wavenumber_to_keep = wavenumber
+
+                list_mean_frequency.append(wavenumber)
+                list_mean_psd_ref.append(psd_ref)
                 list_nb_segment.append(selected_segment.size)
-                list_mean_psd_ref.append(np.mean(np.asarray(list_psd_ref)[selected_segment, :], axis=0))
-                list_mean_psd_study.append(np.mean(np.asarray(list_psd_study)[selected_segment, :], axis=0))
-                list_mean_psd_diff_study_ref.append(np.mean(np.asarray(list_psd_diff_study_ref)[selected_segment, :], axis=0))
-                list_mean_coherence.append(np.mean(np.asarray(list_coherence)[selected_segment, :], axis=0))
-                list_mean_cross_spectrum.append(np.mean(np.asarray(list_cross_spectrum)[selected_segment, :], axis=0))
+
+
+                selected_study_segments = np.ma.masked_where(
+                        study_segments_tmp[selected_segment].flatten() > 1.E10,
+                        study_segments_tmp[selected_segment].flatten())
+
+                # Compute diff study minus ref
+                diff_study_ref = selected_study_segments - selected_ref_segments
+
+                # Power spectrum density of the error between to field
+                wavenumber, psd_diff_study_ref = scipy.signal.welch(diff_study_ref,
+                                                                        fs=fs,
+                                                                        nperseg=npt,
+                                                                        scaling='density',
+                                                                        noverlap=0)
+
+                # Power spectrum density study field
+                wavenumber, psd_study = scipy.signal.welch(selected_study_segments,
+                                                               fs=fs,
+                                                               nperseg=npt,
+                                                               scaling='density',
+                                                               noverlap=0)
+
+                # Magnitude square coherence between the ref and study field
+                wavenumber, coherence = scipy.signal.coherence(selected_study_segments,
+                                                                   selected_ref_segments,
+                                                                   fs=fs,
+                                                                   nperseg=npt,
+                                                                   noverlap=0)
+
+                # Cross spectrum
+                wavenumber, cross_spectrum = scipy.signal.csd(selected_study_segments,
+                                                                  selected_ref_segments,
+                                                                  fs=fs,
+                                                                  nperseg=npt,
+                                                                  noverlap=0)
+
+                list_mean_psd_study.append(psd_study)
+                list_mean_psd_diff_study_ref.append(psd_diff_study_ref)
+                list_mean_coherence.append(coherence)
+                list_mean_cross_spectrum.append(cross_spectrum)
                 
 
             else:
-                
-                list_nb_segment.append(0.)
-                #list_mean_frequency.append(np.zeros(npt))
-                list_mean_psd_ref.append(np.zeros(npt))
-                list_mean_psd_study.append(np.zeros(npt))
-                list_mean_psd_diff_study_ref.append(np.zeros(npt))
-                list_mean_coherence.append(np.zeros(npt))
-                list_mean_cross_spectrum.append(np.zeros(npt))
-                
-#                 list_mean_frequency.append(np.zeros((int(npt / 2) + 1)))
-#                 list_mean_psd_ref.append(np.zeros((int(npt / 2) + 1)))
-#                 list_nb_segment.append(0.)
 
-#                 list_mean_psd_study.append(np.zeros((int(npt / 2) + 1)))
-#                 list_mean_psd_diff_study_ref.append(np.zeros((int(npt / 2) + 1)))
-#                 list_mean_coherence.append(np.zeros((int(npt / 2) + 1)))
-#                 list_mean_cross_spectrum.append(np.zeros((int(npt / 2) + 1)))
+                # list_mean_frequency.append(np.zeros(npt))
+                # list_mean_psd_ref.append(np.zeros(npt))
+                # list_nb_segment.append(0.)
+                # list_mean_psd_study.append(np.zeros(npt))
+                # list_mean_psd_diff_study_ref.append(np.zeros(npt))
+                # list_mean_coherence.append(np.zeros(npt))
+                # list_mean_cross_spectrum.append(np.zeros(npt))
+                
+                list_mean_frequency.append(np.zeros((int(npt / 2) + 1)))
+                list_mean_psd_ref.append(np.zeros((int(npt / 2) + 1)))
+                list_nb_segment.append(0.)
+                list_mean_psd_study.append(np.zeros((int(npt / 2) + 1)))
+                list_mean_psd_diff_study_ref.append(np.zeros((int(npt / 2) + 1)))
+                list_mean_coherence.append(np.zeros((int(npt / 2) + 1)))
+                list_mean_cross_spectrum.append(np.zeros((int(npt / 2) + 1)))
 
     # wavenumber = np.asarray(list_mean_frequency)
     # wavenumber = np.ma.masked_where(wavenumber == 0., wavenumber)
@@ -508,13 +500,13 @@ def spectral_computation_v2(lon_segment, lat_segment, ref_segments, study_segmen
     #                                                           np.asarray(list_mean_frequency))), axis=0).filled(0.)
     
     nb_segment = np.asarray(list_nb_segment).reshape((vlat.size, vlon.size))
-    psd_ref = np.transpose(np.asarray(list_mean_psd_ref)).reshape((wavenumber.size, vlat.size, vlon.size))
-    psd_study = np.transpose(np.asarray(list_mean_psd_study)).reshape((wavenumber.size, vlat.size, vlon.size))
-    psd_diff = np.transpose(np.asarray(list_mean_psd_diff_study_ref)).reshape((wavenumber.size, vlat.size, vlon.size))
-    coherence = np.transpose(np.asarray(list_mean_coherence)).reshape((wavenumber.size, vlat.size, vlon.size))
-    cross_spectrum = np.transpose(np.asarray(list_mean_cross_spectrum)).reshape((wavenumber.size, vlat.size, vlon.size))
+    psd_ref = np.transpose(np.asarray(list_mean_psd_ref)).reshape((wavenumber_to_keep.size, vlat.size, vlon.size))
+    psd_study = np.transpose(np.asarray(list_mean_psd_study)).reshape((wavenumber_to_keep.size, vlat.size, vlon.size))
+    psd_diff = np.transpose(np.asarray(list_mean_psd_diff_study_ref)).reshape((wavenumber_to_keep.size, vlat.size, vlon.size))
+    coherence = np.transpose(np.asarray(list_mean_coherence)).reshape((wavenumber_to_keep.size, vlat.size, vlon.size))
+    cross_spectrum = np.transpose(np.asarray(list_mean_cross_spectrum)).reshape((wavenumber_to_keep.size, vlat.size, vlon.size))
     
-    return list_frequency[0], vlat, vlon, nb_segment, psd_ref, psd_study, psd_diff, coherence, cross_spectrum
+    return wavenumber_to_keep, vlat, vlon, nb_segment, psd_ref, psd_study, psd_diff, coherence, cross_spectrum
 
 
 def compute_crossing(array, wavenumber, threshold=0.5):
@@ -674,8 +666,8 @@ def compute_psd_scores_v2(ds_interp, output_filename, lenght_scale=1500. ):
     logging.info('Segment computation...')
     delta_x = compute_median_dx(ds_interp) # in km
     npt = int(lenght_scale / delta_x)
-    lon_segment, lat_segment, sla_segment, msla_segment = compute_segment_v2(ds_interp, npt, delta_x)
-        
+    lon_segment, lat_segment, sla_segment, msla_segment = compute_segment(ds_interp, npt)
+    
     logging.info('Spectral analysis...')
     wavenumber, vlat, vlon, nb_segment, psd_ref, psd_study, psd_diff, coherence, cross_spectrum = spectral_computation_v2(lon_segment,
                                                                                                                        lat_segment,

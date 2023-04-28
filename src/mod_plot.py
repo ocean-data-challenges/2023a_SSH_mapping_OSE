@@ -11,6 +11,8 @@ from cartopy.mpl.gridliner import LONGITUDE_FORMATTER, LATITUDE_FORMATTER
 import cartopy.feature as cfeature
 from mpl_toolkits.axes_grid1 import make_axes_locatable
 
+import warnings
+warnings.filterwarnings("ignore")
 
 def plot_stat_score_map(filename):
     
@@ -545,7 +547,7 @@ def plot_psd_scores_currents_png(filename):
     axs[0].grid(alpha=0.5)
     ax2 = axs[0].twiny()
     ax2.pcolormesh(ds_psd.wavenumber, ds_psd.lat, np.log10(ds_psd.psd_ref), vmin=vmin, vmax=vmax, cmap='Spectral_r')
-    ax2.plot(-coriolis_parameter(ds_psd.lat)/6, ds_psd.lat, color='k', alpha=0.5, ls='--')
+    ax2.plot(-coriolis_parameter(ds_psd.lat)/6, ds_psd.lat, color='k', alpha=0.5, ls='--')      # /6 because 6h drifter database
     ax2.set_xlim(-2, 2)
     ax2.set_xscale('symlog', linthresh=0.05)
     ax2.set_xticklabels(['1d', '10d', '','inf', '','10d', '1d'])
