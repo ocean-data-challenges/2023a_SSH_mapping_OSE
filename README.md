@@ -1,5 +1,46 @@
 ## :warning: WORK in progress. This data-challenge is under construction
 
+# Context
+:building_construction: TODO: SLICING project & CMEMS
+
+
+# SSH Mapping Data Challenge 2021a
+
+This repository contains codes and sample notebooks for downloading and processing the 2023a SSH mapping data challenge.
+
+## Motivation
+
+The goal is to investigate how to best reconstruct sequences of Sea Surface Height (SSH) maps from partial satellite altimetry observations. This data challenge follows an _Observation System Experiment_ framework: Satellite observations are from real sea surface height data from altimeter. The practical goal of the challenge is to investigate the best mapping method according to scores described below and in Jupyter notebooks.
+
+### Observations
+The SSH observations include Jason 3, Sentinel 3A, Sentinel 3B, Haiyang-2A, Haiyang-2B and Cryosat-2 altimeter data. This nadir altimeters constellation was operating during the 20190101-20191231 period. Note that for the mapping the Saral/AltiKa altimeter data are not taken in the mapping to perform the independent assessment of the various reconstructions. Additional dataset from drifters database are used as indepddent assesment of surface currents.
+
+### Data sequence and use
+ 
+The SSH reconstructions are assessed at global scale and over the period from 2019-01-01 to 2019-12-31.
+
+For reconstruction methods that need a spin-up, the **observations** from other period can be used.
+
+The altimeter data from Saral/AltiKa should never be used so that any reconstruction can be considered uncorrelated to the evaluation period.
+
+## Leaderboard
+
+:building_construction: TO DO: stat by ocean regime
+
+## Download the data
+:building_construction: TO DO: Add example on how to download/read data from MEOM server
+
+### Evaluation
+
+The evaluation of the mapping methods is based on the comparison of the SSH reconstructions with the *independent* Saral/AltiKa along-track dataset as well as surface drifters velocities. 
+
+## Data processing
+
+Cross-functional modules are gathered in the `src` directory. They include tools for regridding, plots, evaluation, writing and reading NetCDF files.   
+
+## Acknowledgement
+
+
 
 <!---
 
