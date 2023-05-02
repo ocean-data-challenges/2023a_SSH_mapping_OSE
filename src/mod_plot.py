@@ -749,5 +749,644 @@ def plot_stat_score_map_png(filename):
         
 
     
+def compare_stat_score_map(study_filename, ref_filename):
+    
+    ds_ref_binning_allscale = xr.open_dataset(ref_filename, group='all_scale')
+    ds_ref_binning_filtered = xr.open_dataset(ref_filename, group='filtered')
+    
+    explained_variance_ref_all_scale = 1 - ds_ref_binning_allscale['variance_mapping_err']/ds_ref_binning_allscale['variance_track']
+    explained_variance_ref_filtered = 1 - ds_ref_binning_filtered['variance_mapping_err']/ds_ref_binning_filtered['variance_track']
+    
+    ds_study_binning_allscale = xr.open_dataset(study_filename, group='all_scale')
+    ds_study_binning_filtered = xr.open_dataset(study_filename, group='filtered')
+    
+    explained_variance_study_all_scale = 1 - ds_study_binning_allscale['variance_mapping_err']/ds_study_binning_allscale['variance_track']
+    explained_variance_study_filtered = 1 - ds_study_binning_filtered['variance_mapping_err']/ds_study_binning_filtered['variance_track']
     
     
+    
+    fig1 = ds_ref_binning_allscale['variance_mapping_err'].hvplot.quadmesh(x='lon',
+                                                              y='lat',
+                                                              clim=(0, 0.002),
+                                                              cmap='Reds',
+                                                              rasterize=True,
+                                                              title='Reference Error variance [All scale]')
+    
+    fig2 = ds_ref_binning_filtered['variance_mapping_err'].hvplot.quadmesh(x='lon',
+                                                              y='lat',
+                                                              clim=(0, 0.002),
+                                                              cmap='Reds',
+                                                              rasterize=True,
+                                                              title='Reference Error variance [65:500km]')
+    
+    fig3 = (100*(ds_study_binning_allscale['variance_mapping_err'] - ds_ref_binning_allscale['variance_mapping_err'])/ds_ref_binning_allscale['variance_mapping_err']).hvplot.quadmesh(x='lon',
+                                                              y='lat',
+                                                              clim=(-20, 20),
+                                                              cmap='coolwarm',
+                                                              rasterize=True,
+                                                              title='Reference Error variance [All scale]')
+    
+    fig4 = (100*(ds_study_binning_filtered['variance_mapping_err'] - ds_ref_binning_filtered['variance_mapping_err'])/ds_ref_binning_filtered['variance_mapping_err']).hvplot.quadmesh(x='lon',
+                                                              y='lat',
+                                                              clim=(-20, 20),
+                                                              cmap='coolwarm',
+                                                              rasterize=True,
+                                                              title='Reference Error variance [65:500km]')
+    
+    fig5 = explained_variance_ref_all_scale.hvplot.quadmesh(x='lon',
+                                                              y='lat',
+                                                              clim=(0, 1),
+                                                              cmap='RdYlGn',
+                                                              rasterize=True,
+                                                              title='Reference Explained variance [All scale]')
+    
+    fig6 = explained_variance_ref_filtered.hvplot.quadmesh(x='lon',
+                                                              y='lat',
+                                                              clim=(0, 1),
+                                                              cmap='RdYlGn',
+                                                              rasterize=True,
+                                                              title='Reference Explained variance [65:500km]')
+    
+    fig7 = (explained_variance_study_all_scale - explained_variance_ref_all_scale).hvplot.quadmesh(x='lon',
+                                                              y='lat',
+                                                              clim=(-0.2, 0.2),
+                                                              cmap='coolwarm_r',
+                                                              rasterize=True,
+                                                              title='Gain(+)/Loss(-) Explained variance [All scale]')
+    
+    fig8 = (explained_variance_study_filtered - explained_variance_ref_filtered).hvplot.quadmesh(x='lon',
+                                                              y='lat',
+                                                              clim=(-0.2, 0.2),
+                                                              cmap='coolwarm_r',
+                                                              rasterize=True,
+                                                              title='Gain(+)/Loss(-) Explained variance [65:500km]')
+    
+#     fig5 = ds_binning_allscale['rmse'].hvplot.quadmesh(x='lon',
+#                                                               y='lat',
+#                                                               clim=(0, 0.1),
+#                                                               cmap='Reds',
+#                                                               rasterize=True,
+#                                                               title='RMSE [All scale]')
+    
+#     fig6 = ds_binning_filtered['rmse'].hvplot.quadmesh(x='lon',
+#                                                               y='lat',
+#                                                               clim=(0, 0.1),
+#                                                               cmap='Reds',
+#                                                               rasterize=True,
+#                                                               title='RMSE [65:500km]')
+    
+    return (fig1 + fig2 + fig3 + fig4 + fig5 + fig6 +fig7 +fig8).cols(2)
+
+
+
+def compare_stat_score_map_png(study_filename, ref_filename):
+
+    ds_ref_binning_allscale = xr.open_dataset(ref_filename, group='all_scale')
+    ds_ref_binning_filtered = xr.open_dataset(ref_filename, group='filtered')
+    
+    explained_variance_ref_all_scale = 1 - ds_ref_binning_allscale['variance_mapping_err']/ds_ref_binning_allscale['variance_track']
+    explained_variance_ref_filtered = 1 - ds_ref_binning_filtered['variance_mapping_err']/ds_ref_binning_filtered['variance_track']
+    
+    ds_study_binning_allscale = xr.open_dataset(study_filename, group='all_scale')
+    ds_study_binning_filtered = xr.open_dataset(study_filename, group='filtered')
+    
+    explained_variance_study_all_scale = 1 - ds_study_binning_allscale['variance_mapping_err']/ds_study_binning_allscale['variance_track']
+    explained_variance_study_filtered = 1 - ds_study_binning_filtered['variance_mapping_err']/ds_study_binning_filtered['variance_track']
+    
+    
+    fig, axs = plt.subplots(nrows=4,ncols=2,
+                        subplot_kw={'projection': ccrs.PlateCarree()},
+                        figsize=(11,15))
+
+    axs=axs.flatten()
+    
+    vmin = 0.
+    vmax= 0.002
+    p0 = axs[0].pcolormesh(ds_ref_binning_allscale.lon, ds_ref_binning_allscale.lat, ds_ref_binning_allscale.variance_mapping_err, vmin=vmin, vmax=vmax, cmap='Reds')
+    axs[0].set_title('SSH [All scale]')
+    axs[0].coastlines(resolution='10m', lw=0.5)
+    # optional add grid lines
+    p0.axes.gridlines(color='black', alpha=0., linestyle='--')
+    # draw parallels/meridiens and write labels
+    gl = p0.axes.gridlines(crs=ccrs.PlateCarree(), draw_labels=True,
+                          linewidth=0.1, color='black', alpha=0.5, linestyle='--')
+    # adjust labels to taste
+    gl.xlabels_top = False
+    gl.ylabels_right = False
+    gl.xlabels_bottom = False
+    gl.ylocator = mticker.FixedLocator([-90, -60, -30, 0, 30, 60, 90])
+    gl.xformatter = LONGITUDE_FORMATTER
+    gl.yformatter = LATITUDE_FORMATTER
+    gl.xlabel_style = {'size': 10, 'color': 'black'}
+    gl.ylabel_style = {'size': 10, 'color': 'black'}
+    
+    p1 = axs[1].pcolormesh(ds_ref_binning_filtered.lon, ds_ref_binning_filtered.lat, ds_ref_binning_filtered.variance_mapping_err, vmin=vmin, vmax=vmax, cmap='Reds')
+    axs[1].set_title('SSH [65-500km]')
+    axs[1].coastlines(resolution='10m', lw=0.5)
+    # optional add grid lines
+    p1.axes.gridlines(color='black', alpha=0., linestyle='--')
+    # draw parallels/meridiens and write labels
+    gl = p1.axes.gridlines(crs=ccrs.PlateCarree(), draw_labels=True,
+                          linewidth=0.1, color='black', alpha=0.5, linestyle='--')
+    # adjust labels to taste
+    gl.xlabels_top = False
+    gl.ylabels_right = False
+    gl.ylabels_left = False
+    gl.xlabels_bottom = False
+    gl.ylocator = mticker.FixedLocator([-90, -60, -30, 0, 30, 60, 90])
+    gl.xformatter = LONGITUDE_FORMATTER
+    gl.yformatter = LATITUDE_FORMATTER
+    gl.xlabel_style = {'size': 10, 'color': 'black'}
+    gl.ylabel_style = {'size': 10, 'color': 'black'}
+    
+    vmin = -20.
+    vmax= 20
+    p2 = axs[2].pcolormesh(ds_ref_binning_allscale.lon, ds_ref_binning_allscale.lat, 100*(ds_study_binning_allscale.variance_mapping_err - ds_ref_binning_allscale.variance_mapping_err)/ds_ref_binning_allscale.variance_mapping_err, vmin=vmin, vmax=vmax, cmap='coolwarm')
+    axs[2].set_title('SSH [All scale]')
+    axs[2].coastlines(resolution='10m', lw=0.5)
+    # optional add grid lines
+    p2.axes.gridlines(color='black', alpha=0., linestyle='--')
+    # draw parallels/meridiens and write labels
+    gl = p2.axes.gridlines(crs=ccrs.PlateCarree(), draw_labels=True,
+                          linewidth=0.1, color='black', alpha=0.5, linestyle='--')
+    # adjust labels to taste
+    gl.xlabels_top = False
+    gl.ylabels_right = False
+    gl.ylocator = mticker.FixedLocator([-90, -60, -30, 0, 30, 60, 90])
+    gl.xformatter = LONGITUDE_FORMATTER
+    gl.yformatter = LATITUDE_FORMATTER
+    gl.xlabel_style = {'size': 10, 'color': 'black'}
+    gl.ylabel_style = {'size': 10, 'color': 'black'}
+    
+    
+    p3 = axs[3].pcolormesh(ds_study_binning_filtered.lon, 
+                           ds_study_binning_filtered.lat, 
+                           100*(ds_study_binning_filtered.variance_mapping_err - ds_ref_binning_filtered.variance_mapping_err)/ds_ref_binning_filtered.variance_mapping_err, 
+                           vmin=vmin, 
+                           vmax=vmax, 
+                           cmap='coolwarm')
+    axs[3].set_title('SSH [65-500km]')
+    axs[3].coastlines(resolution='10m', lw=0.5)
+    # optional add grid lines
+    p3.axes.gridlines(color='black', alpha=0., linestyle='--')
+    # draw parallels/meridiens and write labels
+    gl = p3.axes.gridlines(crs=ccrs.PlateCarree(), draw_labels=True,
+                          linewidth=0.1, color='black', alpha=0.5, linestyle='--')
+    # adjust labels to taste
+    gl.xlabels_top = False
+    gl.ylabels_left = False
+    gl.ylabels_right = False
+    gl.ylocator = mticker.FixedLocator([-90, -60, -30, 0, 30, 60, 90])
+    gl.xformatter = LONGITUDE_FORMATTER
+    gl.yformatter = LATITUDE_FORMATTER
+    gl.xlabel_style = {'size': 10, 'color': 'black'}
+    gl.ylabel_style = {'size': 10, 'color': 'black'}
+    
+    
+    
+    vmin = 0.
+    vmax= 1
+    p4 = axs[4].pcolormesh(ds_ref_binning_allscale.lon, ds_ref_binning_allscale.lat, explained_variance_ref_all_scale, vmin=vmin, vmax=vmax, cmap='RdYlGn')
+    axs[4].set_title('SSH [All scale]')
+    axs[4].coastlines(resolution='10m', lw=0.5)
+    # optional add grid lines
+    p4.axes.gridlines(color='black', alpha=0., linestyle='--')
+    # draw parallels/meridiens and write labels
+    gl = p4.axes.gridlines(crs=ccrs.PlateCarree(), draw_labels=True,
+                          linewidth=0.1, color='black', alpha=0.5, linestyle='--')
+    # adjust labels to taste
+    gl.xlabels_top = False
+    gl.ylabels_right = False
+    gl.xlabels_bottom = False
+    gl.ylocator = mticker.FixedLocator([-90, -60, -30, 0, 30, 60, 90])
+    gl.xformatter = LONGITUDE_FORMATTER
+    gl.yformatter = LATITUDE_FORMATTER
+    gl.xlabel_style = {'size': 10, 'color': 'black'}
+    gl.ylabel_style = {'size': 10, 'color': 'black'}
+    
+    p5 = axs[5].pcolormesh(ds_ref_binning_filtered.lon, ds_ref_binning_filtered.lat, explained_variance_ref_filtered, vmin=vmin, vmax=vmax, cmap='RdYlGn')
+    axs[5].set_title('SSH [65-500km]')
+    axs[5].coastlines(resolution='10m', lw=0.5)
+    # optional add grid lines
+    p5.axes.gridlines(color='black', alpha=0., linestyle='--')
+    # draw parallels/meridiens and write labels
+    gl = p5.axes.gridlines(crs=ccrs.PlateCarree(), draw_labels=True,
+                          linewidth=0.1, color='black', alpha=0.5, linestyle='--')
+    # adjust labels to taste
+    gl.xlabels_top = False
+    gl.ylabels_right = False
+    gl.ylabels_left = False
+    gl.xlabels_bottom = False
+    gl.ylocator = mticker.FixedLocator([-90, -60, -30, 0, 30, 60, 90])
+    gl.xformatter = LONGITUDE_FORMATTER
+    gl.yformatter = LATITUDE_FORMATTER
+    gl.xlabel_style = {'size': 10, 'color': 'black'}
+    gl.ylabel_style = {'size': 10, 'color': 'black'}
+    
+    vmin = -0.2
+    vmax= 0.2
+    p6 = axs[6].pcolormesh(ds_ref_binning_allscale.lon, 
+                           ds_ref_binning_allscale.lat, 
+                           (explained_variance_study_all_scale - explained_variance_ref_all_scale), 
+                           vmin=vmin, 
+                           vmax=vmax, 
+                           cmap='coolwarm_r')
+    axs[6].set_title('SSH [All scale]')
+    axs[6].coastlines(resolution='10m', lw=0.5)
+    # optional add grid lines
+    p6.axes.gridlines(color='black', alpha=0., linestyle='--')
+    # draw parallels/meridiens and write labels
+    gl = p6.axes.gridlines(crs=ccrs.PlateCarree(), draw_labels=True,
+                          linewidth=0.1, color='black', alpha=0.5, linestyle='--')
+    # adjust labels to taste
+    gl.xlabels_top = False
+    gl.ylabels_right = False
+    gl.ylocator = mticker.FixedLocator([-90, -60, -30, 0, 30, 60, 90])
+    gl.xformatter = LONGITUDE_FORMATTER
+    gl.yformatter = LATITUDE_FORMATTER
+    gl.xlabel_style = {'size': 10, 'color': 'black'}
+    gl.ylabel_style = {'size': 10, 'color': 'black'}
+    
+    
+    p7 = axs[7].pcolormesh(ds_study_binning_filtered.lon, 
+                           ds_study_binning_filtered.lat, 
+                           (explained_variance_study_filtered - explained_variance_ref_filtered), 
+                           vmin=vmin, 
+                           vmax=vmax, 
+                           cmap='coolwarm_r')
+    axs[7].set_title('SSH [65-500km]')
+    axs[7].coastlines(resolution='10m', lw=0.5)
+    # optional add grid lines
+    p7.axes.gridlines(color='black', alpha=0., linestyle='--')
+    # draw parallels/meridiens and write labels
+    gl = p7.axes.gridlines(crs=ccrs.PlateCarree(), draw_labels=True,
+                          linewidth=0.1, color='black', alpha=0.5, linestyle='--')
+    # adjust labels to taste
+    gl.xlabels_top = False
+    gl.ylabels_left = False
+    gl.ylabels_right = False
+    gl.ylocator = mticker.FixedLocator([-90, -60, -30, 0, 30, 60, 90])
+    gl.xformatter = LONGITUDE_FORMATTER
+    gl.yformatter = LATITUDE_FORMATTER
+    gl.xlabel_style = {'size': 10, 'color': 'black'}
+    gl.ylabel_style = {'size': 10, 'color': 'black'}
+    
+    
+    
+    
+    
+    cax = fig.add_axes([0.92, 0.57, 0.02, 0.13])
+    fig.colorbar(p3, cax=cax, orientation='vertical')
+    cax.set_ylabel('Loss(-)/Gain(+)\n Error variance [%]', fontweight='bold')
+    
+    cax = fig.add_axes([0.92, 0.75, 0.02, 0.13])
+    cbar = fig.colorbar(p1, cax=cax, orientation='vertical')
+    cax.set_ylabel('Error variance [m$^2$]', fontweight='bold')
+    
+    cax = fig.add_axes([0.92, 0.22, 0.02, 0.13])
+    fig.colorbar(p7, cax=cax, orientation='vertical')
+    cax.set_ylabel('Loss(-)/Gain(+)\n Explained variance [%]', fontweight='bold')
+    
+    cax = fig.add_axes([0.92, 0.4, 0.02, 0.13])
+    cbar = fig.colorbar(p5, cax=cax, orientation='vertical')
+    cax.set_ylabel('Explained variance', fontweight='bold')
+    
+    fig.subplots_adjust(bottom=0.2, top=0.9, left=0.1, right=0.9,
+                    wspace=0.02, hspace=0.01)
+    
+    
+def compare_stat_score_map_uv_png(study_filename, ref_filename):
+
+    ds_ref_binning_allscale = xr.open_dataset(ref_filename, group='all_scale')
+    
+    explained_variance_u_ref_all_scale = 1 - ds_ref_binning_allscale['variance_mapping_err_u']/ds_ref_binning_allscale['variance_drifter_u']
+    explained_variance_v_ref_all_scale = 1 - ds_ref_binning_allscale['variance_mapping_err_v']/ds_ref_binning_allscale['variance_drifter_v']
+    
+    ds_study_binning_allscale = xr.open_dataset(study_filename, group='all_scale')
+    
+    explained_variance_u_study_all_scale = 1 - ds_study_binning_allscale['variance_mapping_err_u']/ds_study_binning_allscale['variance_drifter_u']
+    explained_variance_v_study_all_scale = 1 - ds_study_binning_allscale['variance_mapping_err_v']/ds_study_binning_allscale['variance_drifter_v']
+    
+    
+    fig, axs = plt.subplots(nrows=4,ncols=2,
+                        subplot_kw={'projection': ccrs.PlateCarree()},
+                        figsize=(11,15))
+
+    axs=axs.flatten()
+    
+    vmin = 0.
+    vmax= 0.1
+    p0 = axs[0].pcolormesh(ds_ref_binning_allscale.lon, ds_ref_binning_allscale.lat, ds_ref_binning_allscale.variance_mapping_err_u, vmin=vmin, vmax=vmax, cmap='Reds')
+    axs[0].set_title('Zonal current [All scale]')
+    axs[0].coastlines(resolution='10m', lw=0.5)
+    # optional add grid lines
+    p0.axes.gridlines(color='black', alpha=0., linestyle='--')
+    # draw parallels/meridiens and write labels
+    gl = p0.axes.gridlines(crs=ccrs.PlateCarree(), draw_labels=True,
+                          linewidth=0.1, color='black', alpha=0.5, linestyle='--')
+    # adjust labels to taste
+    gl.xlabels_top = False
+    gl.ylabels_right = False
+    gl.xlabels_bottom = False
+    gl.ylocator = mticker.FixedLocator([-90, -60, -30, 0, 30, 60, 90])
+    gl.xformatter = LONGITUDE_FORMATTER
+    gl.yformatter = LATITUDE_FORMATTER
+    gl.xlabel_style = {'size': 10, 'color': 'black'}
+    gl.ylabel_style = {'size': 10, 'color': 'black'}
+    
+    p1 = axs[1].pcolormesh(ds_ref_binning_allscale.lon, ds_ref_binning_allscale.lat, ds_ref_binning_allscale.variance_mapping_err_v, vmin=vmin, vmax=vmax, cmap='Reds')
+    axs[1].set_title('Meridional current [All scale]')
+    axs[1].coastlines(resolution='10m', lw=0.5)
+    # optional add grid lines
+    p1.axes.gridlines(color='black', alpha=0., linestyle='--')
+    # draw parallels/meridiens and write labels
+    gl = p1.axes.gridlines(crs=ccrs.PlateCarree(), draw_labels=True,
+                          linewidth=0.1, color='black', alpha=0.5, linestyle='--')
+    # adjust labels to taste
+    gl.xlabels_top = False
+    gl.ylabels_right = False
+    gl.ylabels_left = False
+    gl.xlabels_bottom = False
+    gl.ylocator = mticker.FixedLocator([-90, -60, -30, 0, 30, 60, 90])
+    gl.xformatter = LONGITUDE_FORMATTER
+    gl.yformatter = LATITUDE_FORMATTER
+    gl.xlabel_style = {'size': 10, 'color': 'black'}
+    gl.ylabel_style = {'size': 10, 'color': 'black'}
+    
+    vmin = -20.
+    vmax= 20
+    p2 = axs[2].pcolormesh(ds_ref_binning_allscale.lon, 
+                           ds_ref_binning_allscale.lat, 
+                           100*(ds_study_binning_allscale.variance_mapping_err_u - ds_ref_binning_allscale.variance_mapping_err_u)/ds_ref_binning_allscale.variance_mapping_err_u, 
+                           vmin=vmin, 
+                           vmax=vmax, 
+                           cmap='coolwarm')
+    axs[2].set_title('Zonal current [All scale]')
+    axs[2].coastlines(resolution='10m', lw=0.5)
+    # optional add grid lines
+    p2.axes.gridlines(color='black', alpha=0., linestyle='--')
+    # draw parallels/meridiens and write labels
+    gl = p2.axes.gridlines(crs=ccrs.PlateCarree(), draw_labels=True,
+                          linewidth=0.1, color='black', alpha=0.5, linestyle='--')
+    # adjust labels to taste
+    gl.xlabels_top = False
+    gl.ylabels_right = False
+    gl.ylocator = mticker.FixedLocator([-90, -60, -30, 0, 30, 60, 90])
+    gl.xformatter = LONGITUDE_FORMATTER
+    gl.yformatter = LATITUDE_FORMATTER
+    gl.xlabel_style = {'size': 10, 'color': 'black'}
+    gl.ylabel_style = {'size': 10, 'color': 'black'}
+    
+    
+    p3 = axs[3].pcolormesh(ds_ref_binning_allscale.lon, 
+                           ds_ref_binning_allscale.lat, 
+                           100*(ds_study_binning_allscale.variance_mapping_err_v - ds_ref_binning_allscale.variance_mapping_err_v)/ds_ref_binning_allscale.variance_mapping_err_v, 
+                           vmin=vmin, 
+                           vmax=vmax, 
+                           cmap='coolwarm')
+    axs[3].set_title('Meridional current [All scale]')
+    axs[3].coastlines(resolution='10m', lw=0.5)
+    # optional add grid lines
+    p3.axes.gridlines(color='black', alpha=0., linestyle='--')
+    # draw parallels/meridiens and write labels
+    gl = p3.axes.gridlines(crs=ccrs.PlateCarree(), draw_labels=True,
+                          linewidth=0.1, color='black', alpha=0.5, linestyle='--')
+    # adjust labels to taste
+    gl.xlabels_top = False
+    gl.ylabels_left = False
+    gl.ylabels_right = False
+    gl.ylocator = mticker.FixedLocator([-90, -60, -30, 0, 30, 60, 90])
+    gl.xformatter = LONGITUDE_FORMATTER
+    gl.yformatter = LATITUDE_FORMATTER
+    gl.xlabel_style = {'size': 10, 'color': 'black'}
+    gl.ylabel_style = {'size': 10, 'color': 'black'}
+    
+    
+    
+    vmin = 0.
+    vmax= 1
+    p4 = axs[4].pcolormesh(ds_ref_binning_allscale.lon, ds_ref_binning_allscale.lat, explained_variance_u_ref_all_scale, vmin=vmin, vmax=vmax, cmap='RdYlGn')
+    axs[4].set_title('Zonal current [All scale]')
+    axs[4].coastlines(resolution='10m', lw=0.5)
+    # optional add grid lines
+    p4.axes.gridlines(color='black', alpha=0., linestyle='--')
+    # draw parallels/meridiens and write labels
+    gl = p4.axes.gridlines(crs=ccrs.PlateCarree(), draw_labels=True,
+                          linewidth=0.1, color='black', alpha=0.5, linestyle='--')
+    # adjust labels to taste
+    gl.xlabels_top = False
+    gl.ylabels_right = False
+    gl.xlabels_bottom = False
+    gl.ylocator = mticker.FixedLocator([-90, -60, -30, 0, 30, 60, 90])
+    gl.xformatter = LONGITUDE_FORMATTER
+    gl.yformatter = LATITUDE_FORMATTER
+    gl.xlabel_style = {'size': 10, 'color': 'black'}
+    gl.ylabel_style = {'size': 10, 'color': 'black'}
+    
+    p5 = axs[5].pcolormesh(ds_ref_binning_allscale.lon, ds_ref_binning_allscale.lat, explained_variance_v_ref_all_scale, vmin=vmin, vmax=vmax, cmap='RdYlGn')
+    axs[5].set_title('Meridional current [All scale]')
+    axs[5].coastlines(resolution='10m', lw=0.5)
+    # optional add grid lines
+    p5.axes.gridlines(color='black', alpha=0., linestyle='--')
+    # draw parallels/meridiens and write labels
+    gl = p5.axes.gridlines(crs=ccrs.PlateCarree(), draw_labels=True,
+                          linewidth=0.1, color='black', alpha=0.5, linestyle='--')
+    # adjust labels to taste
+    gl.xlabels_top = False
+    gl.ylabels_right = False
+    gl.ylabels_left = False
+    gl.xlabels_bottom = False
+    gl.ylocator = mticker.FixedLocator([-90, -60, -30, 0, 30, 60, 90])
+    gl.xformatter = LONGITUDE_FORMATTER
+    gl.yformatter = LATITUDE_FORMATTER
+    gl.xlabel_style = {'size': 10, 'color': 'black'}
+    gl.ylabel_style = {'size': 10, 'color': 'black'}
+    
+    vmin = -0.2
+    vmax= 0.2
+    p6 = axs[6].pcolormesh(ds_ref_binning_allscale.lon, 
+                           ds_ref_binning_allscale.lat, 
+                           (explained_variance_u_study_all_scale - explained_variance_u_ref_all_scale), 
+                           vmin=vmin, 
+                           vmax=vmax, 
+                           cmap='coolwarm_r')
+    axs[6].set_title('Zonal current [All scale]')
+    axs[6].coastlines(resolution='10m', lw=0.5)
+    # optional add grid lines
+    p6.axes.gridlines(color='black', alpha=0., linestyle='--')
+    # draw parallels/meridiens and write labels
+    gl = p6.axes.gridlines(crs=ccrs.PlateCarree(), draw_labels=True,
+                          linewidth=0.1, color='black', alpha=0.5, linestyle='--')
+    # adjust labels to taste
+    gl.xlabels_top = False
+    gl.ylabels_right = False
+    gl.ylocator = mticker.FixedLocator([-90, -60, -30, 0, 30, 60, 90])
+    gl.xformatter = LONGITUDE_FORMATTER
+    gl.yformatter = LATITUDE_FORMATTER
+    gl.xlabel_style = {'size': 10, 'color': 'black'}
+    gl.ylabel_style = {'size': 10, 'color': 'black'}
+    
+    
+    p7 = axs[7].pcolormesh(ds_ref_binning_allscale.lon, 
+                           ds_ref_binning_allscale.lat, 
+                           (explained_variance_v_study_all_scale - explained_variance_v_ref_all_scale), 
+                           vmin=vmin, 
+                           vmax=vmax, 
+                           cmap='coolwarm_r')
+    axs[7].set_title('Meridional current [All scale]')
+    axs[7].coastlines(resolution='10m', lw=0.5)
+    # optional add grid lines
+    p7.axes.gridlines(color='black', alpha=0., linestyle='--')
+    # draw parallels/meridiens and write labels
+    gl = p7.axes.gridlines(crs=ccrs.PlateCarree(), draw_labels=True,
+                          linewidth=0.1, color='black', alpha=0.5, linestyle='--')
+    # adjust labels to taste
+    gl.xlabels_top = False
+    gl.ylabels_left = False
+    gl.ylabels_right = False
+    gl.ylocator = mticker.FixedLocator([-90, -60, -30, 0, 30, 60, 90])
+    gl.xformatter = LONGITUDE_FORMATTER
+    gl.yformatter = LATITUDE_FORMATTER
+    gl.xlabel_style = {'size': 10, 'color': 'black'}
+    gl.ylabel_style = {'size': 10, 'color': 'black'}
+    
+    
+    
+    
+    
+    cax = fig.add_axes([0.92, 0.57, 0.02, 0.13])
+    fig.colorbar(p3, cax=cax, orientation='vertical')
+    cax.set_ylabel('Loss(-)/Gain(+)\n Error variance [%]', fontweight='bold')
+    
+    cax = fig.add_axes([0.92, 0.75, 0.02, 0.13])
+    cbar = fig.colorbar(p1, cax=cax, orientation='vertical')
+    cax.set_ylabel('Error variance [m$^2$]', fontweight='bold')
+    
+    cax = fig.add_axes([0.92, 0.22, 0.02, 0.13])
+    fig.colorbar(p7, cax=cax, orientation='vertical')
+    cax.set_ylabel('Loss(-)/Gain(+)\n Explained variance [%]', fontweight='bold')
+    
+    cax = fig.add_axes([0.92, 0.4, 0.02, 0.13])
+    cbar = fig.colorbar(p5, cax=cax, orientation='vertical')
+    cax.set_ylabel('Explained variance', fontweight='bold')
+    
+    fig.subplots_adjust(bottom=0.2, top=0.9, left=0.1, right=0.9,
+                    wspace=0.02, hspace=0.01)
+
+
+
+def compare_psd_score(study_filename, ref_filename):
+    
+    ds_ref = xr.open_dataset(ref_filename)
+    ds_study = xr.open_dataset(study_filename)
+    
+    fig0 = ds_ref.effective_resolution.hvplot.quadmesh(x='lon', 
+                                                   y='lat', 
+                                                   cmap='Spectral_r', 
+                                                   clim=(100, 500), 
+                                                   title='Effective resolution [km]',
+                                                   rasterize=True, 
+                                                   projection=ccrs.PlateCarree(), 
+                                                   project=True, 
+                                                   geo=True, 
+                                                   coastline=True)
+    
+    fig1 = (100*(ds_study.effective_resolution - ds_ref.effective_resolution)/ds_ref.effective_resolution).hvplot.quadmesh(x='lon', 
+                                                   y='lat', 
+                                                   cmap='coolwarm', 
+                                                   clim=(-20, 20), 
+                                                   title='Gain(-)/loss(+) Effective resolution [%]',
+                                                   rasterize=True, 
+                                                   projection=ccrs.PlateCarree(), 
+                                                   project=True, 
+                                                   geo=True, 
+                                                   coastline=True)
+    
+    return (fig0 + fig1).cols(1)
+    
+    
+def compare_psd_score_png(study_filename, ref_filename):
+    
+    ds_ref = xr.open_dataset(ref_filename)
+    ds_study = xr.open_dataset(study_filename)
+    
+    fig, axs = plt.subplots(nrows=3,ncols=1,
+                        subplot_kw={'projection': ccrs.PlateCarree()},
+                        figsize=(6,10))
+
+    axs=axs.flatten()
+    
+    vmin = 100.
+    vmax= 500.
+    p0 = axs[0].pcolormesh(ds_ref.lon, ds_ref.lat, ds_ref.effective_resolution, vmin=vmin, vmax=vmax, cmap='Spectral_r')
+    axs[0].set_title('SSH ')
+    axs[0].coastlines(resolution='10m', lw=0.5, zorder=13)
+    axs[0].add_feature(cfeature.LAND, color='w', zorder=12)
+    # optional add grid lines
+    p0.axes.gridlines(color='black', alpha=0., linestyle='--')
+    # draw parallels/meridiens and write labels
+    gl = p0.axes.gridlines(crs=ccrs.PlateCarree(), draw_labels=True,
+                          linewidth=0.1, color='black', alpha=0.5, linestyle='--')
+    # adjust labels to taste
+    gl.xlabels_top = False
+    gl.ylabels_right = False
+    gl.xlabels_bottom = False
+    gl.ylocator = mticker.FixedLocator([-90, -60, -30, 0, 30, 60, 90])
+    gl.xformatter = LONGITUDE_FORMATTER
+    gl.yformatter = LATITUDE_FORMATTER
+    gl.xlabel_style = {'size': 10, 'color': 'black'}
+    gl.ylabel_style = {'size': 10, 'color': 'black'}
+    
+    vmin = -40.
+    vmax= 40.
+    p1 = axs[1].pcolormesh(ds_ref.lon, ds_ref.lat, ds_study.effective_resolution - ds_ref.effective_resolution, vmin=vmin, vmax=vmax, cmap='coolwarm')
+    axs[1].set_title('SSH')
+    axs[1].coastlines(resolution='10m', lw=0.5, zorder=13)
+    axs[1].add_feature(cfeature.LAND, color='w', zorder=12)
+    # optional add grid lines
+    p1.axes.gridlines(color='black', alpha=0., linestyle='--')
+    # draw parallels/meridiens and write labels
+    gl = p1.axes.gridlines(crs=ccrs.PlateCarree(), draw_labels=True,
+                          linewidth=0.1, color='black', alpha=0.5, linestyle='--')
+    # adjust labels to taste
+    gl.xlabels_top = False
+    gl.ylabels_right = False
+    gl.ylabels_left = True
+    gl.xlabels_bottom = False
+    gl.ylocator = mticker.FixedLocator([-90, -60, -30, 0, 30, 60, 90])
+    gl.xformatter = LONGITUDE_FORMATTER
+    gl.yformatter = LATITUDE_FORMATTER
+    gl.xlabel_style = {'size': 10, 'color': 'black'}
+    gl.ylabel_style = {'size': 10, 'color': 'black'}
+    
+    vmin = -10.
+    vmax= 10
+    p2 = axs[2].pcolormesh(ds_ref.lon, ds_ref.lat, 100*(ds_study.effective_resolution - ds_ref.effective_resolution)/ds_ref.effective_resolution, vmin=vmin, vmax=vmax, cmap='coolwarm')
+    axs[2].set_title('SSH')
+    axs[2].coastlines(resolution='10m', lw=0.5, zorder=13)
+    axs[2].add_feature(cfeature.LAND, color='w', zorder=12)
+    # optional add grid lines
+    p2.axes.gridlines(color='black', alpha=0., linestyle='--')
+    # draw parallels/meridiens and write labels
+    gl = p2.axes.gridlines(crs=ccrs.PlateCarree(), draw_labels=True,
+                          linewidth=0.1, color='black', alpha=0.5, linestyle='--')
+    # adjust labels to taste
+    gl.xlabels_top = False
+    gl.ylabels_right = False
+    gl.ylocator = mticker.FixedLocator([-90, -60, -30, 0, 30, 60, 90])
+    gl.xformatter = LONGITUDE_FORMATTER
+    gl.yformatter = LATITUDE_FORMATTER
+    gl.xlabel_style = {'size': 10, 'color': 'black'}
+    gl.ylabel_style = {'size': 10, 'color': 'black'}
+    
+    cax = fig.add_axes([0.92, 0.12, 0.02, 0.2])
+    fig.colorbar(p2, cax=cax, orientation='vertical')
+    cax.set_ylabel('Gain(-)/Loss(+)\n Effective resolution [%]', fontweight='bold')
+    
+    cax = fig.add_axes([0.92, 0.4, 0.02, 0.2])
+    cbar = fig.colorbar(p1, cax=cax, orientation='vertical')
+    cax.set_ylabel('Gain(-)/Loss(+)\n Effective resolution [km]', fontweight='bold')
+    
+    cax = fig.add_axes([0.92, 0.67, 0.02, 0.2])
+    fig.colorbar(p0, cax=cax, orientation='vertical')
+    cax.set_ylabel('Efective resolition [km]', fontweight='bold')
