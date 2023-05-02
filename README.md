@@ -1,15 +1,15 @@
 ## :warning: WORK in progress. This data-challenge is under construction
 
-# Context
-:building_construction: TODO: SLICING project & CMEMS
+
 
 
 # SSH Mapping Data Challenge 2021a
 
 This repository contains codes and sample notebooks for downloading and processing the 2023a SSH mapping data challenge.
 
-## Motivation
+## Context & Motivation
 
+:building_construction: TODO: SLICING project & CMEMS
 The goal is to investigate how to best reconstruct sequences of Sea Surface Height (SSH) maps from partial satellite altimetry observations. This data challenge follows an _Observation System Experiment_ framework: Satellite observations are from real sea surface height data from altimeter. The practical goal of the challenge is to investigate the best mapping method according to scores described below and in Jupyter notebooks.
 
 ### Observations
