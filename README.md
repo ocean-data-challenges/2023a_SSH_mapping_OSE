@@ -7,18 +7,17 @@ Note that this data challenge is a somewhat extended version of the data challen
 
 ## Context & Motivation
 
-:building_construction: 
+The Copernicus Marine Service (CMEMS) is committed to providing high-quality, state-of-the-art ocean products through the validation and verification of physical oceanic parameters on both global and regional scales. Among the variables distributed by the service, ocean surface topography and surface currents are of great interest to the oceanographic communities for practical applications and for scientific research.
 
-The Copernicus Marine Service (CMEMS) is committed to providing high-quality, state-of-the-art ocean products through the validation and verification of physical oceanic parameters on both global and regional scales. Among the variables distributed by the service, ocean surface topography and surface currents are essential for monitoring the climate of the oceans.
-[....]
+Several mapping techniques, such as statistical interpolation methods or ocean model assimilation methods, are currently proposed to provide operational maps of ocean surface heights and currents. New mapping techniques (e.g. data-driven methods) are emerging and being tested in a research and development context. 
+It is therefore becoming important to inform users and developers about the accuracy of scale represented by each mapping system.
 
-
-The goal is to investigate how to best reconstruct sequences of Sea Surface Height (SSH) and surface current maps from partial satellite altimetry observations. This data challenge follows an _Observation System Experiment_ framework: Satellite observations are from real sea surface height data from altimeter. The practical goal of the challenge is to investigate the best mapping method according to scores described below and in Jupyter notebooks.
+The goal of the present data-challage is to investigate how to best reconstruct sequences of Sea Surface Height (SSH) and surface current maps from partial satellite altimetry observations. This data challenge follows an _Observation System Experiment_ framework: Satellite observations are from real sea surface height data from altimeter. The practical goal of the challenge is to investigate the best mapping method according to scores described below and in Jupyter notebooks.
 
 ### Observations
 The SSH observations include Jason 3, Sentinel 3A, Sentinel 3B, Haiyang-2A, Haiyang-2B and Cryosat-2 altimeter data distributed by the Copernicus Marine Service [(https://doi.org/10.48670/moi-00146)](https://doi.org/10.48670/moi-00146). This nadir altimeters constellation was operating during the 20190101-20191231 period. Note that for the mapping the Saral/AltiKa altimeter data are not taken in the mapping to perform the independent assessment of the various reconstructions.
 
-In situ data for ocean surface currents is also used as independent assesment. Tis data is also distributed by CMEMS distributed by CMEMS [(https://doi.org/10.17882/86236)]( https://doi.org/10.17882/86236).
+In situ data for ocean surface currents is also used as independent assesment. This dataset is also distributed by CMEMS distributed by CMEMS [(https://doi.org/10.17882/86236)]( https://doi.org/10.17882/86236).
 
 ### Data sequence and use
  
