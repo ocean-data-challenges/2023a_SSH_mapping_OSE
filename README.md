@@ -3,6 +3,7 @@
 # SSH Mapping Data Challenge 2023a
 
 This repository contains codes and sample notebooks for downloading and processing the 2023a SSH mapping data challenge.
+Note that this data challenge is a somewhat extended version of the data challenge [2021a_SSH_mapping_OSE](https://github.com/ocean-data-challenges/2021a_SSH_mapping_OSE) on a global scale.
 
 ## Context & Motivation
 
@@ -12,7 +13,7 @@ The Copernicus Marine Service (CMEMS) is committed to providing high-quality, st
 [....]
 
 
-The goal is to investigate how to best reconstruct sequences of Sea Surface Height (SSH) maps from partial satellite altimetry observations. This data challenge follows an _Observation System Experiment_ framework: Satellite observations are from real sea surface height data from altimeter. The practical goal of the challenge is to investigate the best mapping method according to scores described below and in Jupyter notebooks.
+The goal is to investigate how to best reconstruct sequences of Sea Surface Height (SSH) and surface current maps from partial satellite altimetry observations. This data challenge follows an _Observation System Experiment_ framework: Satellite observations are from real sea surface height data from altimeter. The practical goal of the challenge is to investigate the best mapping method according to scores described below and in Jupyter notebooks.
 
 ### Observations
 The SSH observations include Jason 3, Sentinel 3A, Sentinel 3B, Haiyang-2A, Haiyang-2B and Cryosat-2 altimeter data distributed by the Copernicus Marine Service [(https://doi.org/10.48670/moi-00146)](https://doi.org/10.48670/moi-00146). This nadir altimeters constellation was operating during the 20190101-20191231 period. Note that for the mapping the Saral/AltiKa altimeter data are not taken in the mapping to perform the independent assessment of the various reconstructions.
