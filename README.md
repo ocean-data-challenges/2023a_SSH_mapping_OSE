@@ -15,9 +15,11 @@ It is therefore becoming important to inform users and developers about the accu
 The goal of the present data-challenge is to investigate how to best reconstruct sequences of Sea Surface Height (SSH) and surface current maps from partial satellite altimetry observations and from a global perspective. This data challenge follows an _Observation System Experiment_ framework: Satellite observations are from real sea surface height data from altimeter. The practical goal of the challenge is to investigate the best mapping method according to scores described below and in Jupyter notebooks.
 
 ### Observations
-The SSH observations include Jason 3, Sentinel 3A, Sentinel 3B, Haiyang-2A, Haiyang-2B and Cryosat-2 altimeter data distributed by the Copernicus Marine Service [(https://doi.org/10.48670/moi-00146)](https://doi.org/10.48670/moi-00146). This nadir altimeters constellation was operating during the 20190101-20191231 period. Note that for the mapping the Saral/AltiKa altimeter data are not taken in the mapping to perform the independent assessment of the various reconstructions.
 
-In situ data for ocean surface currents is also used as independent assesment. This dataset is also distributed by CMEMS distributed by CMEMS [(https://doi.org/10.17882/86236)]( https://doi.org/10.17882/86236).
+The SSH observations used in this study comprise data from a nadir altimeter constellation that includes Jason 3, Sentinel 3A, Sentinel 3B, Haiyang-2A, Haiyang-2B, and Cryosat-2. These data are distributed by the Copernicus Marine Service [(https://doi.org/10.48670/moi-00146)](https://doi.org/10.48670/moi-00146) and cover the period from January 1st, 2019 to December 31st, 2019. The Saral/AltiKa altimeter data are excluded from the mapping process to enable an independent assessment of the different reconstructions.
+
+In addition, independent assessment of ocean surface currents is performed using in situ data, which are also distributed by CMEMS [(https://doi.org/10.17882/86236)]( https://doi.org/10.17882/86236).
+
 
 ### Data sequence and use
  
