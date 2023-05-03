@@ -1,19 +1,23 @@
 ## :warning: WORK in progress. This data-challenge is under construction
 
-
-
-
-# SSH Mapping Data Challenge 2021a
+# SSH Mapping Data Challenge 2023a
 
 This repository contains codes and sample notebooks for downloading and processing the 2023a SSH mapping data challenge.
 
 ## Context & Motivation
 
-:building_construction: TODO: SLICING project & CMEMS
+:building_construction: 
+
+The Copernicus Marine Service (CMEMS) is committed to providing high-quality, state-of-the-art ocean products through the validation and verification of physical oceanic parameters on both global and regional scales. Among the variables distributed by the service, ocean surface topography and surface currents are essential for monitoring the climate of the oceans.
+[....]
+
+
 The goal is to investigate how to best reconstruct sequences of Sea Surface Height (SSH) maps from partial satellite altimetry observations. This data challenge follows an _Observation System Experiment_ framework: Satellite observations are from real sea surface height data from altimeter. The practical goal of the challenge is to investigate the best mapping method according to scores described below and in Jupyter notebooks.
 
 ### Observations
-The SSH observations include Jason 3, Sentinel 3A, Sentinel 3B, Haiyang-2A, Haiyang-2B and Cryosat-2 altimeter data. This nadir altimeters constellation was operating during the 20190101-20191231 period. Note that for the mapping the Saral/AltiKa altimeter data are not taken in the mapping to perform the independent assessment of the various reconstructions. Additional dataset from drifters database are used as indepddent assesment of surface currents.
+The SSH observations include Jason 3, Sentinel 3A, Sentinel 3B, Haiyang-2A, Haiyang-2B and Cryosat-2 altimeter data distributed by the Copernicus Marine Service [(https://doi.org/10.48670/moi-00146)](https://doi.org/10.48670/moi-00146). This nadir altimeters constellation was operating during the 20190101-20191231 period. Note that for the mapping the Saral/AltiKa altimeter data are not taken in the mapping to perform the independent assessment of the various reconstructions.
+
+In situ data for ocean surface currents is also used as independent assesment. Tis data is also distributed by CMEMS distributed by CMEMS [(https://doi.org/10.17882/86236)]( https://doi.org/10.17882/86236).
 
 ### Data sequence and use
  
@@ -21,7 +25,7 @@ The SSH reconstructions are assessed at global scale and over the period from 20
 
 For reconstruction methods that need a spin-up, the **observations** from other period can be used.
 
-The altimeter data from Saral/AltiKa should never be used so that any reconstruction can be considered uncorrelated to the evaluation period.
+The altimeter data from Saral/AltiKa and surface current velocity data mentioned above should never be used so that any reconstruction can be considered uncorrelated to the evaluation period.
 
 ## Leaderboard
 
@@ -32,7 +36,8 @@ The altimeter data from Saral/AltiKa should never be used so that any reconstruc
 
 ### Evaluation
 
-The evaluation of the mapping methods is based on the comparison of the SSH reconstructions with the *independent* Saral/AltiKa along-track dataset as well as surface drifters velocities. 
+The mapping methods are evaluated against independent data using two approaches:Firstly, the ocean surface topography reconstruction is compared with indepen dent data from Saral/AltiKa altimeter. Secondly, the surface currents are assessed by comparing them to the surface drifter velocities.
+ 
 
 ## Data processing
 
