@@ -124,6 +124,8 @@ def bin_data(ds, output_file, lon_out=np.arange(0, 360, 1), lat_out=np.arange(-9
                                }
                        )
 
+    ds1 = ds1.assign_attrs({'method':method_name})
+    ds2 = ds2.assign_attrs({'method':method_name})
 
     ds1.to_netcdf(output_file, group="all_scale", format="NETCDF4")
     ds2.to_netcdf(output_file, "a", group="filtered", format="NETCDF4")
