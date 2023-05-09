@@ -12,6 +12,12 @@ The Copernicus Marine Service (CMEMS) is committed to providing high-quality, st
 Several mapping techniques, such as statistical interpolation methods or ocean model assimilation methods, are currently proposed to provide operational maps of ocean surface heights and currents. New mapping techniques (e.g. data-driven methods) are emerging and being tested in a research and development context. 
 It is therefore becoming important to inform users and developers about the accuracy of scale represented by each mapping system.
 
+
+<p align="center">
+  <img src="figures/dc_2023_ose_global_duacs_sla_map.jpg" alt="Alt Text" width="500"/>
+</p>
+
+
 The goal of the present data-challenge is to investigate how to best reconstruct sequences of Sea Surface Height (SSH) and surface current maps from partial satellite altimetry observations and from a global perspective. This data challenge follows an _Observation System Experiment_ framework: Satellite observations are from real sea surface height data from altimeter. The practical goal of the challenge is to investigate the best mapping method according to scores described below and in Jupyter notebooks.
 
 ### Observations

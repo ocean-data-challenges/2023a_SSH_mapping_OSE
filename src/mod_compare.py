@@ -3,6 +3,7 @@ import hvplot.xarray
 import pandas as pd
 import xarray as xr
 import numpy as np
+import warnings
 
 
 
@@ -36,6 +37,36 @@ def regional_zoom(ds_glob, boxlon, boxlat, namelon='lon', namelat='lat'):
     #ds_reg = ds_reg.sortby(ds_reg['time'])
 
     return ds_reg
+ 
+
+
+def convert_longitude(ds, lon_name):
+    """
+    Converts longitude coordinates ranging from 0 to 360 to -180 to 180.
+    
+    Parameters
+    ----------
+    ds : xarray.Dataset
+        The input dataset containing longitude coordinates ranging from 0 to 360.
+    lon_name : str
+        The name of the longitude coordinate in the dataset.
+    
+    Returns
+    -------
+    xarray.Dataset
+        The input dataset with longitude coordinates ranging from -180 to 180.
+    """
+    lon = ds[lon_name]
+    if lon.min() < 0 or lon.max() > 360:
+        lon = ((lon + 180) % 360) - 180
+        ds = ds.assign_coords(**{lon_name: lon})
+        message = f"Converted {lon_name} from 0-360 to -180-180"
+        warnings.warn(message)
+    else:
+        message = f"{lon_name} already in -180-180"
+        warnings.warn(message, category=UserWarning)
+    return ds
+
 
 
 def compare_stat_score_map(study_filename, ref_filename,boxlon = [-180, 180],boxlat = [-90, 90], vartype='err_var'):
