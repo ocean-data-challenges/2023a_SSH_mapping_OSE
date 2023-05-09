@@ -95,6 +95,16 @@ Cross-functional modules are gathered in the `src` directory. They include tools
 
 ## Detailed evaluation
 
+
+|   | Error variance |
+| ------ | -------------- |
+| DUACS |<p align="center"><img src="figures/Maps_DUACS_errvar_glob.png" alt="DUACS Error variance" width="800"/></p> |
+| MIOST |<p align="center"><img src="figures/Maps_DUACS_errvar_glob.png" alt="DUACS Error variance" width="800"/></p> |
+| MIOST w/ EW |<p align="center"><img src="figures/Maps_DUACS_errvar_glob.png" alt="DUACS Error variance" width="800"/></p> |
+
+
+...
+
 [See a more detailed evaluation here](detailed_eval_glob.md)
 
 # 4. Gulf stream evaluation 
