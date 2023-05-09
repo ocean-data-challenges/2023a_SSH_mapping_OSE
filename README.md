@@ -35,9 +35,6 @@ For reconstruction methods that need a spin-up, the **observations** from other 
 
 The altimeter data from Saral/AltiKa and surface current velocity data mentioned above should never be used so that any reconstruction can be considered uncorrelated to the evaluation period.
 
-## Leaderboard
-
-:building_construction: TO DO: stat by ocean regime
 
 ## Download the data
 :building_construction: TO DO: Add example on how to download/read data from MEOM server
@@ -50,6 +47,27 @@ The mapping methods are evaluated against independent data using two approaches:
 ## Data processing
 
 Cross-functional modules are gathered in the `src` directory. They include tools for regridding, plots, evaluation, writing and reading NetCDF files.   
+
+
+
+## Global evaluation 
+
+### Leaderboard
+
+:building_construction: TO DO: stat by ocean regime
+
+### Qualitative evaluation
+
+
+
+## Gulf stream evaluation 
+
+### Leaderboard
+
+:building_construction: TO DO: stat by ocean regime
+
+### Qualitative evaluation
+
 
 ## Acknowledgement
 
