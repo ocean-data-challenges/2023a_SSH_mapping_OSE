@@ -14,7 +14,7 @@ It is therefore becoming important to inform users and developers about the accu
 
 
 <p align="center">
-  <img src="figures/dc_2023_ose_global_duacs_sla_map.jpg" alt="Alt Text" width="500"/>
+  <img src="figures/dc_2023_ose_global_duacs_sla_map.jpg" alt="Alt Text" width="600"/>
 </p>
  
 
