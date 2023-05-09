@@ -95,7 +95,7 @@ Cross-functional modules are gathered in the `src` directory. They include tools
 
 ## Qualitative evaluation
 
-| Method | Error variance |
+|   | Error variance |
 | ------ | -------------- |
 | DUACS |<p align="center"><img src="figures/Maps_DUACS_errvar_glob.png" alt="DUACS Error variance" width="800"/></p> |
 | MIOST |<p align="center"><img src="figures/Maps_DUACS_errvar_glob.png" alt="DUACS Error variance" width="800"/></p> |
@@ -103,7 +103,7 @@ Cross-functional modules are gathered in the `src` directory. They include tools
 
 
 
-| Method | Explained variance |
+|   | Explained variance |
 | ------ | -------------- |
 | DUACS |<p align="center"><img src="figures/Maps_DUACS_explvar_glob.png" alt="DUACS Error variance" width="800"/></p> |
 | MIOST |<p align="center"><img src="figures/Maps_DUACS_explvar_glob.png" alt="DUACS Error variance" width="800"/></p> |
