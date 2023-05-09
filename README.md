@@ -1,5 +1,10 @@
 ## :warning: WORK in progress. This data-challenge is under construction
 
+
+<p align="center">
+  <img src="figures/dc_2023_ose_global_banner.jpg" alt="Alt Text" width="900"/>
+</p>
+
 # SSH Mapping Data Challenge 2023a
 
 This repository contains codes and sample notebooks for downloading and processing the 2023a SSH mapping data challenge.

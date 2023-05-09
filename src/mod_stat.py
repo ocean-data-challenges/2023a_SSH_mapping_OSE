@@ -17,6 +17,28 @@ from src.mod_interp import *
 
 def bin_data(ds, output_file, lon_out=np.arange(0, 360, 1), lat_out=np.arange(-90, 90, 1), freq_out='1D'):
     
+    """
+    Aggregate gridded data to a larger bin grid and calculate statistics.
+
+    Parameters
+    ----------
+    ds : xarray.Dataset
+        Dataset containing gridded data to be binned
+    output_file : str
+        Filepath to save binned data to
+    lon_out : array_like, optional
+        Array of longitude values for the output grid, by default np.arange(0, 360, 1)
+    lat_out : array_like, optional
+        Array of latitude values for the output grid, by default np.arange(-90, 90, 1)
+    freq_out : str, optional
+        Time frequency for temporal aggregation, by default '1D'
+
+    Returns
+    -------
+    None
+    
+    """
+        
     binning = pyinterp.Binning2D(pyinterp.Axis(lon_out, is_circle=True),
                                  pyinterp.Axis(lat_out))
     
