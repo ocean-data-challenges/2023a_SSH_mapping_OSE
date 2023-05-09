@@ -1,2 +1,4 @@
 # ignoring results directory
 /results/
+/results_dev/
+/dev/
