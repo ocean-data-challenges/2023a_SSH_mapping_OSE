@@ -15,7 +15,7 @@ from src.mod_filter import *
 from src.mod_interp import *
 
 
-def bin_data(ds, output_file, lon_out=np.arange(0, 360, 1), lat_out=np.arange(-90, 90, 1), freq_out='1D'):
+def bin_data(ds, output_file, lon_out=np.arange(0, 360, 1), lat_out=np.arange(-90, 90, 1), freq_out='1D', method_name=' '):
     
     """
     Aggregate gridded data to a larger bin grid and calculate statistics.
@@ -153,7 +153,7 @@ def bin_data(ds, output_file, lon_out=np.arange(0, 360, 1), lat_out=np.arange(-9
     ds2.to_netcdf(output_file, "a", group="filtered", format="NETCDF4")
     
 
-def compute_stat_scores(ds_interp, lambda_min, lambda_max, output_file):
+def compute_stat_scores(ds_interp, lambda_min, lambda_max, output_file, method_name=' '):
     
     #logging.info("Interpolate SLA maps onto alongtrack")
     #ds_interp = run_interpolation(ds_maps, ds_alongtrack)
@@ -167,7 +167,7 @@ def compute_stat_scores(ds_interp, lambda_min, lambda_max, output_file):
     
     logging.info("Compute binning statistics")
     # Bin data maps
-    bin_data(ds_interp, output_file)
+    bin_data(ds_interp, output_file,method_name=method_name)
     
     logging.info("Compute statistics by oceanic regime")
     compute_stat_scores_by_regimes(ds_interp, output_file)
