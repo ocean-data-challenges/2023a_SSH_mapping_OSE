@@ -95,6 +95,13 @@ Cross-functional modules are gathered in the `src` directory. They include tools
 
 ## Qualitative evaluation
 
+| Method | Error variance |
+| ------ | -------------- |
+| DUACS |<p align="center"><img src="Maps_DUACS_errvar_glob.png" alt="Method 1 Diagnostic 1" width="400"/></p> |
+| MIOST |<p align="center"><img src="Maps_DUACS_errvar_glob.png" alt="Method 2 Diagnostic 1" width="400"/></p> |
+| MIOST w/ EW |<p align="center"><img src="Maps_DUACS_errvar_glob.png" alt="Method 3 Diagnostic 1" width="400"/></p> |
+
+
 
 
 # 4. Gulf stream evaluation 
