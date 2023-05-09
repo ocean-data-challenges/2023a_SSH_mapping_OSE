@@ -10,7 +10,7 @@
 This repository contains codes and sample notebooks for downloading and processing the 2023a SSH mapping data challenge.
 Note that this data challenge is a somewhat extended version of the data challenge [2021a_SSH_mapping_OSE](https://github.com/ocean-data-challenges/2021a_SSH_mapping_OSE) on a global scale.
 
-## Context & Motivation
+# 1. Context & Motivation
 
 The Copernicus Marine Service (CMEMS) is committed to providing high-quality, state-of-the-art ocean products through the validation and verification of physical oceanic parameters on both global and regional scales. Among the variables distributed by the service, ocean surface topography and surface currents are of great interest to the oceanographic communities for practical applications and for scientific research.
 
@@ -41,10 +41,42 @@ For reconstruction methods that need a spin-up, the **observations** from other 
 The altimeter data from Saral/AltiKa and surface current velocity data mentioned above should never be used so that any reconstruction can be considered uncorrelated to the evaluation period.
 
 
+# 2. Get started
+
+
+## Installation
+:computer: _**How to get started ?**_
+
+Clone the data challenge repo: 
+```
+git clone https://github.com/ocean-data-challenges/2023a_SSH_mapping_OSE.git
+```
+or using SSH: 
+```
+git clone git@github.com:ocean-data-challenges/2023a_SSH_mapping_OSE.git
+```
+
+create the data challenge conda environment, named env-dc-swot-filtering, by running the following command:
+```
+conda env create --file=dc_environment.yml 
+```
+and activate it with:
+
+```
+conda activate env-dc-global-ose
+```
+then add it to the available kernels for jupyter to see: 
+```
+ipython kernel install --name "env-dc-global-ose" --user
+```
+
+You're now good to go ! 
+
+
 ## Download the data
 :building_construction: TO DO: Add example on how to download/read data from MEOM server
 
-### Evaluation
+## Evaluation
 
 The mapping methods are evaluated against independent data using two approaches:Firstly, the ocean surface topography reconstruction is compared with indepen dent data from Saral/AltiKa altimeter. Secondly, the surface currents are assessed by comparing them to the surface drifter velocities.
  
@@ -55,26 +87,26 @@ Cross-functional modules are gathered in the `src` directory. They include tools
 
 
 
-## Global evaluation 
+# 3. Global evaluation 
 
-### Leaderboard
-
-:building_construction: TO DO: stat by ocean regime
-
-### Qualitative evaluation
-
-
-
-## Gulf stream evaluation 
-
-### Leaderboard
+## Leaderboard
 
 :building_construction: TO DO: stat by ocean regime
 
-### Qualitative evaluation
+## Qualitative evaluation
 
 
-## Acknowledgement
+
+# 4. Gulf stream evaluation 
+
+## Leaderboard
+
+:building_construction: TO DO: stat by ocean regime
+
+## Qualitative evaluation
+
+
+# Acknowledgement
 
 
 
