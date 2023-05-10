@@ -136,8 +136,8 @@ Cross-functional modules are gathered in the `src` directory. They include tools
 |   | Error variance |
 | ------ | -------------- |
 | DUACS |<p align="center"><img src="figures/Maps_DUACS_errvar_glob.png" alt="DUACS Error variance" width="800"/></p> |
-| MIOST |<p align="center"><img src="figures/Maps_DUACS_errvar_glob.png" alt="DUACS Error variance" width="800"/></p> |
-| MIOST w/ EW |<p align="center"><img src="figures/Maps_DUACS_errvar_glob.png" alt="DUACS Error variance" width="800"/></p> |
+| MIOST |<p align="center"><img src="figures/Maps_MIOST_errvar_glob.png" alt="DUACS Error variance" width="800"/></p> |
+| MIOST EW |<p align="center"><img src="figures/Maps_MIOST-EW_errvar_glob.png" alt="DUACS Error variance" width="800"/></p> |
 
 
 ...
