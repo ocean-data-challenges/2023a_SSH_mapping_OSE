@@ -100,7 +100,7 @@ Cross-functional modules are gathered in the `src` directory. They include tools
 | Ocean regime          | Methods  |   Err variance score (All scales) |   Err variance score (65-500km) | Reference           |
 |:---------------------:|----------|-----------------------------------|---------------------------------|---------------------|
 |                       | DUACS    |        0.683678                   |         0.682788                |                     |
-| **Coastal**           | MIOST    |        0.689822                   |         0.697257                | ---                 |
+| **Coastal**           |<span style="background-color: yellow"> MIOST    |        0.689822                   |         0.697257                | ---                 |
 |                       | MIOST EW |        0.693327                   |         0.697649                | ---                 |
 |                       | DUACS    |        0.941316                   |         0.941316                |                     |
 | **Offshore high var** | MIOST    |        0.945153                   |         0.956015                | ---                 | 
@@ -117,30 +117,7 @@ Cross-functional modules are gathered in the `src` directory. They include tools
 |                       | DUACS    |        0.415025                   |         0.077469                |                     | 
 | **Antarctic**         | MIOST    |        0.429089                   |         0.103416                | ---                 | 
 |                       | MIOST EW |        0.458979                   |         0.096746                | ---                 |
-
-        
-<table>
-  <tr>
-    <th>Column 1</th>
-    <th>Column 2</th>
-    <th>Column 3</th>
-  </tr>
-  <tr>
-    <td>Row 1, Cell 1</td>
-    <td>Row 1, Cell 2</td>
-    <td>Row 1, Cell 3</td>
-  </tr>
-  <tr>
-    <td>Row 2, Cell 1</td>
-    <td>Row 2, Cell 2</td>
-    <td>Row 2, Cell 3</td>
-  </tr>
-  <tr>
-    <td style="background-color: yellow">Row 3, Cell 1 (highlighted)</td>
-    <td>Row 3, Cell 2</td>
-    <td>Row 3, Cell 3</td>
-  </tr>
-</table>
+ 
 
 
 
