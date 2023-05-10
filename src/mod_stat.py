@@ -423,7 +423,7 @@ def compute_stat_scores_by_regimes(ds_interp, output_file):
         nc.close()
     
     
-def bin_data_uv(ds, output_file, lon_out=np.arange(0, 360, 1), lat_out=np.arange(-90, 90, 1), freq_out='1D'):
+def bin_data_uv(ds, output_file, lon_out=np.arange(0, 360, 1), lat_out=np.arange(-90, 90, 1), freq_out='1D',method_name=''):
     
     binning = pyinterp.Binning2D(pyinterp.Axis(lon_out, is_circle=True),
                                  pyinterp.Axis(lat_out))
@@ -529,6 +529,7 @@ def bin_data_uv(ds, output_file, lon_out=np.arange(0, 360, 1), lat_out=np.arange
                        )
     
     
+    ds1 = ds1.assign_attrs({'method':method_name})
     ds1.to_netcdf(output_file, group="all_scale", format="NETCDF4")
 
     
@@ -781,7 +782,7 @@ def compute_stat_scores_uv_by_regimes(ds_interp, output_file):
         
         
     
-def compute_stat_scores_uv(ds_interp, output_file):
+def compute_stat_scores_uv(ds_interp, output_file,method_name=''):
      
     logging.info("Compute mapping error all scales")
     ds_interp['mapping_err_u'] = ds_interp['ugos_interpolated'] - ds_interp['EWCT']
@@ -789,7 +790,7 @@ def compute_stat_scores_uv(ds_interp, output_file):
     
     logging.info("Compute statistics")
     # Bin data maps
-    bin_data_uv(ds_interp, output_file)
+    bin_data_uv(ds_interp, output_file,method_name=method_name)
     logging.info("Stat file saved as: %s", output_file)
     
     logging.info("Compute statistics by oceanic regime")

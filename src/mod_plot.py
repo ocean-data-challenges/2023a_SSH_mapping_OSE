@@ -412,8 +412,13 @@ def plot_stat_score_map_uv_png(filename):
     
     
     
+    try : 
+        method_name = ds_binning_allscale.attrs['method']
+    except:
+        method_name = ''
+        
     
-    fig, axs = plt.subplots(nrows=2,ncols=2,
+    fig, axs = plt.subplots(nrows=1,ncols=2,
                         subplot_kw={'projection': ccrs.PlateCarree()},
                         figsize=(11,7.5))
 
@@ -458,11 +463,24 @@ def plot_stat_score_map_uv_png(filename):
     gl.xlabel_style = {'size': 10, 'color': 'black'}
     gl.ylabel_style = {'size': 10, 'color': 'black'}
     
+    cax = fig.add_axes([0.92, 0.37, 0.02, 0.25])
+    cbar = fig.colorbar(p1, cax=cax, orientation='vertical')
+    cax.set_ylabel('Error variance [m$^2$.s$^{-2}$]', fontweight='bold')
+    
+    plt.savefig("../figures/Maps_"+str(method_name)+"_errvar_glob_uv.png", bbox_inches='tight')
+    
+    
+    fig, axs = plt.subplots(nrows=1,ncols=2,
+                        subplot_kw={'projection': ccrs.PlateCarree()},
+                        figsize=(11,7.5))
+
+    axs=axs.flatten()
+    
     vmin = 0.
     vmax= 1
-    p2 = axs[2].pcolormesh(ds_binning_allscale.lon, ds_binning_allscale.lat, (1 - ds_binning_allscale['variance_mapping_err_u']/ds_binning_allscale['variance_drifter_u']), vmin=vmin, vmax=vmax, cmap='RdYlGn')
-    axs[2].set_title('Zonal current [All scale]')
-    axs[2].coastlines(resolution='10m', lw=0.5)
+    p2 = axs[0].pcolormesh(ds_binning_allscale.lon, ds_binning_allscale.lat, (1 - ds_binning_allscale['variance_mapping_err_u']/ds_binning_allscale['variance_drifter_u']), vmin=vmin, vmax=vmax, cmap='RdYlGn')
+    axs[0].set_title('Zonal current [All scale]')
+    axs[0].coastlines(resolution='10m', lw=0.5)
     # optional add grid lines
     p2.axes.gridlines(color='black', alpha=0., linestyle='--')
     # draw parallels/meridiens and write labels
@@ -478,9 +496,9 @@ def plot_stat_score_map_uv_png(filename):
     gl.ylabel_style = {'size': 10, 'color': 'black'}
     
     
-    p3 = axs[3].pcolormesh(ds_binning_allscale.lon, ds_binning_allscale.lat, (1 - ds_binning_allscale['variance_mapping_err_v']/ds_binning_allscale['variance_drifter_v']), vmin=vmin, vmax=vmax, cmap='RdYlGn')
-    axs[3].set_title('Meridional current [All scale]')
-    axs[3].coastlines(resolution='10m', lw=0.5)
+    p3 = axs[1].pcolormesh(ds_binning_allscale.lon, ds_binning_allscale.lat, (1 - ds_binning_allscale['variance_mapping_err_v']/ds_binning_allscale['variance_drifter_v']), vmin=vmin, vmax=vmax, cmap='RdYlGn')
+    axs[1].set_title('Meridional current [All scale]')
+    axs[1].coastlines(resolution='10m', lw=0.5)
     # optional add grid lines
     p3.axes.gridlines(color='black', alpha=0., linestyle='--')
     # draw parallels/meridiens and write labels
@@ -500,12 +518,11 @@ def plot_stat_score_map_uv_png(filename):
     fig.colorbar(p3, cax=cax, orientation='vertical')
     cax.set_ylabel('Explained variance', fontweight='bold')
     
-    cax = fig.add_axes([0.92, 0.6, 0.02, 0.25])
-    cbar = fig.colorbar(p1, cax=cax, orientation='vertical')
-    cax.set_ylabel('Error variance [m$^2$.s$^{-2}$]', fontweight='bold')
     
     fig.subplots_adjust(bottom=0.2, top=0.9, left=0.1, right=0.9,
-                    wspace=0.02, hspace=0.01)
+                    wspace=0.02, hspace=0.01) 
+    
+    plt.savefig("../figures/Maps_"+str(method_name)+"_explvar_glob_uv.png", bbox_inches='tight')
     
     
     
