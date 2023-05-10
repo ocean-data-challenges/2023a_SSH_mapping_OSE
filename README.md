@@ -119,14 +119,7 @@ Cross-functional modules are gathered in the `src` directory. They include tools
 |                       | MIOST EW |        0.458979                   |         0.096746                | ---                 |
 
         
-        
-<style>
-.table-highlight tr:nth-child(-n+3) {
-  background-color: #F5F5F5; /* Change this to the desired highlight color */
-}
-</style>
-
-<table class="table-highlight">
+<table>
   <tr>
     <th>Column 1</th>
     <th>Column 2</th>
@@ -143,21 +136,12 @@ Cross-functional modules are gathered in the `src` directory. They include tools
     <td>Row 2, Cell 3</td>
   </tr>
   <tr>
-    <td>Row 3, Cell 1</td>
+    <td style="background-color: yellow">Row 3, Cell 1 (highlighted)</td>
     <td>Row 3, Cell 2</td>
     <td>Row 3, Cell 3</td>
   </tr>
-  <tr>
-    <td>Row 4, Cell 1</td>
-    <td>Row 4, Cell 2</td>
-    <td>Row 4, Cell 3</td>
-  </tr>
-  <tr>
-    <td>Row 5, Cell 1</td>
-    <td>Row 5, Cell 2</td>
-    <td>Row 5, Cell 3</td>
-  </tr>
 </table>
+
 
 
 
