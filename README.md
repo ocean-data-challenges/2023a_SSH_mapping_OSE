@@ -98,7 +98,7 @@ Cross-functional modules are gathered in the `src` directory. They include tools
 
 
 | Ocean regime          | Methods  |   Err variance score (All scales) |   Err variance score (65-500km) | Reference           |
-|:----------------------|---------:|----------------------------------:|--------------------------------:|:--------------------|
+|:---------------------:|----------|-----------------------------------|---------------------------------|---------------------|
 |                       | DUACS    |        0.683678                   |         0.682788                |                     |
 | **Coastal**           | MIOST    |        0.689822                   |         0.697257                | ---                 |
 |                       | MIOST EW |        0.693327                   |         0.697649                | ---                 |
