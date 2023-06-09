@@ -75,7 +75,31 @@ You're now good to go !
 
 ## Download the data
 :building_construction: TO DO: Add example on how to download/read data from MEOM server
+The data are hosted on this opendap[here](https://ige-meom-opendap.univ-grenoble-alpes.fr/thredds/catalog/meomopendap/extract/ocean-data-challenges/dc_Map_global_OSE/catalog.html). They are presented with the following directory structure:
 
+```
+.
+|-- alongtrack
+
+|-- independant_alongtrack
+|   |-- alg
+|   |   |-- 2019
+|   |   |   |-- dt_global_alg_phy_l3_2019*.nc
+
+|-- independent_drifters
+|   |-- uv_drifters_*.nc
+
+|-- maps
+|   |-- DUACS_global_allsat-alg				
+|   |-- MIOST_geos_barotrop_eqwaves_global_allsat-alg	
+|   |-- MIOST_geos_global_allsat-alg
+
+|-- sad
+|   |-- distance_to_nearest_coastline_60.nc	
+|   |-- land_water_mask_60.nc			
+|   |-- variance_cmems_dt_allsat.nc
+
+```
 ## Evaluation
 
 The mapping methods are evaluated against independent data using two approaches:Firstly, the ocean surface topography reconstruction is compared with indepen dent data from Saral/AltiKa altimeter. Secondly, the surface currents are assessed by comparing them to the surface drifter velocities.
