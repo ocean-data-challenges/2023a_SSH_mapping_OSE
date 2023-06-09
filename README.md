@@ -89,7 +89,7 @@ The data are hosted on this opendap [here](https://ige-meom-opendap.univ-grenobl
 ```
 .
 |-- independant_alongtrack
-|   |-- alg
+|   |-- alg                          % DT Altika Drifting Phase Global Ocean Along track SSALTO/DUACS Sea Surface Height L3 product
 |   |   |-- 2019
 |   |   |   |-- dt_global_alg_phy_l3_2019*.nc
 ```
@@ -99,7 +99,9 @@ The data are hosted on this opendap [here](https://ige-meom-opendap.univ-grenobl
 ```
 .
 |-- independent_drifters
-|   |-- uv_drifters_*.nc
+|   |-- uv_drifters_*.nc         % Drifter data
+|   |-- index_history.txt        % Preprocessing drifter data information
+|   |-- reformate_drifters.ipynb	% Preprocessing notebook (for informational purposes, not needed for experiments)
 ```
 
 ### Reconstruction maps for comparison
@@ -107,11 +109,11 @@ The data are hosted on this opendap [here](https://ige-meom-opendap.univ-grenobl
 ```
 .
 |-- maps
-|   |-- DUACS_global_allsat-alg				
-|   |-- MIOST_geos_barotrop_eqwaves_global_allsat-alg	
-|   |-- MIOST_geos_global_allsat-alg
+|   |-- DUACS_global_allsat-alg		% DUACS reconstruction			
+|   |-- MIOST_geos_global_allsat-alg	% MIOST reconstruction
+|   |-- MIOST_geos_barotrop_eqwaves_global_allsat-alg		% MIOST reconstruction with barotropic and equatorial waves processing
 ```
-### Auxiliary information for diagnostics
+### Auxiliary data for diagnostics
 
 ```
 .
