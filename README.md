@@ -75,25 +75,46 @@ You're now good to go !
 
 ## Download the data
 :building_construction: TO DO: Add example on how to download/read data from MEOM server
-The data are hosted on this opendap[here](https://ige-meom-opendap.univ-grenoble-alpes.fr/thredds/catalog/meomopendap/extract/ocean-data-challenges/dc_Map_global_OSE/catalog.html). They are presented with the following directory structure:
+The data are hosted on this opendap [here](https://ige-meom-opendap.univ-grenoble-alpes.fr/thredds/catalog/meomopendap/extract/ocean-data-challenges/dc_Map_global_OSE/catalog.html). They are presented with the following directory structure:
+
+### Nadir alongtrack data (L3 products) for SSH map reconstruction
 
 ```
 .
 |-- alongtrack
+``` 
 
+### Independant nadir alongtrack data (L3 products) for SSH evaluation
+
+```
+.
 |-- independant_alongtrack
 |   |-- alg
 |   |   |-- 2019
 |   |   |   |-- dt_global_alg_phy_l3_2019*.nc
+```
 
+### Independant drifters for currents evaluation
+
+```
+.
 |-- independent_drifters
 |   |-- uv_drifters_*.nc
+```
 
+### Reconstruction maps for comparison
+
+```
+.
 |-- maps
 |   |-- DUACS_global_allsat-alg				
 |   |-- MIOST_geos_barotrop_eqwaves_global_allsat-alg	
 |   |-- MIOST_geos_global_allsat-alg
+```
+### Auxiliary information for diagnostics
 
+```
+.
 |-- sad
 |   |-- distance_to_nearest_coastline_60.nc	
 |   |-- land_water_mask_60.nc			
