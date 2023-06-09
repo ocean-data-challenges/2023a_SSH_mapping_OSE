@@ -125,12 +125,12 @@ The data are hosted on this opendap [here](https://ige-meom-opendap.univ-grenobl
 ```
 ## Evaluation
 
-The mapping methods are evaluated against independent data using two approaches:
+The mapping methods are evaluated against independent data using two independant datasets:
 
-### Independant nadir SSH data
+### Independant nadir SSH data (check [example](https://github.com/ocean-data-challenges/2023a_SSH_mapping_OSE/blob/main/notebooks/ssh_scores_DUACS_geos.ipynb))
 The ocean surface topography reconstruction is compared with independant data from Saral/AltiKa altimeter. 
 
-### Independant drifter currents data 
+### Independant drifter currents data (check [example](https://github.com/ocean-data-challenges/2023a_SSH_mapping_OSE/blob/main/notebooks/uv_scores_DUACS_geos.ipynb)
 The surface currents are assessed by comparing them to the surface drifter velocities.
  
 
