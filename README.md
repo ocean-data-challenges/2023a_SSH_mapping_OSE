@@ -208,7 +208,6 @@ Cross-functional modules are gathered in the `src` directory. They include tools
 | **Coastal**           | MIOST    |        0.061266                   |         0.031145                |
 |                       | MIOST EW |        0.0577947               |         0.029261            |
 |                       | GLORYS12v1 |        0.033190               |         0.02834            |
-
 | | | | |   
 |                       | DUACS    |        0.038773                   |         0.0388200                | 
 | **Offshore high var** | MIOST    |        **0.037412**                   |         0.0387886            | 
