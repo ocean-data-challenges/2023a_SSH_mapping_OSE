@@ -77,14 +77,18 @@ You're now good to go !
 :building_construction: TO DO: Add example on how to download/read data from MEOM server
 The data are hosted on this opendap [here](https://ige-meom-opendap.univ-grenoble-alpes.fr/thredds/catalog/meomopendap/extract/ocean-data-challenges/dc_Map_global_OSE/catalog.html). They are presented with the following directory structure:
 
-### Nadir alongtrack data (L3 products) for SSH map reconstruction
+### Data for SSH map reconstruction
+
+##### Nadir alongtrack data (L3 products) for SSH map reconstruction
 
 ```
 .
 |-- alongtrack
 ``` 
 
-### Independant nadir alongtrack data (L3 products) for SSH evaluation
+### Data for evaluation
+
+##### Independant nadir alongtrack data (L3 products) for SSH evaluation
 
 ```
 .
@@ -94,7 +98,7 @@ The data are hosted on this opendap [here](https://ige-meom-opendap.univ-grenobl
 |   |   |   |-- dt_global_alg_phy_l3_2019*.nc
 ```
 
-### Independant drifters for currents evaluation
+##### Independant drifters for currents evaluation
 
 ```
 .
@@ -104,7 +108,20 @@ The data are hosted on this opendap [here](https://ige-meom-opendap.univ-grenobl
 |   |-- reformate_drifters.ipynb   % Preprocessing notebook (for informational purposes, not needed for experiments)
 ```
 
-### Reconstruction maps for comparison
+##### Auxiliary data for diagnostics
+
+```
+.
+|-- sad
+|   |-- distance_to_nearest_coastline_60.nc
+|   |-- land_water_mask_60.nc
+|   |-- variance_cmems_dt_allsat.nc
+
+```
+
+### Data for comparison
+
+##### Reconstruction maps for comparison
 
 ```
 .
@@ -113,16 +130,7 @@ The data are hosted on this opendap [here](https://ige-meom-opendap.univ-grenobl
 |   |-- MIOST_geos_global_allsat-alg		% MIOST reconstruction
 |   |-- MIOST_geos_barotrop_eqwaves_global_allsat-alg	% MIOST reconstruction with barotropic and equatorial waves processing
 ```
-### Auxiliary data for diagnostics
 
-```
-.
-|-- sad
-|   |-- distance_to_nearest_coastline_60.nc	
-|   |-- land_water_mask_60.nc			
-|   |-- variance_cmems_dt_allsat.nc
-
-```
 ## Evaluation
 
 The mapping methods are evaluated against independent data using two independant datasets:
