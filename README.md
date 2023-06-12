@@ -77,7 +77,7 @@ You're now good to go !
 :building_construction: TO DO: Add example on how to download/read data from MEOM server
 The data are hosted on this opendap [here](https://ige-meom-opendap.univ-grenoble-alpes.fr/thredds/catalog/meomopendap/extract/ocean-data-challenges/dc_Map_global_OSE/catalog.html). They are presented with the following directory structure:
 
-### Data for SSH map reconstruction
+### 1) Data for experiment
 
 ##### Nadir alongtrack data (L3 products) for SSH map reconstruction
 
@@ -86,7 +86,7 @@ The data are hosted on this opendap [here](https://ige-meom-opendap.univ-grenobl
 |-- alongtrack
 ``` 
 
-### Data for evaluation
+### 2) Data for evaluation
 
 ##### Independant nadir alongtrack data (L3 products) for SSH evaluation
 
@@ -119,7 +119,7 @@ The data are hosted on this opendap [here](https://ige-meom-opendap.univ-grenobl
 
 ```
 
-### Data for comparison
+### 3) Data for comparison
 
 ##### Reconstruction maps for comparison
 
