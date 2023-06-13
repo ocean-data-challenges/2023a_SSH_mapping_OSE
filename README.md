@@ -136,12 +136,14 @@ The dataset is presented with the following directory structure:
 
 ### Download and read the data
 
-The data can be downloaded locally using the wget command. We recommand that the data be stored in the data/ repository. 
-For example, to download the experiment alongtrack data:
+The data can be downloaded locally using the wget command. We recommand that the data be stored in the <pre><code>data/</code></pre> repository. 
+For example, to download and unzip the experiment alongtrack data:
 
 ```
 cd data/
-wget https://ige-meom-opendap.univ-grenoble-alpes.fr/thredds/fileServer/meomopendap/extract/ocean-data-challenges/dc_Map_global_OSE/alongtrack 
+wget https://ige-meom-opendap.univ-grenoble-alpes.fr/thredds/fileServer/meomopendap/extract/ocean-data-challenges/dc_Map_global_OSE/alongtrack.tar.gz 
+tar -xvf alongtrack.tar.gz  
+rm -f alongtrack.tar.gz
 ```
 
 A notebook to illustrate how to download and read the data is available: [access_data.ipynb](https://github.com/ocean-data-challenges/2023a_SSH_mapping_OSE/blob/main/notebooks/access_data.ipynb)
