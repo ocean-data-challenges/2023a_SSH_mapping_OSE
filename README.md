@@ -74,8 +74,10 @@ You're now good to go !
 
 
 ## Download the data
-:building_construction: TO DO: Add example on how to download/read data from MEOM server
-The data are hosted on this opendap [here](https://ige-meom-opendap.univ-grenoble-alpes.fr/thredds/catalog/meomopendap/extract/ocean-data-challenges/dc_Map_global_OSE/catalog.html). They are presented with the following directory structure:
+
+The data are hosted and can be accessed on the MEOM server opendap [here](https://ige-meom-opendap.univ-grenoble-alpes.fr/thredds/catalog/meomopendap/extract/ocean-data-challenges/dc_Map_global_OSE/catalog.html). The disk space needed to locally download the full dataset (for the reconstruction experiment, the independant evaluation and the comparison) is approximately 33Go. The comparison data is by far the heaviest with approximately 26Go. 
+
+The dataset is presented with the following directory structure:
 
 ### 1) Data for experiment
 
@@ -130,6 +132,20 @@ The data are hosted on this opendap [here](https://ige-meom-opendap.univ-grenobl
 |   |-- MIOST_geos_global_allsat-alg		% MIOST reconstruction
 |   |-- MIOST_geos_barotrop_eqwaves_global_allsat-alg	% MIOST reconstruction with barotropic and equatorial waves processing
 ```
+
+
+### Download and read the data
+
+The data can be downloaded locally using the wget command. We recommand that the data be stored in the data/ repository. 
+For example, to download the experiment alongtrack data:
+
+```
+cd data/
+wget https://ige-meom-opendap.univ-grenoble-alpes.fr/thredds/fileServer/meomopendap/extract/ocean-data-challenges/dc_Map_global_OSE/alongtrack 
+```
+
+A notebook to illustrate how to download and read the data is available: [access_data.ipynb](https://github.com/ocean-data-challenges/2023a_SSH_mapping_OSE/blob/main/notebooks/access_data.ipynb)
+
 
 ## Evaluation
 
