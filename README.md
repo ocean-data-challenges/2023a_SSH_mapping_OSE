@@ -146,7 +146,7 @@ tar -xvf alongtrack.tar.gz
 rm -f alongtrack.tar.gz
 ```
 
-A notebook to illustrate how to download and read the data is available: [access_data.ipynb](https://github.com/ocean-data-challenges/2023a_SSH_mapping_OSE/blob/main/notebooks/access_data.ipynb)
+#### A notebook to illustrate how to download and read the data is available: [access_data.ipynb](https://github.com/ocean-data-challenges/2023a_SSH_mapping_OSE/blob/main/notebooks/access_data.ipynb)
 
 
 ## Evaluation
