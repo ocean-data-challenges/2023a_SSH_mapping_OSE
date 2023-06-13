@@ -136,7 +136,7 @@ The dataset is presented with the following directory structure:
 
 ### Download and read the data
 
-The data can be downloaded locally using the wget command. We recommand that the data be stored in the <pre><code>data/</code></pre> repository. 
+The data can be downloaded locally using the wget command. We recommand that the data be stored in the `data/` repository. 
 For example, to download and unzip the experiment alongtrack data:
 
 ```
