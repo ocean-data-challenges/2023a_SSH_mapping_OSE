@@ -1,4 +1,4 @@
-name: odc-ssh-mapping
+name: env-dc-global-ose
 channels:
   - menpo
   - conda-forge

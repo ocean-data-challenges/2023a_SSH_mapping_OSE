@@ -1,4 +1,4 @@
-## :warning: WORK in progress. This data-challenge is under construction
+## :warning: WORK in progress. This data-challenge is still under construction
 
 
 <p align="center">
