@@ -9,7 +9,7 @@ dependencies:
   - conda-forge::pyinterp
   - holoviews
   - geoviews
-  - cartopy
+  - cartopy=0.21
   - tabulate
   - datashader
   - netcdf4

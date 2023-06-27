@@ -69,6 +69,7 @@ then add it to the available kernels for jupyter to see:
 ```
 ipython kernel install --name "env-dc-global-ose" --user
 ```
+finally, select the "env-dc-global-ose" kernel in your notebook with Kernel > Change Kernel.
 
 You're now good to go ! 
 
@@ -77,7 +78,10 @@ You're now good to go !
 
 The data are hosted and can be accessed on the MEOM server opendap [here](https://ige-meom-opendap.univ-grenoble-alpes.fr/thredds/catalog/meomopendap/extract/ocean-data-challenges/dc_Map_global_OSE/catalog.html). The disk space needed to locally download the full dataset (for the reconstruction experiment, the independant evaluation and the comparison) is approximately 33Go. The comparison data is by far the heaviest with approximately 26Go. 
 
-#### A notebook to illustrate how to download and read the data is available: [access_data.ipynb](https://github.com/ocean-data-challenges/2023a_SSH_mapping_OSE/blob/main/notebooks/access_data.ipynb)
+#### A notebook to illustrate how to download and read the global data is available: [download_and_acces_global_data.ipynb](https://github.com/ocean-data-challenges/2023a_SSH_mapping_OSE/blob/main/notebooks/download_and_acces_global_data.ipynb)
+
+
+#### If you are only interested in regional data, a notebook is available to read online the global data and download only regional data: [read_and_download_regional_data.ipynb](https://github.com/ocean-data-challenges/2023a_SSH_mapping_OSE/blob/main/notebooks/read_and_download_regional_data.ipynb)
 
 The dataset is presented with the following directory structure:
 
