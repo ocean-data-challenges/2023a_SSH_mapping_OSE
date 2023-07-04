@@ -154,9 +154,23 @@ def plot_effective_resolution(filename):
     return fig0
 
 
-def plot_effective_resolution_png(filename):
+def plot_effective_resolution_png(filename,region='glob',box_lonlat=None):
 
     ds = xr.open_dataset(filename)
+    
+    
+    try : 
+        method_name = ds.attrs['method']
+    except:
+        method_name = ''
+    
+    if box_lonlat is not None:
+        lon_min = box_lonlat['lon_min']
+        lon_max = box_lonlat['lon_max']
+        lat_min = box_lonlat['lat_min']
+        lat_max = box_lonlat['lat_max']
+        ds = ds.sel({'lon':slice(lon_min,lon_max),'lat':slice(lat_min,lat_max)}) 
+    
     
     fig, axs = plt.subplots(nrows=1,ncols=1,
                         subplot_kw={'projection': ccrs.PlateCarree()},
@@ -190,6 +204,8 @@ def plot_effective_resolution_png(filename):
     
     fig.subplots_adjust(bottom=0.2, top=0.9, left=0.1, right=0.9,
                     wspace=0.02, hspace=0.01)
+    
+    plt.savefig("../figures/Maps_"+str(method_name)+"_effres_"+region+".png", bbox_inches='tight')
 
 
 def plot_psd_scores(filename):
@@ -406,9 +422,17 @@ def plot_polarization(filename):
 
 
 
-def plot_stat_score_map_uv_png(filename):
+def plot_stat_score_map_uv_png(filename,region='glob',box_lonlat=None):
 
     ds_binning_allscale = xr.open_dataset(filename, group='all_scale')
+    
+    
+    if box_lonlat is not None:
+        lon_min = box_lonlat['lon_min']
+        lon_max = box_lonlat['lon_max']
+        lat_min = box_lonlat['lat_min']
+        lat_max = box_lonlat['lat_max']
+        ds_binning_allscale = ds_binning_allscale.sel({'lon':slice(lon_min,lon_max),'lat':slice(lat_min,lat_max)}) 
     
     
     
@@ -522,11 +546,11 @@ def plot_stat_score_map_uv_png(filename):
     fig.subplots_adjust(bottom=0.2, top=0.9, left=0.1, right=0.9,
                     wspace=0.02, hspace=0.01) 
     
-    plt.savefig("../figures/Maps_"+str(method_name)+"_explvar_glob_uv.png", bbox_inches='tight')
+    plt.savefig("../figures/Maps_"+str(method_name)+"_explvar_"+region+"_uv.png", bbox_inches='tight')
     
     
     
-def plot_psd_scores_currents_png(filename):
+def plot_psd_scores_currents_png(filename,region='glob'):
     
     def coriolis_parameter(lat):
         """
@@ -546,7 +570,14 @@ def plot_psd_scores_currents_png(filename):
     
     
     ds_psd = xr.open_dataset(filename)
-    #print(np.ma.masked_invalid(1./ds_psd.wavenumber))
+    
+    
+    
+    try : 
+        method_name = ds_psd.attrs['method']
+    except:
+        method_name = ''
+     
     fig, axs = plt.subplots(nrows=2,ncols=3,figsize=(11,20))
 
     axs=axs.flatten()
@@ -660,9 +691,13 @@ def plot_psd_scores_currents_png(filename):
     
     fig.delaxes(axs[-1])
     
-       
     
-def plot_stat_score_map_png(filename):
+    plt.savefig("../figures/Maps_"+str(method_name)+"_effres_"+region+"_uv.png", bbox_inches='tight')
+    
+       
+
+    
+def plot_stat_score_map_png(filename,region='glob',box_lonlat=None): 
 
     ds_binning_allscale = xr.open_dataset(filename, group='all_scale')
     ds_binning_filtered = xr.open_dataset(filename, group='filtered')
@@ -672,6 +707,14 @@ def plot_stat_score_map_png(filename):
     except:
         method_name = ''
     
+    if box_lonlat is not None:
+        lon_min = box_lonlat['lon_min']
+        lon_max = box_lonlat['lon_max']
+        lat_min = box_lonlat['lat_min']
+        lat_max = box_lonlat['lat_max']
+        ds_binning_allscale = ds_binning_allscale.sel({'lon':slice(lon_min,lon_max),'lat':slice(lat_min,lat_max)})
+        ds_binning_filtered = ds_binning_filtered.sel({'lon':slice(lon_min,lon_max),'lat':slice(lat_min,lat_max)})
+    
     
     
     fig, axs = plt.subplots(nrows=1,ncols=2,
@@ -679,12 +722,13 @@ def plot_stat_score_map_png(filename):
                         figsize=(11,7.5))
 
     axs=axs.flatten()
+     
     
     vmin = 0.
     vmax= 0.002
     p0 = axs[0].pcolormesh(ds_binning_allscale.lon, ds_binning_allscale.lat, ds_binning_allscale.variance_mapping_err, vmin=vmin, vmax=vmax, cmap='Reds')
     axs[0].set_title('SSH [All scale]')
-    axs[0].coastlines(resolution='10m', lw=0.5)
+    axs[0].coastlines(resolution='10m', lw=0.5)  
     # optional add grid lines
     p0.axes.gridlines(color='black', alpha=0., linestyle='--')
     # draw parallels/meridiens and write labels
@@ -726,7 +770,7 @@ def plot_stat_score_map_png(filename):
     cbar = fig.colorbar(p1, cax=cax, orientation='vertical')
     cax.set_ylabel('Error variance [m$^2$]', fontweight='bold')
     
-    plt.savefig("../figures/Maps_"+str(method_name)+"_errvar_glob.png", bbox_inches='tight')
+    plt.savefig("../figures/Maps_"+str(method_name)+"_errvar_"+region+".png", bbox_inches='tight')
     
     
     fig, axs = plt.subplots(nrows=1,ncols=2,
@@ -779,8 +823,7 @@ def plot_stat_score_map_png(filename):
     fig.subplots_adjust(bottom=0.2, top=0.9, left=0.1, right=0.9,
                     wspace=0.02, hspace=0.01)
         
-    plt.savefig("../figures/Maps_"+str(method_name)+"_explvar_glob.png", bbox_inches='tight')
-
+    plt.savefig("../figures/Maps_"+str(method_name)+"_explvar_"+region+".png", bbox_inches='tight')
     
 def compare_stat_score_map(study_filename, ref_filename):
     

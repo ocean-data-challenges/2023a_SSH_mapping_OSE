@@ -559,9 +559,10 @@ def compute_resolution(lon, lat, wavenumber, psd_diff, psd_ref):
     return resolution
 
 
-def write_psd_output(output_netcdf_file, wavenumber, vlat, vlon, nb_segment, psd_ref, psd_study, psd_diff_ref_study, coherence, cross_spectrum, one_sided=True):
+def write_psd_output(output_netcdf_file, wavenumber, vlat, vlon, nb_segment, psd_ref, psd_study, psd_diff_ref_study, coherence, cross_spectrum, one_sided=True, method_name=' '): 
 
     nc_out = Dataset(output_netcdf_file, 'w', format='NETCDF4')
+    
     
     if one_sided:
         positive_index = np.where(wavenumber >=0)[0]
@@ -628,7 +629,9 @@ def write_psd_output(output_netcdf_file, wavenumber, vlat, vlon, nb_segment, psd
     cross_spectrum_imag_out[:, :, :] = np.ma.masked_invalid(np.ma.masked_where(np.imag(cross_spectrum) == 0., np.imag(cross_spectrum))).filled(np.nan)[positive_index, :, :]
     cross_spectrum_imag_out.coordinates = "wavenumber lat lon"
     cross_spectrum_imag_out.long_name = "imaginary part of cross_spectrum between reference and study fields"
-
+ 
+    nc_out.method=method_name
+    
     nc_out.close()
     
     
@@ -657,7 +660,7 @@ def compute_psd_scores(ds_interp, output_filename, lenght_scale=1500. ):
     
     
 
-def compute_psd_scores_v2(ds_interp, output_filename, lenght_scale=1500. ):
+def compute_psd_scores_v2(ds_interp, output_filename, lenght_scale=1500., method_name=' '):
     
     # logging.info("Interpolate SLA maps onto alongtrack")
     # ds_interp = run_interpolation(ds_maps, ds_alongtrack)
@@ -676,28 +679,11 @@ def compute_psd_scores_v2(ds_interp, output_filename, lenght_scale=1500. ):
                                                                                                                        delta_x,
                                                                                                                        npt
                                                                                                                       )
-    logging.info('Saving ouput...')
-    write_psd_output(output_filename, wavenumber, vlat, vlon, nb_segment, psd_ref, psd_study, psd_diff, coherence, cross_spectrum)
+    logging.info('Saving ouput...') 
+    write_psd_output(output_filename, wavenumber, vlat, vlon, nb_segment, psd_ref, psd_study, psd_diff, coherence, cross_spectrum, method_name=method_name)
     logging.info("PSD file saved as: %s", output_filename)
     
-
-# def plot_psd_scores(filename):
-    
-#     ds_psd = xr.open_dataset(filename)
-#     ds_psd['wavelenght'] = 1./ds_psd['wavenumber']
-#     ds_psd['wavelenght'].attrs['units'] = 'km'
-#     ds_psd = ds_psd.assign_coords(wavelenght=ds_psd['wavelenght'])
-    
-#     fig1 = ds_psd.psd_ref.hvplot.line(x='wavelenght', logx=True, logy=True, label='PSD ref', color='k', flip_xaxis=True, line_width=3)*\
-#     ds_psd.psd_study.hvplot.line(x='wavelenght', logx=True, logy=True, label='PSD study', color='r', flip_xaxis=True)*\
-#     ds_psd.psd_diff.hvplot.line(x='wavelenght', logx=True, logy=True, label='PSD err', color='grey', flip_xaxis=True)
-    
-#     fig2 = ds_psd.coherence.hvplot.line(x='wavelenght', logx=True, logy=False, label='Coherence', color='k', flip_xaxis=True, line_width=2)*\
-#     (ds_psd.psd_diff/ds_psd.psd_ref).hvplot.line(x='wavelenght', logx=True, logy=False, label='PSD err/ PSD ref', color='r', flip_xaxis=True, line_width=2)
-    
-#     return (ds_psd.effective_resolution.hvplot.quadmesh(x='lon', y='lat', clim=(100, 500), cmap='Spectral_r', projection=ccrs.PlateCarree(), coastline=True) +\
-# ds_psd.nb_segment.hvplot.quadmesh(x='lon', y='lat', cmap='jet', projection=ccrs.PlateCarree(), coastline=True) +\
-# fig1 + fig2).cols(2) 
+ 
 
 
 def spectral_computation_drifters_by_latbin(lon_segment, lat_segment, ref_segments, study_segments, delta_x, npt):
@@ -811,7 +797,7 @@ def spectral_computation_drifters_by_latbin(lon_segment, lat_segment, ref_segmen
 
 
 
-def compute_psd_scores_current(ds_interp, output_filename, lenght_scale=np.timedelta64(40, 'D')):
+def compute_psd_scores_current(ds_interp, output_filename, lenght_scale=np.timedelta64(40, 'D'), method_name=' '):
     
     logging.info('Segment computation...')
     delta_t = np.median(np.diff(np.unique(ds_interp['time'])))
@@ -856,11 +842,11 @@ def compute_psd_scores_current(ds_interp, output_filename, lenght_scale=np.timed
                                                                                                                       )
     
     logging.info('Write output...')
-    write_psd_current_output(output_filename, wavenumber, vlat, nb_segment, psd_ref, psd_study, psd_diff, coherence, cross_spectrum)
+    write_psd_current_output(output_filename, wavenumber, vlat, nb_segment, psd_ref, psd_study, psd_diff, coherence, cross_spectrum,method_name=method_name)
     logging.info("PSD file saved as: %s", output_filename)
 
 
-def write_psd_current_output(output_netcdf_file, wavenumber, vlat, nb_segment, psd_ref, psd_study, psd_diff_ref_study, coherence, cross_spectrum):
+def write_psd_current_output(output_netcdf_file, wavenumber, vlat, nb_segment, psd_ref, psd_study, psd_diff_ref_study, coherence, cross_spectrum,method_name=''):
 
     nc_out = Dataset(output_netcdf_file, 'w', format='NETCDF4')
     
@@ -931,6 +917,8 @@ def write_psd_current_output(output_netcdf_file, wavenumber, vlat, nb_segment, p
     cross_spectrum_imag_out.coordinates = "wavenumber lat lon"
     cross_spectrum_imag_out.long_name = "imaginary part of cross_spectrum between reference and study fields"
 
+    nc_out.method=method_name
+    
     nc_out.close()
 
 

@@ -78,10 +78,10 @@ You're now good to go !
 
 The data are hosted and can be accessed on the MEOM server opendap [here](https://ige-meom-opendap.univ-grenoble-alpes.fr/thredds/catalog/meomopendap/extract/ocean-data-challenges/dc_Map_global_OSE/catalog.html). The disk space needed to locally download the full dataset (for the reconstruction experiment, the independant evaluation and the comparison) is approximately 33Go. The comparison data is by far the heaviest with approximately 26Go. 
 
-#### A notebook to illustrate how to download and read the global data is available: [download_and_acces_global_data.ipynb](https://github.com/ocean-data-challenges/2023a_SSH_mapping_OSE/blob/main/notebooks/download_and_acces_global_data.ipynb)
+#### A notebook to illustrate how to download and read the global data is available: [download_and_acces_global_data.ipynb](https://github.com/ocean-data-challenges/2023a_SSH_mapping_OSE/blob/main/nb_download_data/download_and_acces_global_data.ipynb)
 
 
-#### If you are only interested in regional data, a notebook is available to read online the global data and download only regional data: [read_and_download_regional_data.ipynb](https://github.com/ocean-data-challenges/2023a_SSH_mapping_OSE/blob/main/notebooks/read_and_download_regional_data.ipynb)
+#### If you are only interested in regional data, a notebook is available to read online the global data and download only regional data: [read_and_download_regional_data.ipynb](https://github.com/ocean-data-challenges/2023a_SSH_mapping_OSE/blob/main/nb_download_data/read_and_download_regional_data.ipynb)
 
 The dataset is presented with the following directory structure:
 
@@ -157,7 +157,7 @@ rm -f alongtrack.tar.gz
 
 The mapping methods are evaluated against independent data using two independant datasets:
 
-### Independant nadir SSH data: [Check example 1](https://github.com/ocean-data-challenges/2023a_SSH_mapping_OSE/blob/main/notebooks/ssh_scores_DUACS_geos.ipynb)
+### Independant nadir SSH data: [Check example 1](https://github.com/ocean-data-challenges/2023a_SSH_mapping_OSE/blob/main/nb_diags_global/ssh_scores_DUACS_geos.ipynb)
 
 The ocean surface topography reconstruction is compared with independant data from Saral/AltiKa altimeter. The metrics available using this independant dataset are:
 
@@ -165,7 +165,7 @@ The ocean surface topography reconstruction is compared with independant data fr
 - Statistics by regimes (scalar scores) 
 - Spectral effective resolution (maps)
 
-### Independant drifter currents data: [Check example 2](https://github.com/ocean-data-challenges/2023a_SSH_mapping_OSE/blob/main/notebooks/uv_scores_DUACS_geos.ipynb)
+### Independant drifter currents data: [Check example 2](https://github.com/ocean-data-challenges/2023a_SSH_mapping_OSE/blob/main/nb_diags_global/uv_scores_DUACS_geos.ipynb)
 
 The surface currents are assessed by comparing them to the surface drifter velocities. The metrics available using this independant dataset are:
 
@@ -184,110 +184,19 @@ Cross-functional modules are gathered in the `src` directory. They include tools
 
 # 3. Global evaluation 
 
-## Leaderboard
-
-:building_construction: TO DO: stat by ocean regime
-
-### SSH evaluation with independant nadir
-
-
-
-| Ocean regime          | Methods  |   Err variance score (All scales) |   Err variance score (65-500km) | 
-|:----------------------|----------|:---------------------------------:|:-------------------------------:| 
-|                       | DUACS    |        0.683678                   |         0.682788                | 
-| **Coastal**           | MIOST    |        0.689822                   |         0.697257                | 
-|                       | MIOST EW |        **0.693327**               |         **0.697649**            | 
-| | | | |  
-|                       | DUACS    |        0.941316                   |         0.941316                | 
-| **Offshore high var** | MIOST    |        0.945153                   |         **0.956015**            | 
-|                       | MIOST EW |        **0.945677**               |         0.955963                | 
-| | | | |  
-|                       | DUACS    |        0.800111                   |         0.868348                | 
-| **Offshore low var**  | MIOST    |        0.806072                   |         0.873085                |  
-|                       | MIOST EW |        **0.812999**               |         **0.873896**            | 
-| | | | |  
-|                       | DUACS    |        0.764560                   |         0.415881                | 
-| **Equatorial band**   | MIOST    |        0.757493                   |         0.423876                | 
-|                       | MIOST EW |        **0.765894**               |         **0.426543**            |  
-| | | | |  
-|                       | DUACS    |        **0.667031**               |         0.585653                |  
-| **Arctic**            | MIOST    |        0.650382                   |         0.594350                | 
-|                       | MIOST EW |        0.658796                   |         **0.600981**            |  
-| | | | |  
-|                       | DUACS    |        0.415025                   |         0.077469                |  
-| **Antarctic**         | MIOST    |        0.429089                   |       **0.103416**              | 
-|                       | MIOST EW |        **0.458979**               |         0.096746                | 
+## Leaderboards: [Here](eval_doc/eval_glob_leaderboards.md)
  
 
-
-
-
-### Currents evaluation with drifters
-
-| Ocean regime          | Methods  |   Err variance score u (All scales) |   Err variance score v (All scales) |
-|:----------------------|----------|:---------------------------------:|:-------------------------------:|
-|                       | DUACS    |        **0.028590**                   |         **0.023592**                |
-| **Coastal**           | MIOST    |        0.061266                   |         0.031145                |
-|                       | MIOST EW |        0.0577947               |         0.029261            |
-|                       | GLORYS12v1 |        0.033190               |         0.02834            |
-| | | | |   
-|                       | DUACS    |        0.038773                   |         0.0388200                | 
-| **Offshore high var** | MIOST    |        **0.037412**                   |         0.0387886            | 
-|                       | MIOST EW |        0.037413               |         **0.038441**                |
-|                       | GLORYS12v1 |        0.072004               |         0.072645            |
-| | | | |  
-|                       | DUACS    |       **0.023837**                   |         **0.018906**                |
-| **Offshore low var**  | MIOST    |        0.047175                   |         0.021960                |
-|                       | MIOST EW |        0.045661               |         0.021087            |
-|                       | GLORYS12v1 |        0.025661               |         0.022267            |
-| | | | |
-|                       | DUACS    |        0.049079                   |         0.033805                |
-| **Equatorial band**   | MIOST    |        0.330692                   |         0.079370                |
-|                       | MIOST EW |        0.309956               |         0.066951            |
-|                       | GLORYS12v1 |        **0.0377271**               |         **0.028665**            |
-| | | | |
-|                       | DUACS    |        0.014592               |         **0.14522**                |
-| **Arctic**            | MIOST    |        **0.014018**                   |         0.014527                |
-|                       | MIOST EW |        0.014028                   |         0.014531            |
-|                       | GLORYS12v1 |        0.016452               |         0.017973            |
-| | | | |
-|                       | DUACS    |        NaN                   |         NaN                |
-| **Antarctic**         | MIOST    |        NaN                   |       NaN              |
-|                       | MIOST EW |        NaN               |         NaN                |
-|                       | GLORYS12v1 |        NaN               |         NaN            |
-
-
-## Detailed evaluation
-
-### SSH evaluation with independant nadir
-
-|   | SSH error variance |
-| ------ | -------------- |
-| DUACS |<p align="center"><img src="figures/Maps_DUACS_errvar_glob.png" alt="DUACS Error variance" width="800"/></p> |
-| MIOST |<p align="center"><img src="figures/Maps_MIOST_errvar_glob.png" alt="DUACS Error variance" width="800"/></p> |
-| MIOST EW |<p align="center"><img src="figures/Maps_MIOST-EW_errvar_glob.png" alt="DUACS Error variance" width="800"/></p> |
-
-### Currents evaluation with drifters
-
-
-|   | Currents error variance |
-| ------ | -------------- |
-| DUACS |<p align="center"><img src="figures/Maps_DUACS_errvar_glob_uv.png" alt="DUACS Error variance" width="800"/></p> |
-| MIOST |<p align="center"><img src="figures/Maps_DUACS_errvar_glob_uv.png" alt="DUACS Error variance" width="800"/></p> |
-| MIOST EW |<p align="center"><img src="figures/Maps_DUACS_errvar_glob_uv.png" alt="DUACS Error variance" width="800"/></p> |
-
-...
-
-[See a more detailed evaluation here](detailed_eval_glob.md)
+## Detailed evaluation: [Here](eval_doc/eval_glob_detailed.md)
+ 
 
 # 4. Gulf stream evaluation 
 
-## Leaderboard
 
-:building_construction: TO DO: stat by ocean regime
+## Leaderboards: [Here](eval_doc/eval_glob_leaderboards.md)
+ 
 
-
-## Qualitative evaluation
+## Detailed evaluation: [Here](eval_doc/eval_glob_detailed.md)
 
 
 # Acknowledgement
