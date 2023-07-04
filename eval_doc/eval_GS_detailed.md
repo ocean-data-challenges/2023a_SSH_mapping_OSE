@@ -1,0 +1,23 @@
+
+## Detailed global evaluation
+
+### SSH evaluation with independant nadir
+
+#### Statistics
+
+|   | Error variance |
+| ------ | -------------- |
+| DUACS |<p align="center"><img src="../figures/Maps_DUACS_errvar_GS.png" alt="DUACS Error variance" width="800"/></p> | 
+
+
+
+|   | Explained variance |
+| ------ | -------------- |
+| DUACS |<p align="center"><img src="../figures/Maps_DUACS_explvar_GS.png" alt="DUACS Error variance" width="800"/></p> | 
+
+
+#### Spectral
+
+|   | Effective resolution |
+| ------ | -------------- |
+| DUACS |<p align="center"><img src="../figures/Maps_DUACS_effres_GS.png" alt="DUACS Effective resolution" width="800"/></p> | 
