@@ -26,14 +26,22 @@ For reconstruction methods that need a spin-up, the **observations** from other 
 
 The altimeter data from Saral/AltiKa and surface current velocity data mentioned above should never be used so that any reconstruction can be considered uncorrelated to the evaluation period.
 
-### 1. Get started
-#### [1.1 Installation](docs/getstarted.md)
-#### [1.2 Download the data](docs/getstarted.md)
-#### [1.3 Evaluation](docs/getstarted.md)
-### 2. Global evaluation
-#### [2.1 Leaderboards](docs/eval_glob_leaderboards.md)
-#### [2.2 Details](docs/eval_glob_detailed.md)
-### 3. Gulf Stream evaluation](docs/gseval.md)
-#### [3.1 Leaderboards](docs/eval_GS_leaderboards.md)
-#### [3.2 Details](docs/eval_GS_detailed.md)
+### Get started
+
+#### [Installation](docs/getstarted.md)
+#### [Download the data](docs/getstarted.md)
+#### [Evaluation](docs/getstarted.md)
+
+### Global evaluation
+
+#### [Leaderboards](docs/eval_glob_leaderboards.md)
+#### [Details](docs/eval_glob_detailed.md)
+
+### Gulf Stream evaluation
+
+#### [Leaderboards](docs/eval_GS_leaderboards.md)
+#### [Details](docs/eval_GS_detailed.md)
+
+### Acknowledgement 
+
 
