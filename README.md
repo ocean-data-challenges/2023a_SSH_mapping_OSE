@@ -184,19 +184,19 @@ Cross-functional modules are gathered in the `src` directory. They include tools
 
 # 3. Global evaluation 
 
-## Leaderboards: [Here](eval_doc/eval_glob_leaderboards.md)
+## Leaderboards: [Here](docs/eval_glob_leaderboards.md)
  
 
-## Detailed evaluation: [Here](eval_doc/eval_glob_detailed.md)
+## Detailed evaluation: [Here](docs/eval_glob_detailed.md)
  
 
 # 4. Gulf stream evaluation 
 
 
-## Leaderboards: [Here](eval_doc/eval_glob_leaderboards.md)
+## Leaderboards: [Here](docs/eval_glob_leaderboards.md)
  
 
-## Detailed evaluation: [Here](eval_doc/eval_glob_detailed.md)
+## Detailed evaluation: [Here](docs/eval_glob_detailed.md)
 
 
 # Acknowledgement

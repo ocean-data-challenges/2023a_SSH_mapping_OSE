@@ -2,6 +2,8 @@
 layout: default
 ---
 
+### Context and motivations
+
 The Copernicus Marine Service (CMEMS) is committed to providing high-quality, state-of-the-art ocean products through the validation and verification of physical oceanic parameters on both global and regional scales. Among the variables distributed by the service, ocean surface topography and surface currents are of great interest to the oceanographic communities for practical applications and for scientific research.
 
 Several mapping techniques, such as statistical interpolation methods or ocean model assimilation methods, are currently proposed to provide operational maps of ocean surface heights and currents. New mapping techniques (e.g. data-driven methods) are emerging and being tested in a research and development context. 
@@ -24,4 +26,14 @@ For reconstruction methods that need a spin-up, the **observations** from other 
 
 The altimeter data from Saral/AltiKa and surface current velocity data mentioned above should never be used so that any reconstruction can be considered uncorrelated to the evaluation period.
 
-1. [Get started](docs/getstarted.md)
+### 1. Get started
+#### [1.1 Installation](docs/getstarted.md)
+#### [1.2 Download the data](docs/getstarted.md)
+#### [1.3 Evaluation](docs/getstarted.md)
+### 2. Global evaluation
+#### [2.1 Leaderboards](docs/eval_glob_leaderboards.md)
+#### [2.2 Details](docs/eval_glob_detailed.md)
+### 3. Gulf Stream evaluation](docs/gseval.md)
+#### [3.1 Leaderboards](docs/eval_GS_leaderboards.md)
+#### [3.2 Details](docs/eval_GS_detailed.md)
+
