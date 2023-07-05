@@ -187,7 +187,11 @@ Cross-functional modules are gathered in the `src` directory. They include tools
 ## Leaderboards: [Here](docs/eval_glob_leaderboards.md)
  
 
-## Detailed evaluation: [Here](docs/eval_glob_detailed.md)
+## DUACS detailed evaluation: [Here](docs/eval_glob_duacs.md)
+
+## MIOST detailed evaluation: [Here](docs/eval_glob_miost.md)
+
+## MIOST-EqW detailed evaluation: [Here](docs/eval_glob_miosteqw.md)
  
 
 # 4. Gulf stream evaluation 
@@ -196,7 +200,7 @@ Cross-functional modules are gathered in the `src` directory. They include tools
 ## Leaderboards: [Here](docs/eval_GS_leaderboards.md)
  
 
-## Detailed evaluation: [Here](docs/eval_GS_detailed.md)
+## DUACS detailed evaluation: [Here](docs/eval_GS_duacs.md)
 
 
 # Acknowledgement

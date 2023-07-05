@@ -35,12 +35,14 @@ The altimeter data from Saral/AltiKa and surface current velocity data mentioned
 ### Global evaluation
 
 - [Leaderboards](docs/eval_glob_leaderboards.md)
-- [Details](docs/eval_glob_detailed.md)
+- [DUACS](docs/eval_glob_duacs.md)
+- [MIOST](docs/eval_glob_miost.md)
+- [MIOST-eqwaves](docs/eval_glob_miosteqw.md)
 
 ### Gulf Stream evaluation
 
 - [Leaderboards](docs/eval_GS_leaderboards.md)
-- [Details](docs/eval_GS_detailed.md)
+- [DUACS](docs/eval_GS_duacs.md)
 
 ### Acknowledgement 
 
