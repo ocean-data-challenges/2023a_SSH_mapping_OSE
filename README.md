@@ -193,10 +193,10 @@ Cross-functional modules are gathered in the `src` directory. They include tools
 # 4. Gulf stream evaluation 
 
 
-## Leaderboards: [Here](docs/eval_glob_leaderboards.md)
+## Leaderboards: [Here](docs/eval_GS_leaderboards.md)
  
 
-## Detailed evaluation: [Here](docs/eval_glob_detailed.md)
+## Detailed evaluation: [Here](docs/eval_GS_detailed.md)
 
 
 # Acknowledgement
