@@ -35,3 +35,9 @@
 |   | Explained variance |
 | ------ | -------------- |
 | DUACS |<p align="center"><img src="../figures/Maps_DUACS_explvar_glob_uv.png" alt="DUACS Error variance" width="800"/></p> | 
+
+#### Spectral
+
+|   | Effective resolution |
+| ------ | -------------- |
+| DUACS |<p align="center"><img src="../figures/Maps_DUACS_effres_glob_uv.png" alt="DUACS Effective resolution" width="800"/></p> | 

@@ -20,7 +20,7 @@
 
 |   | Effective resolution |
 | ------ | -------------- | 
-| MIOST |<p align="center"><img src="../figures/BBB.png" alt="MIOST Effective resolution" width="800"/></p> | 
+| MIOST |<p align="center"><img src="../figures/Maps_MIOST_effres_glob.png" alt="MIOST Effective resolution" width="800"/></p> | 
 
 
 ### U, V evaluation with independant drifters
@@ -37,3 +37,9 @@
 |   | Explained variance |
 | ------ | -------------- | 
 | MIOST |<p align="center"><img src="../figures/Maps_MIOST_explvar_glob_uv.png" alt="MIOST Error variance" width="800"/></p> | 
+
+#### Spectral
+
+|   | Effective resolution |
+| ------ | -------------- |
+| MIOST |<p align="center"><img src="../figures/Maps_MIOST_effres_glob_uv.png" alt="MIOST Effective resolution" width="800"/></p> | 
