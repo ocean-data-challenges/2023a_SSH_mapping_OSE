@@ -491,7 +491,7 @@ def plot_stat_score_map_uv_png(filename,region='glob',box_lonlat=None):
     cbar = fig.colorbar(p1, cax=cax, orientation='vertical')
     cax.set_ylabel('Error variance [m$^2$.s$^{-2}$]', fontweight='bold')
     
-    plt.savefig("../figures/Maps_"+str(method_name)+"_errvar_glob_uv.png", bbox_inches='tight')
+    plt.savefig("../figures/Maps_"+str(method_name)+"_errvar_"+region+"_uv.png", bbox_inches='tight')
     
     
     fig, axs = plt.subplots(nrows=1,ncols=2,
