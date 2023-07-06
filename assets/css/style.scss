@@ -4,10 +4,14 @@
 @import "{{ site.theme }}";
 
 header {
-	background: #000000;
+	background: #D8AB4C;
 	h1 {
-		color: #D8AB4C;
+		color: #000000;
 	}
+
+  	p {
+    		color: #ffffff;
+  	}
 }
 
 #banner {
@@ -18,4 +22,6 @@ body {
     font: unset;
     color: #000000;
 }
+
+
 
