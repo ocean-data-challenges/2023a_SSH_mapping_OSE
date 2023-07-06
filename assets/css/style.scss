@@ -6,7 +6,7 @@
 header {
 	background: #323da1;
 	h1 {
-		color: #000000;
+		color: #ffffff;
 	}
 
   	p {
@@ -17,6 +17,7 @@ header {
 
 #banner {
 	background: #62a4de;
+	border: 1px solid #f0b500;
 }
 
 body {
@@ -24,5 +25,9 @@ body {
     color: #000000;
 }
 
+
+.fork {
+	background-color: #ffffff;
+}
 
 
