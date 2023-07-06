@@ -1,0 +1,6 @@
+title: Data challenge global OSE
+logo: figures/dc_2023_ose_global_duacs_sla_map.jpg
+description: This repository contains codes and sample notebooks for downloading and processing the 2023a SSH mapping data challenge. Note that this data challenge is a somewhat extended version of the data challenge 2021a_SSH_mapping_OSE on a global scale.
+show_downloads: true
+google_analytics:
+theme: jekyll-theme-minimal

@@ -422,6 +422,7 @@ def plot_polarization(filename):
 
 
 
+
 def plot_stat_score_map_uv_png(filename,region='glob',box_lonlat=None):
 
     ds_binning_allscale = xr.open_dataset(filename, group='all_scale')
@@ -487,12 +488,14 @@ def plot_stat_score_map_uv_png(filename,region='glob',box_lonlat=None):
     gl.xlabel_style = {'size': 10, 'color': 'black'}
     gl.ylabel_style = {'size': 10, 'color': 'black'}
     
-    cax = fig.add_axes([0.92, 0.37, 0.02, 0.25])
+    cax = fig.add_axes([0.92, 0.42, 0.02, 0.25])
     cbar = fig.colorbar(p1, cax=cax, orientation='vertical')
     cax.set_ylabel('Error variance [m$^2$.s$^{-2}$]', fontweight='bold')
     
     plt.savefig("../figures/Maps_"+str(method_name)+"_errvar_"+region+"_uv.png", bbox_inches='tight')
     
+    fig.subplots_adjust(bottom=0.2, top=0.9, left=0.1, right=0.9,
+                    wspace=0.02, hspace=0.01) 
     
     fig, axs = plt.subplots(nrows=1,ncols=2,
                         subplot_kw={'projection': ccrs.PlateCarree()},
@@ -538,7 +541,7 @@ def plot_stat_score_map_uv_png(filename,region='glob',box_lonlat=None):
     gl.xlabel_style = {'size': 10, 'color': 'black'}
     gl.ylabel_style = {'size': 10, 'color': 'black'}
     
-    cax = fig.add_axes([0.92, 0.25, 0.02, 0.25])
+    cax = fig.add_axes([0.92, 0.42, 0.02, 0.25])
     fig.colorbar(p3, cax=cax, orientation='vertical')
     cax.set_ylabel('Explained variance', fontweight='bold')
     
@@ -547,7 +550,6 @@ def plot_stat_score_map_uv_png(filename,region='glob',box_lonlat=None):
                     wspace=0.02, hspace=0.01) 
     
     plt.savefig("../figures/Maps_"+str(method_name)+"_explvar_"+region+"_uv.png", bbox_inches='tight')
-    
     
     
 def plot_psd_scores_currents_png(filename,region='glob'):
