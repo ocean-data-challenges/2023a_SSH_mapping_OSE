@@ -24,11 +24,20 @@
         <p>{{ site.description | default: site.github.project_tagline }}</p>
 
 	{% for section_ in site.section_menu %}
-  		<h2>
-    		  <a href="{{ section_.url }}">
-      			{{ section_.name }}
-    		  </a>
-		</h2>
+		{% if section_.title %}
+  			<h2>
+    		  	  <a href="{{ section_.url }}">
+      				{{ section_.name }}
+    		  	  </a>
+			</h2>
+		{% else %}
+
+                        <h4>
+                          <a href="{{ section_.url }}">
+                                {{ section_.name }}
+                          </a>
+                        </h4>
+		{% endif %}
 	{% endfor %}
 
         {% if site.github.is_project_page %}

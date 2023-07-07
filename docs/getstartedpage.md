@@ -1,6 +1,6 @@
 <br> 
 
-<font size="10"> Get started</font>
+<font size="8"> Get started</font>
 
 <br> 
 
