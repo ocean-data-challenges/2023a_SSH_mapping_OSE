@@ -22,7 +22,7 @@ The altimeter data from Saral/AltiKa and surface current velocity data mentioned
 
 ### Get started
 
-- [Installation](docs/getstarted.md)
+- [Installation](_section_menu/getstarted.md)
 - [Download the data](docs/getstarted.md)
 - [Evaluation](docs/getstarted.md)
 
