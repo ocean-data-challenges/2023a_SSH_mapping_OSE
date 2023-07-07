@@ -27,13 +27,13 @@
 		{% if section_.position == True %}
   			<h2>
     		  	  <a href="{{ section_.url }}">
-      				{{ section_.name }} - {{ staff_member.position }}
+      				{{ section_.name }} - {{ section_.position }}
     		  	  </a>
 			</h2>
 		{% else %}
                         <h4>
                           <a href="{{ section_.url }}">
-                                {{ section_.name }}
+                                {{ section_.name }} - {{ section_.position }}
                           </a>
                         </h4>
 		{% endif %}
