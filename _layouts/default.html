@@ -24,18 +24,18 @@
         <p>{{ site.description | default: site.github.project_tagline }}</p>
 
 	{% for section_ in site.section_menu %}
-		{% if section_.title == subsect %}
-  			<h4>
+		{% if section_.position == True %}
+  			<h2>
     		  	  <a href="{{ section_.url }}">
-      				{{ section_.name }}
+      				{{ section_.name }} - {{ staff_member.position }}
     		  	  </a>
-			</h4>
+			</h2>
 		{% else %}
-                        <h2>
+                        <h4>
                           <a href="{{ section_.url }}">
                                 {{ section_.name }}
                           </a>
-                        </h2>
+                        </h4>
 		{% endif %}
 	{% endfor %}
 
