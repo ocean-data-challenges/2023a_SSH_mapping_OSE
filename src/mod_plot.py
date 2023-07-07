@@ -768,7 +768,7 @@ def plot_stat_score_map_png(filename,region='glob',box_lonlat=None):
     gl.ylabel_style = {'size': 10, 'color': 'black'}
     
     
-    cax = fig.add_axes([0.92, 0.37, 0.02, 0.25])
+    cax = fig.add_axes([0.92, 0.42, 0.02, 0.25])
     cbar = fig.colorbar(p1, cax=cax, orientation='vertical')
     cax.set_ylabel('Error variance [m$^2$]', fontweight='bold')
     

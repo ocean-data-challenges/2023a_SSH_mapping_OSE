@@ -7,19 +7,19 @@
 
 |   | Error variance |
 | ------ | -------------- |
-| DUACS |<p align="center"><img src="../figures/Maps_DUACS_errvar_GS.png" alt="DUACS Error variance" width="800"/></p> | 
+| DUACS | <img src="../figures/Maps_DUACS_errvar_GS.png" alt="DUACS Error variance" width="800"/> | 
 
  
 |   | Explained variance |
 | ------ | -------------- |
-| DUACS |<p align="center"><img src="../figures/Maps_DUACS_explvar_GS.png" alt="DUACS Error variance" width="800"/></p> | 
+| DUACS | <img src="../figures/Maps_DUACS_explvar_GS.png" alt="DUACS Error variance" width="800"/> | 
 
 
 #### Spectral
 
 |   | Effective resolution |
 | ------ | -------------- |
-| DUACS |<p align="center"><img src="../figures/Maps_DUACS_effres_GS.png" alt="DUACS Effective resolution" width="800"/></p> | 
+| DUACS | <img src="../figures/Maps_DUACS_effres_GS.png" alt="DUACS Effective resolution" width="800"/> | 
 
 
 ### U, V evaluation with independant drifters
@@ -28,16 +28,16 @@
 
 |   | Error variance |
 | ------ | -------------- |
-| DUACS |<p align="center"><img src="../figures/Maps_DUACS_errvar_GS_uv.png" alt="DUACS Error variance" width="800"/></p> | 
+| DUACS | <img src="../figures/Maps_DUACS_errvar_GS_uv.png" alt="DUACS Error variance" width="800"/>  | 
 
 
 
 |   | Explained variance |
 | ------ | -------------- |
-| DUACS |<p align="center"><img src="../figures/Maps_DUACS_explvar_GS_uv.png" alt="DUACS Error variance" width="800"/></p> | 
+| DUACS | <img src="../figures/Maps_DUACS_explvar_GS_uv.png" alt="DUACS Error variance" width="800"/>  | 
 
 #### Spectral
 
 |   | Effective resolution |
 | ------ | -------------- |
-| DUACS |<p align="center"><img src="../figures/Maps_DUACS_effres_GS_uv.png" alt="DUACS Effective resolution" width="800"/></p> | 
+| DUACS | <img src="../figures/Maps_DUACS_effres_GS_uv.png" alt="DUACS Effective resolution" width="800"/>  | 
