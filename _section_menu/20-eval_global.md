@@ -1,6 +1,6 @@
 ---
 name: Global evaluation 
-title: true
+title: null
 permalink: /2023a_SSH_mapping_OSE/docs/eval_global.html
 ---
 

@@ -24,7 +24,7 @@
         <p>{{ site.description | default: site.github.project_tagline }}</p>
 
 	{% for section_ in site.section_menu %}
-		{% if section_.title %}
+		{% if section_.title==null %}
   			<h2>
     		  	  <a href="{{ section_.url }}">
       				{{ section_.name }}
