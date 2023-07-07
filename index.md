@@ -20,23 +20,4 @@ The SSH reconstructions are assessed at global scale and over the period from 20
 
 The altimeter data from Saral/AltiKa and surface current velocity data mentioned above should never be used so that any reconstruction can be considered uncorrelated to the evaluation period.
 
-### Get started
-
-- [Installation](docs/getstarted.md)
-- [Download the data](docs/getstarted.md)
-- [Evaluation](docs/getstarted.md)
-
-### Global product evaluation
-
-- [Leaderboards](docs/eval_glob_leaderboards.md)
-- [DUACS](docs/eval_glob_duacs.md)
-- [MIOST](docs/eval_glob_miost.md)
-- [MIOST-eqwaves](docs/eval_glob_miosteqw.md)
-
-### Gulf Stream product evaluation
-
-- [Leaderboards](docs/eval_GS_leaderboards.md)
-- [DUACS](docs/eval_GS_duacs.md)
- 
-
 

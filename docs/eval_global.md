@@ -3,25 +3,17 @@
 <br> 
 
 <br> 
-
-<font size="6"> 
-- [Leaderboards](eval_glob_leaderboards.md)
-</font>
+ 
+- [Leaderboards](eval_glob_leaderboards.md) 
 
 <br>  
-
-<font size="6"> 
-- [DUACS](eval_glob_duacs.md)
-</font>
+ 
+- [DUACS](eval_glob_duacs.md) 
 
 <br>  
+ 
+- [MIOST](eval_glob_miost.md) 
 
-<font size="6"> 
-- [MIOST](eval_glob_miost.md)
-</font>
+<br>   
 
-<br>  
-
-<font size="6"> 
-- [MIOST-EqW](eval_glob_miosteqw.md)
-</font>
+- [MIOST-EqW](eval_glob_miosteqw.md) 

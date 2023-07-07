@@ -3,20 +3,15 @@
 <br> 
 
 <br> 
+ 
+- [<font size="6">Installation</font>](getstarted_install.md)
 
-<font size="6"> 
-- [Installation](getstarted_install.md)
-</font>
 
 <br>  
-
-<font size="6"> 
-- [Download the data](getstarted_data.md)
-</font>
+ 
+- [Download the data](getstarted_data.md) 
  
 <br> 
-
-<font size="6"> 
-- [Evaluation description](getstarted_eval.md)
-</font>
+ 
+- [Evaluation description](getstarted_eval.md) 
  

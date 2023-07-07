@@ -1,9 +1,11 @@
 ---
-name: Global evaluation: DUACS product
+name: DUACS Global
 permalink: /2023a_SSH_mapping_OSE/docs/eval_glob_duacs.html
 ---
 
-# DUACS detailed global evaluation
+2
+
+## DUACS detailed global evaluation
 
 ### SSH evaluation with independant nadir
 
