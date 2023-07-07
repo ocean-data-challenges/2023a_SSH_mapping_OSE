@@ -20,7 +20,7 @@
 
 |   | Effective resolution |
 | ------ | -------------- | 
-| MIOST w/ EW | <img src="../figures/CCC.png" alt="MIOST-EW Effective resolution" width="800"/> |
+| MIOST w/ EW | <img src="../figures/Maps_MIOST-EW_effres_glob.png" alt="MIOST-EW Effective resolution" width="800"/> |
 
 
 ### U, V evaluation with independant drifters
