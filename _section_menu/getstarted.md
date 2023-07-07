@@ -1,5 +1,6 @@
 ---
-name: Yes baby
+name: Get started
+url: https://ocean-data-challenges.github.io/2023a_SSH_mapping_OSE/docs/getstarted.html
 ---
 
 # Get started
