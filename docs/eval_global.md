@@ -1,6 +1,6 @@
 <br>  
 
-<font size="8"> Global evaluation </font>
+<font size="7"> Global evaluation </font>
 
 <br> 
 
