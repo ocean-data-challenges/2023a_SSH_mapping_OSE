@@ -4,7 +4,7 @@ description: This repository contains codes and sample notebooks for downloading
 collections:
   section_menu:
     output: true
-    permalink: /:collection/:name
+    permalink: /:path
 show_downloads: true
 google_analytics:
 theme: jekyll-theme-minimal
