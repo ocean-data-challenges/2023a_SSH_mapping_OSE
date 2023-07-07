@@ -23,7 +23,7 @@
 
         <p>{{ site.description | default: site.github.project_tagline }}</p>
 
-	{% for section_ in site.section_menu %}
+	{% for section_ in site.docs %}
   		<h2>
     		  <a href="{{ section_.url }}">
       			{{ section_.name }}
