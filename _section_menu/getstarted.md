@@ -1,6 +1,6 @@
 ---
 name: Get started
-url: https://ocean-data-challenges.github.io/2023a_SSH_mapping_OSE/docs/getstarted.html
+permalink: /getstarted.md
 ---
 
 # Get started
