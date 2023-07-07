@@ -25,17 +25,17 @@
 
 	{% for section_ in site.section_menu %}
 		{% if section_.title==null %}
-  			<h2>
+  			<h4>
     		  	  <a href="{{ section_.url }}">
       				{{ section_.name }}
     		  	  </a>
-			</h2>
+			</h4>
 		{% else %}
-                        <h4>
+                        <h2>
                           <a href="{{ section_.url }}">
                                 {{ section_.name }}
                           </a>
-                        </h4>
+                        </h2>
 		{% endif %}
 	{% endfor %}
 

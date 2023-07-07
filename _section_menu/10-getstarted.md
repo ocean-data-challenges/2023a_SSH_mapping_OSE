@@ -1,6 +1,6 @@
 ---
 name: Get started
-title: null
+title: true
 permalink: /2023a_SSH_mapping_OSE/docs/getstartedpage.html
 ---
 
