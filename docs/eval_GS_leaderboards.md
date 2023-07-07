@@ -1,7 +1,3 @@
----
-name: Gulf Stream evaluation leaderboards
-permalink: /2023a_SSH_mapping_OSE/docs/eval_GS_leaderboards.html
----
 
 ## Leaderboards Gulf Stream
 

@@ -1,3 +1,7 @@
+---
+name: Global evaluation: MIOST-EqW product
+permalink: /2023a_SSH_mapping_OSE/docs/eval_glob_miosteqw.html
+---
 
 ## MIOST EqW detailed global evaluation
 

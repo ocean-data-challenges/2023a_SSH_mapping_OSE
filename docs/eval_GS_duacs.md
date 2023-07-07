@@ -1,7 +1,3 @@
----
-name: Gulf Stream evaluation: DUACS product
-permalink: /2023a_SSH_mapping_OSE/docs/eval_GS_duacs.html
----
 
 ## Detailed global evaluation
 
