@@ -9,8 +9,7 @@
 | ------ | -------------- |
 | DUACS |<p align="center"><img src="../figures/Maps_DUACS_errvar_GS.png" alt="DUACS Error variance" width="800"/></p> | 
 
-
-
+ 
 |   | Explained variance |
 | ------ | -------------- |
 | DUACS |<p align="center"><img src="../figures/Maps_DUACS_explvar_GS.png" alt="DUACS Error variance" width="800"/></p> | 
