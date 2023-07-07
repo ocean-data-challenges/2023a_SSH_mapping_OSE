@@ -15,7 +15,7 @@ The goal of the present data-challenge is to investigate how to best reconstruct
 
 ### Observations
 
-The SSH observations used in this study comprise data from a nadir altimeter constellation that includes Jason 3, Sentinel 3A, Sentinel 3B, Haiyang-2A, Haiyang-2B, and Cryosat-2. These data are distributed by the Copernicus Marine Service [(https://doi.org/10.48670/moi-00146)](https://doi.org/10.48670/moi-00146) and cover the period from January 1st, 2019 to December 31st, 2019. The Saral/AltiKa altimeter data are excluded from the mapping process to enable an independent assessment of the different reconstructions.
+The SSH observations used in this study comprise data from a nadir altimeter constellation that includes Jason 3, Sentinel 3A, Sentinel 3B, Haiyang-2A, Haiyang-2B, and Cryosat-2. These data are distributed by the Copernicus Marine Service [(https://doi.org/10.48670/moi-00146)](https://doi.org/10.48670/moi-00146) and cover the period from January 1st, 2019 to December 31st, 2019. The Saral/AltiKa altimeter data are excluded from the mapping process to enable an independent assessment of the different reconstructions. 
 
 In addition, independent assessment of ocean surface currents is performed using in situ data, which are also distributed by CMEMS [(https://doi.org/10.17882/86236)]( https://doi.org/10.17882/86236).
 
@@ -34,14 +34,14 @@ The altimeter data from Saral/AltiKa and surface current velocity data mentioned
 - [Download the data](docs/getstarted.md)
 - [Evaluation](docs/getstarted.md)
 
-### Global evaluation
+### Global product evaluation
 
 - [Leaderboards](docs/eval_glob_leaderboards.md)
 - [DUACS](docs/eval_glob_duacs.md)
 - [MIOST](docs/eval_glob_miost.md)
 - [MIOST-eqwaves](docs/eval_glob_miosteqw.md)
 
-### Gulf Stream evaluation
+### Gulf Stream product evaluation
 
 - [Leaderboards](docs/eval_GS_leaderboards.md)
 - [DUACS](docs/eval_GS_duacs.md)
