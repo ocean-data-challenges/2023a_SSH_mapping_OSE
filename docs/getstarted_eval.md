@@ -25,10 +25,11 @@ The metrics available using this independant nadir dataset are:
     
 | <center>SSH Error variance</center> | 
 | ------------ | 
-| <img src="../figures/Maps_DUACS_errvar_glob.png" alt="DUACS Error variance" width="400"/>  | 
+| <center> <img src="../figures/Maps_DUACS_errvar_glob.png" alt="DUACS Error variance" width="400"/></center>   | 
+
 |-------------- |
 | <center>SSH Explained variance</center> |
-| <img src="../figures/Maps_DUACS_explvar_glob.png" alt="DUACS Error variance" width="400"/>  | 
+|<center>  <img src="../figures/Maps_DUACS_explvar_glob.png" alt="DUACS Error variance" width="400"/> </center>  | 
     
 
 <br> 
@@ -68,7 +69,7 @@ The effective resolution (ER) is finally defined as the lowest scale at which th
 
 | <center>Effective resolution</center> |
 | -------------- |
-|<img src="../figures/Maps_DUACS_effres_glob.png" alt="DUACS Effective resolution" width="400"/> |
+|<center> <img src="../figures/Maps_DUACS_effres_glob.png" alt="DUACS Effective resolution" width="400"/> </center> |
 
 
 
@@ -93,10 +94,11 @@ The metrics available using this independant dataset are:
     
 | <center>Currents Error variance</center> | 
 | ------------ | 
-| <img src="../figures/Maps_DUACS_errvar_glob_uv.png" alt="DUACS Error variance" width="400"/>  | 
+| <center> <img src="../figures/Maps_DUACS_errvar_glob_uv.png" alt="DUACS Error variance" width="400"/></center>   | 
+
 |-------------- |
 | <center>Currents Explained variance</center> |
-| <img src="../figures/Maps_DUACS_explvar_glob_uv.png" alt="DUACS Error variance" width="400"/>  | 
+| <center> <img src="../figures/Maps_DUACS_explvar_glob_uv.png" alt="DUACS Error variance" width="400"/></center>   | 
     
 
 <br> 
@@ -112,7 +114,7 @@ The metrics available using this independant dataset are:
     
 | <center>Effective resolution</center> |
 | -------------- |
-|<img src="../figures/Maps_DUACS_effres_glob_uv.png" alt="DUACS Effective resolution" width="300"/> | 
+|<center> <img src="../figures/Maps_DUACS_effres_glob_uv.png" alt="DUACS Effective resolution" width="300"/></center>  | 
 
 
 <br> 
@@ -128,4 +130,4 @@ Secondly, a **Lagrangian diagnostic** is performed by reproducing the real drift
 
 | <center>Drifter deviation</center> |
 | -------------- |
-|<img src="../figures/Maps_DUACS_driftdev_glob.png" alt="DUACS Effective resolution" width="400"/> |
+|<center> <img src="../figures/Maps_DUACS_driftdev_glob.png" alt="DUACS Effective resolution" width="400"/></center>  |
