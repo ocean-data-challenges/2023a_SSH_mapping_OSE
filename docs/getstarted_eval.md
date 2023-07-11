@@ -20,7 +20,7 @@ The metrics available using this independant nadir dataset are:
 
 To obtain the spectral effective resolution, the Wavenumber Power Spectra Density (WPSD) is used along track. A noise-to-signal ratio is defined as 
 
-$$ NSR =\frac{1-\text{WPSD}(\text{SSH}_\text{nadir}-\text{SSH}_\text{reconstructed})}{\text{WPSD}(\text{SSH}_\text{nadir}}$$
+\\[NSR =\frac{1-\text{WPSD}(\text{SSH}_\text{nadir}-\text{SSH}_\text{reconstructed})}{\text{WPSD}(\text{SSH}_\text{nadir}} \\]
 
 For a given wavenumber, a score of 1 indicates a perfect reconstruction (the amplitude and phase of the corresponding harmonic is right) and a score of 0 indicates no phase correlation.
 
