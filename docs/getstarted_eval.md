@@ -41,17 +41,17 @@ The metrics available using this independant nadir dataset are:
 
 | <font size="2">Ocean regime  </font>         |<font size="2"> Methods</font>   |   <font size="2">Err variance score (All scales)</font>  |  <font size="2"> Err variance score (65-500km)</font>  | 
 |:----------------------|----------|:---------------------------------:|:-------------------------------:| 
-|  <font size="2"> **Coastal** </font>         |<font size="2"> DUACS </font>    |       <font size="2"> 0.683678  </font>                  |    <font size="2">     0.682788     </font>            |  
+|  <font size="2"> <em>Coastal</em> </font>         |<font size="2"> DUACS </font>    |       <font size="2"> 0.683678  </font>                  |    <font size="2">     0.682788     </font>            |  
 | | | | |  
-|<font size="2"> **Offshore high var**</font>  |<font size="2"> DUACS </font>    |      <font size="2">  0.941316 </font>                   |   <font size="2">      0.941316   </font>              |  
+|<font size="2"> <em>Offshore high var</em> </font>  |<font size="2"> DUACS </font>    |      <font size="2">  0.941316 </font>                   |   <font size="2">      0.941316   </font>              |  
 | | | | |  
-|<font size="2"> **Offshore low var**</font>   |<font size="2"> DUACS </font>    |      <font size="2">  0.800111 </font>                   |  <font size="2">       0.868348   </font>              |  
+|<font size="2"> <em>Offshore low var</em> </font>   |<font size="2"> DUACS </font>    |      <font size="2">  0.800111 </font>                   |  <font size="2">       0.868348   </font>              |  
 | | | | |  
-|<font size="2"> **Equatorial band** </font>   |<font size="2"> DUACS </font>    |     <font size="2">   0.764560  </font>                  |   <font size="2">      0.415881   </font>              |  
+|<font size="2"> <em>Equatorial band</em> </font>   |<font size="2"> DUACS </font>    |     <font size="2">   0.764560  </font>                  |   <font size="2">      0.415881   </font>              |  
 | | | | |  
-|<font size="2"> **Arctic**       </font>      |<font size="2"> DUACS </font>    |      <font size="2">  **0.667031** </font>               |   <font size="2">      0.585653    </font>             |   
+|<font size="2"> <em>Arctic</em>       </font>      |<font size="2"> DUACS </font>    |      <font size="2">  **0.667031** </font>               |   <font size="2">      0.585653    </font>             |   
 | | | | |  
-|<font size="2"> **Antarctic**   </font>       |<font size="2"> DUACS </font>    |       <font size="2"> 0.415025   </font>                 |   <font size="2">      0.077469    </font>             |  
+|<font size="2"> <em>Antarctic</em>   </font>       |<font size="2"> DUACS </font>    |       <font size="2"> 0.415025   </font>                 |   <font size="2">      0.077469    </font>             |  
 
    
 
