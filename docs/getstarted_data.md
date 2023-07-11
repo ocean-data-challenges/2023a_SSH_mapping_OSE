@@ -1,6 +1,11 @@
+ 
+<br>  
 
+<font size="7"> Download the data </font>
 
-## Download the data
+<br> 
+
+<br>  
 
 The data are hosted and can be accessed on the MEOM server opendap [here](https://ige-meom-opendap.univ-grenoble-alpes.fr/thredds/catalog/meomopendap/extract/ocean-data-challenges/dc_Map_global_OSE/catalog.html). The disk space needed to locally download the full dataset (for the reconstruction experiment, the independant evaluation and the comparison) is approximately 33Go. The comparison data is by far the heaviest with approximately 26Go. 
 

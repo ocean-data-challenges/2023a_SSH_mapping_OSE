@@ -1,5 +1,13 @@
-## Installation
-:computer: _**How to get started ?**_
+ 
+<br>  
+
+<font size="7"> Installation </font>
+
+<br> 
+
+<br>  
+
+_**How to get started ?**_
 
 Clone the data challenge repo: 
 ```

@@ -49,7 +49,7 @@ The metrics available using this independant nadir dataset are:
 | | | | |  
 |<font size="2"> <em>Equatorial band</em> </font>   |<font size="2"> DUACS </font>    |     <font size="2">   0.764560  </font>                  |   <font size="2">      0.415881   </font>              |  
 | | | | |  
-|<font size="2"> <em>Arctic</em>       </font>      |<font size="2"> DUACS </font>    |      <font size="2">  **0.667031** </font>               |   <font size="2">      0.585653    </font>             |   
+|<font size="2"> <em>Arctic</em>       </font>      |<font size="2"> DUACS </font>    |      <font size="2">  0.667031 </font>               |   <font size="2">      0.585653    </font>             |   
 | | | | |  
 |<font size="2"> <em>Antarctic</em>   </font>       |<font size="2"> DUACS </font>    |       <font size="2"> 0.415025   </font>                 |   <font size="2">      0.077469    </font>             |  
 
@@ -85,7 +85,7 @@ In this section, the mapping performances are assessed by comparing the currents
 ## Drifter currents 
 ### [(Check example 2)](https://github.com/ocean-data-challenges/2023a_SSH_mapping_OSE/blob/main/nb_diags_global/uv_scores_DUACS_geos.ipynb)
 
-Firstly, Eulerian diagnostics are performed by comparing the estimated currents with the velocities measured by the drifters at each location (in space and time) of the drifters. The methodology used is the same as for the SSH evaluation: the mapped velocities (meridional and zonal components) are interpolated on the drifters' locations and the errors with the drifters' velocities are aggregated in 1° longitude x 1° latitude boxes.
+Eulerian diagnostics are performed by comparing the estimated currents with the velocities measured by the drifters at each location (in space and time) of the drifters. The methodology used is the same as for the SSH evaluation: the mapped velocities (meridional and zonal components) are interpolated on the drifters' locations and the errors with the drifters' velocities are aggregated in 1° longitude x 1° latitude boxes.
 
 The metrics available using this independant dataset are:
 
@@ -125,7 +125,7 @@ The metrics available using this independant dataset are:
 ## Drifter trajectories 
 ### [(Check example 3)](https://github.com/ocean-data-challenges/2023a_SSH_mapping_OSE/blob/main/nb_diags_global/uv_scores_DUACS_geos.ipynb)
 
-Secondly, a **Lagrangian diagnostic** is performed by reproducing the real drifter trajectories using the reconstructed currents and comparing the deviation between the real and the reconstructed trajectories. More precisely, the distances between each drifter's location and the expected locations obtained by advecting past positions from the reconstructed velocities are computed. Thise distances are evaluated with forecast lead times ranging from 0 to 5 days, every day.
+A **Lagrangian diagnostic** is performed by reproducing the real drifter trajectories using the reconstructed currents and comparing the deviation between the real and the reconstructed trajectories. More precisely, the distances between each drifter's location and the expected locations obtained by advecting past positions from the reconstructed velocities are computed. Thise distances are evaluated with forecast lead times ranging from 0 to 5 days, every day.
 
 
 | <center>Drifter deviation</center> |
