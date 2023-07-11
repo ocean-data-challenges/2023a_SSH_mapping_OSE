@@ -13,8 +13,29 @@ The metrics available using this independant nadir dataset are:
 - **Grid boxes statistics (maps)**
     The SSH error variance and explained variance are computed in each box and displayed as maps. 
     
+| SSH Error variance |  SSH Explained variance |
+| ------------ | -------------- |
+| <img src="../figures/Maps_DUACS_errvar_glob.png" alt="DUACS Error variance" width="400"/>  |  <img src="../figures/Maps_DUACS_explvar_glob.png" alt="DUACS Error variance" width="400"/>  | 
+    
 - **Statistics by regimes (scalar scores)** 
     The corresponding averages are computed in specific geographical areas and regimes (*coastal, offshore-high variability, offshore-low variability, equatorial band, Arctic, Antarctic*) in order to provide a series of scores displayed in the *Leaderboards*.
+    
+    
+
+| Ocean regime          | Methods  |   Err variance score (All scales) |   Err variance score (65-500km) | 
+|:----------------------|----------|:---------------------------------:|:-------------------------------:| 
+|   **Coastal**         | DUACS    |        0.683678                   |         0.682788                |  
+| | | | |  
+| **Offshore high var** | DUACS    |        0.941316                   |         0.941316                |  
+| | | | |  
+| **Offshore low var**  | DUACS    |        0.800111                   |         0.868348                |  
+| | | | |  
+| **Equatorial band**   | DUACS    |        0.764560                   |         0.415881                |  
+| | | | |  
+| **Arctic**            | DUACS    |        **0.667031**               |         0.585653                |   
+| | | | |  
+| **Antarctic**         | DUACS    |        0.415025                   |         0.077469                |  
+
     
 - **Spectral effective resolution (maps)**
 
@@ -23,6 +44,11 @@ To obtain the spectral effective resolution, the Wavenumber Power Spectra Densit
 For a given wavenumber, a score of 1 indicates a perfect reconstruction (the amplitude and phase of the corresponding harmonic is right) and a score of 0 indicates no phase correlation.
 
 The effective resolution (ER) is finally defined as the lowest scale at which the NSR is equal to 0.5 (Ballarotta et al. 2019). By aggregating in 1° longitude x 1° latitude boxes, the ER values are displayed onto spatial maps. 
+
+
+| Effective resolution |
+| -------------- |
+|<img src="../figures/Maps_DUACS_effres_glob.png" alt="DUACS Effective resolution" width="400"/> |
 
 ### Independant drifters
 
@@ -37,11 +63,19 @@ The metrics available using this independant dataset are:
 - **Grid boxes statistics (maps)**
     Similarly to the SSH evaluation, the error variance and the explained variance are computed in each box. 
     
+| Currents Error variance |  Currents Explained variance |
+| ------------ | -------------- |
+| <img src="../figures/Maps_DUACS_errvar_glob_uv.png" alt="DUACS Error variance" width="400"/>  |  <img src="../figures/Maps_DUACS_explvar_glob_uv.png" alt="DUACS Error variance" width="400"/>  | 
+    
 - **Statistics by regimes (scalar scores)**
     Corresponding averages are computed in specific geographical areas and regimes (*coastal, offshore-high variability, offshore-low variability, equatorial band, Arctic, Antarctic*) in order to provide a series of scores displayed in the *Leaderboards*.
     
 - **Zonaly averaged rotary spectra (omega-latitude plots)** 
     The frequency rotary spectra of drifter (artificial from reconstruction and real) velocity (Ee) are computed along the drifter trajectories and displayed as a function of latitude and frequency. The velocity spectra are characterized by high-energy peaks at low frequencies (<0.5 cpd), diurnal, semidiurnal, and latitude-varying inertial frequencies. This diagnostics allows to assess the methods' reconstruction skills on certain specific dynamics. For instance, the dashed line superimposed to the spectrum corresponds to the inertial frequency, hence, the energy around that dashed line is characteristic of near-inertial oscillation induced currents. This energy can be observed in the real drifter data but is also partly reconstructed by some methods (e.g., WOC product or Glorys12v1).  
+    
+| Effective resolution |
+| -------------- |
+|<img src="../figures/Maps_DUACS_effres_glob_uv.png" alt="DUACS Effective resolution" width="400"/> | 
 
 #### Drifter trajectories [Check example 3](https://github.com/ocean-data-challenges/2023a_SSH_mapping_OSE/blob/main/nb_diags_global/uv_scores_DUACS_geos.ipynb)
 
