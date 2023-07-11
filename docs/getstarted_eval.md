@@ -18,12 +18,8 @@ The metrics available using this independant nadir dataset are:
     
 - **Spectral effective resolution (maps)**
 
-To obtain the spectral effective resolution, the Wavenumber Power Spectra Density (WPSD) is used along track. A noise-to-signal ratio is defined as 
-$$NSR =\frac{1-\text{WPSD}(\text{SSH}_\text{nadir}-\text{SSH}_\text{reconstructed})}{\text{WPSD}(\text{SSH}_\text{nadir}} $$
-
-Test $a=2$ and 
-$$ b=3 $$ 
-
+To obtain the spectral effective resolution, the Wavenumber Power Spectra Density (WPSD) is used along track. A noise-to-signal ratio is defined as NSR =1- WPSD(SSH_nadir-SSH_reconstructed)/WPSD(SSH_nadir).
+ 
 For a given wavenumber, a score of 1 indicates a perfect reconstruction (the amplitude and phase of the corresponding harmonic is right) and a score of 0 indicates no phase correlation.
 
 The effective resolution (ER) is finally defined as the lowest scale at which the NSR is equal to 0.5 (Ballarotta et al. 2019). By aggregating in 1° longitude x 1° latitude boxes, the ER values are displayed onto spatial maps. 
