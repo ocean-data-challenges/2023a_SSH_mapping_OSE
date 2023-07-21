@@ -9,6 +9,8 @@
 
 ### SSH evaluation with independant nadir
 
+[check notebook](../nb_diags_global/ssh_scores_DUACS_geos.ipynb)
+
 #### Statistics
 
 |   | Error variance |
