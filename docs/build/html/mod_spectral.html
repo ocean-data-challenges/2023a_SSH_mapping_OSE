@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>mod_spectral module &mdash; ODC - global OSE mapping  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/sg_gallery.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="mod_stat module" href="mod_stat.html" />
+    <link rel="prev" title="mod_read module" href="mod_read.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            ODC - global OSE mapping
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Get started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getstarted_install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getstarted_data.html">Download the data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getstarted_eval.html">Evaluation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Global evaluation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="eval_glob_leaderboards.html">Leaderboards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="eval_glob_duacs.html">DUACS global evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="eval_glob_miost.html">MIOST global evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="eval_glob_miosteqw.html">MIOST EqW global evaluation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Gulf Stream evaluation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="eval_GS_leaderboards.html">Leaderboards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="eval_GS_duacs.html">DUACS Gulf Stream evaluation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Notebooks</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="nb_download_data.html">Notebooks download the data</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Scripts</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="mod_compare.html">mod_compare module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mod_filter.html">mod_filter module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mod_interp.html">mod_interp module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mod_plot.html">mod_plot module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mod_read.html">mod_read module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">mod_spectral module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mod_stat.html">mod_stat module</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ODC - global OSE mapping</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">mod_spectral module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/mod_spectral.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-mod_spectral">
+<span id="mod-spectral-module"></span><h1>mod_spectral module<a class="headerlink" href="#module-mod_spectral" title="Permalink to this headline"></a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="mod_spectral.compute_crossing">
+<span class="sig-prename descclassname"><span class="pre">mod_spectral.</span></span><span class="sig-name descname"><span class="pre">compute_crossing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wavenumber</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mod_spectral.compute_crossing" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>array</strong> – </p></li>
+<li><p><strong>wavenumber</strong> – </p></li>
+<li><p><strong>threshold</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mod_spectral.compute_median_dx">
+<span class="sig-prename descclassname"><span class="pre">mod_spectral.</span></span><span class="sig-name descname"><span class="pre">compute_median_dx</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mod_spectral.compute_median_dx" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mod_spectral.compute_median_lon_lat">
+<span class="sig-prename descclassname"><span class="pre">mod_spectral.</span></span><span class="sig-name descname"><span class="pre">compute_median_lon_lat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vlon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vlat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sub_segment_point</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">npt</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mod_spectral.compute_median_lon_lat" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mod_spectral.compute_psd_scores">
+<span class="sig-prename descclassname"><span class="pre">mod_spectral.</span></span><span class="sig-name descname"><span class="pre">compute_psd_scores</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ds_interp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lenght_scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1500.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mod_spectral.compute_psd_scores" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mod_spectral.compute_psd_scores_current">
+<span class="sig-prename descclassname"><span class="pre">mod_spectral.</span></span><span class="sig-name descname"><span class="pre">compute_psd_scores_current</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ds_interp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lenght_scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">numpy.timedelta64</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'</span> <span class="pre">'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mod_spectral.compute_psd_scores_current" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mod_spectral.compute_psd_scores_v2">
+<span class="sig-prename descclassname"><span class="pre">mod_spectral.</span></span><span class="sig-name descname"><span class="pre">compute_psd_scores_v2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ds_interp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lenght_scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1500.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'</span> <span class="pre">'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mod_spectral.compute_psd_scores_v2" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mod_spectral.compute_resolution">
+<span class="sig-prename descclassname"><span class="pre">mod_spectral.</span></span><span class="sig-name descname"><span class="pre">compute_resolution</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wavenumber</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psd_diff</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psd_ref</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mod_spectral.compute_resolution" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mod_spectral.compute_segment">
+<span class="sig-prename descclassname"><span class="pre">mod_spectral.</span></span><span class="sig-name descname"><span class="pre">compute_segment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ds_interp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">npt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref_var_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'sla_unfiltered'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">study_var_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'msla_interpolated'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_time_gap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">numpy.timedelta64</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">segment_overlapping</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.25</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mod_spectral.compute_segment" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mod_spectral.compute_segment_v2">
+<span class="sig-prename descclassname"><span class="pre">mod_spectral.</span></span><span class="sig-name descname"><span class="pre">compute_segment_v2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ds_interp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">npt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta_x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref_var_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'sla_unfiltered'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">study_var_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'msla_interpolated'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_time_gap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">numpy.timedelta64</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">segment_overlapping</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.25</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mod_spectral.compute_segment_v2" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mod_spectral.spectral_computation">
+<span class="sig-prename descclassname"><span class="pre">mod_spectral.</span></span><span class="sig-name descname"><span class="pre">spectral_computation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lon_segment</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lat_segment</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref_segments</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">study_segments</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta_x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">npt</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mod_spectral.spectral_computation" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mod_spectral.spectral_computation_drifters_by_latbin">
+<span class="sig-prename descclassname"><span class="pre">mod_spectral.</span></span><span class="sig-name descname"><span class="pre">spectral_computation_drifters_by_latbin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lon_segment</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lat_segment</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref_segments</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">study_segments</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta_x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">npt</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mod_spectral.spectral_computation_drifters_by_latbin" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mod_spectral.spectral_computation_v2">
+<span class="sig-prename descclassname"><span class="pre">mod_spectral.</span></span><span class="sig-name descname"><span class="pre">spectral_computation_v2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lon_segment</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lat_segment</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref_segments</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">study_segments</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta_x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">npt</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mod_spectral.spectral_computation_v2" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mod_spectral.write_psd_current_output">
+<span class="sig-prename descclassname"><span class="pre">mod_spectral.</span></span><span class="sig-name descname"><span class="pre">write_psd_current_output</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">output_netcdf_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wavenumber</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vlat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nb_segment</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psd_ref</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psd_study</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psd_diff_ref_study</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coherence</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cross_spectrum</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mod_spectral.write_psd_current_output" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mod_spectral.write_psd_output">
+<span class="sig-prename descclassname"><span class="pre">mod_spectral.</span></span><span class="sig-name descname"><span class="pre">write_psd_output</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">output_netcdf_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wavenumber</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vlat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vlon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nb_segment</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psd_ref</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psd_study</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psd_diff_ref_study</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coherence</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cross_spectrum</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">one_sided</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'</span> <span class="pre">'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mod_spectral.write_psd_output" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="mod_read.html" class="btn btn-neutral float-left" title="mod_read module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="mod_stat.html" class="btn btn-neutral float-right" title="mod_stat module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Datlas.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

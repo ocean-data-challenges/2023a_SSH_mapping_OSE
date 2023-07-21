@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Evaluation &mdash; ODC - global OSE mapping  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/sg_gallery.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            ODC - global OSE mapping
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Scripts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">src</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ODC - global OSE mapping</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Evaluation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/getstarted_eval.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="evaluation">
+<h1>Evaluation<a class="headerlink" href="#evaluation" title="Permalink to this headline"></a></h1>
+<br>  
+<p><font size="7"> Evaluation </font></p>
+<br> 
+<br> 
+<p>The mapping methods are evaluated against independent data using two independant datasets.</p>
+<br> 
+<p><font size="6"> Independant nadir SSH data</font></p>
+<section id="check-example-1">
+<h2><a class="reference external" href="https://github.com/ocean-data-challenges/2023a_SSH_mapping_OSE/blob/main/nb_diags_global/ssh_scores_DUACS_geos.ipynb">(Check example 1)</a><a class="headerlink" href="#check-example-1" title="Permalink to this headline"></a></h2>
+<p>The ocean surface topography reconstruction is compared with independant data from Saral/AltiKa altimeter. The reconstructed maps are first interpolated onto the independant nadir tracks. The following diagnostics are then performed along these tracks and aggregated in 1° longitude x 1° latitude boxes.</p>
+<p>The metrics available using this independant nadir dataset are:</p>
+<ul class="simple">
+<li><p><strong>Grid boxes statistics (maps)</strong>
+The SSH error variance and explained variance are computed in each box and displayed as maps.</p></li>
+</ul>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><center>SSH Error variance</center></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><center> <img src="../figures/Maps_DUACS_errvar_glob.png" alt="DUACS Error variance" width="400"/></center></p></td>
+</tr>
+</tbody>
+</table>
+<p>|————– |
+| <center>SSH Explained variance</center> |
+|<center>  <img src="../figures/Maps_DUACS_explvar_glob.png" alt="DUACS Error variance" width="400"/> </center>  |</p>
+<br> 
+<ul class="simple">
+<li><p><strong>Statistics by regimes (scalar scores)</strong>
+The corresponding averages are computed in specific geographical areas and regimes (<em>coastal, offshore-high variability, offshore-low variability, equatorial band, Arctic, Antarctic</em>) in order to provide a series of scores displayed in the <em>Leaderboards</em>.</p></li>
+</ul>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="text-left head"><p><font size="2">Ocean regime  </font></p></th>
+<th class="head"><p><font size="2"> Methods</font></p></th>
+<th class="text-center head"><p><font size="2">Err variance score (All scales)</font></p></th>
+<th class="text-center head"><p><font size="2"> Err variance score (65-500km)</font></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><font size="2"> <em>Coastal</em> </font></p></td>
+<td><p><font size="2"> DUACS </font></p></td>
+<td class="text-center"><p><font size="2"> 0.683678  </font></p></td>
+<td class="text-center"><p><font size="2">     0.682788     </font></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p></p></td>
+<td><p></p></td>
+<td class="text-center"><p></p></td>
+<td class="text-center"><p></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><font size="2"> <em>Offshore high var</em> </font></p></td>
+<td><p><font size="2"> DUACS </font></p></td>
+<td class="text-center"><p><font size="2">  0.941316 </font></p></td>
+<td class="text-center"><p><font size="2">      0.941316   </font></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p></p></td>
+<td><p></p></td>
+<td class="text-center"><p></p></td>
+<td class="text-center"><p></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><font size="2"> <em>Offshore low var</em> </font></p></td>
+<td><p><font size="2"> DUACS </font></p></td>
+<td class="text-center"><p><font size="2">  0.800111 </font></p></td>
+<td class="text-center"><p><font size="2">       0.868348   </font></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p></p></td>
+<td><p></p></td>
+<td class="text-center"><p></p></td>
+<td class="text-center"><p></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><font size="2"> <em>Equatorial band</em> </font></p></td>
+<td><p><font size="2"> DUACS </font></p></td>
+<td class="text-center"><p><font size="2">   0.764560  </font></p></td>
+<td class="text-center"><p><font size="2">      0.415881   </font></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p></p></td>
+<td><p></p></td>
+<td class="text-center"><p></p></td>
+<td class="text-center"><p></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><font size="2"> <em>Arctic</em>       </font></p></td>
+<td><p><font size="2"> DUACS </font></p></td>
+<td class="text-center"><p><font size="2">  0.667031 </font></p></td>
+<td class="text-center"><p><font size="2">      0.585653    </font></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p></p></td>
+<td><p></p></td>
+<td class="text-center"><p></p></td>
+<td class="text-center"><p></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><font size="2"> <em>Antarctic</em>   </font></p></td>
+<td><p><font size="2"> DUACS </font></p></td>
+<td class="text-center"><p><font size="2"> 0.415025   </font></p></td>
+<td class="text-center"><p><font size="2">      0.077469    </font></p></td>
+</tr>
+</tbody>
+</table>
+<br> 
+<ul class="simple">
+<li><p><strong>Spectral effective resolution (maps)</strong></p></li>
+</ul>
+<p>To obtain the spectral effective resolution, the Wavenumber Power Spectra Density (WPSD) is used along track. A noise-to-signal ratio is defined as NSR =1- WPSD(SSH_nadir-SSH_reconstructed)/WPSD(SSH_nadir).</p>
+<p>For a given wavenumber, a score of 1 indicates a perfect reconstruction (the amplitude and phase of the corresponding harmonic is right) and a score of 0 indicates no phase correlation.</p>
+<p>The effective resolution (ER) is finally defined as the lowest scale at which the NSR is equal to 0.5 (Ballarotta et al. 2019). By aggregating in 1° longitude x 1° latitude boxes, the ER values are displayed onto spatial maps.</p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><center>Effective resolution</center></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><center> <img src="../figures/Maps_DUACS_effres_glob.png" alt="DUACS Effective resolution" width="400"/> </center></p></td>
+</tr>
+</tbody>
+</table>
+<br> 
+<br> 
+<p><font size="6"> Independant drifters</font></p>
+<p>In this section, the mapping performances are assessed by comparing the currents products (or estimated geostrophic velocities for methods that only reconstruct SSH) with independent drifter data (available at 6-hour resolution). The ageostrophic component of the observed velocities have not been removed in these reference data.</p>
+</section>
+<section id="drifter-currents">
+<h2>Drifter currents<a class="headerlink" href="#drifter-currents" title="Permalink to this headline"></a></h2>
+<section id="check-example-2">
+<h3><a class="reference external" href="https://github.com/ocean-data-challenges/2023a_SSH_mapping_OSE/blob/main/nb_diags_global/uv_scores_DUACS_geos.ipynb">(Check example 2)</a><a class="headerlink" href="#check-example-2" title="Permalink to this headline"></a></h3>
+<p>Eulerian diagnostics are performed by comparing the estimated currents with the velocities measured by the drifters at each location (in space and time) of the drifters. The methodology used is the same as for the SSH evaluation: the mapped velocities (meridional and zonal components) are interpolated on the drifters’ locations and the errors with the drifters’ velocities are aggregated in 1° longitude x 1° latitude boxes.</p>
+<p>The metrics available using this independant dataset are:</p>
+<ul class="simple">
+<li><p><strong>Grid boxes statistics (maps)</strong>
+Similarly to the SSH evaluation, the error variance and the explained variance are computed in each box.</p></li>
+</ul>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><center>Currents Error variance</center></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><center> <img src="../figures/Maps_DUACS_errvar_glob_uv.png" alt="DUACS Error variance" width="400"/></center></p></td>
+</tr>
+</tbody>
+</table>
+<p>|————– |
+| <center>Currents Explained variance</center> |
+| <center> <img src="../figures/Maps_DUACS_explvar_glob_uv.png" alt="DUACS Error variance" width="400"/></center>   |</p>
+<br> 
+<ul class="simple">
+<li><p><strong>Statistics by regimes (scalar scores)</strong>
+Corresponding averages are computed in specific geographical areas and regimes (<em>coastal, offshore-high variability, offshore-low variability, equatorial band, Arctic, Antarctic</em>) in order to provide a series of scores displayed in the <em>Leaderboards</em>.</p></li>
+</ul>
+<br> 
+<ul class="simple">
+<li><p><strong>Zonaly averaged rotary spectra (omega-latitude plots)</strong>
+The frequency rotary spectra of drifter (artificial from reconstruction and real) velocity (Ee) are computed along the drifter trajectories and displayed as a function of latitude and frequency. The velocity spectra are characterized by high-energy peaks at low frequencies (&lt;0.5 cpd), diurnal, semidiurnal, and latitude-varying inertial frequencies. This diagnostics allows to assess the methods’ reconstruction skills on certain specific dynamics. For instance, the dashed line superimposed to the spectrum corresponds to the inertial frequency, hence, the energy around that dashed line is characteristic of near-inertial oscillation induced currents. This energy can be observed in the real drifter data but is also partly reconstructed by some methods (e.g., WOC product or Glorys12v1).</p></li>
+</ul>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><center>Effective resolution</center></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><center> <img src="../figures/Maps_DUACS_effres_glob_uv.png" alt="DUACS Effective resolution" width="300"/></center></p></td>
+</tr>
+</tbody>
+</table>
+<br> 
+<br> 
+</section>
+</section>
+<section id="drifter-trajectories">
+<h2>Drifter trajectories<a class="headerlink" href="#drifter-trajectories" title="Permalink to this headline"></a></h2>
+<section id="check-example-3">
+<h3><a class="reference external" href="https://github.com/ocean-data-challenges/2023a_SSH_mapping_OSE/blob/main/nb_diags_global/uv_scores_DUACS_geos.ipynb">(Check example 3)</a><a class="headerlink" href="#check-example-3" title="Permalink to this headline"></a></h3>
+<p>A <strong>Lagrangian diagnostic</strong> is performed by reproducing the real drifter trajectories using the reconstructed currents and comparing the deviation between the real and the reconstructed trajectories. More precisely, the distances between each drifter’s location and the expected locations obtained by advecting past positions from the reconstructed velocities are computed. Thise distances are evaluated with forecast lead times ranging from 0 to 5 days, every day.</p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><center>Drifter deviation</center></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><center> <img src="../figures/Maps_DUACS_driftdev_glob.png" alt="DUACS Effective resolution" width="400"/></center></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Datlas.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
