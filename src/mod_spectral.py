@@ -8,7 +8,7 @@ import scipy.signal
 import xarray as xr
 from netCDF4 import Dataset
 
-from src.mod_interp import *
+#from src.mod_interp import *
 
 import warnings
 warnings.filterwarnings("ignore")
