@@ -19,7 +19,9 @@
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Evaluation" href="getstarted_eval.html" />
+    <link rel="prev" title="Installation" href="getstarted_install.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -41,9 +43,54 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Scripts</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Get started</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getstarted_install.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Download the data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#data-for-experiment">1) Data for experiment</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#nadir-alongtrack-data-l3-products-for-ssh-map-reconstruction">Nadir alongtrack data (L3 products) for SSH map reconstruction</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#data-for-evaluation">2) Data for evaluation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#independant-nadir-alongtrack-data-l3-products-for-ssh-evaluation">Independant nadir alongtrack data (L3 products) for SSH evaluation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#independant-drifters-for-currents-evaluation">Independant drifters for currents evaluation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#auxiliary-data-for-diagnostics">Auxiliary data for diagnostics</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#data-for-comparison">3) Data for comparison</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#reconstruction-maps-for-comparison">Reconstruction maps for comparison</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#download-and-read-the-data">Download and read the data</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="getstarted_eval.html">Evaluation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Global evaluation</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="modules.html">src</a></li>
+<li class="toctree-l1"><a class="reference internal" href="eval_glob_leaderboards.html">Leaderboards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="eval_glob_duacs.html">DUACS global evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="eval_glob_miost.html">MIOST global evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="eval_glob_miosteqw.html">MIOST EqW global evaluation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Gulf Stream evaluation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="eval_GS_leaderboards.html">Leaderboards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="eval_GS_duacs.html">DUACS Gulf Stream evaluation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Notebooks</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="nb_download_data.html">Notebooks download the data</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Scripts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="mod_compare.html">mod_compare module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mod_filter.html">mod_filter module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mod_interp.html">mod_interp module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mod_plot.html">mod_plot module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mod_read.html">mod_read module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mod_spectral.html">mod_spectral module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mod_stat.html">mod_stat module</a></li>
 </ul>
 
         </div>
@@ -72,18 +119,13 @@
              
   <section class="tex2jax_ignore mathjax_ignore" id="download-the-data">
 <h1>Download the data<a class="headerlink" href="#download-the-data" title="Permalink to this headline"></a></h1>
-<br>  
-<p><font size="7"> Download the data </font></p>
 <br> 
 <br>  
 <p>The data are hosted and can be accessed on the MEOM server opendap <a class="reference external" href="https://ige-meom-opendap.univ-grenoble-alpes.fr/thredds/catalog/meomopendap/extract/ocean-data-challenges/dc_Map_global_OSE/catalog.html">here</a>. The disk space needed to locally download the full dataset (for the reconstruction experiment, the independant evaluation and the comparison) is approximately 33Go. The comparison data is by far the heaviest with approximately 26Go.</p>
-<section id="a-notebook-to-illustrate-how-to-download-and-read-the-global-data-is-available-download-and-acces-global-data-ipynb">
-<h2>A notebook to illustrate how to download and read the global data is available: <a class="reference external" href="https://github.com/ocean-data-challenges/2023a_SSH_mapping_OSE/blob/main/nb_download_data/download_and_acces_global_data.ipynb">download_and_acces_global_data.ipynb</a><a class="headerlink" href="#a-notebook-to-illustrate-how-to-download-and-read-the-global-data-is-available-download-and-acces-global-data-ipynb" title="Permalink to this headline"></a></h2>
-</section>
-<section id="if-you-are-only-interested-in-regional-data-a-notebook-is-available-to-read-online-the-global-data-and-download-only-regional-data-read-and-download-regional-data-ipynb">
-<h2>If you are only interested in regional data, a notebook is available to read online the global data and download only regional data: <a class="reference external" href="https://github.com/ocean-data-challenges/2023a_SSH_mapping_OSE/blob/main/nb_download_data/read_and_download_regional_data.ipynb">read_and_download_regional_data.ipynb</a><a class="headerlink" href="#if-you-are-only-interested-in-regional-data-a-notebook-is-available-to-read-online-the-global-data-and-download-only-regional-data-read-and-download-regional-data-ipynb" title="Permalink to this headline"></a></h2>
+<p><strong>A notebook to illustrate how to download and read the global data is available: <a class="reference external" href="https://github.com/ocean-data-challenges/2023a_SSH_mapping_OSE/blob/main/nb_download_data/download_and_acces_global_data.ipynb">download_and_acces_global_data.ipynb</a></strong></p>
+<p><a class="reference internal" href="gallery/download_and_acces_global_data.html"><span class="doc std std-doc">Check download_and_acces_global_data notebook</span></a></p>
+<p><strong>If you are only interested in regional data, a notebook is available to read online the global data and download only regional data: <a class="reference external" href="https://github.com/ocean-data-challenges/2023a_SSH_mapping_OSE/blob/main/nb_download_data/read_and_download_regional_data.ipynb">read_and_download_regional_data.ipynb</a></strong></p>
 <p>The dataset is presented with the following directory structure:</p>
-</section>
 <section id="data-for-experiment">
 <h2>1) Data for experiment<a class="headerlink" href="#data-for-experiment" title="Permalink to this headline"></a></h2>
 <section id="nadir-alongtrack-data-l3-products-for-ssh-map-reconstruction">
@@ -145,13 +187,22 @@
 <h2>Download and read the data<a class="headerlink" href="#download-and-read-the-data" title="Permalink to this headline"></a></h2>
 <p>The data can be downloaded locally using the wget command. We recommand that the data be stored in the <code class="docutils literal notranslate"><span class="pre">data/</span></code> repository.
 For example, to download and unzip the experiment alongtrack data:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">data</span><span class="o">/</span>
+<span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">ige</span><span class="o">-</span><span class="n">meom</span><span class="o">-</span><span class="n">opendap</span><span class="o">.</span><span class="n">univ</span><span class="o">-</span><span class="n">grenoble</span><span class="o">-</span><span class="n">alpes</span><span class="o">.</span><span class="n">fr</span><span class="o">/</span><span class="n">thredds</span><span class="o">/</span><span class="n">fileServer</span><span class="o">/</span><span class="n">meomopendap</span><span class="o">/</span><span class="n">extract</span><span class="o">/</span><span class="n">ocean</span><span class="o">-</span><span class="n">data</span><span class="o">-</span><span class="n">challenges</span><span class="o">/</span><span class="n">dc_Map_global_OSE</span><span class="o">/</span><span class="n">alongtrack</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span> 
+<span class="n">tar</span> <span class="o">-</span><span class="n">xvf</span> <span class="n">alongtrack</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>  
+<span class="n">rm</span> <span class="o">-</span><span class="n">f</span> <span class="n">alongtrack</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+</pre></div>
+</div>
 </section>
 </section>
 
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="getstarted_install.html" class="btn btn-neutral float-left" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="getstarted_eval.html" class="btn btn-neutral float-right" title="Evaluation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 

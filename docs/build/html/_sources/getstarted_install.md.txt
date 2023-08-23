@@ -1,13 +1,10 @@
-# Installation 
-<br>  
-
-<font size="7"> Installation </font>
+# Installation
 
 <br> 
 
 <br>  
 
-_**How to get started ?**_
+## _**How to get started ?**_
 
 Clone the data challenge repo: 
 ```
@@ -33,5 +30,5 @@ ipython kernel install --name "env-dc-global-ose" --user
 ```
 finally, select the "env-dc-global-ose" kernel in your notebook with Kernel > Change Kernel.
 
-You're now good to go ! 
+## You're now good to go ! 
 

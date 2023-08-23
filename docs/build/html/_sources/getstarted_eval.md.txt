@@ -1,7 +1,4 @@
 # Evaluation 
-<br>  
-
-<font size="7"> Evaluation </font>
 
 <br> 
 
@@ -12,9 +9,11 @@ The mapping methods are evaluated against independent data using two independant
 
 <br> 
  
-<font size="6"> Independant nadir SSH data</font> 
+## SSH evaluation
 
-### [(Check example 1)](https://github.com/ocean-data-challenges/2023a_SSH_mapping_OSE/blob/main/nb_diags_global/ssh_scores_DUACS_geos.ipynb)
+### Independant nadir SSH data 
+
+#### [(Check example 1)](https://github.com/ocean-data-challenges/2023a_SSH_mapping_OSE/blob/main/nb_diags_global/ssh_scores_DUACS_geos.ipynb)
 
 The ocean surface topography reconstruction is compared with independant data from Saral/AltiKa altimeter. The reconstructed maps are first interpolated onto the independant nadir tracks. The following diagnostics are then performed along these tracks and aggregated in 1° longitude x 1° latitude boxes.
 
@@ -25,11 +24,11 @@ The metrics available using this independant nadir dataset are:
     
 | <center>SSH Error variance</center> | 
 | ------------ | 
-| <center> <img src="../figures/Maps_DUACS_errvar_glob.png" alt="DUACS Error variance" width="400"/></center>   | 
+| <center> <img src="figures/Maps_DUACS_errvar_glob.png" alt="DUACS Error variance" width="400"/></center>   | 
 
 |-------------- |
 | <center>SSH Explained variance</center> |
-|<center>  <img src="../figures/Maps_DUACS_explvar_glob.png" alt="DUACS Error variance" width="400"/> </center>  | 
+|<center>  <img src="figures/Maps_DUACS_explvar_glob.png" alt="DUACS Error variance" width="400"/> </center>  | 
     
 
 <br> 
@@ -69,7 +68,7 @@ The effective resolution (ER) is finally defined as the lowest scale at which th
 
 | <center>Effective resolution</center> |
 | -------------- |
-|<center> <img src="../figures/Maps_DUACS_effres_glob.png" alt="DUACS Effective resolution" width="400"/> </center> |
+|<center> <img src="figures/Maps_DUACS_effres_glob.png" alt="DUACS Effective resolution" width="400"/> </center> |
 
 
 
@@ -78,12 +77,14 @@ The effective resolution (ER) is finally defined as the lowest scale at which th
 
 <br> 
 
-<font size="6"> Independant drifters</font>  
+## Currents evaluation
+
+### Independant drifters  
 
 In this section, the mapping performances are assessed by comparing the currents products (or estimated geostrophic velocities for methods that only reconstruct SSH) with independent drifter data (available at 6-hour resolution). The ageostrophic component of the observed velocities have not been removed in these reference data. 
 
-## Drifter currents 
-### [(Check example 2)](https://github.com/ocean-data-challenges/2023a_SSH_mapping_OSE/blob/main/nb_diags_global/uv_scores_DUACS_geos.ipynb)
+### Drifter currents 
+#### [(Check example 2)](https://github.com/ocean-data-challenges/2023a_SSH_mapping_OSE/blob/main/nb_diags_global/uv_scores_DUACS_geos.ipynb)
 
 Eulerian diagnostics are performed by comparing the estimated currents with the velocities measured by the drifters at each location (in space and time) of the drifters. The methodology used is the same as for the SSH evaluation: the mapped velocities (meridional and zonal components) are interpolated on the drifters' locations and the errors with the drifters' velocities are aggregated in 1° longitude x 1° latitude boxes.
 
@@ -94,11 +95,11 @@ The metrics available using this independant dataset are:
     
 | <center>Currents Error variance</center> | 
 | ------------ | 
-| <center> <img src="../figures/Maps_DUACS_errvar_glob_uv.png" alt="DUACS Error variance" width="400"/></center>   | 
+| <center> <img src="figures/Maps_DUACS_errvar_glob_uv.png" alt="DUACS Error variance" width="400"/></center>   | 
 
 |-------------- |
 | <center>Currents Explained variance</center> |
-| <center> <img src="../figures/Maps_DUACS_explvar_glob_uv.png" alt="DUACS Error variance" width="400"/></center>   | 
+| <center> <img src="figures/Maps_DUACS_explvar_glob_uv.png" alt="DUACS Error variance" width="400"/></center>   | 
     
 
 <br> 
@@ -114,7 +115,7 @@ The metrics available using this independant dataset are:
     
 | <center>Effective resolution</center> |
 | -------------- |
-|<center> <img src="../figures/Maps_DUACS_effres_glob_uv.png" alt="DUACS Effective resolution" width="300"/></center>  | 
+|<center> <img src="figures/Maps_DUACS_effres_glob_uv.png" alt="DUACS Effective resolution" width="300"/></center>  | 
 
 
 <br> 
@@ -122,12 +123,12 @@ The metrics available using this independant dataset are:
 
 <br> 
 
-## Drifter trajectories 
-### [(Check example 3)](https://github.com/ocean-data-challenges/2023a_SSH_mapping_OSE/blob/main/nb_diags_global/uv_scores_DUACS_geos.ipynb)
+### Drifter trajectories 
+#### [(Check example 3)](https://github.com/ocean-data-challenges/2023a_SSH_mapping_OSE/blob/main/nb_diags_global/uv_scores_DUACS_geos.ipynb)
 
 A **Lagrangian diagnostic** is performed by reproducing the real drifter trajectories using the reconstructed currents and comparing the deviation between the real and the reconstructed trajectories. More precisely, the distances between each drifter's location and the expected locations obtained by advecting past positions from the reconstructed velocities are computed. Thise distances are evaluated with forecast lead times ranging from 0 to 5 days, every day.
 
 
 | <center>Drifter deviation</center> |
 | -------------- |
-|<center> <img src="../figures/Maps_DUACS_driftdev_glob.png" alt="DUACS Effective resolution" width="400"/></center>  |
+|<center> <img src="figures/Maps_DUACS_driftdev_glob.png" alt="DUACS Effective resolution" width="400"/></center>  |

@@ -19,7 +19,9 @@
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Leaderboards" href="eval_glob_leaderboards.html" />
+    <link rel="prev" title="Download the data" href="getstarted_data.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -41,9 +43,58 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Scripts</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Get started</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getstarted_install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getstarted_data.html">Download the data</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Evaluation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#ssh-evaluation">SSH evaluation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#independant-nadir-ssh-data">Independant nadir SSH data</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#check-example-1">(Check example 1)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#currents-evaluation">Currents evaluation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#independant-drifters">Independant drifters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#drifter-currents">Drifter currents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#check-example-2">(Check example 2)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#drifter-trajectories">Drifter trajectories</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#check-example-3">(Check example 3)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Global evaluation</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="modules.html">src</a></li>
+<li class="toctree-l1"><a class="reference internal" href="eval_glob_leaderboards.html">Leaderboards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="eval_glob_duacs.html">DUACS global evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="eval_glob_miost.html">MIOST global evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="eval_glob_miosteqw.html">MIOST EqW global evaluation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Gulf Stream evaluation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="eval_GS_leaderboards.html">Leaderboards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="eval_GS_duacs.html">DUACS Gulf Stream evaluation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Notebooks</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="nb_download_data.html">Notebooks download the data</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Scripts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="mod_compare.html">mod_compare module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mod_filter.html">mod_filter module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mod_interp.html">mod_interp module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mod_plot.html">mod_plot module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mod_read.html">mod_read module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mod_spectral.html">mod_spectral module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mod_stat.html">mod_stat module</a></li>
 </ul>
 
         </div>
@@ -72,15 +123,16 @@
              
   <section class="tex2jax_ignore mathjax_ignore" id="evaluation">
 <h1>Evaluation<a class="headerlink" href="#evaluation" title="Permalink to this headline"></a></h1>
-<br>  
-<p><font size="7"> Evaluation </font></p>
 <br> 
 <br> 
 <p>The mapping methods are evaluated against independent data using two independant datasets.</p>
 <br> 
-<p><font size="6"> Independant nadir SSH data</font></p>
+<section id="ssh-evaluation">
+<h2>SSH evaluation<a class="headerlink" href="#ssh-evaluation" title="Permalink to this headline"></a></h2>
+<section id="independant-nadir-ssh-data">
+<h3>Independant nadir SSH data<a class="headerlink" href="#independant-nadir-ssh-data" title="Permalink to this headline"></a></h3>
 <section id="check-example-1">
-<h2><a class="reference external" href="https://github.com/ocean-data-challenges/2023a_SSH_mapping_OSE/blob/main/nb_diags_global/ssh_scores_DUACS_geos.ipynb">(Check example 1)</a><a class="headerlink" href="#check-example-1" title="Permalink to this headline"></a></h2>
+<h4><a class="reference external" href="https://github.com/ocean-data-challenges/2023a_SSH_mapping_OSE/blob/main/nb_diags_global/ssh_scores_DUACS_geos.ipynb">(Check example 1)</a><a class="headerlink" href="#check-example-1" title="Permalink to this headline"></a></h4>
 <p>The ocean surface topography reconstruction is compared with independant data from Saral/AltiKa altimeter. The reconstructed maps are first interpolated onto the independant nadir tracks. The following diagnostics are then performed along these tracks and aggregated in 1° longitude x 1° latitude boxes.</p>
 <p>The metrics available using this independant nadir dataset are:</p>
 <ul class="simple">
@@ -93,13 +145,13 @@ The SSH error variance and explained variance are computed in each box and displ
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><center> <img src="../figures/Maps_DUACS_errvar_glob.png" alt="DUACS Error variance" width="400"/></center></p></td>
+<tr class="row-even"><td><p><center> <img src="figures/Maps_DUACS_errvar_glob.png" alt="DUACS Error variance" width="400"/></center></p></td>
 </tr>
 </tbody>
 </table>
 <p>|————– |
 | <center>SSH Explained variance</center> |
-|<center>  <img src="../figures/Maps_DUACS_explvar_glob.png" alt="DUACS Error variance" width="400"/> </center>  |</p>
+|<center>  <img src="figures/Maps_DUACS_explvar_glob.png" alt="DUACS Error variance" width="400"/> </center>  |</p>
 <br> 
 <ul class="simple">
 <li><p><strong>Statistics by regimes (scalar scores)</strong>
@@ -184,19 +236,25 @@ The corresponding averages are computed in specific geographical areas and regim
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><center> <img src="../figures/Maps_DUACS_effres_glob.png" alt="DUACS Effective resolution" width="400"/> </center></p></td>
+<tr class="row-even"><td><p><center> <img src="figures/Maps_DUACS_effres_glob.png" alt="DUACS Effective resolution" width="400"/> </center></p></td>
 </tr>
 </tbody>
 </table>
 <br> 
 <br> 
-<p><font size="6"> Independant drifters</font></p>
+</section>
+</section>
+</section>
+<section id="currents-evaluation">
+<h2>Currents evaluation<a class="headerlink" href="#currents-evaluation" title="Permalink to this headline"></a></h2>
+<section id="independant-drifters">
+<h3>Independant drifters<a class="headerlink" href="#independant-drifters" title="Permalink to this headline"></a></h3>
 <p>In this section, the mapping performances are assessed by comparing the currents products (or estimated geostrophic velocities for methods that only reconstruct SSH) with independent drifter data (available at 6-hour resolution). The ageostrophic component of the observed velocities have not been removed in these reference data.</p>
 </section>
 <section id="drifter-currents">
-<h2>Drifter currents<a class="headerlink" href="#drifter-currents" title="Permalink to this headline"></a></h2>
+<h3>Drifter currents<a class="headerlink" href="#drifter-currents" title="Permalink to this headline"></a></h3>
 <section id="check-example-2">
-<h3><a class="reference external" href="https://github.com/ocean-data-challenges/2023a_SSH_mapping_OSE/blob/main/nb_diags_global/uv_scores_DUACS_geos.ipynb">(Check example 2)</a><a class="headerlink" href="#check-example-2" title="Permalink to this headline"></a></h3>
+<h4><a class="reference external" href="https://github.com/ocean-data-challenges/2023a_SSH_mapping_OSE/blob/main/nb_diags_global/uv_scores_DUACS_geos.ipynb">(Check example 2)</a><a class="headerlink" href="#check-example-2" title="Permalink to this headline"></a></h4>
 <p>Eulerian diagnostics are performed by comparing the estimated currents with the velocities measured by the drifters at each location (in space and time) of the drifters. The methodology used is the same as for the SSH evaluation: the mapped velocities (meridional and zonal components) are interpolated on the drifters’ locations and the errors with the drifters’ velocities are aggregated in 1° longitude x 1° latitude boxes.</p>
 <p>The metrics available using this independant dataset are:</p>
 <ul class="simple">
@@ -209,13 +267,13 @@ Similarly to the SSH evaluation, the error variance and the explained variance a
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><center> <img src="../figures/Maps_DUACS_errvar_glob_uv.png" alt="DUACS Error variance" width="400"/></center></p></td>
+<tr class="row-even"><td><p><center> <img src="figures/Maps_DUACS_errvar_glob_uv.png" alt="DUACS Error variance" width="400"/></center></p></td>
 </tr>
 </tbody>
 </table>
 <p>|————– |
 | <center>Currents Explained variance</center> |
-| <center> <img src="../figures/Maps_DUACS_explvar_glob_uv.png" alt="DUACS Error variance" width="400"/></center>   |</p>
+| <center> <img src="figures/Maps_DUACS_explvar_glob_uv.png" alt="DUACS Error variance" width="400"/></center>   |</p>
 <br> 
 <ul class="simple">
 <li><p><strong>Statistics by regimes (scalar scores)</strong>
@@ -232,7 +290,7 @@ The frequency rotary spectra of drifter (artificial from reconstruction and real
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><center> <img src="../figures/Maps_DUACS_effres_glob_uv.png" alt="DUACS Effective resolution" width="300"/></center></p></td>
+<tr class="row-even"><td><p><center> <img src="figures/Maps_DUACS_effres_glob_uv.png" alt="DUACS Effective resolution" width="300"/></center></p></td>
 </tr>
 </tbody>
 </table>
@@ -241,9 +299,9 @@ The frequency rotary spectra of drifter (artificial from reconstruction and real
 </section>
 </section>
 <section id="drifter-trajectories">
-<h2>Drifter trajectories<a class="headerlink" href="#drifter-trajectories" title="Permalink to this headline"></a></h2>
+<h3>Drifter trajectories<a class="headerlink" href="#drifter-trajectories" title="Permalink to this headline"></a></h3>
 <section id="check-example-3">
-<h3><a class="reference external" href="https://github.com/ocean-data-challenges/2023a_SSH_mapping_OSE/blob/main/nb_diags_global/uv_scores_DUACS_geos.ipynb">(Check example 3)</a><a class="headerlink" href="#check-example-3" title="Permalink to this headline"></a></h3>
+<h4><a class="reference external" href="https://github.com/ocean-data-challenges/2023a_SSH_mapping_OSE/blob/main/nb_diags_global/uv_scores_DUACS_geos.ipynb">(Check example 3)</a><a class="headerlink" href="#check-example-3" title="Permalink to this headline"></a></h4>
 <p>A <strong>Lagrangian diagnostic</strong> is performed by reproducing the real drifter trajectories using the reconstructed currents and comparing the deviation between the real and the reconstructed trajectories. More precisely, the distances between each drifter’s location and the expected locations obtained by advecting past positions from the reconstructed velocities are computed. Thise distances are evaluated with forecast lead times ranging from 0 to 5 days, every day.</p>
 <table class="colwidths-auto docutils align-default">
 <thead>
@@ -251,10 +309,11 @@ The frequency rotary spectra of drifter (artificial from reconstruction and real
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><center> <img src="../figures/Maps_DUACS_driftdev_glob.png" alt="DUACS Effective resolution" width="400"/></center></p></td>
+<tr class="row-even"><td><p><center> <img src="figures/Maps_DUACS_driftdev_glob.png" alt="DUACS Effective resolution" width="400"/></center></p></td>
 </tr>
 </tbody>
 </table>
+</section>
 </section>
 </section>
 </section>
@@ -262,7 +321,10 @@ The frequency rotary spectra of drifter (artificial from reconstruction and real
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="getstarted_data.html" class="btn btn-neutral float-left" title="Download the data" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="eval_glob_leaderboards.html" class="btn btn-neutral float-right" title="Leaderboards" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 
