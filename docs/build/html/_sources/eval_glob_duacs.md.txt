@@ -23,7 +23,7 @@
 
 |   | Effective resolution |
 | ------ | -------------- |
-| DUACS |<img src="figures/Maps_DUACS_effres_glob.png" alt="DUACS Effective resolution" width="800"/> | 
+| DUACS |![DUACS Effective resolution](figures/Maps_DUACS_effres_glob.png) | 
 
 ### U, V evaluation with independant drifters
 
@@ -33,16 +33,16 @@
 
 |   | Error variance |
 | ------ | -------------- |
-| DUACS |<img src="figures/Maps_DUACS_errvar_glob_uv.png" alt="DUACS Error variance" width="800"/> | 
+| DUACS | ![DUACS currents errvar glob](figures/Maps_DUACS_errvar_glob_uv.png) | 
 
 
 
 |   | Explained variance |
 | ------ | -------------- |
-| DUACS |<img src="figures/Maps_DUACS_explvar_glob_uv.png" alt="DUACS Error variance" width="800"/> | 
+| DUACS | ![DUACS currents explvar glob](figures/Maps_DUACS_explvar_glob_uv.png) | 
 
 #### Spectral
 
 |   | Effective resolution |
 | ------ | -------------- |
-| DUACS |<img src="figures/Maps_DUACS_effres_glob_uv.png" alt="DUACS Effective resolution" width="800"/> | 
+| DUACS | ![DUACS currents effective resolution](figures/Maps_DUACS_effres_glob_uv.png) | 
