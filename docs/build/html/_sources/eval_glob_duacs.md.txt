@@ -23,7 +23,7 @@
 
 |   | Effective resolution |
 | ------ | -------------- |
-| DUACS |![DUACS Effective resolution](figures/Maps_DUACS_effres_glob.png) | 
+| DUACS | ![DUACS Effective resolution](figures/Maps_DUACS_effres_glob.png) | 
 
 ### U, V evaluation with independant drifters
 

@@ -1,5 +1,5 @@
 ## :warning: WORK in progress. This data-challenge is still under construction
-
+ 
 # Check out the data challenge [website](https://ocean-data-challenges.github.io/2023a_SSH_mapping_OSE/) for more infos !
 
 <p align="center">
