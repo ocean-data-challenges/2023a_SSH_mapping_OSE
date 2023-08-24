@@ -81,7 +81,8 @@ The altimeter data from Saral/AltiKa and surface current velocity data mentioned
    :maxdepth: 1
    :caption: Notebooks
 
-   nb_download_data
+   notebooks_evaluation.md
+   notebooks_download_data.md
 
 .. toctree::
    :maxdepth: 2
