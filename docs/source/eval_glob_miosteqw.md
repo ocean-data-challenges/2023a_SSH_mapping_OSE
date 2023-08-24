@@ -10,21 +10,19 @@
 
 |   | Error variance |
 | ------ | -------------- | 
-| MIOST w/ EW | <img src="figures/Maps_MIOST-EW_errvar_glob.png" alt="MIOST-EW Error variance" width="800"/> |
-
+| MIOST w/ EW | ![MIOST-EW Error variance](figures/Maps_MIOST-EW_errvar_glob.png) |
 
 
 |   | Explained variance |
 | ------ | -------------- | 
-| MIOST w/ EW | <img src="figures/Maps_MIOST-EW_explvar_glob.png" alt="MIOST-EW Error variance" width="800"/> |
+| MIOST w/ EW | ![MIOST-EW Explained variance](figures/Maps_MIOST-EW_explvar_glob.png) |
 
 
 #### Spectral
 
 |   | Effective resolution |
 | ------ | -------------- | 
-| MIOST w/ EW | <img src="figures/Maps_MIOST-EW_effres_glob.png" alt="MIOST-EW Effective resolution" width="800"/> |
-
+| MIOST w/ EW | ![MIOST-EW Effective resolution](figures/Maps_MIOST-EW_effres_glob.png) |
 
 ### U, V evaluation with independant drifters
 
@@ -33,18 +31,18 @@
 
 |   | Error variance |
 | ------ | -------------- | 
-| MIOST w/ EW | <img src="figures/Maps_MIOST-EW_errvar_glob_uv.png" alt="MIOST-EW Error variance" width="800"/> |
+| MIOST w/ EW | ![MIOST-EW currents error variance](figures/Maps_MIOST-EW_errvar_glob_uv.png) |
 
 
 
 
 |   | Explained variance |
 | ------ | -------------- | 
-| MIOST w/ EW | <img src="figures/Maps_MIOST-EW_explvar_glob_uv.png" alt="MIOST-EW Error variance" width="800"/>  |
+| MIOST w/ EW | ![MIOST-EW currents explained variance](figures/Maps_MIOST-EW_explvar_glob_uv.png)  |
 
 
 #### Spectral
 
 |   | Effective resolution |
 | ------ | -------------- |
-| DUACS |<img src="figures/Maps_MIOST-EW_effres_glob_uv.png" alt="DUACS Effective resolution" width="800"/> | 
+| MIOST w/ EW | ![MIOST-EW currents effective resolution](figures/Maps_MIOST-EW_effres_glob_uv.png) | 

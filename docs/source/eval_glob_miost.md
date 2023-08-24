@@ -10,20 +10,20 @@
 
 |   | Error variance |
 | ------ | -------------- | 
-| MIOST |<img src="figures/Maps_MIOST_errvar_glob.png" alt="MIOST Error variance" width="800"/> | 
+| MIOST | ![MIOST Error variance](figures/Maps_MIOST_errvar_glob.png) | 
 
 
 
 |   | Explained variance |
 | ------ | -------------- | 
-| MIOST |<img src="figures/Maps_MIOST_explvar_glob.png" alt="MIOST Error variance" width="800"/> | 
+| MIOST | ![MIOST Error variance](figures/Maps_MIOST_explvar_glob.png) | 
 
 
 #### Spectral
 
 |   | Effective resolution |
 | ------ | -------------- | 
-| MIOST |<img src="figures/Maps_MIOST_effres_glob.png" alt="MIOST Effective resolution" width="800"/> | 
+| MIOST | ![MIOST Effective resolution](figures/Maps_MIOST_effres_glob.png) | 
 
 
 ### U, V evaluation with independant drifters
@@ -33,16 +33,16 @@
 
 |   | Error variance |
 | ------ | -------------- | 
-| MIOST |<img src="figures/Maps_MIOST_errvar_glob_uv.png" alt="MIOST Error variance" width="800"/> | 
+| MIOST | ![MIOST currents error variance](figures/Maps_MIOST_errvar_glob_uv.png) | 
 
 
 
 |   | Explained variance |
 | ------ | -------------- | 
-| MIOST |<img src="figures/Maps_MIOST_explvar_glob_uv.png" alt="MIOST Error variance" width="800"/> | 
+| MIOST | ![MIOST currents explained variance](figures/Maps_MIOST_explvar_glob_uv.png) | 
 
 #### Spectral
 
 |   | Effective resolution |
 | ------ | -------------- |
-| MIOST |<img src="figures/Maps_MIOST_effres_glob_uv.png" alt="MIOST Effective resolution" width="800"/> | 
+| MIOST | ![MIOST currents effective resolution](figures/Maps_MIOST_effres_glob_uv.png) | 
