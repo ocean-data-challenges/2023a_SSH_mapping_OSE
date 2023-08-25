@@ -29,7 +29,7 @@ It is therefore becoming important to inform users and developers about the accu
 .. image:: ../../figures/dc_2023_ose_global_duacs_sla_map.jpg
     :width: 800
 
-The goal of the present data-challenge is to investigate how to best reconstruct sequences of Sea Surface Height (SSH) and surface current maps from partial satellite altimetry observations and from a global perspective. This data challenge follows an _Observation System Experiment_ framework: Satellite observations are from real sea surface height data from altimeter. The practical goal of the challenge is to investigate the best mapping method according to scores described below and in Jupyter notebooks.
+The goal of the present data-challenge is to investigate how to best reconstruct sequences of Sea Surface Height (SSH) and surface current maps from partial satellite altimetry observations and from a global perspective. This data challenge follows a Real Data Experiment framework: Satellite observations are from real sea surface height data from altimeter. The practical goal of the challenge is to investigate the best mapping method according to scores described below and in Jupyter notebooks.
 
 Observations
 ------------
@@ -81,6 +81,14 @@ The altimeter data from Saral/AltiKa and surface current velocity data mentioned
 
    notebooks_evaluation.md
    notebooks_download_data.md
+   
+.. toctree::
+   :maxdepth: 1
+   :caption: Metrics details
+
+   metrics_alongtrack.md
+   metrics_alongdrifter.md
+   metrics_driftertraj.md
 
 .. toctree::
    :maxdepth: 2
