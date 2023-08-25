@@ -1,0 +1,21 @@
+# Rotary spectrum
+
+<br>
+ 
+
+<br> 
+
+
+## Zonal averaged rotary spectrum and effective resolution
+
+**DUACS** 
+
+![DUACS currents effective resolution](figures/Maps_DUACS_effres_glob_uv.png) | 
+
+**MIOST**
+
+![MIOST currents effective resolution](figures/Maps_MIOST_effres_glob_uv.png) | 
+
+**MIOST w/ EW** 
+
+![MIOST-EW currents effective resolution](figures/Maps_MIOST-EW_effres_glob_uv.png) | 

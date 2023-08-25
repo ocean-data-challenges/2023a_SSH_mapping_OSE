@@ -63,19 +63,17 @@ The altimeter data from Saral/AltiKa and surface current velocity data mentioned
 
 .. toctree::
    :maxdepth: 1
-   :caption: Global evaluation
+   :caption: Generic evaluation
 
-   eval_glob_leaderboards.md
-   eval_glob_duacs.md
-   eval_glob_miost.md
-   eval_glob_miosteqw.md
+   eval_generic_global.md
+   eval_generic_GS.md
 
 .. toctree::
    :maxdepth: 1
-   :caption: Gulf Stream evaluation
+   :caption: Near inertial oscillation focus
 
-   eval_GS_leaderboards.md
-   eval_GS_duacs.md
+   eval_nio_rotaryspec.md
+ 
 
 .. toctree::
    :maxdepth: 1
