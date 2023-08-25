@@ -8,7 +8,7 @@
 ## Trajectory deviation
 <br>
 
-### [- Trajectory deviation](eval_glob_leaderboards.md)
+### [- Trajectory deviation](gallery/alongtrack_spectral_description.ipynb)
 
 <br>
  

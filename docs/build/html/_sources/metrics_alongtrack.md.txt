@@ -8,11 +8,11 @@
 ## Statistics
 <br>
 
-### [- Error variance](eval_glob_leaderboards.md)
+### [- Error variance](gallery/alongtrack_statistics_description.ipynb)
 
 <br>
 
-###  [- Explained variance](eval_glob_duacs.md)
+###  [- Explained variance](gallery/alongtrack_statistics_description.ipynb)
 
 <br>
 
@@ -20,13 +20,9 @@
 
 ## Spectral
 
-<br>
+<br> 
 
-### [- Noise to signal ratio](eval_glob_miost.md) 
-
-<br>
-
-### [- Effective resolution](eval_glob_miosteqw.md)
+### [- Effective resolution](gallery/alongtrack_spectral_description.ipynb)
 
 <br>
  
