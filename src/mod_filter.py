@@ -6,12 +6,12 @@ from numba import njit
 @njit(cache=True, fastmath=True)
 def distance(lon0, lat0, lon1, lat1):
     """
-    Compute distance between points from each line.
+    Compute distance between two geographical locations.
 
-    :param float lon0:
-    :param float lat0:
-    :param float lon1:
-    :param float lat1:
+    :param float lon0: Longitude of first location.
+    :param float lat0: Latitude of first location.
+    :param float lon1: Longitude of second location.
+    :param float lat1: Latitude of second location.
     :return: distance (in m)
     :rtype: array
     """
@@ -85,6 +85,19 @@ def lanczos_filter(wave_length, x, z, order=1):
 
 
 def compute_median_dx(dataset):
+    """
+    Compute the median spacing between along-track measurements.
+
+    Parameters
+    ----------
+    dataset : xarray.Dataset
+        Input dataset containing longitude and latitude coordinates.
+
+    Returns
+    -------
+    float
+        The median spacing between along-track measurements in kilometers.
+    """
         
     return 0.001*np.median(pyinterp.geodetic.coordinate_distances(dataset['longitude'][:-1].values,
                                                               dataset['latitude'][:-1].values,
@@ -94,6 +107,23 @@ def compute_median_dx(dataset):
 
 
 def apply_bandpass_filter(ds, lambda_min=65., lambda_max=500.):
+    """
+    Apply a bandpass filter to a dataset.
+
+    Parameters
+    ----------
+    ds : xarray.Dataset
+        Input dataset containing relevant variables.
+    lambda_min : float, optional
+        Minimum wavelength for the filter in kilometers, by default 65.
+    lambda_max : float, optional
+        Maximum wavelength for the filter in kilometers, by default 500.
+
+    Returns
+    -------
+    xarray.Dataset
+        The filtered dataset with additional variables 'msla_filtered', 'sla_filtered', and 'mapping_err_filtered'.
+    """
     
     # Compute median spacinf between along-track measurement (in km)
     dx = compute_median_dx(ds)

@@ -11,6 +11,28 @@ import warnings
 
 def regional_zoom(ds_glob, boxlon, boxlat, namelon='lon', namelat='lat'):
 
+    """
+    Select a geographical region in a xarray.dataset using longitude and latitude information.
+
+    Parameters
+    ----------
+    ds_glob : xarray.Dataset
+        Input dataset organized in longitudes and latitudes coordinates.
+    box_lon : Array of float
+        Min and max longitudes of the requested regional zoom.
+    box_lat : Array of float
+        Min and max latitudes of the requested regional zoom. 
+    namelon : str, optional
+        Name of the longitude coordinate.
+    namelat : str, optional
+        Name of the latitude coordinate.
+
+    Returns
+    -------
+    xarray.Dataset
+        The input dataset restricted in the requested geographical region.
+    """
+
     min_lon = boxlon[0] 
     max_lon = boxlon[1] 
     min_lat = boxlat[0]
@@ -70,7 +92,27 @@ def convert_longitude(ds, lon_name):
 
 
 def compare_stat_score_map(study_filename, ref_filename,boxlon = [-180, 180],boxlat = [-90, 90], vartype='err_var'):
-    
+    """
+    Plot statistical score maps.
+
+    Parameters
+    ----------
+    study_filename : str
+        Path to the NetCDF file containing the studied data. 
+    ref_filename : str
+        Path to the NetCDF file containing the reference data.
+    boxlon : Array of floats, optional
+        Array containing min and max longitude to plot.
+    boxlar : Array of floats, optional
+        Array containing min and max latitude to plot.
+    vartype : str, optional
+        Name of the variable to plot, 'err_var' by default or 'exp_var'.
+
+    Returns
+    -------
+    holoviews.Layout
+        A HoloViews layout containing six plots.
+    """
 
     
     ds_ref_binning_allscale = xr.open_dataset(ref_filename, group='all_scale')
@@ -204,6 +246,34 @@ def compare_stat_score_map(study_filename, ref_filename,boxlon = [-180, 180],box
 
 
 def compare_psd_score(study_filename, ref_filename,boxlon = [-180, 180],boxlat = [-90, 90]):
+    """
+    Compare Power Spectral Density (PSD) scores between a study dataset and a reference dataset.
+ 
+    Parameters
+    ----------
+    study_filename : str
+        Filepath to the study dataset NetCDF file for comparison.
+    ref_filename : str
+        Filepath to the reference dataset NetCDF file for comparison.
+    boxlon : list of float, optional
+        Longitude bounding box for regional zoom, by default [-180, 180].
+    boxlat : list of float, optional
+        Latitude bounding box for regional zoom, by default [-90, 90].
+
+    Returns
+    -------
+    holoviews.Layout
+        A HoloViews layout containing three plots:
+        - Effective resolution of the reference dataset.
+        - Effective resolution of the study dataset.
+        - Gain(-)/loss(+) of effective resolution compared to the reference dataset.
+
+    Examples
+    --------
+    >>> study_file = "study_data.nc"
+    >>> ref_file = "reference_data.nc"
+    >>> compare_psd_score(study_file, ref_file, boxlon=[-120, -70], boxlat=[20, 50])
+    """
     
     ds_ref = xr.open_dataset(ref_filename)
     ds_ref = regional_zoom(ds_ref,boxlon, boxlat)

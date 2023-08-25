@@ -62,7 +62,8 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Notebooks</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="nb_download_data.html">Notebooks download the data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks_evaluation.html">Notebooks evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks_download_data.html">Notebooks download the data</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Scripts</span></p>
 <ul class="current">
@@ -108,11 +109,42 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>ds</strong> (<em>xarray.Dataset</em>) – Dataset containing gridded data to be binned</p></li>
-<li><p><strong>output_file</strong> (<em>str</em>) – Filepath to save binned data to</p></li>
-<li><p><strong>lon_out</strong> (<em>array_like</em><em>, </em><em>optional</em>) – Array of longitude values for the output grid, by default np.arange(0, 360, 1)</p></li>
-<li><p><strong>lat_out</strong> (<em>array_like</em><em>, </em><em>optional</em>) – Array of latitude values for the output grid, by default np.arange(-90, 90, 1)</p></li>
-<li><p><strong>freq_out</strong> (<em>str</em><em>, </em><em>optional</em>) – Time frequency for temporal aggregation, by default ‘1D’</p></li>
+<li><p><strong>ds</strong> (<em>xarray.Dataset</em>) – Dataset containing gridded data to be binned.</p></li>
+<li><p><strong>output_file</strong> (<em>str</em>) – Filepath to save binned data to.</p></li>
+<li><p><strong>lon_out</strong> (<em>array_like</em><em>, </em><em>optional</em>) – Array of longitude values for the output grid, by default np.arange(0, 360, 1).</p></li>
+<li><p><strong>lat_out</strong> (<em>array_like</em><em>, </em><em>optional</em>) – Array of latitude values for the output grid, by default np.arange(-90, 90, 1).</p></li>
+<li><p><strong>freq_out</strong> (<em>str</em><em>, </em><em>optional</em>) – Time frequency for temporal aggregation, by default ‘1D’.</p></li>
+<li><p><strong>method_name</strong> (<em>str</em><em>, </em><em>optional</em>) – Name of the method used, by default ‘ ‘.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>This function aggregates gridded data to a larger bin grid and calculates statistics, including mean, variance, and
+root mean square error (RMSE), for different datasets and timeseries. The results are saved to a NetCDF file.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="s2">&quot;gridded_data.nc&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">output_file</span> <span class="o">=</span> <span class="s2">&quot;binned_data.nc&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bin_data</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">output_file</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mod_stat.bin_data_uv">
+<span class="sig-prename descclassname"><span class="pre">mod_stat.</span></span><span class="sig-name descname"><span class="pre">bin_data_uv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lon_out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">numpy.arange</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lat_out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">numpy.arange</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq_out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'1D'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mod_stat.bin_data_uv" title="Permalink to this definition"></a></dt>
+<dd><p>Bin and compute statistical measures for oceanographic current data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ds</strong> (<em>xarray.Dataset</em>) – Input dataset containing oceanographic current data.</p></li>
+<li><p><strong>output_file</strong> (<em>str</em>) – Output file path for saving the results.</p></li>
+<li><p><strong>lon_out</strong> (<em>numpy.ndarray</em><em>, </em><em>optional</em>) – Longitudes for binning. Default is a range from 0 to 360 with step 1.</p></li>
+<li><p><strong>lat_out</strong> (<em>numpy.ndarray</em><em>, </em><em>optional</em>) – Latitudes for binning. Default is a range from -90 to 90 with step 1.</p></li>
+<li><p><strong>freq_out</strong> (<em>str</em><em>, </em><em>optional</em>) – Resampling frequency for time series data. Default is ‘1D’.</p></li>
+<li><p><strong>method_name</strong> (<em>str</em><em>, </em><em>optional</em>) – Name of the method used for computation. Default is an empty string.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type</dt>
@@ -122,29 +154,94 @@
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="mod_stat.bin_data_uv">
-<span class="sig-prename descclassname"><span class="pre">mod_stat.</span></span><span class="sig-name descname"><span class="pre">bin_data_uv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lon_out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">numpy.arange</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lat_out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">numpy.arange</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq_out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'1D'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mod_stat.bin_data_uv" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
 <dt class="sig sig-object py" id="mod_stat.compute_stat_scores">
 <span class="sig-prename descclassname"><span class="pre">mod_stat.</span></span><span class="sig-name descname"><span class="pre">compute_stat_scores</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ds_interp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lambda_min</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lambda_max</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'</span> <span class="pre">'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mod_stat.compute_stat_scores" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Compute statistical scores for interpolation results.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ds_interp</strong> (<em>xarray.Dataset</em>) – Interpolated dataset containing ‘sla_interpolated’, ‘sla_unfiltered’, ‘lwe’, and ‘msla_interpolated’.</p></li>
+<li><p><strong>lambda_min</strong> (<em>float</em>) – Minimum wavelength for bandpass filter.</p></li>
+<li><p><strong>lambda_max</strong> (<em>float</em>) – Maximum wavelength for bandpass filter.</p></li>
+<li><p><strong>output_file</strong> (<em>str</em>) – Filepath to save computed statistics to.</p></li>
+<li><p><strong>method_name</strong> (<em>str</em><em>, </em><em>optional</em>) – Name of the method used, by default ‘ ‘.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>This function computes statistical scores for interpolation results, including mapping error, bandpass filtering,
+and binning statistics. The results are saved to a NetCDF file.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">interpolated_data</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="s2">&quot;interpolated_data.nc&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">output_file</span> <span class="o">=</span> <span class="s2">&quot;statistical_scores.nc&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">compute_stat_scores</span><span class="p">(</span><span class="n">interpolated_data</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">output_file</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="mod_stat.compute_stat_scores_by_regimes">
 <span class="sig-prename descclassname"><span class="pre">mod_stat.</span></span><span class="sig-name descname"><span class="pre">compute_stat_scores_by_regimes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ds_interp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mod_stat.compute_stat_scores_by_regimes" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Compute statistical scores by oceanic regimes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ds_interp</strong> (<em>xarray.Dataset</em>) – Interpolated dataset containing ‘sla_interpolated’, ‘sla_unfiltered’, ‘lwe’, ‘msla_interpolated’, and ‘mask’.</p></li>
+<li><p><strong>output_file</strong> (<em>str</em>) – Filepath to save computed statistics by regimes to.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>This function computes statistical scores for interpolation results based on oceanic regimes. It masks the input
+data and calculates statistics for each regime separately. The results are saved to a NetCDF file.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">interpolated_data</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="s2">&quot;interpolated_data.nc&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">output_file</span> <span class="o">=</span> <span class="s2">&quot;regime_scores.nc&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">compute_stat_scores_by_regimes</span><span class="p">(</span><span class="n">interpolated_data</span><span class="p">,</span> <span class="n">output_file</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="mod_stat.compute_stat_scores_uv">
 <span class="sig-prename descclassname"><span class="pre">mod_stat.</span></span><span class="sig-name descname"><span class="pre">compute_stat_scores_uv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ds_interp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mod_stat.compute_stat_scores_uv" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Compute mapping errors and statistical measures for oceanographic current data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ds_interp</strong> (<em>xarray.Dataset</em>) – Interpolated oceanographic current dataset.</p></li>
+<li><p><strong>output_file</strong> (<em>str</em>) – Output file path for saving the results.</p></li>
+<li><p><strong>method_name</strong> (<em>str</em><em>, </em><em>optional</em>) – Name of the method used for computation. Default is an empty string.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="mod_stat.compute_stat_scores_uv_by_regimes">
 <span class="sig-prename descclassname"><span class="pre">mod_stat.</span></span><span class="sig-name descname"><span class="pre">compute_stat_scores_uv_by_regimes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ds_interp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mod_stat.compute_stat_scores_uv_by_regimes" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Compute statistical scores for oceanographic current data based on different oceanic regimes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ds_interp</strong> (<em>xarray.Dataset</em>) – Interpolated oceanographic current dataset.</p></li>
+<li><p><strong>output_file</strong> (<em>str</em>) – Output file path for saving the results.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
 
 </section>
 

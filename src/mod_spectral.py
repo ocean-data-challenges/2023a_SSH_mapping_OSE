@@ -15,6 +15,19 @@ warnings.filterwarnings("ignore")
 
 
 def compute_median_dx(dataset):
+    """
+    Compute the median distance between consecutive points in a dataset.
+
+    Parameters
+    ----------
+    dataset : xarray.Dataset
+        Dataset containing longitude and latitude data.
+
+    Returns
+    -------
+    float
+        The median distance in meters.
+    """
         
     return 0.001*np.median(pyinterp.geodetic.coordinate_distances(dataset['longitude'][:-1].values,
                                                               dataset['latitude'][:-1].values,
@@ -24,6 +37,27 @@ def compute_median_dx(dataset):
 
 
 def compute_median_lon_lat(vlon, vlat, sub_segment_point, npt):
+    """
+    Compute the median longitude and latitude for a sub-segment of points.
+
+    Parameters
+    ----------
+    vlon : numpy.ndarray
+        Array of longitudes.
+    vlat : numpy.ndarray
+        Array of latitudes.
+    sub_segment_point : int
+        Starting index of the sub-segment.
+    npt : int
+        Number of points in the sub-segment.
+
+    Returns
+    -------
+    float
+        The median longitude.
+    float
+        The median latitude.
+    """
     
     # Near Greenwhich case
     if ((vlon[sub_segment_point + npt - 1] < 50.)
@@ -48,6 +82,35 @@ def compute_median_lon_lat(vlon, vlat, sub_segment_point, npt):
 
 
 def compute_segment(ds_interp, npt, ref_var_name='sla_unfiltered', study_var_name='msla_interpolated', max_time_gap=np.timedelta64(2, 's'), segment_overlapping=0.25):
+    """
+    Compute segments of data based on specified criteria.
+
+    Parameters
+    ----------
+    ds_interp : xarray.Dataset
+        Interpolated dataset containing relevant variables.
+    npt : int
+        Number of points in each segment.
+    ref_var_name : str, optional
+        Name of the reference variable. Default is 'sla_unfiltered'.
+    study_var_name : str, optional
+        Name of the study variable. Default is 'msla_interpolated'.
+    max_time_gap : numpy.timedelta64, optional
+        Maximum time gap to consider for segmenting. Default is 2 seconds.
+    segment_overlapping : float, optional
+        Overlapping factor between segments. Default is 0.25.
+
+    Returns
+    -------
+    numpy.ndarray
+        Array of median longitudes for each segment.
+    numpy.ndarray
+        Array of median latitudes for each segment.
+    numpy.ndarray
+        Array of segmented reference variable data.
+    numpy.ndarray
+        Array of segmented study variable data.
+    """
     
     #ds_interp = ds_interp.sortby('time').dropna('time')
     
@@ -105,7 +168,48 @@ def compute_segment(ds_interp, npt, ref_var_name='sla_unfiltered', study_var_nam
 
 
 def compute_segment_v2(ds_interp, npt, delta_x, ref_var_name='sla_unfiltered', study_var_name='msla_interpolated', max_time_gap=np.timedelta64(2, 's'), segment_overlapping=0.25):
-    
+    """
+    Compute various spectral features for segments of data.
+
+    Parameters
+    ----------
+    ds_interp : xarray.Dataset
+        Interpolated dataset containing relevant variables.
+    npt : int
+        Number of points in each segment.
+    delta_x : float
+        Spatial resolution for spectral computation.
+    ref_var_name : str, optional
+        Name of the reference variable. Default is 'sla_unfiltered'.
+    study_var_name : str, optional
+        Name of the study variable. Default is 'msla_interpolated'.
+    max_time_gap : numpy.timedelta64, optional
+        Maximum time gap to consider for segmenting. Default is 2 seconds.
+    segment_overlapping : float, optional
+        Overlapping factor between segments. Default is 0.25.
+
+    Returns
+    -------
+    numpy.ndarray
+        Array of wavenumbers.
+    numpy.ndarray
+        Array of latitudes.
+    numpy.ndarray
+        Array of longitudes.
+    numpy.ndarray
+        Array of segment counts per grid cell.
+    numpy.ndarray
+        Array of reference variable power spectral densities.
+    numpy.ndarray
+        Array of study variable power spectral densities.
+    numpy.ndarray
+        Array of power spectral densities of the difference between study and reference.
+    numpy.ndarray
+        Array of coherence values.
+    numpy.ndarray
+        Array of cross-spectral densities.
+    """
+ 
     #ds_interp = ds_interp.sortby('time').dropna('time')
     
     lon_along_track = ds_interp['longitude'].values
@@ -218,6 +322,46 @@ def compute_segment_v2(ds_interp, npt, delta_x, ref_var_name='sla_unfiltered', s
 
 
 def spectral_computation(lon_segment, lat_segment, ref_segments, study_segments, delta_x, npt):
+
+    """
+    Perform spectral computation and analysis for grid cells.
+
+    Parameters
+    ----------
+    lon_segment : numpy.ndarray
+        Array of segment longitudes.
+    lat_segment : numpy.ndarray
+        Array of segment latitudes.
+    ref_segments : numpy.ndarray
+        Array of reference variable segments.
+    study_segments : numpy.ndarray
+        Array of study variable segments.
+    delta_x : float
+        Spatial resolution for spectral computation.
+    npt : int
+        Number of points in each segment.
+
+    Returns
+    -------
+    numpy.ndarray
+        Array of wavenumbers.
+    numpy.ndarray
+        Array of latitudes.
+    numpy.ndarray
+        Array of longitudes.
+    numpy.ndarray
+        Array of segment counts per grid cell.
+    numpy.ndarray
+        Array of reference variable power spectral densities.
+    numpy.ndarray
+        Array of study variable power spectral densities.
+    numpy.ndarray
+        Array of power spectral densities of the difference between study and reference.
+    numpy.ndarray
+        Array of coherence values.
+    numpy.ndarray
+        Array of cross-spectral densities.
+    """ 
 
 
     delta_lat = 10.
@@ -365,7 +509,45 @@ def spectral_computation(lon_segment, lat_segment, ref_segments, study_segments,
 
 
 def spectral_computation_v2(lon_segment, lat_segment, ref_segments, study_segments, delta_x, npt):
+    """
+    Perform spectral computation and analysis for grid cells.
 
+    Parameters
+    ----------
+    lon_segment : numpy.ndarray
+        Array of segment longitudes.
+    lat_segment : numpy.ndarray
+        Array of segment latitudes.
+    ref_segments : numpy.ndarray
+        Array of reference variable segments.
+    study_segments : numpy.ndarray
+        Array of study variable segments.
+    delta_x : float
+        Spatial resolution for spectral computation.
+    npt : int
+        Number of points in each segment.
+
+    Returns
+    -------
+    numpy.ndarray
+        Array of wavenumbers.
+    numpy.ndarray
+        Array of latitudes.
+    numpy.ndarray
+        Array of longitudes.
+    numpy.ndarray
+        Array of segment counts per grid cell.
+    numpy.ndarray
+        Array of reference variable power spectral densities.
+    numpy.ndarray
+        Array of study variable power spectral densities.
+    numpy.ndarray
+        Array of power spectral densities of the difference between study and reference.
+    numpy.ndarray
+        Array of coherence values.
+    numpy.ndarray
+        Array of cross-spectral densities.
+    """
 
     delta_lat = 10.
     delta_lon = 10.
@@ -511,10 +693,23 @@ def spectral_computation_v2(lon_segment, lat_segment, ref_segments, study_segmen
 
 def compute_crossing(array, wavenumber, threshold=0.5):
     """
-    :param array:
-    :param wavenumber:
-    :param threshold:
-    :return:
+    Compute the crossing of a threshold by an array of values.
+
+    Parameters
+    ----------
+    array : numpy.ndarray
+        Array of values.
+    wavenumber : numpy.ndarray
+        Array of wavenumbers.
+    threshold : float, optional
+        Threshold for crossing, defaults to 0.5.
+
+    Returns
+    -------
+    float
+        Effective resolution.
+    bool
+        Flag indicating multiple crossings.
     """
 
 
@@ -547,6 +742,27 @@ def compute_crossing(array, wavenumber, threshold=0.5):
 
 
 def compute_resolution(lon, lat, wavenumber, psd_diff, psd_ref):
+    """
+    Compute the resolution.
+
+    Parameters
+    ----------
+    lon : numpy.ndarray
+        Array of longitudes.
+    lat : numpy.ndarray
+        Array of latitudes.
+    wavenumber : numpy.ndarray
+        Array of wavenumbers.
+    psd_diff : numpy.ndarray
+        Power spectral density of the difference between study and reference.
+    psd_ref : numpy.ndarray
+        Power spectral density of the reference.
+
+    Returns
+    -------
+    numpy.ndarray
+        Array of resolution values.
+    """
     
     ratio = psd_diff/psd_ref
 
@@ -560,7 +776,37 @@ def compute_resolution(lon, lat, wavenumber, psd_diff, psd_ref):
 
 
 def write_psd_output(output_netcdf_file, wavenumber, vlat, vlon, nb_segment, psd_ref, psd_study, psd_diff_ref_study, coherence, cross_spectrum, one_sided=True, method_name=' '): 
+    """
+    Write power spectral density and related variables to a NetCDF file.
 
+    Parameters
+    ----------
+    output_netcdf_file : str
+        Output NetCDF file path.
+    wavenumber : numpy.ndarray
+        Array of wavenumbers.
+    vlat : numpy.ndarray
+        Array of latitudes.
+    vlon : numpy.ndarray
+        Array of longitudes.
+    nb_segment : numpy.ndarray
+        Array of segment counts per grid cell.
+    psd_ref : numpy.ndarray
+        Power spectral density of the reference field.
+    psd_study : numpy.ndarray
+        Power spectral density of the study field.
+    psd_diff_ref_study : numpy.ndarray
+        Power spectral density of the difference between study and reference fields.
+    coherence : numpy.ndarray
+        Magnitude squared coherence between reference and study fields.
+    cross_spectrum : numpy.ndarray
+        Complex cross-spectrum between reference and study fields.
+    one_sided : bool, optional
+        Whether to use one-sided wavenumbers, defaults to True.
+    method_name : str, optional
+        Method name for the NetCDF file, defaults to ' '.
+    """
+    
     nc_out = Dataset(output_netcdf_file, 'w', format='NETCDF4')
     
     
@@ -636,7 +882,22 @@ def write_psd_output(output_netcdf_file, wavenumber, vlat, vlon, nb_segment, psd
     
     
 def compute_psd_scores(ds_interp, output_filename, lenght_scale=1500. ):
-    
+    """
+    Compute power spectral density (PSD) scores and save them to a NetCDF file.
+
+    Parameters
+    ----------
+    ds_interp : xarray.Dataset
+        Interpolated dataset.
+    output_filename : str
+        Output NetCDF file path.
+    length_scale : float, optional
+        Length scale, defaults to 1500.0.
+
+    Returns
+    -------
+    None
+    """    
     # logging.info("Interpolate SLA maps onto alongtrack")
     # ds_interp = run_interpolation(ds_maps, ds_alongtrack)
     # ds_interp = ds_interp.dropna('time')
@@ -661,7 +922,24 @@ def compute_psd_scores(ds_interp, output_filename, lenght_scale=1500. ):
     
 
 def compute_psd_scores_v2(ds_interp, output_filename, lenght_scale=1500., method_name=' '):
-    
+    """
+    Compute power spectral density (PSD) scores using a different method and save them to a NetCDF file.
+
+    Parameters
+    ----------
+    ds_interp : xarray.Dataset
+        Interpolated dataset.
+    output_filename : str
+        Output NetCDF file path.
+    length_scale : float, optional
+        Length scale, defaults to 1500.0.
+    method_name : str, optional
+        Method name for the NetCDF file, defaults to ' '.
+
+    Returns
+    -------
+    None
+    """    
     # logging.info("Interpolate SLA maps onto alongtrack")
     # ds_interp = run_interpolation(ds_maps, ds_alongtrack)
     # ds_interp = ds_interp.dropna('time')
@@ -687,7 +965,43 @@ def compute_psd_scores_v2(ds_interp, output_filename, lenght_scale=1500., method
 
 
 def spectral_computation_drifters_by_latbin(lon_segment, lat_segment, ref_segments, study_segments, delta_x, npt):
+    """
+    Compute spectral properties of drifters by latitude bin.
 
+    Parameters
+    ----------
+    lon_segment : numpy.ndarray
+        Array of segmented longitudes.
+    lat_segment : numpy.ndarray
+        Array of segmented latitudes.
+    ref_segments : numpy.ndarray
+        Array of segmented reference segments.
+    study_segments : numpy.ndarray
+        Array of segmented study segments.
+    delta_x : float
+        Delta x value.
+    npt : int
+        Number of points.
+
+    Returns
+    -------
+    wavenumber_to_keep : numpy.ndarray
+        Array of wavenumbers.
+    vlat : numpy.ndarray
+        Array of latitudes.
+    nb_segment : numpy.ndarray
+        Array of segment counts.
+    psd_ref : numpy.ndarray
+        Power spectral density of the reference.
+    psd_study : numpy.ndarray
+        Power spectral density of the study.
+    psd_diff : numpy.ndarray
+        Power spectral density of the difference.
+    coherence : numpy.ndarray
+        Magnitude squared coherence.
+    cross_spectrum : numpy.ndarray
+        Complex cross-spectrum.
+    """
 
     delta_lat = 1.
     nb_min_segment = 2
@@ -798,6 +1112,24 @@ def spectral_computation_drifters_by_latbin(lon_segment, lat_segment, ref_segmen
 
 
 def compute_psd_scores_current(ds_interp, output_filename, lenght_scale=np.timedelta64(40, 'D'), method_name=' '):
+    """
+    Compute power spectral density (PSD) scores for current data and save them to a NetCDF file.
+
+    Parameters
+    ----------
+    ds_interp : xarray.Dataset
+        Interpolated dataset.
+    output_filename : str
+        Output NetCDF file path.
+    length_scale : np.timedelta64, optional
+        Length scale, defaults to 40 days.
+    method_name : str, optional
+        Method name for the NetCDF file, defaults to ' '.
+
+    Returns
+    -------
+    None
+    """
     
     logging.info('Segment computation...')
     delta_t = np.median(np.diff(np.unique(ds_interp['time'])))
@@ -847,7 +1179,37 @@ def compute_psd_scores_current(ds_interp, output_filename, lenght_scale=np.timed
 
 
 def write_psd_current_output(output_netcdf_file, wavenumber, vlat, nb_segment, psd_ref, psd_study, psd_diff_ref_study, coherence, cross_spectrum,method_name=''):
+    """
+    Write power spectral density (PSD) current data to a NetCDF file.
 
+    Parameters
+    ----------
+    output_netcdf_file : str
+        Output NetCDF file path.
+    wavenumber : numpy.ndarray
+        Array of wavenumbers.
+    vlat : numpy.ndarray
+        Array of latitudes.
+    nb_segment : numpy.ndarray
+        Array of segment counts.
+    psd_ref : numpy.ndarray
+        Power spectral density of the reference.
+    psd_study : numpy.ndarray
+        Power spectral density of the study.
+    psd_diff_ref_study : numpy.ndarray
+        Power spectral density of the difference between study and reference.
+    coherence : numpy.ndarray
+        Magnitude squared coherence.
+    cross_spectrum : numpy.ndarray
+        Complex cross-spectrum.
+    method_name : str, optional
+        Method name for the NetCDF file, defaults to an empty string.
+
+    Returns
+    -------
+    None
+    """
+ 
     nc_out = Dataset(output_netcdf_file, 'w', format='NETCDF4')
     
     # Reformate data

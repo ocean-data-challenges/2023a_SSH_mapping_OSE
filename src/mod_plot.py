@@ -15,6 +15,19 @@ import warnings
 warnings.filterwarnings("ignore")
 
 def plot_stat_score_map(filename):
+    """
+    Generate and display error and explained variance maps.
+
+    Parameters
+    ----------
+    filename : str
+        Path to the input NetCDF file containing required data.
+
+    Returns
+    -------
+    holoviews layout
+        Layout containing quadmesh plots for error and explained variance maps.
+    """
     
     ds_binning_allscale = xr.open_dataset(filename, group='all_scale')
     ds_binning_filtered = xr.open_dataset(filename, group='filtered')
@@ -65,6 +78,19 @@ def plot_stat_score_map(filename):
 
 
 def plot_stat_score_timeseries(filename):
+    """
+    Generate and display timeseries of error and explained variance.
+
+    Parameters
+    ----------
+    filename : str
+        Path to the input NetCDF file containing required data.
+
+    Returns
+    -------
+    holoviews layout
+        Layout containing line plots for error and explained variance timeseries.
+    """
     
     ds_binning_allscale = xr.open_dataset(filename, group='all_scale')
     ds_binning_filtered = xr.open_dataset(filename, group='filtered')
@@ -99,6 +125,20 @@ def plot_stat_score_timeseries(filename):
 
 
 def plot_stat_by_regimes(stat_output_filename):
+    """
+    Generate and display statistical summary by geographical regions.
+
+    Parameters
+    ----------
+    stat_output_filename : str
+        Path to the input NetCDF file containing statistical data.
+
+    Returns
+    -------
+    pandas DataFrame
+        DataFrame containing the statistical summary by regions and variables.
+    """
+    
     my_dictionary = {}
     for region in ['coastal', 'offshore_highvar', 'offshore_lowvar', 'equatorial_band', 'arctic', 'antarctic']:
         my_dictionary[f'{region}'] = {}
@@ -118,6 +158,19 @@ def plot_stat_by_regimes(stat_output_filename):
 
 
 def plot_stat_uv_by_regimes(stat_output_filename):
+    """
+    Generate and display statistical summary of velocity components by geographical regions.
+
+    Parameters
+    ----------
+    stat_output_filename : str
+        Path to the input NetCDF file containing statistical data.
+
+    Returns
+    -------
+    pandas DataFrame
+        DataFrame containing the statistical summary by regions and velocity components.
+    """
     my_dictionary = {}
     for region in ['coastal', 'offshore_highvar', 'offshore_lowvar', 'equatorial_band', 'arctic', 'antarctic']:
         my_dictionary[f'{region}'] = {}
@@ -137,6 +190,19 @@ def plot_stat_uv_by_regimes(stat_output_filename):
 
 
 def plot_effective_resolution(filename):
+    """
+    Generate and display a quadmesh plot of effective resolution.
+
+    Parameters
+    ----------
+    filename : str
+        Path to the input NetCDF file containing required data.
+
+    Returns
+    -------
+    holoviews quadmesh
+        Quadmesh plot of effective resolution.
+    """
     
     ds = xr.open_dataset(filename)
     
@@ -153,8 +219,97 @@ def plot_effective_resolution(filename):
     
     return fig0
 
+ 
+
 
 def plot_effective_resolution_png(filename,region='glob',box_lonlat=None):
+    """
+    Generate and save a PNG image of effective resolution.
+
+    Parameters
+    ----------
+    filename : str
+        Path to the input NetCDF file containing required data.
+    region : str, optional
+        Region name for the image, by default 'glob'.
+    box_lonlat : dict, optional
+        Dictionary containing 'lon_min', 'lon_max', 'lat_min', and 'lat_max' values,
+        defining the bounding box for the image.
+
+    Returns
+    -------
+    None
+    """
+
+    ds = xr.open_dataset(filename)
+    
+    
+    try : 
+        method_name = ds.attrs['method']
+    except:
+        method_name = ''
+    
+    if box_lonlat is not None:
+        lon_min = box_lonlat['lon_min']
+        lon_max = box_lonlat['lon_max']
+        lat_min = box_lonlat['lat_min']
+        lat_max = box_lonlat['lat_max']
+        ds = ds.sel({'lon':slice(lon_min,lon_max),'lat':slice(lat_min,lat_max)}) 
+    
+    
+    fig, axs = plt.subplots(nrows=1,ncols=1,
+                        subplot_kw={'projection': ccrs.PlateCarree()},
+                        figsize=(5.5,3.25))
+
+    
+    vmin = 100.
+    vmax= 500.
+    p0 = axs.pcolormesh(ds.lon, ds.lat, ds.effective_resolution, vmin=vmin, vmax=vmax, cmap='Spectral_r')
+    axs.set_title('SSH Map Effective resolution')
+    axs.add_feature(cfeature.LAND, color='w', zorder=12)
+    axs.coastlines(resolution='10m', lw=0.5, zorder=13)
+    # optional add grid lines
+    p0.axes.gridlines(color='black', alpha=0., linestyle='--')
+    # draw parallels/meridiens and write labels
+    gl = p0.axes.gridlines(crs=ccrs.PlateCarree(), draw_labels=True,
+                          linewidth=0.1, color='black', alpha=0.5, linestyle='--')
+    # adjust labels to taste
+    gl.xlabels_top = False
+    gl.ylabels_right = False
+    gl.ylocator = mticker.FixedLocator([-90, -60, -30, 0, 30, 60, 90])
+    gl.xformatter = LONGITUDE_FORMATTER
+    gl.yformatter = LATITUDE_FORMATTER
+    gl.xlabel_style = {'size': 10, 'color': 'black'}
+    gl.ylabel_style = {'size': 10, 'color': 'black'}
+    
+    
+    cax = fig.add_axes([0.92, 0.25, 0.04, 0.6])
+    fig.colorbar(p0, cax=cax, orientation='vertical')
+    cax.set_ylabel('Effective resolution [km]', fontweight='bold')
+    
+    fig.subplots_adjust(bottom=0.2, top=0.9, left=0.1, right=0.9,
+                    wspace=0.02, hspace=0.01)
+    
+    plt.savefig("../figures/Maps_"+str(method_name)+"_effres_"+region+".png", bbox_inches='tight')
+
+
+
+def plot_psd_scores(filename):
+    """
+    Generate and display plots related to Power Spectral Density (PSD) scores.
+
+    Parameters
+    ----------
+    filename : str
+        Path to the input NetCDF file containing required data.
+
+    Returns
+    -------
+    holoviews layout
+        Layout containing line plots for PSD scores and related metrics.
+    """
+ 
+
 
     ds = xr.open_dataset(filename)
     
@@ -209,6 +364,19 @@ def plot_effective_resolution_png(filename,region='glob',box_lonlat=None):
 
 
 def plot_psd_scores(filename):
+    """
+    Generate and display plots related to Power Spectral Density (PSD) scores.
+
+    Parameters
+    ----------
+    filename : str
+        Path to the input NetCDF file containing required data.
+
+    Returns
+    -------
+    holoviews layout
+        Layout containing line plots for PSD scores and related metrics.
+    """
     
     ds = xr.open_dataset(filename)
     
@@ -319,6 +487,19 @@ def plot_psd_scores(filename):
 
 
 def plot_stat_score_map_uv(filename):
+    """
+    Generate and display quadmesh plots of variance and explained variance for zonal and meridional currents.
+
+    Parameters
+    ----------
+    filename : str
+        Path to the input NetCDF file containing required data.
+
+    Returns
+    -------
+    holoviews layout
+        Layout containing quadmesh plots for variance and explained variance of zonal and meridional currents.
+    """
     
     ds_binning_allscale = xr.open_dataset(filename, group='all_scale')
     
@@ -369,6 +550,19 @@ def plot_stat_score_map_uv(filename):
 
 
 def plot_psd_scores_currents(filename):
+    """
+    Generate and display plots related to Power Spectral Density (PSD) scores for current data.
+
+    Parameters
+    ----------
+    filename : str
+        Path to the input NetCDF file containing required data.
+
+    Returns
+    -------
+    holoviews layout
+        Layout containing quadmesh plots for various PSD-related metrics for current data.
+    """
     
     ds_psd = xr.open_dataset(filename)
     
@@ -383,6 +577,19 @@ def plot_psd_scores_currents(filename):
 
 
 def plot_psd_scores_currents_1D(filename):
+    """
+    Generate and display 1D line plots of Power Spectral Density (PSD) scores for current data.
+
+    Parameters
+    ----------
+    filename : str
+        Path to the input NetCDF file containing required data.
+
+    Returns
+    -------
+    holoviews layout
+        Layout containing line plots for various PSD-related metrics for current data.
+    """
     
     ds_psd = xr.open_dataset(filename)
     
@@ -396,6 +603,20 @@ def plot_psd_scores_currents_1D(filename):
 
 
 def plot_polarization(filename):
+    """
+    Generate and display polarization plots of rotary spectrum for current data.
+
+    Parameters
+    ----------
+    filename : str
+        Path to the input NetCDF file containing required data.
+
+    Returns
+    -------
+    holoviews layout
+        Layout containing quadmesh plots for polarization of the rotary spectrum.
+    """
+    
     ds_psd = xr.open_dataset(filename)
     
     Splus_ref = ds_psd.psd_ref.where(ds_psd.wavenumber > 0, drop=True)
@@ -423,8 +644,24 @@ def plot_polarization(filename):
 
 
 
-def plot_stat_score_map_uv_png(filename,region='glob',box_lonlat=None):
+def plot_stat_score_map_uv_png(filename,region='glob',box_lonlat=None):    
+    """
+    Plot zonal and meridional current variance and explained variance maps as PNG files.
 
+    Parameters
+    ----------
+    filename : str
+        The name of the input NetCDF file.
+    region : str, optional
+        The region to plot ('glob' for global, or specify a region name).
+    box_lonlat : dict, optional
+        A dictionary with 'lon_min', 'lon_max', 'lat_min', and 'lat_max' keys defining a bounding box for the plot.
+
+    Returns
+    -------
+    None
+    """
+    
     ds_binning_allscale = xr.open_dataset(filename, group='all_scale')
     
     
@@ -552,7 +789,21 @@ def plot_stat_score_map_uv_png(filename,region='glob',box_lonlat=None):
     plt.savefig("../figures/Maps_"+str(method_name)+"_explvar_"+region+"_uv.png", bbox_inches='tight')
     
     
-def plot_psd_scores_currents_png(filename,region='glob'):
+def plot_psd_scores_currents_png(filename,region='glob'):    
+    """
+    Plot various spectral and coherence maps for zonal and meridional currents as PNG files.
+
+    Parameters
+    ----------
+    filename : str
+        The name of the input NetCDF file.
+    region : str, optional
+        The region to plot ('glob' for global, or specify a region name).
+
+    Returns
+    -------
+    None
+    """
     
     def coriolis_parameter(lat):
         """
@@ -700,6 +951,45 @@ def plot_psd_scores_currents_png(filename,region='glob'):
 
     
 def plot_stat_score_map_png(filename,region='glob',box_lonlat=None): 
+    """
+    Plot statistical score maps for zonal and meridional currents and save them as PNG files.
+
+    Parameters
+    ----------
+    filename : str
+        The name of the input NetCDF file.
+    region : str, optional
+        The region to plot ('glob' for global, or specify a region name).
+    box_lonlat : dict, optional
+        A dictionary with 'lon_min', 'lon_max', 'lat_min', and 'lat_max' keys
+        defining a bounding box for the plot.
+
+    Returns
+    -------
+    None
+
+    Notes
+    -----
+    This function reads data from the input NetCDF file, creates statistical score maps for zonal and meridional currents,
+    and saves the resulting plots as PNG files.
+
+    If a bounding box is provided, the function restricts the plot to the specified region.
+
+    The function saves two sets of plots: error variance maps and explained variance maps, both for two different scales.
+
+    Error Variance Maps:
+    - The first set of plots displays the error variance for zonal and meridional currents at two different scales (All scale and 65-500km).
+
+    Explained Variance Maps:
+    - The second set of plots displays the explained variance for zonal and meridional currents at two different scales (All scale and 65-500km).
+
+    The PNG files are saved in the '../figures/' directory with informative filenames based on the method used.
+
+    Examples
+    --------
+    >>> plot_stat_score_map_png("ocean_data.nc", region='global')
+    >>> plot_stat_score_map_png("ocean_data.nc", region='Pacific', box_lonlat={'lon_min': 120, 'lon_max': 240, 'lat_min': -30, 'lat_max': 30})
+    """
 
     ds_binning_allscale = xr.open_dataset(filename, group='all_scale')
     ds_binning_filtered = xr.open_dataset(filename, group='filtered')
@@ -828,6 +1118,45 @@ def plot_stat_score_map_png(filename,region='glob',box_lonlat=None):
     plt.savefig("../figures/Maps_"+str(method_name)+"_explvar_"+region+".png", bbox_inches='tight')
     
 def compare_stat_score_map(study_filename, ref_filename):
+    """
+    Compare statistical score maps between a study dataset and a reference dataset and visualize the differences.
+
+    Parameters
+    ----------
+    study_filename : str
+        The name of the study NetCDF file.
+    ref_filename : str
+        The name of the reference NetCDF file.
+
+    Returns
+    -------
+    holoviews.core.layout.Layout
+        A layout containing Holoviews plots displaying the comparison results.
+
+    Notes
+    -----
+    This function reads data from both the study and reference NetCDF files and generates various comparison plots
+    between the two datasets.
+
+    Comparison Plots:
+    1. Error Variance Maps (Reference and Study) for All Scales.
+    2. Error Variance Maps (Reference and Study) for 65-500km Scale.
+    3. Percentage Change in Error Variance (Study vs. Reference) for All Scales.
+    4. Percentage Change in Error Variance (Study vs. Reference) for 65-500km Scale.
+    5. Explained Variance Maps (Reference) for All Scales.
+    6. Explained Variance Maps (Reference) for 65-500km Scale.
+    7. Gain(+)/Loss(-) in Explained Variance (Study vs. Reference) for All Scales.
+    8. Gain(+)/Loss(-) in Explained Variance (Study vs. Reference) for 65-500km Scale.
+
+    The generated plots are returned as a Holoviews layout for visualization.
+
+    Examples
+    --------
+    >>> study_file = "study_data.nc"
+    >>> reference_file = "reference_data.nc"
+    >>> comparison_plots = compare_stat_score_map(study_file, reference_file)
+    >>> comparison_plots.show()  # Display the comparison plots.
+    """
     
     ds_ref_binning_allscale = xr.open_dataset(ref_filename, group='all_scale')
     ds_ref_binning_filtered = xr.open_dataset(ref_filename, group='filtered')
@@ -898,27 +1227,46 @@ def compare_stat_score_map(study_filename, ref_filename):
                                                               cmap='coolwarm_r',
                                                               rasterize=True,
                                                               title='Gain(+)/Loss(-) Explained variance [65:500km]')
-    
-#     fig5 = ds_binning_allscale['rmse'].hvplot.quadmesh(x='lon',
-#                                                               y='lat',
-#                                                               clim=(0, 0.1),
-#                                                               cmap='Reds',
-#                                                               rasterize=True,
-#                                                               title='RMSE [All scale]')
-    
-#     fig6 = ds_binning_filtered['rmse'].hvplot.quadmesh(x='lon',
-#                                                               y='lat',
-#                                                               clim=(0, 0.1),
-#                                                               cmap='Reds',
-#                                                               rasterize=True,
-#                                                               title='RMSE [65:500km]')
+     
     
     return (fig1 + fig2 + fig3 + fig4 + fig5 + fig6 +fig7 +fig8).cols(2)
 
 
 
 def compare_stat_score_map_png(study_filename, ref_filename):
+    """
+    Generate PNG plots comparing statistical score maps between study and reference datasets.
 
+    Parameters
+    ----------
+    study_filename : str
+        The filename of the study dataset in NetCDF format.
+    ref_filename : str
+        The filename of the reference dataset in NetCDF format.
+
+    Returns
+    -------
+    None
+
+    Notes
+    -----
+    This function generates a set of eight subplots comparing statistical score maps between a study dataset and a
+    reference dataset. The comparison includes error variance, percentage change in error variance, and explained
+    variance for both global and 65-500km scales. These subplots are arranged in a 4x2 grid, providing a visual
+    comparison of the datasets. Colormaps are used to represent the data, and coastlines and grid lines are added to
+    enhance visualization.
+
+    Colorbars are added to indicate the color scale for each subplot. The function saves the resulting figure as a PNG
+    file.
+
+    Examples
+    --------
+    >>> study_file = "study_data.nc"
+    >>> reference_file = "reference_data.nc"
+    >>> compare_stat_score_map_png(study_file, reference_file)
+    """
+    
+    
     ds_ref_binning_allscale = xr.open_dataset(ref_filename, group='all_scale')
     ds_ref_binning_filtered = xr.open_dataset(ref_filename, group='filtered')
     
@@ -1134,6 +1482,37 @@ def compare_stat_score_map_png(study_filename, ref_filename):
     
     
 def compare_stat_score_map_uv_png(study_filename, ref_filename):
+    """
+    Generate PNG plots comparing statistical score maps for zonal and meridional currents between study and reference datasets.
+
+    Parameters
+    ----------
+    study_filename : str
+        The filename of the study dataset in NetCDF format.
+    ref_filename : str
+        The filename of the reference dataset in NetCDF format.
+
+    Returns
+    -------
+    None
+
+    Notes
+    -----
+    This function generates a set of eight subplots comparing statistical score maps for zonal and meridional currents
+    between a study dataset and a reference dataset. The comparison includes error variance, percentage change in error
+    variance, and explained variance for both zonal and meridional currents at all scales. These subplots are arranged
+    in a 4x2 grid, providing a visual comparison of the datasets. Colormaps are used to represent the data, and coastlines
+    and grid lines are added to enhance visualization.
+
+    Colorbars are added to indicate the color scale for each subplot. The function saves the resulting figure as a PNG
+    file.
+
+    Examples
+    --------
+    >>> study_file = "study_data.nc"
+    >>> reference_file = "reference_data.nc"
+    >>> compare_stat_score_map_uv_png(study_file, reference_file)
+    """
 
     ds_ref_binning_allscale = xr.open_dataset(ref_filename, group='all_scale')
     
@@ -1354,6 +1733,34 @@ def compare_stat_score_map_uv_png(study_filename, ref_filename):
 
 
 def compare_psd_score(study_filename, ref_filename):
+    """
+    Compare Power Spectral Density (PSD) scores between a study dataset and a reference dataset.
+
+    Parameters
+    ----------
+    study_filename : str
+        The filename of the study dataset in NetCDF format.
+    ref_filename : str
+        The filename of the reference dataset in NetCDF format.
+
+    Returns
+    -------
+    panel : hvplot.core.panel.Panel
+        A panel containing two subplots comparing PSD scores.
+
+    Notes
+    -----
+    This function compares PSD scores between a study dataset and a reference dataset for the effective resolution.
+    It generates two subplots: one showing the effective resolution of the reference dataset and the other showing the
+    percentage change in effective resolution between the study and reference datasets. The subplots use colormaps to
+    represent the data, and coastlines and grid lines are added for context.
+
+    Examples
+    --------
+    >>> study_file = "study_data.nc"
+    >>> reference_file = "reference_data.nc"
+    >>> compare_psd_score(study_file, reference_file)
+    """
     
     ds_ref = xr.open_dataset(ref_filename)
     ds_study = xr.open_dataset(study_filename)
@@ -1384,6 +1791,35 @@ def compare_psd_score(study_filename, ref_filename):
     
     
 def compare_psd_score_png(study_filename, ref_filename):
+    """
+    Generate PNG plots comparing Power Spectral Density (PSD) scores for effective resolution between a study dataset and a reference dataset.
+
+    Parameters
+    ----------
+    study_filename : str
+        The filename of the study dataset in NetCDF format.
+    ref_filename : str
+        The filename of the reference dataset in NetCDF format.
+
+    Returns
+    -------
+    None
+
+    Notes
+    -----
+    This function generates two subplots comparing PSD scores for effective resolution between a study dataset and a
+    reference dataset. The subplots display the effective resolution of the reference dataset and the percentage change
+    in effective resolution between the study and reference datasets. Colormaps are used to represent the data, and
+    coastlines, land features, and grid lines are added to enhance visualization.
+
+    Colorbars are added to indicate the color scale for each subplot. The resulting figure is saved as a PNG file.
+
+    Examples
+    --------
+    >>> study_file = "study_data.nc"
+    >>> reference_file = "reference_data.nc"
+    >>> compare_psd_score_png(study_file, reference_file)
+    """
     
     ds_ref = xr.open_dataset(ref_filename)
     ds_study = xr.open_dataset(study_filename)

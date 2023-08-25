@@ -23,20 +23,32 @@ def bin_data(ds, output_file, lon_out=np.arange(0, 360, 1), lat_out=np.arange(-9
     Parameters
     ----------
     ds : xarray.Dataset
-        Dataset containing gridded data to be binned
+        Dataset containing gridded data to be binned.
     output_file : str
-        Filepath to save binned data to
+        Filepath to save binned data to.
     lon_out : array_like, optional
-        Array of longitude values for the output grid, by default np.arange(0, 360, 1)
+        Array of longitude values for the output grid, by default np.arange(0, 360, 1).
     lat_out : array_like, optional
-        Array of latitude values for the output grid, by default np.arange(-90, 90, 1)
+        Array of latitude values for the output grid, by default np.arange(-90, 90, 1).
     freq_out : str, optional
-        Time frequency for temporal aggregation, by default '1D'
+        Time frequency for temporal aggregation, by default '1D'.
+    method_name : str, optional
+        Name of the method used, by default ' '.
 
     Returns
     -------
     None
-    
+
+    Notes
+    -----
+    This function aggregates gridded data to a larger bin grid and calculates statistics, including mean, variance, and
+    root mean square error (RMSE), for different datasets and timeseries. The results are saved to a NetCDF file.
+
+    Examples
+    --------
+    >>> data = xr.open_dataset("gridded_data.nc")
+    >>> output_file = "binned_data.nc"
+    >>> bin_data(data, output_file)
     """
         
     binning = pyinterp.Binning2D(pyinterp.Axis(lon_out, is_circle=True),
@@ -154,6 +166,37 @@ def bin_data(ds, output_file, lon_out=np.arange(0, 360, 1), lat_out=np.arange(-9
     
 
 def compute_stat_scores(ds_interp, lambda_min, lambda_max, output_file, method_name=' '):
+    """
+    Compute statistical scores for interpolation results.
+
+    Parameters
+    ----------
+    ds_interp : xarray.Dataset
+        Interpolated dataset containing 'sla_interpolated', 'sla_unfiltered', 'lwe', and 'msla_interpolated'.
+    lambda_min : float
+        Minimum wavelength for bandpass filter.
+    lambda_max : float
+        Maximum wavelength for bandpass filter.
+    output_file : str
+        Filepath to save computed statistics to.
+    method_name : str, optional
+        Name of the method used, by default ' '.
+
+    Returns
+    -------
+    None
+
+    Notes
+    -----
+    This function computes statistical scores for interpolation results, including mapping error, bandpass filtering,
+    and binning statistics. The results are saved to a NetCDF file.
+
+    Examples
+    --------
+    >>> interpolated_data = xr.open_dataset("interpolated_data.nc")
+    >>> output_file = "statistical_scores.nc"
+    >>> compute_stat_scores(interpolated_data, 10, 100, output_file)
+    """
     
     #logging.info("Interpolate SLA maps onto alongtrack")
     #ds_interp = run_interpolation(ds_maps, ds_alongtrack)
@@ -176,6 +219,31 @@ def compute_stat_scores(ds_interp, lambda_min, lambda_max, output_file, method_n
     
        
 def compute_stat_scores_by_regimes(ds_interp, output_file): 
+    """
+    Compute statistical scores by oceanic regimes.
+
+    Parameters
+    ----------
+    ds_interp : xarray.Dataset
+        Interpolated dataset containing 'sla_interpolated', 'sla_unfiltered', 'lwe', 'msla_interpolated', and 'mask'.
+    output_file : str
+        Filepath to save computed statistics by regimes to.
+
+    Returns
+    -------
+    None
+
+    Notes
+    -----
+    This function computes statistical scores for interpolation results based on oceanic regimes. It masks the input
+    data and calculates statistics for each regime separately. The results are saved to a NetCDF file.
+
+    Examples
+    --------
+    >>> interpolated_data = xr.open_dataset("interpolated_data.nc")
+    >>> output_file = "regime_scores.nc"
+    >>> compute_stat_scores_by_regimes(interpolated_data, output_file)
+    """
     
     distance_to_nearest_coast = '../data/sad/distance_to_nearest_coastline_60.nc'
     land_sea_mask = '../data/sad/land_water_mask_60.nc'
@@ -424,7 +492,28 @@ def compute_stat_scores_by_regimes(ds_interp, output_file):
     
     
 def bin_data_uv(ds, output_file, lon_out=np.arange(0, 360, 1), lat_out=np.arange(-90, 90, 1), freq_out='1D',method_name=''):
-     
+    """
+    Bin and compute statistical measures for oceanographic current data.
+
+    Parameters
+    ----------
+    ds : xarray.Dataset
+        Input dataset containing oceanographic current data.
+    output_file : str
+        Output file path for saving the results.
+    lon_out : numpy.ndarray, optional
+        Longitudes for binning. Default is a range from 0 to 360 with step 1.
+    lat_out : numpy.ndarray, optional
+        Latitudes for binning. Default is a range from -90 to 90 with step 1.
+    freq_out : str, optional
+        Resampling frequency for time series data. Default is '1D'.
+    method_name : str, optional
+        Name of the method used for computation. Default is an empty string.
+
+    Returns
+    -------
+    None
+    """
     
     binning = pyinterp.Binning2D(pyinterp.Axis(lon_out, is_circle=True),
                                  pyinterp.Axis(lat_out))
@@ -535,6 +624,20 @@ def bin_data_uv(ds, output_file, lon_out=np.arange(0, 360, 1), lat_out=np.arange
 
     
 def compute_stat_scores_uv_by_regimes(ds_interp, output_file): 
+    """
+    Compute statistical scores for oceanographic current data based on different oceanic regimes.
+
+    Parameters
+    ----------
+    ds_interp : xarray.Dataset
+        Interpolated oceanographic current dataset.
+    output_file : str
+        Output file path for saving the results.
+
+    Returns
+    -------
+    None
+    """
     
     distance_to_nearest_coast = '../data/sad/distance_to_nearest_coastline_60.nc'
     land_sea_mask = '../data/sad/land_water_mask_60.nc'
@@ -784,6 +887,22 @@ def compute_stat_scores_uv_by_regimes(ds_interp, output_file):
         
     
 def compute_stat_scores_uv(ds_interp, output_file,method_name=''): 
+    """
+    Compute mapping errors and statistical measures for oceanographic current data.
+
+    Parameters
+    ----------
+    ds_interp : xarray.Dataset
+        Interpolated oceanographic current dataset.
+    output_file : str
+        Output file path for saving the results.
+    method_name : str, optional
+        Name of the method used for computation. Default is an empty string.
+
+    Returns
+    -------
+    None
+    """
      
     logging.info("Compute mapping error all scales")
     ds_interp['mapping_err_u'] = ds_interp['ugos_interpolated'] - ds_interp['EWCT']

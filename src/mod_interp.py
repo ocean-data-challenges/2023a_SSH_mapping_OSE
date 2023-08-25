@@ -12,19 +12,74 @@ import xarray as xr
 class TimeSeries:
     """
     Manage a time series composed of a grid stack.
+
+    Parameters
+    ----------
+    ds : xarray.Dataset
+        Input dataset containing the time series data.
+
+    Attributes
+    ----------
+    ds : xarray.Dataset
+        Input dataset containing the time series data.
+    series : pandas.Series
+        Time series data loaded from the dataset.
+    dt : datetime.timedelta
+        Time step duration between consecutive data points in the series.
+
+    Methods
+    -------
+    _is_sorted(array)
+        Check if an array is sorted.
+    _load_ts()
+        Load the time series data into memory.
+    load_dataset(self, varname, start, end)
+        Loading the time series into memory for the defined period.
     """
 
     def __init__(self, ds):
+        """
+        Initialize a TimeSeries object.
+
+        Parameters
+        ----------
+        ds : xarray.Dataset
+            Input dataset containing the time series data.
+        """
+        
         self.ds = ds
         self.series, self.dt = self._load_ts()
 
     @staticmethod
     def _is_sorted(array):
+        """
+        Check if an array is sorted.
+
+        Parameters
+        ----------
+        array : numpy.ndarray
+            Input array to check.
+
+        Returns
+        -------
+        bool
+            True if the array is sorted, False otherwise.
+        """
+        
         indices = numpy.argsort(array)
         return numpy.all(indices == numpy.arange(len(indices)))
 
     def _load_ts(self):
-        """Loading the time series into memory."""
+        """
+        Load the time series data into memory.
+
+        Returns
+        -------
+        pandas.Series
+            Loaded time series data.
+        datetime.timedelta
+            Time step duration between consecutive data points in the series.
+        """
         time = self.ds.time
         assert self._is_sorted(time)
 
@@ -79,7 +134,25 @@ class TimeSeries:
     
     
 def periods(df, time_series, var_name="sla_unfiltered", frequency='W'):
-    """Return the list of periods covering the time series loaded in memory."""
+    """
+    Return the list of periods covering the time series loaded in memory.
+
+    Parameters
+    ----------
+    df : pandas.DataFrame
+        Input DataFrame containing time series data.
+    time_series : TimeSeries
+        Time series data and properties.
+    var_name : str, optional
+        Name of the variable to consider, by default "sla_unfiltered".
+    frequency : str, optional
+        Frequency for period grouping, by default 'W' (weekly).
+
+    Yields
+    ------
+    tuple
+        A tuple containing the start and end timestamps of each period.
+    """
     period_start = df.groupby(
         df.index.to_period(frequency))[var_name].count().index
 
@@ -94,7 +167,20 @@ def periods(df, time_series, var_name="sla_unfiltered", frequency='W'):
     
 
 def interpolate(df, time_series, start, end):
-    """Interpolate the time series over the defined period."""
+    """
+    Interpolate the time series over the defined period.
+
+    Parameters
+    ----------
+    df : pandas.DataFrame
+        Input DataFrame containing time series data.
+    time_series : TimeSeries
+        Time series data and properties.
+    start : pandas.Timestamp
+        Start timestamp of the interpolation period.
+    end : pandas.Timestamp
+        End timestamp of the interpolation period.
+    """
     interpolator = time_series.load_dataset("sla", start, end)
     mask = (df.index >= start) & (df.index < end)
     selected = df.loc[mask, ["longitude", "latitude"]]
@@ -107,6 +193,23 @@ def interpolate(df, time_series, start, end):
     
     
 def run_interpolation(ds_maps, ds_alongtrack, frequency='M'):
+    """
+    Interpolate time series data over specified periods.
+
+    Parameters
+    ----------
+    ds_maps : xarray.Dataset
+        Input dataset containing maps data.
+    ds_alongtrack : xarray.Dataset
+        Input dataset containing along-track data.
+    frequency : str, optional
+        Frequency for period grouping, by default 'M' (monthly).
+
+    Returns
+    -------
+    xarray.Dataset
+        Interpolated dataset.
+    """
     
     time_series = TimeSeries(ds_maps)
     
@@ -121,7 +224,20 @@ def run_interpolation(ds_maps, ds_alongtrack, frequency='M'):
 
 
 def interpolate_current(df, time_series, start, end):
-    """Interpolate the time series over the defined period."""
+    """
+    Interpolate the current time series over the defined period.
+
+    Parameters
+    ----------
+    df : pandas.DataFrame
+        Input DataFrame containing time series data.
+    time_series : TimeSeries
+        Time series data and properties.
+    start : pandas.Timestamp
+        Start timestamp of the interpolation period.
+    end : pandas.Timestamp
+        End timestamp of the interpolation period.
+    """
     interpolator = time_series.load_dataset("ugos", start, end)
     mask = (df.index >= start) & (df.index < end)
     selected = df.loc[mask, ["longitude", "latitude"]]
@@ -144,6 +260,19 @@ def interpolate_current(df, time_series, start, end):
 
 
 def reformat_drifter_dataset(ds):
+    """
+    Reformat a drifter dataset, extracting relevant variables.
+
+    Parameters
+    ----------
+    ds : xarray.Dataset
+        Input drifter dataset.
+
+    Returns
+    -------
+    xarray.Dataset
+        Reformatted drifter dataset.
+    """
     
     ds = ds.isel(DEPTH=1)
     lat = ds['LATITUDE'].values
@@ -155,38 +284,31 @@ def reformat_drifter_dataset(ds):
     ds['latitude'] = (("time"), lat)
     ds['sensor_id'] = (("time"), ds.platform_code*numpy.ones(ds['time'].size))
     return ds
-
-
-# def run_interpolation_drifters(ds_maps, list_filename_drifters, time_min, time_max, frequency='M'):
-    
-#     time_series = TimeSeries(ds_maps)
-    
-#     # Load drifters data file and reformat dataset
-#     list_of_ds = []
-#     for drifters_filename in list_filename_drifters:
-#         ds_drifter = xr.open_dataset(drifters_filename)
-#         ds_drifter = reformat_drifter_dataset(ds_drifter)
-#         try:        
-#             ds_drifter = ds_drifter.where((ds_drifter.time >= numpy.datetime64(time_min)) & (ds_drifter.time <=  numpy.datetime64(time_max)), drop=True)
-#             list_of_ds.append(ds_drifter)
-#         except IndexError:
-#             # there is gap in dataset
-#             pass
-#         del ds_drifter
-
-#     ds_out = xr.concat(list_of_ds, dim='time')
-    
-#     # Convert to dataframe and interpolate
-#     df = ds_out.to_dataframe()
-#     for start, end in periods(df, time_series, var_name='NSCT', frequency=frequency):
-#         interpolate_current(df, time_series, start, end)
-        
-#     ds = df.to_xarray()
-    
-#     return ds
+ 
 
 def run_interpolation_drifters(ds_maps, ds_drifter, time_min, time_max, frequency='M'):
-    
+    """
+    Interpolate drifters data over specified periods.
+
+    Parameters
+    ----------
+    ds_maps : xarray.Dataset
+        Input dataset containing maps data.
+    ds_drifter : xarray.Dataset
+        Input dataset containing drifter data.
+    time_min : numpy.datetime64
+        Minimum time for interpolation.
+    time_max : numpy.datetime64
+        Maximum time for interpolation.
+    frequency : str, optional
+        Frequency for period grouping, by default 'M' (monthly).
+
+    Returns
+    -------
+    xarray.Dataset
+        Interpolated drifter dataset.
+    """
+ 
     time_series = TimeSeries(ds_maps)
     
     # Convert to dataframe and interpolate

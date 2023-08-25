@@ -21,7 +21,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="mod_filter module" href="mod_filter.html" />
-    <link rel="prev" title="Notebooks download the data" href="nb_download_data.html" /> 
+    <link rel="prev" title="Notebooks download the data" href="notebooks_download_data.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -63,7 +63,8 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Notebooks</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="nb_download_data.html">Notebooks download the data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks_evaluation.html">Notebooks evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks_download_data.html">Notebooks download the data</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Scripts</span></p>
 <ul class="current">
@@ -105,12 +106,56 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="mod_compare.compare_psd_score">
 <span class="sig-prename descclassname"><span class="pre">mod_compare.</span></span><span class="sig-name descname"><span class="pre">compare_psd_score</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">study_filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref_filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boxlon</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[-</span> <span class="pre">180,</span> <span class="pre">180]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boxlat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[-</span> <span class="pre">90,</span> <span class="pre">90]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mod_compare.compare_psd_score" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Compare Power Spectral Density (PSD) scores between a study dataset and a reference dataset.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>study_filename</strong> (<em>str</em>) – Filepath to the study dataset NetCDF file for comparison.</p></li>
+<li><p><strong>ref_filename</strong> (<em>str</em>) – Filepath to the reference dataset NetCDF file for comparison.</p></li>
+<li><p><strong>boxlon</strong> (<em>list of float</em><em>, </em><em>optional</em>) – Longitude bounding box for regional zoom, by default [-180, 180].</p></li>
+<li><p><strong>boxlat</strong> (<em>list of float</em><em>, </em><em>optional</em>) – Latitude bounding box for regional zoom, by default [-90, 90].</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A HoloViews layout containing three plots:
+- Effective resolution of the reference dataset.
+- Effective resolution of the study dataset.
+- Gain(-)/loss(+) of effective resolution compared to the reference dataset.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>holoviews.Layout</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">study_file</span> <span class="o">=</span> <span class="s2">&quot;study_data.nc&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ref_file</span> <span class="o">=</span> <span class="s2">&quot;reference_data.nc&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">compare_psd_score</span><span class="p">(</span><span class="n">study_file</span><span class="p">,</span> <span class="n">ref_file</span><span class="p">,</span> <span class="n">boxlon</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">120</span><span class="p">,</span> <span class="o">-</span><span class="mi">70</span><span class="p">],</span> <span class="n">boxlat</span><span class="o">=</span><span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">50</span><span class="p">])</span>
+</pre></div>
+</div>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="mod_compare.compare_stat_score_map">
 <span class="sig-prename descclassname"><span class="pre">mod_compare.</span></span><span class="sig-name descname"><span class="pre">compare_stat_score_map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">study_filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref_filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boxlon</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[-</span> <span class="pre">180,</span> <span class="pre">180]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boxlat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[-</span> <span class="pre">90,</span> <span class="pre">90]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vartype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'err_var'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mod_compare.compare_stat_score_map" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Plot statistical score maps.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>study_filename</strong> (<em>str</em>) – Path to the NetCDF file containing the studied data.</p></li>
+<li><p><strong>ref_filename</strong> (<em>str</em>) – Path to the NetCDF file containing the reference data.</p></li>
+<li><p><strong>boxlon</strong> (<em>Array of floats</em><em>, </em><em>optional</em>) – Array containing min and max longitude to plot.</p></li>
+<li><p><strong>boxlar</strong> (<em>Array of floats</em><em>, </em><em>optional</em>) – Array containing min and max latitude to plot.</p></li>
+<li><p><strong>vartype</strong> (<em>str</em><em>, </em><em>optional</em>) – Name of the variable to plot, ‘err_var’ by default or ‘exp_var’.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A HoloViews layout containing six plots.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>holoviews.Layout</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="mod_compare.convert_longitude">
@@ -135,7 +180,25 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="mod_compare.regional_zoom">
 <span class="sig-prename descclassname"><span class="pre">mod_compare.</span></span><span class="sig-name descname"><span class="pre">regional_zoom</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ds_glob</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boxlon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boxlat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">namelon</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'lon'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">namelat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'lat'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mod_compare.regional_zoom" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Select a geographical region in a xarray.dataset using longitude and latitude information.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ds_glob</strong> (<em>xarray.Dataset</em>) – Input dataset organized in longitudes and latitudes coordinates.</p></li>
+<li><p><strong>box_lon</strong> (<em>Array of float</em>) – Min and max longitudes of the requested regional zoom.</p></li>
+<li><p><strong>box_lat</strong> (<em>Array of float</em>) – Min and max latitudes of the requested regional zoom.</p></li>
+<li><p><strong>namelon</strong> (<em>str</em><em>, </em><em>optional</em>) – Name of the longitude coordinate.</p></li>
+<li><p><strong>namelat</strong> (<em>str</em><em>, </em><em>optional</em>) – Name of the latitude coordinate.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The input dataset restricted in the requested geographical region.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>xarray.Dataset</p>
+</dd>
+</dl>
+</dd></dl>
 
 </section>
 
@@ -143,7 +206,7 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="nb_download_data.html" class="btn btn-neutral float-left" title="Notebooks download the data" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="notebooks_download_data.html" class="btn btn-neutral float-left" title="Notebooks download the data" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="mod_filter.html" class="btn btn-neutral float-right" title="mod_filter module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

@@ -63,7 +63,8 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Notebooks</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="nb_download_data.html">Notebooks download the data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks_evaluation.html">Notebooks evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks_download_data.html">Notebooks download the data</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Scripts</span></p>
 <ul class="current">
@@ -105,16 +106,21 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="mod_spectral.compute_crossing">
 <span class="sig-prename descclassname"><span class="pre">mod_spectral.</span></span><span class="sig-name descname"><span class="pre">compute_crossing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wavenumber</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mod_spectral.compute_crossing" title="Permalink to this definition"></a></dt>
-<dd><dl class="field-list simple">
+<dd><p>Compute the crossing of a threshold by an array of values.</p>
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>array</strong> – </p></li>
-<li><p><strong>wavenumber</strong> – </p></li>
-<li><p><strong>threshold</strong> – </p></li>
+<li><p><strong>array</strong> (<em>numpy.ndarray</em>) – Array of values.</p></li>
+<li><p><strong>wavenumber</strong> (<em>numpy.ndarray</em>) – Array of wavenumbers.</p></li>
+<li><p><strong>threshold</strong> (<em>float</em><em>, </em><em>optional</em>) – Threshold for crossing, defaults to 0.5.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p></p>
+<dd class="field-even"><p><ul class="simple">
+<li><p><em>float</em> – Effective resolution.</p></li>
+<li><p><em>bool</em> – Flag indicating multiple crossings.</p></li>
+</ul>
+</p>
 </dd>
 </dl>
 </dd></dl>
@@ -122,67 +128,325 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="mod_spectral.compute_median_dx">
 <span class="sig-prename descclassname"><span class="pre">mod_spectral.</span></span><span class="sig-name descname"><span class="pre">compute_median_dx</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mod_spectral.compute_median_dx" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Compute the median distance between consecutive points in a dataset.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>dataset</strong> (<em>xarray.Dataset</em>) – Dataset containing longitude and latitude data.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The median distance in meters.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="mod_spectral.compute_median_lon_lat">
 <span class="sig-prename descclassname"><span class="pre">mod_spectral.</span></span><span class="sig-name descname"><span class="pre">compute_median_lon_lat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vlon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vlat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sub_segment_point</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">npt</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mod_spectral.compute_median_lon_lat" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Compute the median longitude and latitude for a sub-segment of points.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vlon</strong> (<em>numpy.ndarray</em>) – Array of longitudes.</p></li>
+<li><p><strong>vlat</strong> (<em>numpy.ndarray</em>) – Array of latitudes.</p></li>
+<li><p><strong>sub_segment_point</strong> (<em>int</em>) – Starting index of the sub-segment.</p></li>
+<li><p><strong>npt</strong> (<em>int</em>) – Number of points in the sub-segment.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><em>float</em> – The median longitude.</p></li>
+<li><p><em>float</em> – The median latitude.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="mod_spectral.compute_psd_scores">
 <span class="sig-prename descclassname"><span class="pre">mod_spectral.</span></span><span class="sig-name descname"><span class="pre">compute_psd_scores</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ds_interp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lenght_scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1500.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mod_spectral.compute_psd_scores" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Compute power spectral density (PSD) scores and save them to a NetCDF file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ds_interp</strong> (<em>xarray.Dataset</em>) – Interpolated dataset.</p></li>
+<li><p><strong>output_filename</strong> (<em>str</em>) – Output NetCDF file path.</p></li>
+<li><p><strong>length_scale</strong> (<em>float</em><em>, </em><em>optional</em>) – Length scale, defaults to 1500.0.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="mod_spectral.compute_psd_scores_current">
 <span class="sig-prename descclassname"><span class="pre">mod_spectral.</span></span><span class="sig-name descname"><span class="pre">compute_psd_scores_current</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ds_interp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lenght_scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">numpy.timedelta64</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'</span> <span class="pre">'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mod_spectral.compute_psd_scores_current" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Compute power spectral density (PSD) scores for current data and save them to a NetCDF file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ds_interp</strong> (<em>xarray.Dataset</em>) – Interpolated dataset.</p></li>
+<li><p><strong>output_filename</strong> (<em>str</em>) – Output NetCDF file path.</p></li>
+<li><p><strong>length_scale</strong> (<em>np.timedelta64</em><em>, </em><em>optional</em>) – Length scale, defaults to 40 days.</p></li>
+<li><p><strong>method_name</strong> (<em>str</em><em>, </em><em>optional</em>) – Method name for the NetCDF file, defaults to ‘ ‘.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="mod_spectral.compute_psd_scores_v2">
 <span class="sig-prename descclassname"><span class="pre">mod_spectral.</span></span><span class="sig-name descname"><span class="pre">compute_psd_scores_v2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ds_interp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lenght_scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1500.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'</span> <span class="pre">'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mod_spectral.compute_psd_scores_v2" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Compute power spectral density (PSD) scores using a different method and save them to a NetCDF file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ds_interp</strong> (<em>xarray.Dataset</em>) – Interpolated dataset.</p></li>
+<li><p><strong>output_filename</strong> (<em>str</em>) – Output NetCDF file path.</p></li>
+<li><p><strong>length_scale</strong> (<em>float</em><em>, </em><em>optional</em>) – Length scale, defaults to 1500.0.</p></li>
+<li><p><strong>method_name</strong> (<em>str</em><em>, </em><em>optional</em>) – Method name for the NetCDF file, defaults to ‘ ‘.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="mod_spectral.compute_resolution">
 <span class="sig-prename descclassname"><span class="pre">mod_spectral.</span></span><span class="sig-name descname"><span class="pre">compute_resolution</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wavenumber</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psd_diff</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psd_ref</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mod_spectral.compute_resolution" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Compute the resolution.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>lon</strong> (<em>numpy.ndarray</em>) – Array of longitudes.</p></li>
+<li><p><strong>lat</strong> (<em>numpy.ndarray</em>) – Array of latitudes.</p></li>
+<li><p><strong>wavenumber</strong> (<em>numpy.ndarray</em>) – Array of wavenumbers.</p></li>
+<li><p><strong>psd_diff</strong> (<em>numpy.ndarray</em>) – Power spectral density of the difference between study and reference.</p></li>
+<li><p><strong>psd_ref</strong> (<em>numpy.ndarray</em>) – Power spectral density of the reference.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Array of resolution values.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="mod_spectral.compute_segment">
 <span class="sig-prename descclassname"><span class="pre">mod_spectral.</span></span><span class="sig-name descname"><span class="pre">compute_segment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ds_interp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">npt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref_var_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'sla_unfiltered'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">study_var_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'msla_interpolated'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_time_gap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">numpy.timedelta64</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">segment_overlapping</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.25</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mod_spectral.compute_segment" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Compute segments of data based on specified criteria.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ds_interp</strong> (<em>xarray.Dataset</em>) – Interpolated dataset containing relevant variables.</p></li>
+<li><p><strong>npt</strong> (<em>int</em>) – Number of points in each segment.</p></li>
+<li><p><strong>ref_var_name</strong> (<em>str</em><em>, </em><em>optional</em>) – Name of the reference variable. Default is ‘sla_unfiltered’.</p></li>
+<li><p><strong>study_var_name</strong> (<em>str</em><em>, </em><em>optional</em>) – Name of the study variable. Default is ‘msla_interpolated’.</p></li>
+<li><p><strong>max_time_gap</strong> (<em>numpy.timedelta64</em><em>, </em><em>optional</em>) – Maximum time gap to consider for segmenting. Default is 2 seconds.</p></li>
+<li><p><strong>segment_overlapping</strong> (<em>float</em><em>, </em><em>optional</em>) – Overlapping factor between segments. Default is 0.25.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><em>numpy.ndarray</em> – Array of median longitudes for each segment.</p></li>
+<li><p><em>numpy.ndarray</em> – Array of median latitudes for each segment.</p></li>
+<li><p><em>numpy.ndarray</em> – Array of segmented reference variable data.</p></li>
+<li><p><em>numpy.ndarray</em> – Array of segmented study variable data.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="mod_spectral.compute_segment_v2">
 <span class="sig-prename descclassname"><span class="pre">mod_spectral.</span></span><span class="sig-name descname"><span class="pre">compute_segment_v2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ds_interp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">npt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta_x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref_var_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'sla_unfiltered'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">study_var_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'msla_interpolated'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_time_gap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">numpy.timedelta64</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">segment_overlapping</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.25</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mod_spectral.compute_segment_v2" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Compute various spectral features for segments of data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ds_interp</strong> (<em>xarray.Dataset</em>) – Interpolated dataset containing relevant variables.</p></li>
+<li><p><strong>npt</strong> (<em>int</em>) – Number of points in each segment.</p></li>
+<li><p><strong>delta_x</strong> (<em>float</em>) – Spatial resolution for spectral computation.</p></li>
+<li><p><strong>ref_var_name</strong> (<em>str</em><em>, </em><em>optional</em>) – Name of the reference variable. Default is ‘sla_unfiltered’.</p></li>
+<li><p><strong>study_var_name</strong> (<em>str</em><em>, </em><em>optional</em>) – Name of the study variable. Default is ‘msla_interpolated’.</p></li>
+<li><p><strong>max_time_gap</strong> (<em>numpy.timedelta64</em><em>, </em><em>optional</em>) – Maximum time gap to consider for segmenting. Default is 2 seconds.</p></li>
+<li><p><strong>segment_overlapping</strong> (<em>float</em><em>, </em><em>optional</em>) – Overlapping factor between segments. Default is 0.25.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><em>numpy.ndarray</em> – Array of wavenumbers.</p></li>
+<li><p><em>numpy.ndarray</em> – Array of latitudes.</p></li>
+<li><p><em>numpy.ndarray</em> – Array of longitudes.</p></li>
+<li><p><em>numpy.ndarray</em> – Array of segment counts per grid cell.</p></li>
+<li><p><em>numpy.ndarray</em> – Array of reference variable power spectral densities.</p></li>
+<li><p><em>numpy.ndarray</em> – Array of study variable power spectral densities.</p></li>
+<li><p><em>numpy.ndarray</em> – Array of power spectral densities of the difference between study and reference.</p></li>
+<li><p><em>numpy.ndarray</em> – Array of coherence values.</p></li>
+<li><p><em>numpy.ndarray</em> – Array of cross-spectral densities.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="mod_spectral.spectral_computation">
 <span class="sig-prename descclassname"><span class="pre">mod_spectral.</span></span><span class="sig-name descname"><span class="pre">spectral_computation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lon_segment</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lat_segment</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref_segments</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">study_segments</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta_x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">npt</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mod_spectral.spectral_computation" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Perform spectral computation and analysis for grid cells.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>lon_segment</strong> (<em>numpy.ndarray</em>) – Array of segment longitudes.</p></li>
+<li><p><strong>lat_segment</strong> (<em>numpy.ndarray</em>) – Array of segment latitudes.</p></li>
+<li><p><strong>ref_segments</strong> (<em>numpy.ndarray</em>) – Array of reference variable segments.</p></li>
+<li><p><strong>study_segments</strong> (<em>numpy.ndarray</em>) – Array of study variable segments.</p></li>
+<li><p><strong>delta_x</strong> (<em>float</em>) – Spatial resolution for spectral computation.</p></li>
+<li><p><strong>npt</strong> (<em>int</em>) – Number of points in each segment.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><em>numpy.ndarray</em> – Array of wavenumbers.</p></li>
+<li><p><em>numpy.ndarray</em> – Array of latitudes.</p></li>
+<li><p><em>numpy.ndarray</em> – Array of longitudes.</p></li>
+<li><p><em>numpy.ndarray</em> – Array of segment counts per grid cell.</p></li>
+<li><p><em>numpy.ndarray</em> – Array of reference variable power spectral densities.</p></li>
+<li><p><em>numpy.ndarray</em> – Array of study variable power spectral densities.</p></li>
+<li><p><em>numpy.ndarray</em> – Array of power spectral densities of the difference between study and reference.</p></li>
+<li><p><em>numpy.ndarray</em> – Array of coherence values.</p></li>
+<li><p><em>numpy.ndarray</em> – Array of cross-spectral densities.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="mod_spectral.spectral_computation_drifters_by_latbin">
 <span class="sig-prename descclassname"><span class="pre">mod_spectral.</span></span><span class="sig-name descname"><span class="pre">spectral_computation_drifters_by_latbin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lon_segment</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lat_segment</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref_segments</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">study_segments</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta_x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">npt</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mod_spectral.spectral_computation_drifters_by_latbin" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Compute spectral properties of drifters by latitude bin.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>lon_segment</strong> (<em>numpy.ndarray</em>) – Array of segmented longitudes.</p></li>
+<li><p><strong>lat_segment</strong> (<em>numpy.ndarray</em>) – Array of segmented latitudes.</p></li>
+<li><p><strong>ref_segments</strong> (<em>numpy.ndarray</em>) – Array of segmented reference segments.</p></li>
+<li><p><strong>study_segments</strong> (<em>numpy.ndarray</em>) – Array of segmented study segments.</p></li>
+<li><p><strong>delta_x</strong> (<em>float</em>) – Delta x value.</p></li>
+<li><p><strong>npt</strong> (<em>int</em>) – Number of points.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>wavenumber_to_keep</strong> (<em>numpy.ndarray</em>) – Array of wavenumbers.</p></li>
+<li><p><strong>vlat</strong> (<em>numpy.ndarray</em>) – Array of latitudes.</p></li>
+<li><p><strong>nb_segment</strong> (<em>numpy.ndarray</em>) – Array of segment counts.</p></li>
+<li><p><strong>psd_ref</strong> (<em>numpy.ndarray</em>) – Power spectral density of the reference.</p></li>
+<li><p><strong>psd_study</strong> (<em>numpy.ndarray</em>) – Power spectral density of the study.</p></li>
+<li><p><strong>psd_diff</strong> (<em>numpy.ndarray</em>) – Power spectral density of the difference.</p></li>
+<li><p><strong>coherence</strong> (<em>numpy.ndarray</em>) – Magnitude squared coherence.</p></li>
+<li><p><strong>cross_spectrum</strong> (<em>numpy.ndarray</em>) – Complex cross-spectrum.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="mod_spectral.spectral_computation_v2">
 <span class="sig-prename descclassname"><span class="pre">mod_spectral.</span></span><span class="sig-name descname"><span class="pre">spectral_computation_v2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lon_segment</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lat_segment</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref_segments</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">study_segments</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta_x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">npt</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mod_spectral.spectral_computation_v2" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Perform spectral computation and analysis for grid cells.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>lon_segment</strong> (<em>numpy.ndarray</em>) – Array of segment longitudes.</p></li>
+<li><p><strong>lat_segment</strong> (<em>numpy.ndarray</em>) – Array of segment latitudes.</p></li>
+<li><p><strong>ref_segments</strong> (<em>numpy.ndarray</em>) – Array of reference variable segments.</p></li>
+<li><p><strong>study_segments</strong> (<em>numpy.ndarray</em>) – Array of study variable segments.</p></li>
+<li><p><strong>delta_x</strong> (<em>float</em>) – Spatial resolution for spectral computation.</p></li>
+<li><p><strong>npt</strong> (<em>int</em>) – Number of points in each segment.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><em>numpy.ndarray</em> – Array of wavenumbers.</p></li>
+<li><p><em>numpy.ndarray</em> – Array of latitudes.</p></li>
+<li><p><em>numpy.ndarray</em> – Array of longitudes.</p></li>
+<li><p><em>numpy.ndarray</em> – Array of segment counts per grid cell.</p></li>
+<li><p><em>numpy.ndarray</em> – Array of reference variable power spectral densities.</p></li>
+<li><p><em>numpy.ndarray</em> – Array of study variable power spectral densities.</p></li>
+<li><p><em>numpy.ndarray</em> – Array of power spectral densities of the difference between study and reference.</p></li>
+<li><p><em>numpy.ndarray</em> – Array of coherence values.</p></li>
+<li><p><em>numpy.ndarray</em> – Array of cross-spectral densities.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="mod_spectral.write_psd_current_output">
 <span class="sig-prename descclassname"><span class="pre">mod_spectral.</span></span><span class="sig-name descname"><span class="pre">write_psd_current_output</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">output_netcdf_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wavenumber</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vlat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nb_segment</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psd_ref</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psd_study</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psd_diff_ref_study</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coherence</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cross_spectrum</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mod_spectral.write_psd_current_output" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Write power spectral density (PSD) current data to a NetCDF file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>output_netcdf_file</strong> (<em>str</em>) – Output NetCDF file path.</p></li>
+<li><p><strong>wavenumber</strong> (<em>numpy.ndarray</em>) – Array of wavenumbers.</p></li>
+<li><p><strong>vlat</strong> (<em>numpy.ndarray</em>) – Array of latitudes.</p></li>
+<li><p><strong>nb_segment</strong> (<em>numpy.ndarray</em>) – Array of segment counts.</p></li>
+<li><p><strong>psd_ref</strong> (<em>numpy.ndarray</em>) – Power spectral density of the reference.</p></li>
+<li><p><strong>psd_study</strong> (<em>numpy.ndarray</em>) – Power spectral density of the study.</p></li>
+<li><p><strong>psd_diff_ref_study</strong> (<em>numpy.ndarray</em>) – Power spectral density of the difference between study and reference.</p></li>
+<li><p><strong>coherence</strong> (<em>numpy.ndarray</em>) – Magnitude squared coherence.</p></li>
+<li><p><strong>cross_spectrum</strong> (<em>numpy.ndarray</em>) – Complex cross-spectrum.</p></li>
+<li><p><strong>method_name</strong> (<em>str</em><em>, </em><em>optional</em>) – Method name for the NetCDF file, defaults to an empty string.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="mod_spectral.write_psd_output">
 <span class="sig-prename descclassname"><span class="pre">mod_spectral.</span></span><span class="sig-name descname"><span class="pre">write_psd_output</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">output_netcdf_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wavenumber</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vlat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vlon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nb_segment</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psd_ref</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psd_study</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psd_diff_ref_study</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coherence</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cross_spectrum</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">one_sided</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'</span> <span class="pre">'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mod_spectral.write_psd_output" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Write power spectral density and related variables to a NetCDF file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>output_netcdf_file</strong> (<em>str</em>) – Output NetCDF file path.</p></li>
+<li><p><strong>wavenumber</strong> (<em>numpy.ndarray</em>) – Array of wavenumbers.</p></li>
+<li><p><strong>vlat</strong> (<em>numpy.ndarray</em>) – Array of latitudes.</p></li>
+<li><p><strong>vlon</strong> (<em>numpy.ndarray</em>) – Array of longitudes.</p></li>
+<li><p><strong>nb_segment</strong> (<em>numpy.ndarray</em>) – Array of segment counts per grid cell.</p></li>
+<li><p><strong>psd_ref</strong> (<em>numpy.ndarray</em>) – Power spectral density of the reference field.</p></li>
+<li><p><strong>psd_study</strong> (<em>numpy.ndarray</em>) – Power spectral density of the study field.</p></li>
+<li><p><strong>psd_diff_ref_study</strong> (<em>numpy.ndarray</em>) – Power spectral density of the difference between study and reference fields.</p></li>
+<li><p><strong>coherence</strong> (<em>numpy.ndarray</em>) – Magnitude squared coherence between reference and study fields.</p></li>
+<li><p><strong>cross_spectrum</strong> (<em>numpy.ndarray</em>) – Complex cross-spectrum between reference and study fields.</p></li>
+<li><p><strong>one_sided</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether to use one-sided wavenumbers, defaults to True.</p></li>
+<li><p><strong>method_name</strong> (<em>str</em><em>, </em><em>optional</em>) – Method name for the NetCDF file, defaults to ‘ ‘.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 </section>
 

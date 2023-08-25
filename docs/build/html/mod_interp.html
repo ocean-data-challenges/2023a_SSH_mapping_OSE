@@ -63,7 +63,8 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Notebooks</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="nb_download_data.html">Notebooks download the data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks_evaluation.html">Notebooks evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks_download_data.html">Notebooks download the data</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Scripts</span></p>
 <ul class="current">
@@ -107,9 +108,65 @@
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mod_interp.</span></span><span class="sig-name descname"><span class="pre">TimeSeries</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mod_interp.TimeSeries" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Manage a time series composed of a grid stack.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>ds</strong> (<em>xarray.Dataset</em>) – Input dataset containing the time series data.</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="mod_interp.TimeSeries.ds">
+<span class="sig-name descname"><span class="pre">ds</span></span><a class="headerlink" href="#mod_interp.TimeSeries.ds" title="Permalink to this definition"></a></dt>
+<dd><p>Input dataset containing the time series data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>xarray.Dataset</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="mod_interp.TimeSeries.series">
+<span class="sig-name descname"><span class="pre">series</span></span><a class="headerlink" href="#mod_interp.TimeSeries.series" title="Permalink to this definition"></a></dt>
+<dd><p>Time series data loaded from the dataset.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>pandas.Series</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="mod_interp.TimeSeries.dt">
+<span class="sig-name descname"><span class="pre">dt</span></span><a class="headerlink" href="#mod_interp.TimeSeries.dt" title="Permalink to this definition"></a></dt>
+<dd><p>Time step duration between consecutive data points in the series.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>datetime.timedelta</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mod_interp.TimeSeries._is_sorted">
+<span class="sig-name descname"><span class="pre">_is_sorted</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">array</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mod_interp.TimeSeries._is_sorted" title="Permalink to this definition"></a></dt>
+<dd><p>Check if an array is sorted.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mod_interp.TimeSeries._load_ts">
+<span class="sig-name descname"><span class="pre">_load_ts</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mod_interp.TimeSeries._load_ts" title="Permalink to this definition"></a></dt>
+<dd><p>Load the time series data into memory.</p>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="mod_interp.TimeSeries.load_dataset">
-<span class="sig-name descname"><span class="pre">load_dataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">varname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mod_interp.TimeSeries.load_dataset" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">load_dataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">varname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mod_interp.TimeSeries.load_dataset" title="Permalink to this definition"></a></dt>
+<dd><p>Loading the time series into memory for the defined period.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-name descname"><span class="pre">load_dataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">varname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id0" title="Permalink to this definition"></a></dt>
 <dd><p>Loading the time series into memory for the defined period.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -134,34 +191,113 @@
 <dt class="sig sig-object py" id="mod_interp.interpolate">
 <span class="sig-prename descclassname"><span class="pre">mod_interp.</span></span><span class="sig-name descname"><span class="pre">interpolate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mod_interp.interpolate" title="Permalink to this definition"></a></dt>
 <dd><p>Interpolate the time series over the defined period.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> (<em>pandas.DataFrame</em>) – Input DataFrame containing time series data.</p></li>
+<li><p><strong>time_series</strong> (<a class="reference internal" href="#mod_interp.TimeSeries" title="mod_interp.TimeSeries"><em>TimeSeries</em></a>) – Time series data and properties.</p></li>
+<li><p><strong>start</strong> (<em>pandas.Timestamp</em>) – Start timestamp of the interpolation period.</p></li>
+<li><p><strong>end</strong> (<em>pandas.Timestamp</em>) – End timestamp of the interpolation period.</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="mod_interp.interpolate_current">
 <span class="sig-prename descclassname"><span class="pre">mod_interp.</span></span><span class="sig-name descname"><span class="pre">interpolate_current</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mod_interp.interpolate_current" title="Permalink to this definition"></a></dt>
-<dd><p>Interpolate the time series over the defined period.</p>
+<dd><p>Interpolate the current time series over the defined period.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> (<em>pandas.DataFrame</em>) – Input DataFrame containing time series data.</p></li>
+<li><p><strong>time_series</strong> (<a class="reference internal" href="#mod_interp.TimeSeries" title="mod_interp.TimeSeries"><em>TimeSeries</em></a>) – Time series data and properties.</p></li>
+<li><p><strong>start</strong> (<em>pandas.Timestamp</em>) – Start timestamp of the interpolation period.</p></li>
+<li><p><strong>end</strong> (<em>pandas.Timestamp</em>) – End timestamp of the interpolation period.</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="mod_interp.periods">
 <span class="sig-prename descclassname"><span class="pre">mod_interp.</span></span><span class="sig-name descname"><span class="pre">periods</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'sla_unfiltered'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frequency</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'W'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mod_interp.periods" title="Permalink to this definition"></a></dt>
 <dd><p>Return the list of periods covering the time series loaded in memory.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> (<em>pandas.DataFrame</em>) – Input DataFrame containing time series data.</p></li>
+<li><p><strong>time_series</strong> (<a class="reference internal" href="#mod_interp.TimeSeries" title="mod_interp.TimeSeries"><em>TimeSeries</em></a>) – Time series data and properties.</p></li>
+<li><p><strong>var_name</strong> (<em>str</em><em>, </em><em>optional</em>) – Name of the variable to consider, by default “sla_unfiltered”.</p></li>
+<li><p><strong>frequency</strong> (<em>str</em><em>, </em><em>optional</em>) – Frequency for period grouping, by default ‘W’ (weekly).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Yields</dt>
+<dd class="field-even"><p><em>tuple</em> – A tuple containing the start and end timestamps of each period.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="mod_interp.reformat_drifter_dataset">
 <span class="sig-prename descclassname"><span class="pre">mod_interp.</span></span><span class="sig-name descname"><span class="pre">reformat_drifter_dataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mod_interp.reformat_drifter_dataset" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Reformat a drifter dataset, extracting relevant variables.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>ds</strong> (<em>xarray.Dataset</em>) – Input drifter dataset.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Reformatted drifter dataset.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>xarray.Dataset</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="mod_interp.run_interpolation">
 <span class="sig-prename descclassname"><span class="pre">mod_interp.</span></span><span class="sig-name descname"><span class="pre">run_interpolation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ds_maps</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ds_alongtrack</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frequency</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'M'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mod_interp.run_interpolation" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Interpolate time series data over specified periods.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ds_maps</strong> (<em>xarray.Dataset</em>) – Input dataset containing maps data.</p></li>
+<li><p><strong>ds_alongtrack</strong> (<em>xarray.Dataset</em>) – Input dataset containing along-track data.</p></li>
+<li><p><strong>frequency</strong> (<em>str</em><em>, </em><em>optional</em>) – Frequency for period grouping, by default ‘M’ (monthly).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Interpolated dataset.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>xarray.Dataset</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="mod_interp.run_interpolation_drifters">
 <span class="sig-prename descclassname"><span class="pre">mod_interp.</span></span><span class="sig-name descname"><span class="pre">run_interpolation_drifters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ds_maps</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ds_drifter</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_min</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_max</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frequency</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'M'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mod_interp.run_interpolation_drifters" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Interpolate drifters data over specified periods.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ds_maps</strong> (<em>xarray.Dataset</em>) – Input dataset containing maps data.</p></li>
+<li><p><strong>ds_drifter</strong> (<em>xarray.Dataset</em>) – Input dataset containing drifter data.</p></li>
+<li><p><strong>time_min</strong> (<em>numpy.datetime64</em>) – Minimum time for interpolation.</p></li>
+<li><p><strong>time_max</strong> (<em>numpy.datetime64</em>) – Maximum time for interpolation.</p></li>
+<li><p><strong>frequency</strong> (<em>str</em><em>, </em><em>optional</em>) – Frequency for period grouping, by default ‘M’ (monthly).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Interpolated drifter dataset.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>xarray.Dataset</p>
+</dd>
+</dl>
+</dd></dl>
 
 </section>
 
