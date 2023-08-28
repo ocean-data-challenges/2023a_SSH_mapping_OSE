@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sea Surface Height from Saral/AltiKa &mdash; ODC - global OSE mapping  documentation</title>
+  <title>Gulf Stream: Benchmark DUACS sea surface height maps &mdash; ODC - global OSE mapping  documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/sg_gallery.css" type="text/css" />
@@ -95,7 +95,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Sea Surface Height from Saral/AltiKa</li>
+      <li class="breadcrumb-item active">Gulf Stream: Benchmark DUACS sea surface height maps</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/gallery/ssh_scores_DUACS_geos_GS_real.ipynb.txt" rel="nofollow"> View page source</a>
       </li>
@@ -105,7 +105,24 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="nbinput nblast docutils container">
+  <img alt="header" src="../_images/logos_partenaires._cmems_se.jpg" />
+<section id="Gulf-Stream:-Benchmark-DUACS-sea-surface-height-maps">
+<h1>Gulf Stream: Benchmark DUACS sea surface height maps<a class="headerlink" href="#Gulf-Stream:-Benchmark-DUACS-sea-surface-height-maps" title="Permalink to this headline"></a></h1>
+<div style="text-align: right"><p>2023-04-27 DUACS_SSH_BENCHMARK_DEMO</p>
+</div><hr class="docutils" />
+<p><strong>Authors:</strong> CLS &amp; Datlas <strong>Copyright:</strong> 2023 CLS &amp; Datlas <strong>License:</strong> MIT</p>
+<div class="alert alert-block alert-success"><h1><center><p>Gulf Stream: Benchmark of DUACS sea surface height maps</p>
+</center></h1><h5><p>The notebook aims to evaluate the sea surface height maps produced by the DUACS system.</p>
+</h5><div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;h5&gt; These maps are equivalent to the SEALEVEL_GLO_PHY_L4_MY_008_047 product distributed by the Copernicus Marine Service, except that a nadir altimeter (SARAL/Altika, SEALEVEL_GLO_PHY_L3_MY_008_062 product) has been excluded from the mapping. &lt;/h5&gt;
+    &lt;h5&gt; We provide below a demonstration of the validation of these maps against the independent SSH data from the Saral/AltiKa altimeter distributed by CMEMS &lt;/h5&gt;
+</pre></div>
+</div>
+</div><hr class="docutils" />
+<p><strong>General Note 1</strong>: Execute each cell through the button from the top MENU (or keyboard shortcut <code class="docutils literal notranslate"><span class="pre">Shift</span></code> + <code class="docutils literal notranslate"><span class="pre">Enter</span></code>). <strong>General Note 2</strong>: If, for any reason, the kernel is not working anymore, in the top MENU, click on the button. Then, in the top MENU, click on “Cell” and select “Run All Above Selected Cell”. ***</p>
+<div class="alert alert-danger" role="alert"><h3><p>Learning outcomes</p>
+</h3><p>At the end of this notebook you will know:</p>
+<ul><li><p>How you can evaluated sea surface height maps with independent alongtrack data: statistical and spectral analysis</p>
+</li></ul></div><div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
@@ -727,7 +744,7 @@ if (window.Jupyter !== undefined) {
 </h2></li>
 </ol>
 </div><section id="Sea-Surface-Height-from-Saral/AltiKa">
-<h1>Sea Surface Height from Saral/AltiKa<a class="headerlink" href="#Sea-Surface-Height-from-Saral/AltiKa" title="Permalink to this headline"></a></h1>
+<h2>Sea Surface Height from Saral/AltiKa<a class="headerlink" href="#Sea-Surface-Height-from-Saral/AltiKa" title="Permalink to this headline"></a></h2>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
@@ -1836,7 +1853,7 @@ Attributes: (12/44)
 </div>
 </section>
 <section id="Sea-Surface-Height-maps-to-evaluate">
-<h1>Sea Surface Height maps to evaluate<a class="headerlink" href="#Sea-Surface-Height-maps-to-evaluate" title="Permalink to this headline"></a></h1>
+<h2>Sea Surface Height maps to evaluate<a class="headerlink" href="#Sea-Surface-Height-maps-to-evaluate" title="Permalink to this headline"></a></h2>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
@@ -2747,7 +2764,7 @@ Data variables:
 </ol>
 </div></section>
 <section id="2.1-Interpolate-sea-surface-height-maps-onto-along-track-positions">
-<h1>2.1 Interpolate sea surface height maps onto along-track positions<a class="headerlink" href="#2.1-Interpolate-sea-surface-height-maps-onto-along-track-positions" title="Permalink to this headline"></a></h1>
+<h2>2.1 Interpolate sea surface height maps onto along-track positions<a class="headerlink" href="#2.1-Interpolate-sea-surface-height-maps-onto-along-track-positions" title="Permalink to this headline"></a></h2>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
@@ -3197,7 +3214,7 @@ Data variables: (12/13)
 </div>
 </section>
 <section id="2.2-Compute-grid-boxes-statistics-&amp;-statistics-by-regime-(coastal,-offshore-low-variability,-offshore-high-variability)">
-<h1>2.2 Compute grid boxes statistics &amp; statistics by regime (coastal, offshore low variability, offshore high variability)<a class="headerlink" href="#2.2-Compute-grid-boxes-statistics-&-statistics-by-regime-(coastal,-offshore-low-variability,-offshore-high-variability)" title="Permalink to this headline"></a></h1>
+<h2>2.2 Compute grid boxes statistics &amp; statistics by regime (coastal, offshore low variability, offshore high variability)<a class="headerlink" href="#2.2-Compute-grid-boxes-statistics-&-statistics-by-regime-(coastal,-offshore-low-variability,-offshore-high-variability)" title="Permalink to this headline"></a></h2>
 <p>Once the maps have been interpolated to the position of the along-track, it is possible to calculate different statistics on the time series SLA_alongtrack and SLA_maps.</p>
 <p>We propose below the following statistics: error variance maps (static by 1°x1° box), explained variance maps, temporal evolution of global error variance and explained variance.</p>
 <p>These statistics are also applied to the filtered signals focusing on the 65-500km scale range. A bandpass filter is applied before calculating the scores.</p>
@@ -3237,14 +3254,14 @@ Data variables: (12/13)
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/gallery_ssh_scores_DUACS_geos_GS_real_16_0.png" src="../_images/gallery_ssh_scores_DUACS_geos_GS_real_16_0.png" />
+<img alt="../_images/gallery_ssh_scores_DUACS_geos_GS_real_19_0.png" src="../_images/gallery_ssh_scores_DUACS_geos_GS_real_19_0.png" />
 </div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/gallery_ssh_scores_DUACS_geos_GS_real_16_1.png" src="../_images/gallery_ssh_scores_DUACS_geos_GS_real_16_1.png" />
+<img alt="../_images/gallery_ssh_scores_DUACS_geos_GS_real_19_1.png" src="../_images/gallery_ssh_scores_DUACS_geos_GS_real_19_1.png" />
 </div>
 </div>
 <div class="nbinput docutils container">
@@ -3433,7 +3450,7 @@ Data variables: (12/13)
 </div>
 </section>
 <section id="2.3-Compute-Spectral-scores">
-<h1>2.3 Compute Spectral scores<a class="headerlink" href="#2.3-Compute-Spectral-scores" title="Permalink to this headline"></a></h1>
+<h2>2.3 Compute Spectral scores<a class="headerlink" href="#2.3-Compute-Spectral-scores" title="Permalink to this headline"></a></h2>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
@@ -3469,7 +3486,7 @@ Data variables: (12/13)
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/gallery_ssh_scores_DUACS_geos_GS_real_21_0.png" src="../_images/gallery_ssh_scores_DUACS_geos_GS_real_21_0.png" />
+<img alt="../_images/gallery_ssh_scores_DUACS_geos_GS_real_24_0.png" src="../_images/gallery_ssh_scores_DUACS_geos_GS_real_24_0.png" />
 </div>
 </div>
 <div class="nbinput docutils container">
@@ -3558,6 +3575,7 @@ Data variables: (12/13)
   }
 })(window);</script></div>
 </div>
+</section>
 </section>
 
 
