@@ -20,7 +20,4 @@
 
 ## Gulf Stream evaluation
 
-### DUACS
-
-- SSH evaluation with independant nadir: [ssh_scores_DUACS_geos_GS.ipynb](gallery/ssh_scores_DUACS_geos_GS.ipynb)
-- (U,V) evaluation with independant drifters: [uv_scores_DUACS_geos_GS.ipynb](gallery/uv_scores_DUACS_geos_GS.ipynb)
+### DUACS 
