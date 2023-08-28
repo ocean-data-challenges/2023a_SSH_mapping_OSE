@@ -107,7 +107,7 @@ class TimeSeries:
                Date of the last map to be loaded.
         
         Returns
-        ------- 
+        -------  
         pyinterp.backends.xarray.Grid3D: 
                 The interpolator handling the interpolation of the grid series.
         """
