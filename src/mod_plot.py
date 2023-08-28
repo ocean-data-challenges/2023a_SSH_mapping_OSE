@@ -8,8 +8,7 @@ import matplotlib.axes
 import matplotlib.pyplot as plt
 import matplotlib.ticker as mticker
 from cartopy.mpl.gridliner import LONGITUDE_FORMATTER, LATITUDE_FORMATTER
-import cartopy.feature as cfeature
-from mpl_toolkits.axes_grid1 import make_axes_locatable
+import cartopy.feature as cfeature 
 
 import warnings
 warnings.filterwarnings("ignore")
