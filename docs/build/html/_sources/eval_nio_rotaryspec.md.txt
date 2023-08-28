@@ -39,5 +39,6 @@
 **WOC-NIO** 
 
 ![WOC-NIO currents effective resolution](figures/Maps_WOC_effres_glob_uv.png)  
-
----------------------------------------
+ 
+ 
+ a

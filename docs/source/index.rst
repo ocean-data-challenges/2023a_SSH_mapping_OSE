@@ -66,13 +66,7 @@ The altimeter data from Saral/AltiKa and surface current velocity data mentioned
    :caption: Generic evaluation
 
    eval_generic_global.md
-   eval_generic_GS.md
-
-.. toctree::
-   :maxdepth: 1
-   :caption: Near inertial oscillation focus
-
-   eval_nio_rotaryspec.md
+   eval_generic_GS.md 
  
 
 .. toctree::
