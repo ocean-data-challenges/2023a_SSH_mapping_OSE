@@ -1862,25 +1862,7 @@ Attributes: (12/44)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%time
-
-if os.path.isdir(&#39;../data_dev/independent_drifters0&#39;):
-    print(&#39;Independant drifter data already exist locally in ../data/&#39;)
-else:
-    print(&#39;Downloading independent drifter data&#39;)
-
-    path_catalog = &quot;https://ige-meom-opendap.univ-grenoble-alpes.fr/thredds/catalog/meomopendap/extract/ocean-data-challenges/dc_Map_global_OSE/independent_drifters/catalog.html&quot;
-    path_data =    &quot;https://ige-meom-opendap.univ-grenoble-alpes.fr/thredds/fileServer/meomopendap/extract/ocean-data-challenges/dc_Map_global_OSE/independent_drifters/&quot;
-
-
-    list_of_files = retrieve_list_of_files_from_url(path_catalog, path_data,None,False)
-
-    !mkdir ../data_dev/independant_drifters0
-
-    i = 0
-    for ifile in sorted(list_of_files)[:]:
-        print(ifile)
-        subprocess.run(&quot;wget -P ../data_dev/independant_drifters0/ i {}&quot;.format(ifile))
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
 </div>

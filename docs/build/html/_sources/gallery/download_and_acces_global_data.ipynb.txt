@@ -2,7 +2,7 @@
  "cells": [
   {
    "cell_type": "markdown",
-   "id": "e1ff08ad",
+   "id": "98376d13",
    "metadata": {},
    "source": [
     "![header](../figures/logos_partenaires._cmems_se.jpg)"
@@ -10,7 +10,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "d5088ce1",
+   "id": "861c741d",
    "metadata": {},
    "source": [
     "# Access data\n",
@@ -30,7 +30,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "ce1cc87d",
+   "id": "dc3b159c",
    "metadata": {},
    "source": [
     "\n",
@@ -43,7 +43,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "8d856dba",
+   "id": "4ce2648e",
    "metadata": {},
    "source": [
     "***\n",
@@ -68,7 +68,7 @@
   {
    "cell_type": "code",
    "execution_count": 4,
-   "id": "ed46aa1c",
+   "id": "2a651fb9",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -84,7 +84,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "2e2c8d4e",
+   "id": "6137f9c0",
    "metadata": {},
    "source": [
     "<div class=\"alert alert-info\" role=\"alert\">\n",
@@ -97,7 +97,7 @@
   {
    "cell_type": "code",
    "execution_count": 2,
-   "id": "9c68f74f",
+   "id": "38cecb4f",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -114,7 +114,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "85a90584",
+   "id": "4f74a23c",
    "metadata": {},
    "source": [
     "<div class=\"alert alert-info\" role=\"alert\">\n",
@@ -126,7 +126,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "c7880ad2",
+   "id": "87482295",
    "metadata": {},
    "source": [
     "## Download the experiment alongtrack nadir data"
@@ -135,7 +135,7 @@
   {
    "cell_type": "code",
    "execution_count": 3,
-   "id": "94bdd2a0",
+   "id": "54bc3dc2",
    "metadata": {},
    "outputs": [
     {
@@ -177,7 +177,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "eb328bc1",
+   "id": "d711cf90",
    "metadata": {},
    "source": [
     "<div class=\"alert alert-info\" role=\"alert\">\n",
@@ -189,7 +189,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "11d78e4f",
+   "id": "83121f5c",
    "metadata": {},
    "source": [
     "## Download the independant alongtrack nadir data (Saral/AltiKa)"
@@ -198,7 +198,7 @@
   {
    "cell_type": "code",
    "execution_count": 4,
-   "id": "d3297cce",
+   "id": "b69c39fb",
    "metadata": {},
    "outputs": [
     {
@@ -619,7 +619,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "6e3c5ac3",
+   "id": "c07a236e",
    "metadata": {},
    "source": [
     "## Read the independant alongtrack nadir data (Saral/AltiKa)"
@@ -628,7 +628,7 @@
   {
    "cell_type": "code",
    "execution_count": 5,
-   "id": "e324292a",
+   "id": "9b02f287",
    "metadata": {
     "scrolled": false
    },
@@ -1905,7 +1905,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "6d14b5fc",
+   "id": "83760e4b",
    "metadata": {},
    "source": [
     "## Download the independant drifter data"
@@ -1914,7 +1914,7 @@
   {
    "cell_type": "code",
    "execution_count": 3,
-   "id": "405ada5d",
+   "id": "1c2a7f92",
    "metadata": {},
    "outputs": [
     {
@@ -11351,31 +11351,12 @@
     }
    ],
    "source": [
-    "%%time\n",
-    "\n",
-    "if os.path.isdir('../data_dev/independent_drifters0'):\n",
-    "    print('Independant drifter data already exist locally in ../data/')\n",
-    "else: \n",
-    "    print('Downloading independent drifter data')\n",
-    "    \n",
-    "    path_catalog = \"https://ige-meom-opendap.univ-grenoble-alpes.fr/thredds/catalog/meomopendap/extract/ocean-data-challenges/dc_Map_global_OSE/independent_drifters/catalog.html\" \n",
-    "    path_data =    \"https://ige-meom-opendap.univ-grenoble-alpes.fr/thredds/fileServer/meomopendap/extract/ocean-data-challenges/dc_Map_global_OSE/independent_drifters/\"\n",
-    "\n",
-    "\n",
-    "    list_of_files = retrieve_list_of_files_from_url(path_catalog, path_data,None,False)\n",
-    "\n",
-    "    !mkdir ../data_dev/independant_drifters0\n",
-    "\n",
-    "    i = 0\n",
-    "    for ifile in sorted(list_of_files)[:]:\n",
-    "        print(ifile) \n",
-    "        subprocess.run(\"wget -P ../data_dev/independant_drifters0/ i {}\".format(ifile))\n",
-    "    "
+    " "
    ]
   },
   {
    "cell_type": "markdown",
-   "id": "c3761e0d",
+   "id": "aef1836e",
    "metadata": {},
    "source": [
     "## Read the independant drifter data  "
@@ -11384,7 +11365,7 @@
   {
    "cell_type": "code",
    "execution_count": 7,
-   "id": "941a223a",
+   "id": "6ec46da8",
    "metadata": {
     "scrolled": true
    },
@@ -12188,7 +12169,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "6ccfcd9f",
+   "id": "a31875e7",
    "metadata": {},
    "source": [
     "## Download auxiliary data for diagnostics"
@@ -12197,7 +12178,7 @@
   {
    "cell_type": "code",
    "execution_count": 8,
-   "id": "38d2d978",
+   "id": "31d47de3",
    "metadata": {},
    "outputs": [
     {
@@ -12242,7 +12223,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "5c14b762",
+   "id": "e9c2c292",
    "metadata": {},
    "source": [
     "<div class=\"alert alert-info\" role=\"alert\">\n",
@@ -12254,7 +12235,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "ebe35fd9",
+   "id": "a9ddb3a3",
    "metadata": {},
    "source": [
     "## Download all available maps for comparison\n",
@@ -12265,7 +12246,7 @@
   {
    "cell_type": "code",
    "execution_count": 9,
-   "id": "b821c746",
+   "id": "b72ddeb9",
    "metadata": {},
    "outputs": [
     {
@@ -13453,7 +13434,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "74c2b78b",
+   "id": "d48e51c7",
    "metadata": {},
    "source": [
     "## Read DUACS maps for comparison\n",
@@ -13464,7 +13445,7 @@
   {
    "cell_type": "code",
    "execution_count": 10,
-   "id": "f1ce954e",
+   "id": "4d1ebc94",
    "metadata": {},
    "outputs": [
     {
@@ -14575,14 +14556,14 @@
   },
   {
    "cell_type": "markdown",
-   "id": "4cb73702",
+   "id": "c2045d8d",
    "metadata": {},
    "source": []
   },
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "c7604c4d",
+   "id": "bf364a1d",
    "metadata": {},
    "outputs": [],
    "source": []
