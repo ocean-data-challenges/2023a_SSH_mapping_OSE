@@ -15,6 +15,22 @@ The mapping methods are evaluated against independent data using two independant
 
 #### [(Check example 1)](https://github.com/ocean-data-challenges/2023a_SSH_mapping_OSE/blob/main/nb_diags_global/ssh_scores_DUACS_geos.ipynb)
 
+The ocean surface topography reconstruction is compared with independant data from Saral/AltiKa altimeter. The reconstructed maps are first interpolated onto the independant nadir tracks. The following diagnostics are then performed along these tracks and aggregated in 1° longitude x 1° latitude boxes.
+
+The metrics available using this independant nadir dataset are:
+
+- **Grid boxes statistics (maps)**
+    The SSH error variance and explained variance are computed in each box and displayed as maps. 
+     
+   - **SSH Error variance**     
+     
+     ![DUACS currents effective resolution](figures/Maps_DUACS_errvar_glob.png) 
+ 
+   - **SSH Explained variance** 
+
+
+     ![DUACS currents explained resolution](figures/Maps_DUACS_explvar_glob.png) 
+     
 
 <br> 
 
