@@ -139,25 +139,19 @@
 <h4><a class="reference external" href="https://github.com/ocean-data-challenges/2023a_SSH_mapping_OSE/blob/main/nb_diags_global/ssh_scores_DUACS_geos.ipynb">(Check example 1)</a><a class="headerlink" href="#check-example-1" title="Permalink to this headline"></a></h4>
 <p>The ocean surface topography reconstruction is compared with independant data from Saral/AltiKa altimeter. The reconstructed maps are first interpolated onto the independant nadir tracks. The following diagnostics are then performed along these tracks and aggregated in 1° longitude x 1° latitude boxes.</p>
 <p>The metrics available using this independant nadir dataset are:</p>
-<ul class="simple">
+<ul>
 <li><p><strong>Grid boxes statistics (maps)</strong>
-The SSH error variance and explained variance are computed in each box and displayed as maps.</p></li>
+The SSH error variance and explained variance are computed in each box and displayed as maps.</p>
+<ul>
+<li><p><strong>SSH Error variance</strong></p>
+<p><img alt="DUACS currents effective resolution" src="_images/Maps_DUACS_errvar_glob.png" /></p>
+</li>
+<li><p><strong>SSH Explained variance</strong></p>
+<p><img alt="DUACS currents explained resolution" src="_images/Maps_DUACS_explvar_glob.png" /></p>
+</li>
 </ul>
-<center>SSH Error variance</center>    
-![DUACS currents effective resolution](figures/Maps_DUACS_errvar_glob.png) 
-<table class="colwidths-auto docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head"><p><center>SSH Error variance</center></p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p><center> <img src="figures/Maps_DUACS_errvar_glob.png" alt="DUACS Error variance" width="400"/></center></p></td>
-</tr>
-</tbody>
-</table>
-<p>|————– |
-| <center>SSH Explained variance</center> |
-|<center>  <img src="figures/Maps_DUACS_explvar_glob.png" alt="DUACS Error variance" width="400"/> </center>  |</p>
+</li>
+</ul>
 <br> 
 <ul class="simple">
 <li><p><strong>Statistics by regimes (scalar scores)</strong>
