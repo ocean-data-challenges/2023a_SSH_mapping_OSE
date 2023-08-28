@@ -18,7 +18,7 @@ def retrieve_list_of_files_from_url(path_catalog, path_data, prefix3='dt_',read_
     path_data : str
         The base URL path to the directory where the files are hosted.
     prefix3 : str, optional
-        A prefix filter to select files with a specific prefix (default is 'dt_').
+        A prefix filter to select files with a specific prefix (default is 'dt*').
     read_online : bool, optional
         If True, constructs online-readable URLs (default is True).
 
