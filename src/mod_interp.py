@@ -33,7 +33,7 @@ class TimeSeries:
         Check if an array is sorted.
     _load_ts()
         Load the time series data into memory.
-    load_dataset(self, varname, start, end)
+    _load_dataset(self, varname, start, end)
         Loading the time series into memory for the defined period.
     """
 
@@ -93,26 +93,25 @@ class TimeSeries:
         #return series, datetime.timedelta(seconds=float(frequency.pop()))
         return series, timedelta(seconds=float(frequency.pop()))
 
-    def load_dataset(self, varname, start, end):
+    def _load_dataset(self, varname, start, end):
         """
         Loading the time series into memory for the defined period.
         
         Parameters
-	----------
-            
-	varname: str
-	   Name of the variable to be loaded into memory.
+        ----------
+        varname: str
+            Name of the variable to be loaded into memory.
         start: datetime.datetime
-	   Date of the first map to be loaded.
+               Date of the first map to be loaded.
         end: datetime.datetime
-	   Date of the last map to be loaded.
+               Date of the last map to be loaded.
         
-	Returns
-	-------
-        
-	pyinterp.backends.xarray.Grid3D: 
-		The interpolator handling the interpolation of the grid series.
+        Returns
+        ------- 
+        pyinterp.backends.xarray.Grid3D: 
+                The interpolator handling the interpolation of the grid series.
         """
+        
         if start < self.series.min():
             start = self.series.min()
         if end > self.series.max():
@@ -181,7 +180,7 @@ def interpolate(df, time_series, start, end):
     end : pandas.Timestamp
         End timestamp of the interpolation period.
     """
-    interpolator = time_series.load_dataset("sla", start, end)
+    interpolator = time_series._load_dataset("sla", start, end)
     mask = (df.index >= start) & (df.index < end)
     selected = df.loc[mask, ["longitude", "latitude"]]
     df.loc[mask, ["msla_interpolated"]] = interpolator.trivariate(
@@ -238,7 +237,7 @@ def interpolate_current(df, time_series, start, end):
     end : pandas.Timestamp
         End timestamp of the interpolation period.
     """
-    interpolator = time_series.load_dataset("ugos", start, end)
+    interpolator = time_series._load_dataset("ugos", start, end)
     mask = (df.index >= start) & (df.index < end)
     selected = df.loc[mask, ["longitude", "latitude"]]
     df.loc[mask, ["ugos_interpolated"]] = interpolator.trivariate(
@@ -248,7 +247,7 @@ def interpolate_current(df, time_series, start, end):
         interpolator="inverse_distance_weighting",
         num_threads=0)
     
-    interpolator = time_series.load_dataset("vgos", start, end)
+    interpolator = time_series._load_dataset("vgos", start, end)
     mask = (df.index >= start) & (df.index < end)
     selected = df.loc[mask, ["longitude", "latitude"]]
     df.loc[mask, ["vgos_interpolated"]] = interpolator.trivariate(
