@@ -17,8 +17,6 @@
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -69,14 +67,11 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Along track metrics</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#statistics">Statistics</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#error-variance">• Error variance</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#explained-variance">• Explained variance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#error-variance">Error variance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#explained-variance">Explained variance</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#spectral">Spectral</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#effective-resolution-maps">• Effective resolution maps</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="#spectral">Spectral</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#references">References</a></li>
 </ul>
 </li>
@@ -126,12 +121,12 @@
 <h2>Statistics<a class="headerlink" href="#statistics" title="Permalink to this headline"></a></h2>
 <br>
 <section id="error-variance">
-<h3>• Error variance<a class="headerlink" href="#error-variance" title="Permalink to this headline"></a></h3>
+<h3>Error variance<a class="headerlink" href="#error-variance" title="Permalink to this headline"></a></h3>
 <p><a class="reference internal" href="gallery/alongtrack_statistics_description.html"><span class="doc std std-doc"><strong>Check example notebook</strong></span></a></p>
 <br>
 </section>
 <section id="explained-variance">
-<h3>• Explained variance<a class="headerlink" href="#explained-variance" title="Permalink to this headline"></a></h3>
+<h3>Explained variance<a class="headerlink" href="#explained-variance" title="Permalink to this headline"></a></h3>
 <p><a class="reference internal" href="gallery/alongtrack_statistics_description.html"><span class="doc std std-doc"><strong>Check example notebook</strong></span></a></p>
 <br>
 <br>
@@ -140,24 +135,6 @@
 <section id="spectral">
 <h2>Spectral<a class="headerlink" href="#spectral" title="Permalink to this headline"></a></h2>
 <br> 
-<section id="effective-resolution-maps">
-<h3>• Effective resolution maps<a class="headerlink" href="#effective-resolution-maps" title="Permalink to this headline"></a></h3>
-<p><a class="reference internal" href="gallery/alongtrack_spectral_description.html"><span class="doc std std-doc"><strong>Check example notebook</strong></span></a></p>
-<p>The effective resolution corresponds to the spatiotemporal scales of the features that can be properly resolved in the maps (Ballarotta et al., 2019). The spatiotemporal resolution of the previous level 4 global SLA products was estimated by Chelton et al. (2011, 2014) and Chelton and Schlax (2003) based on estimates of the mapping errors in sea surface height (SSH) fields constructed from altimeter data or spectral ratio analysis between maps and along-track altimeter data.</p>
-<p>To estimate the effective resolution, we first compute the spectral noise-to-signal ratio, i.e. the ratio between the spectral content of the mapping error and the spectral content of independent along-track observations:</p>
-<div class="math notranslate nohighlight">
-\[\text{NSR}(\lambda_s) = \frac{S_{diff}(\lambda_s)}{S_{obs}(\lambda_s)},\]</div>
-<p>where <span class="math notranslate nohighlight">\(\lambda_s\)</span> is the spatial wavelength, <span class="math notranslate nohighlight">\(S_{diff}(\lambda_s)\)</span> is the power spectral density of the difference (SLA<span class="math notranslate nohighlight">\(_{obs}\)</span>–SLA<span class="math notranslate nohighlight">\(_{map}\)</span>) and <span class="math notranslate nohighlight">\(S_{obs}(\lambda_s)\)</span> is the spectral density of the independent observation.</p>
-<p>Here, we define the effective resolution as the wavelenght at which the noise-to-signal ratio is equal or smaller than 0.5.</p>
-<center>
-<figure>
-  <img src="figures/Maps_DUACS_effres_glob.png" alt="my alt text"/>
-  <figcaption> <i>Figure 3: Global DUACS effective resolutions with respect to independent nadir SSH Altika. </i></figcaption>
-</figure>
-</center>
-<p>The maps (see DUACS example in Figure 3) are obtained by averaging the effective resolutions on all available along-track segments in each 1°x1° longitude x latitude box.</p>
-<br>
-</section>
 </section>
 <section id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this headline"></a></h2>
