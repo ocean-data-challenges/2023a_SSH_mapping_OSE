@@ -2,7 +2,7 @@
  "cells": [
   {
    "cell_type": "markdown",
-   "id": "d8258f02",
+   "id": "e1ff08ad",
    "metadata": {},
    "source": [
     "![header](../figures/logos_partenaires._cmems_se.jpg)"
@@ -10,7 +10,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "050a5948",
+   "id": "d5088ce1",
    "metadata": {},
    "source": [
     "# Access data\n",
@@ -30,7 +30,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "c34deb8f",
+   "id": "ce1cc87d",
    "metadata": {},
    "source": [
     "\n",
@@ -43,7 +43,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "ba80c285",
+   "id": "8d856dba",
    "metadata": {},
    "source": [
     "***\n",
@@ -67,8 +67,8 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 1,
-   "id": "6c9fe4a9",
+   "execution_count": 4,
+   "id": "ed46aa1c",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -76,6 +76,7 @@
     "import numpy as np\n",
     "import os\n",
     "import sys\n",
+    "import subprocess\n",
     "sys.path.append('../')\n",
     "import xarray as xr\n",
     "from src.mod_read import *"
@@ -83,7 +84,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "7e56b3df",
+   "id": "2e2c8d4e",
    "metadata": {},
    "source": [
     "<div class=\"alert alert-info\" role=\"alert\">\n",
@@ -96,7 +97,7 @@
   {
    "cell_type": "code",
    "execution_count": 2,
-   "id": "0894afe0",
+   "id": "9c68f74f",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -113,7 +114,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "d887dc6e",
+   "id": "85a90584",
    "metadata": {},
    "source": [
     "<div class=\"alert alert-info\" role=\"alert\">\n",
@@ -125,7 +126,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "9870ec53",
+   "id": "c7880ad2",
    "metadata": {},
    "source": [
     "## Download the experiment alongtrack nadir data"
@@ -134,7 +135,7 @@
   {
    "cell_type": "code",
    "execution_count": 3,
-   "id": "fb3436d9",
+   "id": "94bdd2a0",
    "metadata": {},
    "outputs": [
     {
@@ -176,7 +177,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "622c3e42",
+   "id": "eb328bc1",
    "metadata": {},
    "source": [
     "<div class=\"alert alert-info\" role=\"alert\">\n",
@@ -188,7 +189,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "aecd53e1",
+   "id": "11d78e4f",
    "metadata": {},
    "source": [
     "## Download the independant alongtrack nadir data (Saral/AltiKa)"
@@ -197,7 +198,7 @@
   {
    "cell_type": "code",
    "execution_count": 4,
-   "id": "517cd236",
+   "id": "d3297cce",
    "metadata": {},
    "outputs": [
     {
@@ -618,7 +619,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "46a11278",
+   "id": "6e3c5ac3",
    "metadata": {},
    "source": [
     "## Read the independant alongtrack nadir data (Saral/AltiKa)"
@@ -627,7 +628,7 @@
   {
    "cell_type": "code",
    "execution_count": 5,
-   "id": "a941a055",
+   "id": "e324292a",
    "metadata": {
     "scrolled": false
    },
@@ -1904,7 +1905,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "e790ff5c",
+   "id": "6d14b5fc",
    "metadata": {},
    "source": [
     "## Download the independant drifter data"
@@ -1913,7 +1914,7 @@
   {
    "cell_type": "code",
    "execution_count": 3,
-   "id": "3e63e2a9",
+   "id": "405ada5d",
    "metadata": {},
    "outputs": [
     {
@@ -11368,13 +11369,13 @@
     "    i = 0\n",
     "    for ifile in sorted(list_of_files)[:]:\n",
     "        print(ifile) \n",
-    "        os.system(\"wget -P ../data_dev/independant_drifters0/ i {}\".format(ifile))\n",
+    "        subprocess.run(\"wget -P ../data_dev/independant_drifters0/ i {}\".format(ifile))\n",
     "    "
    ]
   },
   {
    "cell_type": "markdown",
-   "id": "a5237b97",
+   "id": "c3761e0d",
    "metadata": {},
    "source": [
     "## Read the independant drifter data  "
@@ -11383,7 +11384,7 @@
   {
    "cell_type": "code",
    "execution_count": 7,
-   "id": "f8d35334",
+   "id": "941a223a",
    "metadata": {
     "scrolled": true
    },
@@ -12187,7 +12188,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "ea87a697",
+   "id": "6ccfcd9f",
    "metadata": {},
    "source": [
     "## Download auxiliary data for diagnostics"
@@ -12196,7 +12197,7 @@
   {
    "cell_type": "code",
    "execution_count": 8,
-   "id": "d01f69f9",
+   "id": "38d2d978",
    "metadata": {},
    "outputs": [
     {
@@ -12241,7 +12242,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "413d7720",
+   "id": "5c14b762",
    "metadata": {},
    "source": [
     "<div class=\"alert alert-info\" role=\"alert\">\n",
@@ -12253,7 +12254,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "006e2717",
+   "id": "ebe35fd9",
    "metadata": {},
    "source": [
     "## Download all available maps for comparison\n",
@@ -12264,7 +12265,7 @@
   {
    "cell_type": "code",
    "execution_count": 9,
-   "id": "46c96954",
+   "id": "b821c746",
    "metadata": {},
    "outputs": [
     {
@@ -13452,7 +13453,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "d66222f0",
+   "id": "74c2b78b",
    "metadata": {},
    "source": [
     "## Read DUACS maps for comparison\n",
@@ -13463,7 +13464,7 @@
   {
    "cell_type": "code",
    "execution_count": 10,
-   "id": "f98f0a2e",
+   "id": "f1ce954e",
    "metadata": {},
    "outputs": [
     {
@@ -14574,14 +14575,14 @@
   },
   {
    "cell_type": "markdown",
-   "id": "08366758",
+   "id": "4cb73702",
    "metadata": {},
    "source": []
   },
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "a2b15e7e",
+   "id": "c7604c4d",
    "metadata": {},
    "outputs": [],
    "source": []
