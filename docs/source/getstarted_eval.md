@@ -22,6 +22,11 @@ The metrics available using this independant nadir dataset are:
 - **Grid boxes statistics (maps)**
     The SSH error variance and explained variance are computed in each box and displayed as maps. 
     
+<center>SSH Error variance</center>    
+![DUACS currents effective resolution](figures/Maps_DUACS_errvar_glob.png) 
+
+
+    
 | <center>SSH Error variance</center> | 
 | ------------ | 
 | <center> <img src="figures/Maps_DUACS_errvar_glob.png" alt="DUACS Error variance" width="400"/></center>   | 
