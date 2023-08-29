@@ -2,7 +2,7 @@
  "cells": [
   {
    "cell_type": "markdown",
-   "id": "1b439364",
+   "id": "0944fc83",
    "metadata": {},
    "source": [
     "![header](../figures/logos_partenaires._cmems_se.jpg)"
@@ -10,7 +10,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "e3c98066",
+   "id": "ed937eef",
    "metadata": {},
    "source": [
     "# Benchmark DUACS sea surface height maps\n",
@@ -32,7 +32,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "469fdb14",
+   "id": "84e1d696",
    "metadata": {},
    "source": [
     "***\n",
@@ -57,7 +57,7 @@
   {
    "cell_type": "code",
    "execution_count": 1,
-   "id": "a2ddd0fc",
+   "id": "1244d7a3",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -69,7 +69,7 @@
   {
    "cell_type": "code",
    "execution_count": 2,
-   "id": "86352039",
+   "id": "1679e3bc",
    "metadata": {},
    "outputs": [
     {
@@ -640,7 +640,7 @@
   {
    "cell_type": "code",
    "execution_count": 3,
-   "id": "761b07e2",
+   "id": "288ee487",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -651,7 +651,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "1cd5fc59",
+   "id": "76274aeb",
    "metadata": {},
    "source": [
     "<div class=\"alert alert-info\" role=\"alert\">\n",
@@ -664,7 +664,7 @@
   {
    "cell_type": "code",
    "execution_count": 4,
-   "id": "a6b2425f",
+   "id": "4233365f",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -682,7 +682,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "defde393",
+   "id": "81186de6",
    "metadata": {},
    "source": [
     "<div class=\"alert alert-info\" role=\"alert\">\n",
@@ -694,7 +694,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "bff4b264",
+   "id": "cc74bffe",
    "metadata": {},
    "source": [
     "## Sea Surface Height from Saral/AltiKa"
@@ -703,7 +703,7 @@
   {
    "cell_type": "code",
    "execution_count": 5,
-   "id": "d0fee924",
+   "id": "8894c5f7",
    "metadata": {},
    "outputs": [
     {
@@ -1989,7 +1989,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "2bc74062",
+   "id": "2dc0fb39",
    "metadata": {},
    "source": [
     "## Sea Surface Height maps to evaluate"
@@ -1998,7 +1998,7 @@
   {
    "cell_type": "code",
    "execution_count": 6,
-   "id": "8916ecae",
+   "id": "be66b576",
    "metadata": {},
    "outputs": [
     {
@@ -3126,7 +3126,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "85a5f611",
+   "id": "a7ee4b50",
    "metadata": {},
    "source": [
     "<div class=\"alert alert-info\" role=\"alert\">\n",
@@ -3138,7 +3138,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "58f85f94",
+   "id": "7f3b46e4",
    "metadata": {},
    "source": [
     "## 2.1 Interpolate sea surface height maps onto along-track positions"
@@ -3147,7 +3147,7 @@
   {
    "cell_type": "code",
    "execution_count": 7,
-   "id": "8d5eae8f",
+   "id": "37efe69b",
    "metadata": {},
    "outputs": [
     {
@@ -3618,7 +3618,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "a6b7f9b6",
+   "id": "70c80489",
    "metadata": {},
    "source": [
     "## 2.2 Compute grid boxes statistics & statistics by regime (coastal, offshore low variability, offshore high variability)"
@@ -3626,7 +3626,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "8a299501",
+   "id": "c925a7cd",
    "metadata": {},
    "source": [
     "Once the maps have been interpolated to the position of the along-track, it is possible to calculate different statistics on the time series SLA_alongtrack and SLA_maps. \n",
@@ -3639,7 +3639,7 @@
   {
    "cell_type": "code",
    "execution_count": 9,
-   "id": "f26326f1",
+   "id": "92314739",
    "metadata": {},
    "outputs": [
     {
@@ -3661,7 +3661,7 @@
   {
    "cell_type": "code",
    "execution_count": 10,
-   "id": "b25b5674",
+   "id": "cf11e1e6",
    "metadata": {},
    "outputs": [
     {
@@ -3696,7 +3696,7 @@
   {
    "cell_type": "code",
    "execution_count": 13,
-   "id": "3df2b3cd",
+   "id": "b2568e76",
    "metadata": {},
    "outputs": [
     {
@@ -3801,7 +3801,7 @@
   {
    "cell_type": "code",
    "execution_count": 14,
-   "id": "319e9dec",
+   "id": "794232ee",
    "metadata": {},
    "outputs": [
     {
@@ -3929,7 +3929,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "68409c4f",
+   "id": "59e0c113",
    "metadata": {},
    "source": [
     "## 2.3 Compute Spectral scores"
@@ -3938,7 +3938,7 @@
   {
    "cell_type": "code",
    "execution_count": 15,
-   "id": "4ca76a5d",
+   "id": "84a115e6",
    "metadata": {},
    "outputs": [
     {
@@ -3959,7 +3959,7 @@
   {
    "cell_type": "code",
    "execution_count": 16,
-   "id": "9ede147f",
+   "id": "42be4abc",
    "metadata": {},
    "outputs": [
     {
@@ -3984,7 +3984,7 @@
   {
    "cell_type": "code",
    "execution_count": 17,
-   "id": "9566a24a",
+   "id": "27bc745c",
    "metadata": {},
    "outputs": [
     {
@@ -4100,7 +4100,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "71305f6c",
+   "id": "881e4db4",
    "metadata": {},
    "source": [
     "The interactive plot above allows you to explore the spectral metrics by latitude / longitude box"
@@ -4109,7 +4109,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "949dc3dd",
+   "id": "203d3cb5",
    "metadata": {},
    "outputs": [],
    "source": []
@@ -4132,6 +4132,9 @@
    "nbconvert_exporter": "python",
    "pygments_lexer": "ipython3",
    "version": "3.10.11"
+  },
+  "nbsphinx": {
+   "orphan": true
   }
  },
  "nbformat": 4,

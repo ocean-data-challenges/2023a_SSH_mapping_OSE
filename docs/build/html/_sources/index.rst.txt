@@ -102,19 +102,4 @@ The altimeter data from Saral/AltiKa and surface current velocity data mentioned
    mod_read.rst
    mod_spectral.rst
    mod_stat.rst 
-
-.. toctree::
-   :maxdepth: 0 
-   :caption: Additional docs
-   :hidden: 
-               
-   gallery/ssh_scores_DUACS_geos.ipynb
-   gallery/ssh_scores_DUACS_geos_GS.ipynb
-   gallery/ssh_scores_MIOST_geos.ipynb
-   gallery/ssh_scores_MIOST_geos_barotrop_eqwaves.ipynb
-   gallery/uv_scores_DUACS_geos.ipynb
-   gallery/uv_scores_DUACS_geos_GS.ipynb
-   gallery/uv_scores_GLORYS12v1.ipynb
-   gallery/uv_scores_MIOST_geos.ipynb
-   gallery/uv_scores_MIOST_geos_barotrop_eqwaves.ipynb
-   gallery/uv_scores_WOC.ipynb  
+ 
