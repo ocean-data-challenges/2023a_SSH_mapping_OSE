@@ -1,3 +1,7 @@
+---
+orphan: true
+---
+
 # DUACS global evaluation
 
 <br>

@@ -1,3 +1,7 @@
+---
+orphan: true
+---
+
 # MIOST global evaluation 
 
 <br> 

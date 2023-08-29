@@ -1,3 +1,7 @@
+---
+orphan: true
+---
+
 # MIOST EqW global evaluation 
 
 <br> 

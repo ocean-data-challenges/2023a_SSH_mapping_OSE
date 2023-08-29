@@ -1,4 +1,6 @@
-:orphan:
+---
+orphan: true
+---
 
 # DUACS Gulf Stream evaluation 
 

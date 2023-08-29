@@ -46,7 +46,6 @@ extensions = [
 ]
 
 
-
 napoleon_google_docstring = False
 
 source_suffix = {
