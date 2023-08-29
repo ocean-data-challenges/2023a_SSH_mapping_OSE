@@ -1903,3 +1903,9 @@ def compare_psd_score_png(study_filename, ref_filename):
     cax = fig.add_axes([0.92, 0.67, 0.02, 0.2])
     fig.colorbar(p0, cax=cax, orientation='vertical')
     cax.set_ylabel('Efective resolition [km]', fontweight='bold')
+    
+    
+    
+    
+
+ 

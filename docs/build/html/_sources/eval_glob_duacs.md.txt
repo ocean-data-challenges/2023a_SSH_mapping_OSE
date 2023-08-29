@@ -4,11 +4,11 @@
 
 <br>
 
-### SSH evaluation with independant nadir
+## SSH evaluation with independant nadir
 
 [check notebook](gallery/ssh_scores_DUACS_geos.ipynb)
 
-#### Statistics
+### Statistics
 
 |   | Error variance |
 | ------ | -------------- |
@@ -19,17 +19,17 @@
 | DUACS | ![DUACS expvar glob](figures/Maps_DUACS_explvar_glob.png)  | 
 
 
-#### Spectral
+### Spectral
 
 |   | Effective resolution |
 | ------ | -------------- |
 | DUACS | ![DUACS Effective resolution](figures/Maps_DUACS_effres_glob.png) | 
 
-### U, V evaluation with independant drifters
+## U, V evaluation with independant drifters
 
 [check notebook](gallery/uv_scores_DUACS_geos.ipynb)
 
-#### Statistics
+### Statistics
 
 |   | Error variance |
 | ------ | -------------- |
@@ -41,7 +41,7 @@
 | ------ | -------------- |
 | DUACS | ![DUACS currents explvar glob](figures/Maps_DUACS_explvar_glob_uv.png) | 
 
-#### Spectral
+### Spectral
 
 |   | Effective resolution |
 | ------ | -------------- |

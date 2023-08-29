@@ -58,8 +58,8 @@ The altimeter data from Saral/AltiKa and surface current velocity data mentioned
    :caption: Get started
 
    getstarted_install.md
-   getstarted_data.md	
-   getstarted_eval.md	
+   getstarted_data.md
+   getstarted_eval.md
 
 .. toctree::
    :maxdepth: 1
@@ -94,11 +94,40 @@ The altimeter data from Saral/AltiKa and surface current velocity data mentioned
    :maxdepth: 2
    :caption: Scripts
 
-   mod_compare.rst		
-   mod_filter.rst		
-   mod_interp.rst		 
-   mod_plot.rst		
-   mod_read.rst		
-   mod_spectral.rst	
+   mod_compare.rst
+   mod_filter.rst
+   mod_interp.rst
+   mod_plot.rst
+   mod_read.rst
+   mod_spectral.rst
    mod_stat.rst
+    
+
+.. toctree::
+   :hidden:
+
+   eval_GS_duacs.md
+   eval_GS_leaderboards.md
+   eval_glob_duacs.md
+   eval_glob_leaderboards.md
+   eval_glob_miost.md
+   eval_glob_miosteqw.md
+   gallery/alongtrack_spectral_description.ipynb
+   gallery/alongtrack_statistics_description.ipynb
+   gallery/compare_stat_to_duacs.ipynb
+   gallery/compare_stat_to_duacs_GS.ipynb
+   gallery/download_and_acces_global_data.ipynb
+   gallery/read_and_download_regional_data.ipynb
+   gallery/ssh_scores_DUACS_geos.ipynb
+   gallery/ssh_scores_DUACS_geos_GS.ipynb
+   gallery/ssh_scores_MIOST_geos.ipynb
+   gallery/ssh_scores_MIOST_geos_barotrop_eqwaves.ipynb
+   gallery/uv_scores_DUACS_geos.ipynb
+   gallery/uv_scores_DUACS_geos_GS.ipynb
+   gallery/uv_scores_GLORYS12v1.ipynb
+   gallery/uv_scores_MIOST_geos.ipynb
+   gallery/uv_scores_MIOST_geos_barotrop_eqwaves.ipynb
+   gallery/uv_scores_WOC.ipynb
+   intro.md
+   nb_download_data.rst
 

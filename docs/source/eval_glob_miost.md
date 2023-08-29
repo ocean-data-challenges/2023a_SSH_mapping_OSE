@@ -4,9 +4,9 @@
 
 <br>  
 
-### SSH evaluation with independant nadir
+## SSH evaluation with independant nadir
 
-#### Statistics
+### Statistics
 
 |   | Error variance |
 | ------ | -------------- | 
@@ -19,17 +19,17 @@
 | MIOST | ![MIOST Error variance](figures/Maps_MIOST_explvar_glob.png) | 
 
 
-#### Spectral
+### Spectral
 
 |   | Effective resolution |
 | ------ | -------------- | 
 | MIOST | ![MIOST Effective resolution](figures/Maps_MIOST_effres_glob.png) | 
 
 
-### U, V evaluation with independant drifters
+## U, V evaluation with independant drifters
 
 
-#### Statistics
+### Statistics
 
 |   | Error variance |
 | ------ | -------------- | 
@@ -41,7 +41,7 @@
 | ------ | -------------- | 
 | MIOST | ![MIOST currents explained variance](figures/Maps_MIOST_explvar_glob_uv.png) | 
 
-#### Spectral
+### Spectral
 
 |   | Effective resolution |
 | ------ | -------------- |

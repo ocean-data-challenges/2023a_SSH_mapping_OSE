@@ -4,7 +4,7 @@
 
 <br> 
 
-### SSH evaluation with independant nadir
+## SSH evaluation with independant nadir
 
 
 
@@ -38,7 +38,7 @@
 
 
 
-### Currents evaluation with drifters
+## Currents evaluation with drifters
 
 | Ocean regime          | Methods  |   Err variance score u (All scales) |   Err variance score v (All scales) |
 |:----------------------|----------|:---------------------------------:|:-------------------------------:|
