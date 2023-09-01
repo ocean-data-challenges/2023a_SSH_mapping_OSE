@@ -182,7 +182,7 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="mod_compare.regional_zoom">
-<span class="sig-prename descclassname"><span class="pre">mod_compare.</span></span><span class="sig-name descname"><span class="pre">regional_zoom</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ds_glob</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boxlon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boxlat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">namelon</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'lon'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">namelat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'lat'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mod_compare.regional_zoom" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">mod_compare.</span></span><span class="sig-name descname"><span class="pre">regional_zoom</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ds_glob</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boxlon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boxlat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">namelon</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'lon'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">namelat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'lat'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">change_lon</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mod_compare.regional_zoom" title="Permalink to this definition"></a></dt>
 <dd><p>Select a geographical region in a xarray.dataset using longitude and latitude information.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -192,6 +192,7 @@
 <li><p><strong>box_lat</strong> (<em>Array of float</em>) – Min and max latitudes of the requested regional zoom.</p></li>
 <li><p><strong>namelon</strong> (<em>str</em><em>, </em><em>optional</em>) – Name of the longitude coordinate.</p></li>
 <li><p><strong>namelat</strong> (<em>str</em><em>, </em><em>optional</em>) – Name of the latitude coordinate.</p></li>
+<li><p><strong>change_lon</strong> (<em>Boolean</em><em>, </em><em>optional</em>) – Switches from (0,360) longitude to (-180,180) if True. Default True.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>

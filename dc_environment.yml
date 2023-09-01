@@ -1,4 +1,4 @@
-name: env-dc-global-ose
+name: env-dc-global-ose1
 channels:
   - pyviz
 dependencies:
@@ -7,9 +7,13 @@ dependencies:
   - scipy
   - hvplot
   - conda-forge::pyinterp
+  - conda-forge::cmocean
   - holoviews
   - geoviews
   - cartopy=0.21
   - tabulate
   - datashader
   - netcdf4
+  - pip
+  - pip:
+    - mycolorpy

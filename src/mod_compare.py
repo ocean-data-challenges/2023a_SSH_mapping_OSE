@@ -9,7 +9,7 @@ import warnings
 
 
 
-def regional_zoom(ds_glob, boxlon, boxlat, namelon='lon', namelat='lat'):
+def regional_zoom(ds_glob, boxlon, boxlat, namelon='lon', namelat='lat', change_lon = True):
 
     """
     Select a geographical region in a xarray.dataset using longitude and latitude information.
@@ -26,6 +26,8 @@ def regional_zoom(ds_glob, boxlon, boxlat, namelon='lon', namelat='lat'):
         Name of the longitude coordinate.
     namelat : str, optional
         Name of the latitude coordinate.
+    change_lon : Boolean, optional
+        Switches from (0,360) longitude to (-180,180) if True. Default True.
 
     Returns
     -------
@@ -43,8 +45,9 @@ def regional_zoom(ds_glob, boxlon, boxlat, namelon='lon', namelat='lat'):
 
     long_attrs = ds_reg[namelon].attrs 
     
-    ds_reg[namelon] = ds_reg[namelon].where(ds_reg[namelon]<180,ds_reg[namelon]-360).values
-    ds_reg = ds_reg.sortby(ds_reg[namelon])
+    if change_lon: 
+        ds_reg[namelon] = ds_reg[namelon].where(ds_reg[namelon]<180,ds_reg[namelon]-360).values
+        ds_reg = ds_reg.sortby(ds_reg[namelon])
       
   
     ds_reg = ds_reg.where(ds_reg[namelon]<max_lon,drop=True)
