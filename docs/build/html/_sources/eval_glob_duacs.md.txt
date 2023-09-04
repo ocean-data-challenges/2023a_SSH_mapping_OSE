@@ -50,3 +50,26 @@ orphan: true
 |   | Effective resolution |
 | ------ | -------------- |
 | DUACS | ![DUACS currents effective resolution](figures/Maps_DUACS_effres_glob_uv.png) | 
+
+
+
+## Drifter trajectories
+
+[check notebook](gallery/uv_traj_DUACS_global.ipynb)
+ 
+### Drifter deviation maps
+
+|   | Drifter deviation maps |
+| ------ | -------------- |
+| Horizon 1 | ![Drifter deviation maps h1](figures/deviation_maps_DUACS_global_h1.png) | 
+| Horizon 2 | ![Drifter deviation maps h2](figures/deviation_maps_DUACS_global_h2.png) | 
+| Horizon 3 | ![Drifter deviation maps h3](figures/deviation_maps_DUACS_global_h3.png) | 
+| Horizon 4 | ![Drifter deviation maps h4](figures/deviation_maps_DUACS_global_h4.png) | 
+| Horizon 5 | ![Drifter deviation maps h5](figures/deviation_maps_DUACS_global_h5.png) | 
+
+
+### Drifter global mean deviation horizons
+
+|   | Drifter mean deviation horizons |
+| ------ | -------------- |
+| DUACS | ![Drifter deviation horizon](figures/deviation_horizon_global.png) |  
