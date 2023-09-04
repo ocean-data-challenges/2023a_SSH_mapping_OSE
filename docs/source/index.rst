@@ -52,8 +52,8 @@ The altimeter data from Saral/AltiKa and surface current velocity data mentioned
 ----------------- 
 
 :raw-html:`<br />`
-
-
+ 
+    
 .. toctree::
    :maxdepth: 2
    :caption: Get started
@@ -102,4 +102,4 @@ The altimeter data from Saral/AltiKa and surface current velocity data mentioned
    mod_read.rst
    mod_spectral.rst
    mod_stat.rst 
- 
+   mod_traj.rst 

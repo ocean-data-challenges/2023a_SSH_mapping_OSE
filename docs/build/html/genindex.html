@@ -75,6 +75,7 @@
 <li class="toctree-l1"><a class="reference internal" href="mod_read.html">mod_read module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mod_spectral.html">mod_spectral module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mod_stat.html">mod_stat module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mod_traj.html">mod_traj module</a></li>
 </ul>
 
         </div>
@@ -136,6 +137,12 @@
 <h2 id="A">A</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="mod_traj.html#mod_traj.adv_eul">adv_eul() (in module mod_traj)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="mod_traj.html#mod_traj.adv_rk4">adv_rk4() (in module mod_traj)</a>
+</li>
       <li><a href="mod_filter.html#mod_filter.apply_bandpass_filter">apply_bandpass_filter() (in module mod_filter)</a>
 </li>
   </ul></td>
@@ -176,6 +183,8 @@
 </li>
       <li><a href="mod_spectral.html#mod_spectral.compute_crossing">compute_crossing() (in module mod_spectral)</a>
 </li>
+      <li><a href="mod_traj.html#mod_traj.compute_deviation">compute_deviation() (in module mod_traj)</a>
+</li>
       <li><a href="mod_filter.html#mod_filter.compute_median_dx">compute_median_dx() (in module mod_filter)</a>
 
       <ul>
@@ -206,6 +215,8 @@
 </li>
       <li><a href="mod_stat.html#mod_stat.compute_stat_scores_uv_by_regimes">compute_stat_scores_uv_by_regimes() (in module mod_stat)</a>
 </li>
+      <li><a href="mod_traj.html#mod_traj.compute_traj">compute_traj() (in module mod_traj)</a>
+</li>
       <li><a href="mod_compare.html#mod_compare.convert_longitude">convert_longitude() (in module mod_compare)</a>
 </li>
   </ul></td>
@@ -214,6 +225,8 @@
 <h2 id="D">D</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="mod_traj.html#mod_traj.dist_drifters">dist_drifters() (in module mod_traj)</a>
+</li>
       <li><a href="mod_filter.html#mod_filter.distance">distance() (in module mod_filter)</a>
 </li>
   </ul></td>
@@ -285,8 +298,6 @@
         <li><a href="mod_read.html#module-mod_read">module</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     mod_spectral
 
@@ -294,11 +305,20 @@
         <li><a href="mod_spectral.html#module-mod_spectral">module</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     mod_stat
 
       <ul>
         <li><a href="mod_stat.html#module-mod_stat">module</a>
+</li>
+      </ul></li>
+      <li>
+    mod_traj
+
+      <ul>
+        <li><a href="mod_traj.html#module-mod_traj">module</a>
 </li>
       </ul></li>
       <li>
@@ -319,6 +339,8 @@
 </li>
         <li><a href="mod_stat.html#module-mod_stat">mod_stat</a>
 </li>
+        <li><a href="mod_traj.html#module-mod_traj">mod_traj</a>
+</li>
       </ul></li>
   </ul></td>
 </tr></table>
@@ -332,6 +354,8 @@
 </li>
       <li><a href="mod_plot.html#mod_plot.plot_effective_resolution_png">plot_effective_resolution_png() (in module mod_plot)</a>
 </li>
+      <li><a href="mod_traj.html#mod_traj.plot_meantraj_deviation">plot_meantraj_deviation() (in module mod_traj)</a>
+</li>
       <li><a href="mod_plot.html#mod_plot.plot_polarization">plot_polarization() (in module mod_plot)</a>
 </li>
       <li><a href="mod_plot.html#mod_plot.plot_psd_scores">plot_psd_scores() (in module mod_plot)</a>
@@ -340,10 +364,10 @@
 </li>
       <li><a href="mod_plot.html#mod_plot.plot_psd_scores_currents_1D">plot_psd_scores_currents_1D() (in module mod_plot)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="mod_plot.html#mod_plot.plot_psd_scores_currents_png">plot_psd_scores_currents_png() (in module mod_plot)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="mod_plot.html#mod_plot.plot_stat_by_regimes">plot_stat_by_regimes() (in module mod_plot)</a>
 </li>
       <li><a href="mod_plot.html#mod_plot.plot_stat_score_map">plot_stat_score_map() (in module mod_plot)</a>
@@ -357,6 +381,10 @@
       <li><a href="mod_plot.html#mod_plot.plot_stat_score_timeseries">plot_stat_score_timeseries() (in module mod_plot)</a>
 </li>
       <li><a href="mod_plot.html#mod_plot.plot_stat_uv_by_regimes">plot_stat_uv_by_regimes() (in module mod_plot)</a>
+</li>
+      <li><a href="mod_traj.html#mod_traj.plot_traj_deviation_maps">plot_traj_deviation_maps() (in module mod_traj)</a>
+</li>
+      <li><a href="mod_traj.html#mod_traj.prepare_drifter_data">prepare_drifter_data() (in module mod_traj)</a>
 </li>
   </ul></td>
 </tr></table>
