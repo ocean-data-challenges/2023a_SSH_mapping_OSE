@@ -42,11 +42,9 @@ where $\lambda_s$ is the spatial wavelength, $S_{diff}(\lambda_s)$ is the power 
 
 Here, we define the effective resolution as the wavelenght at which the noise-to-signal ratio is equal or smaller than 0.5. 
 
-<center>
-<figure>
-  <img src="gallery/Maps_DUACS_effres_glob.png" alt="my alt text"/>
-  <figcaption> <i>Figure 3: Global DUACS effective resolutions with respect to independent nadir SSH Altika. </i></figcaption>
-</figure>
+![DUACS SSH effective resolution](figures/Maps_DUACS_effres_glob.png)
+<center> 
+  <i>Figure 3: Global DUACS effective resolutions with respect to independent nadir SSH Altika. </i> 
 </center>
 
 The maps (see DUACS example in Figure 3) are obtained by averaging the effective resolutions on all available along-track segments in each 1°x1° longitude x latitude box.
