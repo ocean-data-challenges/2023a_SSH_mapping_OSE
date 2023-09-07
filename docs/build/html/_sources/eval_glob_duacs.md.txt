@@ -70,6 +70,7 @@ orphan: true
 
 ### Drifter global mean deviation horizons
 
-|   | Drifter mean deviation horizons |
-| ------ | -------------- |
-| DUACS | ![Drifter deviation horizon](figures/deviation_horizon_global.png) |  
+| Drifter mean deviation horizons |
+| -------------- |
+| ![Drifter deviation horizon](figures/deviation_horizon_global.png) |  
+

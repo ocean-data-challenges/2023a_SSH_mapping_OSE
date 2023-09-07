@@ -42,7 +42,7 @@ Here, we define the effective resolution as the wavelenght at which the noise-to
 
 <center>
 <figure>
-  <img src="figures/Maps_DUACS_effres_glob.png" alt="my alt text"/>
+  <img src="gallery/Maps_DUACS_effres_glob.png" alt="my alt text"/>
   <figcaption> <i>Figure 3: Global DUACS effective resolutions with respect to independent nadir SSH Altika. </i></figcaption>
 </figure>
 </center>

@@ -465,7 +465,7 @@ def compute_deviation(dict1, Nt, dt_hr, horizon_days,lon_out=np.arange(0, 360, 1
 
 def plot_traj_deviation_maps(lon_g, lat_g, rmse_norm, dt_hr=24, horizon_days=[1,2,3],vmax_h = [40,80,120], method_name='DUACS'):
     """
-    Plot deviation maps of drifter trajectories.
+    Plot deviation maps of drifter trajectories and save the maps.
 
     Parameters
     ----------
@@ -530,6 +530,9 @@ def plot_traj_deviation_maps(lon_g, lat_g, rmse_norm, dt_hr=24, horizon_days=[1,
         cbar.ax.set_ylabel('km',size=20)
         cbar.ax.tick_params(labelsize=15)  
 
+        
+        plt.savefig("../figures/deviation_maps_"+str(method_name)+"_h"+str(int(h))+".png", bbox_inches='tight')
+        
         plt.show()
         
         idays +=1 
@@ -538,7 +541,7 @@ def plot_traj_deviation_maps(lon_g, lat_g, rmse_norm, dt_hr=24, horizon_days=[1,
         
 def plot_meantraj_deviation(dir_out='../results/',just_basin=None,prefix_='deviat_uv_'):
     """
-    Plot mean drifter trajectory deviation.
+    Plot mean drifter trajectory deviation and save plot.
 
     Parameters
     ----------
@@ -575,4 +578,12 @@ def plot_meantraj_deviation(dir_out='../results/',just_basin=None,prefix_='devia
     plt.legend()
     plt.grid()
     
+    if just_basin is not None:
+        plt.savefig("../figures/deviation_horizon_"+just_basin+".png", bbox_inches='tight')
+    else: 
+        plt.savefig("../figures/deviation_horizon_allbasins.png", bbox_inches='tight')
+        
     plt.show()
+    
+        
+        
