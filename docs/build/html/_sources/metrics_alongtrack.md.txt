@@ -1,4 +1,4 @@
-# Along track metrics
+# SSH - Along track metrics
 
 <br>
  
@@ -6,17 +6,18 @@
 <br>
 
 ## Statistics
+
+
+[**Check example notebook**](gallery/alongtrack_statistics_description.ipynb)
+
 <br>
 
 ### &#x2022; Error variance
 
-[**Check example notebook**](gallery/alongtrack_statistics_description.ipynb)
-
 <br>
 
 ###  &#x2022; Explained variance
-
-[**Check example notebook**](gallery/alongtrack_statistics_description.ipynb)
+ 
 
 <br>
 
@@ -24,11 +25,12 @@
 
 ## Spectral
 
+
+[**Check example notebook**](gallery/alongtrack_spectral_description.ipynb)
+
 <br> 
 
 ### &#x2022; Effective resolution maps
-
-[**Check example notebook**](gallery/alongtrack_spectral_description.ipynb)
 
 The effective resolution corresponds to the spatiotemporal scales of the features that can be properly resolved in the maps (Ballarotta et al., 2019). The spatiotemporal resolution of the previous level 4 global SLA products was estimated by Chelton et al. (2011, 2014) and Chelton and Schlax (2003) based on estimates of the mapping errors in sea surface height (SSH) fields constructed from altimeter data or spectral ratio analysis between maps and along-track altimeter data. 
 

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Along drifter metrics &mdash; ODC - global OSE mapping  documentation</title>
+  <title>Currents - Along drifter metrics &mdash; ODC - global OSE mapping  documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/sg_gallery.css" type="text/css" />
@@ -20,8 +20,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Drifter trajectory metrics" href="metrics_driftertraj.html" />
-    <link rel="prev" title="Along track metrics" href="metrics_alongtrack.html" /> 
+    <link rel="next" title="Currents - Drifter trajectory metrics" href="metrics_driftertraj.html" />
+    <link rel="prev" title="SSH - Along track metrics" href="metrics_alongtrack.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -65,20 +65,21 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Metrics details</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="metrics_alongtrack.html">Along track metrics</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Along drifter metrics</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="metrics_alongtrack.html">SSH - Along track metrics</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Currents - Along drifter metrics</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#statistics">Statistics</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#error-variance"><span class="xref myst">- Error variance</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#explained-variance"><span class="xref myst">- Explained variance</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#error-variance">• Error variance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#explained-variance">•  Explained variance</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#spectral">Spectral</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#effective-resolution"><span class="xref myst">- Effective resolution</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rotary-spectrum-and-noise-to-signal-ratio">• Rotary spectrum and noise-to-signal ratio</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="metrics_driftertraj.html">Drifter trajectory metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="metrics_driftertraj.html">Currents - Drifter trajectory metrics</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Scripts</span></p>
 <ul>
@@ -89,6 +90,7 @@
 <li class="toctree-l1"><a class="reference internal" href="mod_read.html">mod_read module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mod_spectral.html">mod_spectral module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mod_stat.html">mod_stat module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mod_traj.html">mod_traj module</a></li>
 </ul>
 
         </div>
@@ -105,7 +107,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Along drifter metrics</li>
+      <li class="breadcrumb-item active">Currents - Along drifter metrics</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/metrics_alongdrifter.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -115,30 +117,43 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section class="tex2jax_ignore mathjax_ignore" id="along-drifter-metrics">
-<h1>Along drifter metrics<a class="headerlink" href="#along-drifter-metrics" title="Permalink to this headline"></a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="currents-along-drifter-metrics">
+<h1>Currents - Along drifter metrics<a class="headerlink" href="#currents-along-drifter-metrics" title="Permalink to this headline"></a></h1>
 <br>
 <br>
 <section id="statistics">
 <h2>Statistics<a class="headerlink" href="#statistics" title="Permalink to this headline"></a></h2>
+<p><a class="reference internal" href="gallery/alongtrack_statistics_description.html"><span class="doc std std-doc"><strong>Check example notebook</strong></span></a></p>
 <br>
 <section id="error-variance">
-<h3><a class="reference internal" href="gallery/alongtrack_statistics_description.html"><span class="doc std std-doc">- Error variance</span></a><a class="headerlink" href="#error-variance" title="Permalink to this headline"></a></h3>
+<h3>• Error variance<a class="headerlink" href="#error-variance" title="Permalink to this headline"></a></h3>
 <br>
 </section>
 <section id="explained-variance">
-<h3><a class="reference internal" href="gallery/alongtrack_statistics_description.html"><span class="doc std std-doc">- Explained variance</span></a><a class="headerlink" href="#explained-variance" title="Permalink to this headline"></a></h3>
+<h3>•  Explained variance<a class="headerlink" href="#explained-variance" title="Permalink to this headline"></a></h3>
 <br>
 <br>
 </section>
 </section>
 <section id="spectral">
 <h2>Spectral<a class="headerlink" href="#spectral" title="Permalink to this headline"></a></h2>
+<p><a class="reference internal" href="gallery/alongtrack_spectral_description.html"><span class="doc std std-doc"><strong>Check example notebook</strong></span></a></p>
 <br> 
-<section id="effective-resolution">
-<h3><a class="reference internal" href="gallery/alongtrack_spectral_description.html"><span class="doc std std-doc">- Effective resolution</span></a><a class="headerlink" href="#effective-resolution" title="Permalink to this headline"></a></h3>
+<section id="rotary-spectrum-and-noise-to-signal-ratio">
+<h3>• Rotary spectrum and noise-to-signal ratio<a class="headerlink" href="#rotary-spectrum-and-noise-to-signal-ratio" title="Permalink to this headline"></a></h3>
+<p>Rotary spectrum are a frequently used approach for current data analysis. The idea is to resolve the velocity vector into two rotational components: clockwise and anti-clockwise (Mooers, 1973 ; Gonella, 1972). This allows to represent the current energy distribution between the rotation and the latitude.</p>
+<p>For instance, this rotation/latitude representation of the current energy distribution allows to clearly see the near-inertial oscillation induced currents (present in the drifter currents and not in DUACS) around the inertial frequency (dashed line).</p>
+<p><img alt="DUACS currents effective resolution" src="_images/Maps_DUACS_effres_glob_uv.png" /></p>
+<p>Also, similarly to the noise-to-signal ratio needed to compute the alongtrack effective resolution, the spectrum of the difference between reconstructed currents and drifter measured currents is divided by the spectrum of the drifter measured currents in order to provide rotation/latitude plots of the noise-to-signal ratio.</p>
 <br>
 </section>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Gonella, J. (1972, December). A rotary-component method for analysing meteorological and oceanographic vector time series. In Deep Sea Research and Oceanographic Abstracts (Vol. 19, No. 12, pp. 833-846). Elsevier.</p></li>
+<li><p>Mooers, C. N. (1973, December). A technique for the cross spectrum analysis of pairs of complex-valued time series, with emphasis on properties of polarized components and rotational invariants. In Deep Sea Research and Oceanographic Abstracts (Vol. 20, No. 12, pp. 1129-1141). Elsevier.</p></li>
+</ul>
 </section>
 </section>
 
@@ -146,8 +161,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="metrics_alongtrack.html" class="btn btn-neutral float-left" title="Along track metrics" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="metrics_driftertraj.html" class="btn btn-neutral float-right" title="Drifter trajectory metrics" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="metrics_alongtrack.html" class="btn btn-neutral float-left" title="SSH - Along track metrics" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="metrics_driftertraj.html" class="btn btn-neutral float-right" title="Currents - Drifter trajectory metrics" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

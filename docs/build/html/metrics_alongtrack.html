@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Along track metrics &mdash; ODC - global OSE mapping  documentation</title>
+  <title>SSH - Along track metrics &mdash; ODC - global OSE mapping  documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/sg_gallery.css" type="text/css" />
@@ -22,7 +22,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Along drifter metrics" href="metrics_alongdrifter.html" />
+    <link rel="next" title="Currents - Along drifter metrics" href="metrics_alongdrifter.html" />
     <link rel="prev" title="Notebooks download the data" href="notebooks_download_data.html" /> 
 </head>
 
@@ -67,7 +67,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Metrics details</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Along track metrics</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">SSH - Along track metrics</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#statistics">Statistics</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#error-variance">• Error variance</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#explained-variance">• Explained variance</a></li>
@@ -80,8 +80,8 @@
 <li class="toctree-l2"><a class="reference internal" href="#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="metrics_alongdrifter.html">Along drifter metrics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="metrics_driftertraj.html">Drifter trajectory metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="metrics_alongdrifter.html">Currents - Along drifter metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="metrics_driftertraj.html">Currents - Drifter trajectory metrics</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Scripts</span></p>
 <ul>
@@ -109,7 +109,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Along track metrics</li>
+      <li class="breadcrumb-item active">SSH - Along track metrics</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/metrics_alongtrack.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -119,31 +119,30 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section class="tex2jax_ignore mathjax_ignore" id="along-track-metrics">
-<h1>Along track metrics<a class="headerlink" href="#along-track-metrics" title="Permalink to this headline"></a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="ssh-along-track-metrics">
+<h1>SSH - Along track metrics<a class="headerlink" href="#ssh-along-track-metrics" title="Permalink to this headline"></a></h1>
 <br>
 <br>
 <section id="statistics">
 <h2>Statistics<a class="headerlink" href="#statistics" title="Permalink to this headline"></a></h2>
+<p><a class="reference internal" href="gallery/alongtrack_statistics_description.html"><span class="doc std std-doc"><strong>Check example notebook</strong></span></a></p>
 <br>
 <section id="error-variance">
 <h3>• Error variance<a class="headerlink" href="#error-variance" title="Permalink to this headline"></a></h3>
-<p><a class="reference internal" href="gallery/alongtrack_statistics_description.html"><span class="doc std std-doc"><strong>Check example notebook</strong></span></a></p>
 <br>
 </section>
 <section id="explained-variance">
 <h3>• Explained variance<a class="headerlink" href="#explained-variance" title="Permalink to this headline"></a></h3>
-<p><a class="reference internal" href="gallery/alongtrack_statistics_description.html"><span class="doc std std-doc"><strong>Check example notebook</strong></span></a></p>
 <br>
 <br>
 </section>
 </section>
 <section id="spectral">
 <h2>Spectral<a class="headerlink" href="#spectral" title="Permalink to this headline"></a></h2>
+<p><a class="reference internal" href="gallery/alongtrack_spectral_description.html"><span class="doc std std-doc"><strong>Check example notebook</strong></span></a></p>
 <br> 
 <section id="effective-resolution-maps">
 <h3>• Effective resolution maps<a class="headerlink" href="#effective-resolution-maps" title="Permalink to this headline"></a></h3>
-<p><a class="reference internal" href="gallery/alongtrack_spectral_description.html"><span class="doc std std-doc"><strong>Check example notebook</strong></span></a></p>
 <p>The effective resolution corresponds to the spatiotemporal scales of the features that can be properly resolved in the maps (Ballarotta et al., 2019). The spatiotemporal resolution of the previous level 4 global SLA products was estimated by Chelton et al. (2011, 2014) and Chelton and Schlax (2003) based on estimates of the mapping errors in sea surface height (SSH) fields constructed from altimeter data or spectral ratio analysis between maps and along-track altimeter data.</p>
 <p>To estimate the effective resolution, we first compute the spectral noise-to-signal ratio, i.e. the ratio between the spectral content of the mapping error and the spectral content of independent along-track observations:</p>
 <div class="math notranslate nohighlight">
@@ -176,7 +175,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="notebooks_download_data.html" class="btn btn-neutral float-left" title="Notebooks download the data" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="metrics_alongdrifter.html" class="btn btn-neutral float-right" title="Along drifter metrics" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="metrics_alongdrifter.html" class="btn btn-neutral float-right" title="Currents - Along drifter metrics" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

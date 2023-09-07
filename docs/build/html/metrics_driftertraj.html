@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Drifter trajectory metrics &mdash; ODC - global OSE mapping  documentation</title>
+  <title>Currents - Drifter trajectory metrics &mdash; ODC - global OSE mapping  documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/sg_gallery.css" type="text/css" />
@@ -21,7 +21,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="mod_compare module" href="mod_compare.html" />
-    <link rel="prev" title="Along drifter metrics" href="metrics_alongdrifter.html" /> 
+    <link rel="prev" title="Currents - Along drifter metrics" href="metrics_alongdrifter.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -65,13 +65,15 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Metrics details</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="metrics_alongtrack.html">Along track metrics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="metrics_alongdrifter.html">Along drifter metrics</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Drifter trajectory metrics</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="metrics_alongtrack.html">SSH - Along track metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="metrics_alongdrifter.html">Currents - Along drifter metrics</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Currents - Drifter trajectory metrics</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#trajectory-deviation">Trajectory deviation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id1"><span class="xref myst">- Trajectory deviation</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#trajectory-deviation-maps">•  Trajectory deviation maps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#trajectory-deviation-horizons">•  Trajectory deviation horizons</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#references">References</a></li>
 </ul>
 </li>
 </ul>
@@ -84,6 +86,7 @@
 <li class="toctree-l1"><a class="reference internal" href="mod_read.html">mod_read module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mod_spectral.html">mod_spectral module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mod_stat.html">mod_stat module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mod_traj.html">mod_traj module</a></li>
 </ul>
 
         </div>
@@ -100,7 +103,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Drifter trajectory metrics</li>
+      <li class="breadcrumb-item active">Currents - Drifter trajectory metrics</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/metrics_driftertraj.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -110,17 +113,32 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section class="tex2jax_ignore mathjax_ignore" id="drifter-trajectory-metrics">
-<h1>Drifter trajectory metrics<a class="headerlink" href="#drifter-trajectory-metrics" title="Permalink to this headline"></a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="currents-drifter-trajectory-metrics">
+<h1>Currents - Drifter trajectory metrics<a class="headerlink" href="#currents-drifter-trajectory-metrics" title="Permalink to this headline"></a></h1>
 <br>
 <br>
 <section id="trajectory-deviation">
 <h2>Trajectory deviation<a class="headerlink" href="#trajectory-deviation" title="Permalink to this headline"></a></h2>
 <br>
-<section id="id1">
-<h3><a class="reference internal" href="gallery/alongtrack_spectral_description.html"><span class="doc std std-doc">- Trajectory deviation</span></a><a class="headerlink" href="#id1" title="Permalink to this headline"></a></h3>
+<p><a class="reference internal" href="gallery/alongtrack_spectral_description.html"><span class="doc std std-doc"><strong>Check example notebook</strong></span></a></p>
+<p>The drifter trajectory deviation (or Lagrangian Cumulative Distance ; Liu and Weisberg, 2011) is a Lagrangian diagnostic that compares simulated drifters’ trajectories with real drifter trajectories that started at the same locations. More precisely, we compute the distances between each drifter’s location and the expected locations obtained by advecting past positions by the mapped velocities (with daily forecast lead times ranging from 0 to 5 days).</p>
+<section id="trajectory-deviation-maps">
+<h3>•  Trajectory deviation maps<a class="headerlink" href="#trajectory-deviation-maps" title="Permalink to this headline"></a></h3>
+<br>
+<p><img alt="Drifter deviation map h5" src="_images/deviation_maps_DUACS_global_h5.png" /></p>
 <br>
 </section>
+<section id="trajectory-deviation-horizons">
+<h3>•  Trajectory deviation horizons<a class="headerlink" href="#trajectory-deviation-horizons" title="Permalink to this headline"></a></h3>
+<br>
+<p><img alt="Drifter deviation horizon" src="_images/deviation_horizon_global.png" /></p>
+</section>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Liu, Y., &amp; Weisberg, R. H. (2011). Evaluation of trajectory modeling in different dynamic regions using normalized cumulative Lagrangian separation. Journal of Geophysical Research: Oceans, 116(C9).</p></li>
+</ul>
 </section>
 </section>
 
@@ -128,7 +146,7 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="metrics_alongdrifter.html" class="btn btn-neutral float-left" title="Along drifter metrics" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="metrics_alongdrifter.html" class="btn btn-neutral float-left" title="Currents - Along drifter metrics" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="mod_compare.html" class="btn btn-neutral float-right" title="mod_compare module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
