@@ -49,16 +49,15 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="getstarted_install.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getstarted_data.html">Download the data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="getstarted_eval.html">Evaluation</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Generic evaluation</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="eval_generic_global.html">Global scale</a></li>
 <li class="toctree-l1"><a class="reference internal" href="eval_generic_GS.html">Gulf Stream region</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Near inertial oscillation focus</span></p>
+<p class="caption" role="heading"><span class="caption-text">Specific focus</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="eval_nio_rotaryspec.html">Rotary spectrum</a></li>
+<li class="toctree-l1"><a class="reference internal" href="eval_nio_rotaryspec.html">Near inertial oscillation</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Notebooks</span></p>
 <ul>
@@ -69,8 +68,9 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">SSH - Along track metrics</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#statistics">Statistics</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#error-variance">• Error variance</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#explained-variance">• Explained variance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#error-variance-maps">• Error variance maps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#explained-variance-maps">• Explained variance maps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#statistics-by-regime">• Statistics by regime</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#spectral">Spectral</a><ul>
@@ -81,7 +81,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="metrics_alongdrifter.html">Currents - Along drifter metrics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="metrics_driftertraj.html">Currents - Drifter trajectory metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="metrics_driftertraj.html">Currents - Lagrangian metrics</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Scripts</span></p>
 <ul>
@@ -123,37 +123,135 @@
 <h1>SSH - Along track metrics<a class="headerlink" href="#ssh-along-track-metrics" title="Permalink to this headline"></a></h1>
 <br>
 <br>
+<p>The ocean surface topography reconstruction is compared with independant data from Saral/AltiKa altimeter. The reconstructed maps are first interpolated onto the independant nadir tracks. The following diagnostics are then performed along these tracks and aggregated in 1° longitude x 1° latitude boxes.</p>
 <section id="statistics">
 <h2>Statistics<a class="headerlink" href="#statistics" title="Permalink to this headline"></a></h2>
-<p><a class="reference internal" href="gallery/alongtrack_statistics_description.html"><span class="doc std std-doc"><strong>Check example notebook</strong></span></a></p>
+<p><a class="reference internal" href="gallery/alongtrack_statistics_description.html"><span class="doc std std-doc"><strong>Check alongtrack statistics example notebook</strong></span></a></p>
 <br>
-<section id="error-variance">
-<h3>• Error variance<a class="headerlink" href="#error-variance" title="Permalink to this headline"></a></h3>
+<section id="error-variance-maps">
+<h3>• Error variance maps<a class="headerlink" href="#error-variance-maps" title="Permalink to this headline"></a></h3>
+<div style="text-align: justify">
+The SSH error variance are computed alongtrack and then averaged in each 1° x 1° box. The resulting error variances are then displayed as maps. Also, a band pass filter can be applied before computing the statistics in order to select specific spatial dynamical scales between 65 km and 500 km. 
+</div> 
+<br>
+<p><img alt="DUACS SSH error variance" src="_images/Maps_DUACS_errvar_glob.png" /></p>
+<center> 
+  <i>Figure 1: Global DUACS SSH error variance with respect to independent nadir SSH Altika at all scales (left) and scales between 65-500 km (right). </i> 
+</center>
 <br>
 </section>
-<section id="explained-variance">
-<h3>• Explained variance<a class="headerlink" href="#explained-variance" title="Permalink to this headline"></a></h3>
+<section id="explained-variance-maps">
+<h3>• Explained variance maps<a class="headerlink" href="#explained-variance-maps" title="Permalink to this headline"></a></h3>
+<div style="text-align: justify">
+Similarly, the SSH explained variance are computed alongtrack and then averaged in each 1° x 1° box. The resulting explained variances are then displayed as maps. 
+</div>
+<br>
+<p><img alt="DUACS SSH explained variance" src="_images/Maps_DUACS_explvar_glob.png" /></p>
+<center> 
+  <i>Figure 2: Global DUACS SSH explained variance with respect to independent nadir SSH Altika at all scales (left) and scales between 65-500 km (right). </i> 
+</center>
+<br>
+</section>
+<section id="statistics-by-regime">
+<h3>• Statistics by regime<a class="headerlink" href="#statistics-by-regime" title="Permalink to this headline"></a></h3>
+<div style="text-align: justify">
+The statistics displayed in the previous maps are also averaged in specific geographical areas and regimes (<i>coastal, offshore-high variability, offshore-low variability, equatorial band, Arctic, Antarctic</i>) in order to provide a series of scores summarized in the Leaderboards.
+</div>
+<br>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="text-left head"><p><font size="2">Ocean regime  </font></p></th>
+<th class="head"><p><font size="2"> Methods</font></p></th>
+<th class="text-center head"><p><font size="2">Err variance score (All scales)</font></p></th>
+<th class="text-center head"><p><font size="2"> Err variance score (65-500km)</font></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><font size="2"> <em>Coastal</em> </font></p></td>
+<td><p><font size="2"> DUACS </font></p></td>
+<td class="text-center"><p><font size="2"> 0.683678  </font></p></td>
+<td class="text-center"><p><font size="2">     0.682788     </font></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p></p></td>
+<td><p></p></td>
+<td class="text-center"><p></p></td>
+<td class="text-center"><p></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><font size="2"> <em>Offshore high var</em> </font></p></td>
+<td><p><font size="2"> DUACS </font></p></td>
+<td class="text-center"><p><font size="2">  0.941316 </font></p></td>
+<td class="text-center"><p><font size="2">      0.941316   </font></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p></p></td>
+<td><p></p></td>
+<td class="text-center"><p></p></td>
+<td class="text-center"><p></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><font size="2"> <em>Offshore low var</em> </font></p></td>
+<td><p><font size="2"> DUACS </font></p></td>
+<td class="text-center"><p><font size="2">  0.800111 </font></p></td>
+<td class="text-center"><p><font size="2">       0.868348   </font></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p></p></td>
+<td><p></p></td>
+<td class="text-center"><p></p></td>
+<td class="text-center"><p></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><font size="2"> <em>Equatorial band</em> </font></p></td>
+<td><p><font size="2"> DUACS </font></p></td>
+<td class="text-center"><p><font size="2">   0.764560  </font></p></td>
+<td class="text-center"><p><font size="2">      0.415881   </font></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p></p></td>
+<td><p></p></td>
+<td class="text-center"><p></p></td>
+<td class="text-center"><p></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><font size="2"> <em>Arctic</em>       </font></p></td>
+<td><p><font size="2"> DUACS </font></p></td>
+<td class="text-center"><p><font size="2">  0.667031 </font></p></td>
+<td class="text-center"><p><font size="2">      0.585653    </font></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p></p></td>
+<td><p></p></td>
+<td class="text-center"><p></p></td>
+<td class="text-center"><p></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><font size="2"> <em>Antarctic</em>   </font></p></td>
+<td><p><font size="2"> DUACS </font></p></td>
+<td class="text-center"><p><font size="2"> 0.415025   </font></p></td>
+<td class="text-center"><p><font size="2">      0.077469    </font></p></td>
+</tr>
+</tbody>
+</table>
 <br>
 <br>
 </section>
 </section>
 <section id="spectral">
 <h2>Spectral<a class="headerlink" href="#spectral" title="Permalink to this headline"></a></h2>
-<p><a class="reference internal" href="gallery/alongtrack_spectral_description.html"><span class="doc std std-doc"><strong>Check example notebook</strong></span></a></p>
+<p><a class="reference internal" href="gallery/alongtrack_spectral_description.html"><span class="doc std std-doc"><strong>Check alongtrack spectral example notebook</strong></span></a></p>
 <br> 
 <section id="effective-resolution-maps">
 <h3>• Effective resolution maps<a class="headerlink" href="#effective-resolution-maps" title="Permalink to this headline"></a></h3>
-<p>The effective resolution corresponds to the spatiotemporal scales of the features that can be properly resolved in the maps (Ballarotta et al., 2019). The spatiotemporal resolution of the previous level 4 global SLA products was estimated by Chelton et al. (2011, 2014) and Chelton and Schlax (2003) based on estimates of the mapping errors in sea surface height (SSH) fields constructed from altimeter data or spectral ratio analysis between maps and along-track altimeter data.</p>
+<div style="text-align: justify">
+The effective resolution corresponds to the spatiotemporal scales of the features that can be properly resolved in the maps (Ballarotta et al., 2019). The spatiotemporal resolution of the previous level 4 global SLA products was estimated by Chelton et al. (2011, 2014) and Chelton and Schlax (2003) based on estimates of the mapping errors in sea surface height (SSH) fields constructed from altimeter data or spectral ratio analysis between maps and along-track altimeter data. 
 <p>To estimate the effective resolution, we first compute the spectral noise-to-signal ratio, i.e. the ratio between the spectral content of the mapping error and the spectral content of independent along-track observations:</p>
+</div>
 <div class="math notranslate nohighlight">
 \[\text{NSR}(\lambda_s) = \frac{S_{diff}(\lambda_s)}{S_{obs}(\lambda_s)},\]</div>
 <p>where <span class="math notranslate nohighlight">\(\lambda_s\)</span> is the spatial wavelength, <span class="math notranslate nohighlight">\(S_{diff}(\lambda_s)\)</span> is the power spectral density of the difference (SLA<span class="math notranslate nohighlight">\(_{obs}\)</span>–SLA<span class="math notranslate nohighlight">\(_{map}\)</span>) and <span class="math notranslate nohighlight">\(S_{obs}(\lambda_s)\)</span> is the spectral density of the independent observation.</p>
-<p>Here, we define the effective resolution as the wavelenght at which the noise-to-signal ratio is equal or smaller than 0.5.</p>
+<div style="text-align: justify">
+Here, we define the effective resolution as the wavelenght at which the noise-to-signal ratio is equal or smaller than 0.5. 
+</div>
 <p><img alt="DUACS SSH effective resolution" src="_images/Maps_DUACS_effres_glob.png" /></p>
 <center> 
-  <i>Figure 3: Global DUACS effective resolutions with respect to independent nadir SSH Altika. </i> 
+  <i>Figure 3: Global DUACS SSH effective resolutions with respect to independent nadir SSH Altika. </i> 
 </center>
-<p>The maps (see DUACS example in Figure 3) are obtained by averaging the effective resolutions on all available along-track segments in each 1°x1° longitude x latitude box.</p>
+<br>
+<div style="text-align: justify">
+The maps (see DUACS example in Figure 3) are obtained by averaging the effective resolutions on all available along-track segments in each 1°x1° longitude x latitude box.
+</div>
 <br>
 </section>
 </section>

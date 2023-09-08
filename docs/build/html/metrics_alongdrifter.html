@@ -20,7 +20,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Currents - Drifter trajectory metrics" href="metrics_driftertraj.html" />
+    <link rel="next" title="Currents - Lagrangian metrics" href="metrics_driftertraj.html" />
     <link rel="prev" title="SSH - Along track metrics" href="metrics_alongtrack.html" /> 
 </head>
 
@@ -47,16 +47,15 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="getstarted_install.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getstarted_data.html">Download the data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="getstarted_eval.html">Evaluation</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Generic evaluation</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="eval_generic_global.html">Global scale</a></li>
 <li class="toctree-l1"><a class="reference internal" href="eval_generic_GS.html">Gulf Stream region</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Near inertial oscillation focus</span></p>
+<p class="caption" role="heading"><span class="caption-text">Specific focus</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="eval_nio_rotaryspec.html">Rotary spectrum</a></li>
+<li class="toctree-l1"><a class="reference internal" href="eval_nio_rotaryspec.html">Near inertial oscillation</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Notebooks</span></p>
 <ul>
@@ -70,6 +69,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#statistics">Statistics</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#error-variance">• Error variance</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#explained-variance">•  Explained variance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#statistics-by-regime">• Statistics by regime</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#spectral">Spectral</a><ul>
@@ -79,7 +79,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="metrics_driftertraj.html">Currents - Drifter trajectory metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="metrics_driftertraj.html">Currents - Lagrangian metrics</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Scripts</span></p>
 <ul>
@@ -121,30 +121,59 @@
 <h1>Currents - Along drifter metrics<a class="headerlink" href="#currents-along-drifter-metrics" title="Permalink to this headline"></a></h1>
 <br>
 <br>
+<div style="text-align: justify">
+In this section, the mapping performances are assessed by comparing the currents products (or estimated geostrophic velocities for methods that only reconstruct SSH) with independent drifter data (available at 6-hour resolution). The ageostrophic component of the observed velocities have not been removed in these reference data. 
+</div>
 <section id="statistics">
 <h2>Statistics<a class="headerlink" href="#statistics" title="Permalink to this headline"></a></h2>
-<p><a class="reference internal" href="gallery/alongtrack_statistics_description.html"><span class="doc std std-doc"><strong>Check example notebook</strong></span></a></p>
+<p><a class="reference internal" href="gallery/alongtrack_statistics_description.html"><span class="doc std std-doc"><strong>Check alongdrifter statistics example notebook</strong></span></a></p>
 <br>
 <section id="error-variance">
 <h3>• Error variance<a class="headerlink" href="#error-variance" title="Permalink to this headline"></a></h3>
+<div style="text-align: justify">
+Eulerian diagnostics are performed by comparing the estimated currents with the velocities measured by the drifters at each location (in space and time) of the drifters. The methodology used is the same as for the SSH evaluation: the mapped velocities (meridional and zonal components) are interpolated on the drifters' locations and the error variance with the drifters' velocities are aggregated in 1° longitude x 1° latitude boxes.
+</div>
+<p><img alt="DUACS UV error variance" src="_images/Maps_DUACS_errvar_glob_uv.png" /></p>
+<center> 
+  <i>Figure 1: Global DUACS corresponding geostrophic currents error variance with respect to independent drifter currents for the zonal component (left) and the meridional component (right). </i> 
+</center>
 <br>
 </section>
 <section id="explained-variance">
 <h3>•  Explained variance<a class="headerlink" href="#explained-variance" title="Permalink to this headline"></a></h3>
+<div style="text-align: justify">
+The same process is done to obtained the currents explained variance. 
+</div>
+<p><img alt="DUACS UV explained variance" src="_images/Maps_DUACS_explvar_glob_uv.png" /></p>
+<center> 
+  <i>Figure 2: Global DUACS corresponding geostrophic currents explained variance with respect to independent drifter currents the zonal component (left) and the meridional component (right). </i> 
+</center>
+<br>
+</section>
+<section id="statistics-by-regime">
+<h3>• Statistics by regime<a class="headerlink" href="#statistics-by-regime" title="Permalink to this headline"></a></h3>
+<div style="text-align: justify">
+The statistics displayed in the previous maps are also averaged in specific geographical areas and regimes (<i>coastal, offshore-high variability, offshore-low variability, equatorial band, Arctic, Antarctic</i>) in order to provide a series of scores summarized in the Leaderboards.
+</div>
 <br>
 <br>
 </section>
 </section>
 <section id="spectral">
 <h2>Spectral<a class="headerlink" href="#spectral" title="Permalink to this headline"></a></h2>
-<p><a class="reference internal" href="gallery/alongtrack_spectral_description.html"><span class="doc std std-doc"><strong>Check example notebook</strong></span></a></p>
+<p><a class="reference internal" href="gallery/alongtrack_spectral_description.html"><span class="doc std std-doc"><strong>Check alongdrifter spectral example notebook</strong></span></a></p>
 <br> 
 <section id="rotary-spectrum-and-noise-to-signal-ratio">
 <h3>• Rotary spectrum and noise-to-signal ratio<a class="headerlink" href="#rotary-spectrum-and-noise-to-signal-ratio" title="Permalink to this headline"></a></h3>
-<p>Rotary spectrum are a frequently used approach for current data analysis. The idea is to resolve the velocity vector into two rotational components: clockwise and anti-clockwise (Mooers, 1973 ; Gonella, 1972). This allows to represent the current energy distribution between the rotation and the latitude.</p>
-<p>For instance, this rotation/latitude representation of the current energy distribution allows to clearly see the near-inertial oscillation induced currents (present in the drifter currents and not in DUACS) around the inertial frequency (dashed line).</p>
+<div style="text-align: justify">
+Rotary spectrum are a frequently used approach for current data analysis. The idea is to resolve the velocity vector into two rotational components: clockwise and anti-clockwise (Mooers, 1973 ; Gonella, 1972). This allows to represent the current energy distribution between the rotation and the latitude. 
+<p>The frequency rotary spectra of drifter (artificial from reconstruction and real) velocity (Ee) are computed along the drifter trajectories and displayed as a function of latitude and frequency. The velocity spectra are characterized by high-energy peaks at low frequencies (&lt;0.5 cpd), diurnal, semidiurnal, and latitude-varying inertial frequencies. This diagnostics allows to assess the methods reconstruction skills on certain specific dynamics.</p>
+<p>For instance, the dashed line superimposed to the spectrum corresponds to the inertial frequency, hence, the energy around that dashed line is characteristic of near-inertial oscillation induced currents. This energy can be observed in the real drifter data but is also partly reconstructed by some methods (e.g., WOC product or Glorys12v1 but not in DUACS).</p>
+</div>
 <p><img alt="DUACS currents effective resolution" src="_images/Maps_DUACS_effres_glob_uv.png" /></p>
-<p>Also, similarly to the noise-to-signal ratio needed to compute the alongtrack effective resolution, the spectrum of the difference between reconstructed currents and drifter measured currents is divided by the spectrum of the drifter measured currents in order to provide rotation/latitude plots of the noise-to-signal ratio.</p>
+<div style="text-align: justify">
+Also, similarly to the noise-to-signal ratio needed to compute the alongtrack effective resolution, the spectrum of the difference between reconstructed currents and drifter measured currents is divided by the spectrum of the drifter measured currents in order to provide rotation/latitude plots of the noise-to-signal ratio. 
+</div>
 <br>
 </section>
 </section>
@@ -162,7 +191,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="metrics_alongtrack.html" class="btn btn-neutral float-left" title="SSH - Along track metrics" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="metrics_driftertraj.html" class="btn btn-neutral float-right" title="Currents - Drifter trajectory metrics" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="metrics_driftertraj.html" class="btn btn-neutral float-right" title="Currents - Lagrangian metrics" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

@@ -1,17 +1,20 @@
-# Currents - Drifter trajectory metrics
+# Currents - Lagrangian metrics
 
 <br>
  
 
 <br>
 
-## Trajectory deviation
+## Drifter trajectory deviation
 <br>
 
-[**Check example notebook**](gallery/alongtrack_spectral_description.ipynb)
+[**Check drifter trajectory example notebook**](gallery/alongtrack_spectral_description.ipynb)
 
-The drifter trajectory deviation (or Lagrangian Cumulative Distance ; Liu and Weisberg, 2011) is a Lagrangian diagnostic that compares simulated drifters' trajectories with real drifter trajectories that started at the same locations. More precisely, we compute the distances between each drifter's location and the expected locations obtained by advecting past positions by the mapped velocities (with daily forecast lead times ranging from 0 to 5 days).
+<div style="text-align: justify">
+The drifter trajectory deviation (or Lagrangian Cumulative Distance ; Liu and Weisberg, 2011) is a Lagrangian diagnostic that compares simulated drifters' trajectories with real drifter trajectories that started at the same locations. More precisely, we compute the distances between each drifter's location and the expected locations obtained by advecting past positions from the reconstructed velocities. These distances are evaluated with forecast lead times ranging from 0 to 5 days, every day.
+</div>
 
+<br>
 
 ### &#x2022;  Trajectory deviation maps
 

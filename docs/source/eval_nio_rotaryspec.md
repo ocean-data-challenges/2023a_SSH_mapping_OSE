@@ -1,9 +1,7 @@
-# Rotary spectrum
+# Near inertial oscillation
 
 <br>
- 
- Test
-
+  
 <br> 
 
 

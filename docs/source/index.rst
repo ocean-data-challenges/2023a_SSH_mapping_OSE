@@ -59,8 +59,7 @@ The altimeter data from Saral/AltiKa and surface current velocity data mentioned
    :caption: Get started
 
    getstarted_install.md
-   getstarted_data.md
-   getstarted_eval.md
+   getstarted_data.md 
 
 .. toctree::
    :maxdepth: 1
@@ -71,7 +70,7 @@ The altimeter data from Saral/AltiKa and surface current velocity data mentioned
 
 .. toctree::
    :maxdepth: 1
-   :caption: Near inertial oscillation focus
+   :caption: Specific focus
 
    eval_nio_rotaryspec.md
  
