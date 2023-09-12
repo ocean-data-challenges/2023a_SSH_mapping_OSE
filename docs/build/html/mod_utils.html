@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>mod_utils module &mdash; ODC - global OSE mapping  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/sg_gallery.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            ODC - global OSE mapping
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Get started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getstarted_install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getstarted_data.html">Download the data</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Generic evaluation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="eval_generic_global.html">Global scale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="eval_generic_GS.html">Gulf Stream region</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Specific focus</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="eval_nio_rotaryspec.html">Near inertial oscillation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Notebooks</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="notebooks_evaluation.html">Notebooks evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks_download_data.html">Notebooks download the data</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Metrics details</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="metrics_alongtrack.html">SSH - Along track metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="metrics_alongdrifter.html">Currents - Along drifter metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="metrics_driftertraj.html">Currents - Lagrangian metrics</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Scripts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="mod_compare.html">mod_compare module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mod_filter.html">mod_filter module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mod_interp.html">mod_interp module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mod_plot.html">mod_plot module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mod_powerspec.html">mod_powerspec module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mod_read.html">mod_read module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mod_spectral.html">mod_spectral module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mod_stat.html">mod_stat module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mod_traj.html">mod_traj module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mod_xscale.html">mod_xscale module</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ODC - global OSE mapping</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">mod_utils module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/mod_utils.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-mod_utils">
+<span id="mod-utils-module"></span><h1>mod_utils module<a class="headerlink" href="#module-mod_utils" title="Permalink to this headline"></a></h1>
+<p>Xscale is a python package created by Guillaume Sérazin and available at <a class="reference external" href="https://github.com/serazing/xscale">https://github.com/serazing/xscale</a>.</p>
+<p>Xscale is a collection of signal processing and statistical tools initially designed for the analysis of the spatio-temporal scales of geophysical data. It is part of the pangeo-data project and works with xarray and dask objects.</p>
+<p>Due to some deprecations of the package, only parts of it are used here in mod_xscale.py and mod_utils.py.</p>
+<p>mod_utils.py is where useful internal functions are stored.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="mod_utils.get_dx">
+<span class="sig-prename descclassname"><span class="pre">mod_utils.</span></span><span class="sig-name descname"><span class="pre">get_dx</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'s'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mod_utils.get_dx" title="Permalink to this definition"></a></dt>
+<dd><p>Get the resolution over one the dimension dim.
+Warns the user if the coordinate is not evenly spaced.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>obj</strong> (<cite>xarray.DataSet</cite> or <cite>xarray.DataArray</cite>) – Self-described data with coordinates corresponding to the dimensions</p></li>
+<li><p><strong>dim</strong> – Dimension along which compute the delta</p></li>
+<li><p><strong>unit</strong> (<em>{'D'</em><em>, </em><em>'h'</em><em>, </em><em>'m'</em><em>, </em><em>'s'</em><em>, </em><em>'ms'</em><em>, </em><em>'us'</em><em>, </em><em>'ns'}</em><em>, </em><em>optional</em>) – If the fit the coordinates associated to the dimension is a
+numpy.datetime object, the unit of the time delta may be specified here</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>dx</strong> – The resolution of the coordinates associated to the dimension</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mod_utils.homogeneous_type">
+<span class="sig-prename descclassname"><span class="pre">mod_utils.</span></span><span class="sig-name descname"><span class="pre">homogeneous_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seq</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mod_utils.homogeneous_type" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mod_utils.infer_arg">
+<span class="sig-prename descclassname"><span class="pre">mod_utils.</span></span><span class="sig-name descname"><span class="pre">infer_arg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dims</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mod_utils.infer_arg" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mod_utils.infer_n_and_dims">
+<span class="sig-prename descclassname"><span class="pre">mod_utils.</span></span><span class="sig-name descname"><span class="pre">infer_n_and_dims</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dims</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mod_utils.infer_n_and_dims" title="Permalink to this definition"></a></dt>
+<dd><p>Logic for setting the window properties</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mod_utils.is_datetime">
+<span class="sig-prename descclassname"><span class="pre">mod_utils.</span></span><span class="sig-name descname"><span class="pre">is_datetime</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mod_utils.is_datetime" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mod_utils.is_dict_like">
+<span class="sig-prename descclassname"><span class="pre">mod_utils.</span></span><span class="sig-name descname"><span class="pre">is_dict_like</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mod_utils.is_dict_like" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mod_utils.is_iterable">
+<span class="sig-prename descclassname"><span class="pre">mod_utils.</span></span><span class="sig-name descname"><span class="pre">is_iterable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mod_utils.is_iterable" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mod_utils.is_scalar">
+<span class="sig-prename descclassname"><span class="pre">mod_utils.</span></span><span class="sig-name descname"><span class="pre">is_scalar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mod_utils.is_scalar" title="Permalink to this definition"></a></dt>
+<dd><p>Whether to treat a value as a scalar. Any non-iterable, string, or 0-D array</p>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Datlas.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
