@@ -17,7 +17,7 @@ for x in os.walk('../../src'):
   sys.path.insert(0, x[0])
 
 # this is to tell reathedocs not to try to document numpy which is external.
-autodoc_mock_imports = ['numpy','xarray','matplotlib','pyinterp','netCDF4','scipy','numba','pandas','datetime','cartopy','hvplot','warnings','packaging','dask']
+autodoc_mock_imports = ['numpy','xarray','matplotlib','pyinterp','netCDF4','scipy','numba','pandas','datetime','cartopy','hvplot','warnings','packaging','dask','src']
 
 
 # -- Project information -----------------------------------------------------
