@@ -1,6 +1,6 @@
 ## :warning: WORK in progress. This data-challenge is still under construction
   
-# Check out the data challenge [website](https://ocean-data-challenges.github.io/2023a_SSH_mapping_OSE/) for more infos !
+# Check out the data challenge [website](https://2023a-ssh-mapping-ose.readthedocs.io) for more infos !
 
 <p align="center">
   <img src="figures/dc_2023_ose_global_banner.jpg" alt="Alt Text" width="900"/>
