@@ -60,6 +60,7 @@ The altimeter data from Saral/AltiKa and surface current velocity data mentioned
 
    getstarted_install.md
    getstarted_data.md 
+   getstarted_eval.md
 
 .. toctree::
    :maxdepth: 1
