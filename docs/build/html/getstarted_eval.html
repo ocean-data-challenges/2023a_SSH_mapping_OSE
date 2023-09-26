@@ -49,8 +49,8 @@
 <li class="toctree-l1"><a class="reference internal" href="getstarted_data.html">Download the data</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Evaluate your own maps</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#maps-format">Maps format</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#sea-level-anomaly">Sea Level Anomaly</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#currents">Currents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sea-level-anomaly-maps-format">Sea Level Anomaly maps format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#currents-maps-format">Currents maps format</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#available-metrics-and-where-to-find-them">Available metrics and where to find them</a><ul>
@@ -134,6 +134,8 @@
 <h1>Evaluate your own maps<a class="headerlink" href="#evaluate-your-own-maps" title="Permalink to this headline"></a></h1>
 <br> 
 <br> 
+<p>Once you have <a class="reference internal" href="getstarted_install.html"><span class="doc std std-doc">installed the data challenge</span></a> and <a class="reference internal" href="getstarted_data.html"><span class="doc std std-doc">downloaded the data</span></a>, you can now evaluate your maps. Although, you might want to check first that your sea level anomaly or sea surface currents maps respect a certain format. You can then scroll through the different metrics, checking the DUACS evaluation notebooks as example.</p>
+<br> 
 <section id="maps-format">
 <h2>Maps format<a class="headerlink" href="#maps-format" title="Permalink to this headline"></a></h2>
 <p>The input netcdf files must contain:</p>
@@ -143,12 +145,12 @@
 <li><p>for currents evaluation, a meridional and a zonal currents variable <code class="docutils literal notranslate"><span class="pre">ugos</span></code> and <code class="docutils literal notranslate"><span class="pre">vgos</span></code>.</p></li>
 </ul>
 <p>Note that some formatting can be done using xarray within the jupyter notebooks. For instance, you can change a variable’s name simpy with <code class="docutils literal notranslate"><span class="pre">ds</span> <span class="pre">=</span> <span class="pre">ds.rename_var({'my_sla':'sla'})</span></code>.</p>
-<section id="sea-level-anomaly">
-<h3>Sea Level Anomaly<a class="headerlink" href="#sea-level-anomaly" title="Permalink to this headline"></a></h3>
+<section id="sea-level-anomaly-maps-format">
+<h3>Sea Level Anomaly maps format<a class="headerlink" href="#sea-level-anomaly-maps-format" title="Permalink to this headline"></a></h3>
 <p><img alt="SLA Format" src="_images/Maps_format_SLA.png" /></p>
 </section>
-<section id="currents">
-<h3>Currents<a class="headerlink" href="#currents" title="Permalink to this headline"></a></h3>
+<section id="currents-maps-format">
+<h3>Currents maps format<a class="headerlink" href="#currents-maps-format" title="Permalink to this headline"></a></h3>
 <p><img alt="Currents_Format" src="_images/Maps_format_Currents.png" /></p>
 <br> 
 </section>
