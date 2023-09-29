@@ -1,23 +1,33 @@
-# Global scale
+# Global scale evaluation
 
 <br>
  
 
 <br>
 
-## [- Leaderboards](eval_glob_leaderboards.md)
+## Global quantitative overview 
 
 <br>
 
-##  [- DUACS](eval_glob_duacs.md)
+### [&#x2022;  Leaderboards](eval_glob_leaderboards.md)
 
 <br>
 
-## [- MIOST](eval_glob_miost.md) 
+<br>
+
+## Specific mapping methods  
 
 <br>
 
-## [- MIOST EqW](eval_glob_miosteqw.md)
+### [&#x2022;  DUACS](eval_glob_duacs.md)
+
+<br>
+
+### [&#x2022;  MIOST](eval_glob_miost.md) 
+
+<br>
+
+### [&#x2022;  MIOST EqW](eval_glob_miosteqw.md)
 
 <br>
  

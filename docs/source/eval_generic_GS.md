@@ -1,15 +1,28 @@
-# Gulf Stream region
+# Gulf Stream evaluation
 
 <br>
  
 
 <br>  
 
-## [- Leaderboards](eval_GS_leaderboards.md)
+
+
+## Gulf Stream quantitative overview 
 
 <br>
 
-##  [- DUACS](eval_GS_duacs.md)
+### [&#x2022;  Leaderboards](eval_GS_leaderboards.md)
+
+<br>
+
+<br>
+
+## Specific mapping methods  
+
+<br> 
+ 
+
+###  [&#x2022;  DUACS](eval_GS_duacs.md)
 
 <br>
  
