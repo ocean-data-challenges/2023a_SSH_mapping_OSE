@@ -53,7 +53,7 @@ source_suffix = {
     '.txt': 'markdown',
     '.md': 'markdown',
 }
-
+ 
 myst_enable_extensions = ["dollarmath", "amsmath"]
 
 myst_footnote_transition = False
@@ -77,6 +77,8 @@ html_theme = 'sphinx_rtd_theme'
 #html_theme = 'alabaster'
 #html_theme = 'nature'
 #html_theme = 'pyramid'
+
+html_logo = "figures/dc_2023_ose_global_logo-rtd.png"
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,

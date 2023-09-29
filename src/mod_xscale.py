@@ -21,7 +21,7 @@ import copy
 # Xscale
 import sys
 sys.path.append('..')
-from src import mod_utils as _utils
+import mod_utils as _utils
 # Warnings
 import warnings
 

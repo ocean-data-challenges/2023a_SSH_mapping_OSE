@@ -34,6 +34,7 @@
           
           <a href="index.html" class="icon icon-home">
             ODC - global OSE mapping
+              <img src="_static/dc_2023_ose_global_logo-rtd.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -47,6 +48,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="getstarted_install.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getstarted_data.html">Download the data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getstarted_eval.html">Evaluate your own maps</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Generic evaluation</span></p>
 <ul>
@@ -174,7 +176,7 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="mod_interp.interpolate">
-<span class="sig-prename descclassname"><span class="pre">mod_interp.</span></span><span class="sig-name descname"><span class="pre">interpolate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mod_interp.interpolate" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">mod_interp.</span></span><span class="sig-name descname"><span class="pre">interpolate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'sla'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mod_interp.interpolate" title="Permalink to this definition"></a></dt>
 <dd><p>Interpolate the time series over the defined period.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -242,7 +244,7 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="mod_interp.run_interpolation">
-<span class="sig-prename descclassname"><span class="pre">mod_interp.</span></span><span class="sig-name descname"><span class="pre">run_interpolation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ds_maps</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ds_alongtrack</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frequency</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'M'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mod_interp.run_interpolation" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">mod_interp.</span></span><span class="sig-name descname"><span class="pre">run_interpolation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ds_maps</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ds_alongtrack</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frequency</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'M'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'sla'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mod_interp.run_interpolation" title="Permalink to this definition"></a></dt>
 <dd><p>Interpolate time series data over specified periods.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>

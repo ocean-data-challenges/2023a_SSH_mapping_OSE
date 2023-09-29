@@ -165,7 +165,7 @@ def periods(df, time_series, var_name="sla_unfiltered", frequency='W'):
     
     
 
-def interpolate(df, time_series, start, end):
+def interpolate(df, time_series, start, end, var='sla'):
     """
     Interpolate the time series over the defined period.
 
@@ -180,7 +180,7 @@ def interpolate(df, time_series, start, end):
     end : pandas.Timestamp
         End timestamp of the interpolation period.
     """
-    interpolator = time_series._load_dataset("sla", start, end)
+    interpolator = time_series._load_dataset(var, start, end)
     mask = (df.index >= start) & (df.index < end)
     selected = df.loc[mask, ["longitude", "latitude"]]
     df.loc[mask, ["msla_interpolated"]] = interpolator.trivariate(
@@ -190,8 +190,11 @@ def interpolate(df, time_series, start, end):
         interpolator="inverse_distance_weighting",
         num_threads=0)
     
+    if var == 'ssh':
+        df.msla_interpolated = df.msla_interpolated - df.mdt
     
-def run_interpolation(ds_maps, ds_alongtrack, frequency='M'):
+    
+def run_interpolation(ds_maps, ds_alongtrack, frequency='M', var='sla'):
     """
     Interpolate time series data over specified periods.
 
@@ -215,7 +218,7 @@ def run_interpolation(ds_maps, ds_alongtrack, frequency='M'):
     df = ds_alongtrack.to_dataframe()
 
     for start, end in periods(df, time_series, frequency=frequency):
-        interpolate(df, time_series, start, end)
+        interpolate(df, time_series, start, end, var)
         
     ds = df.to_xarray()
         
