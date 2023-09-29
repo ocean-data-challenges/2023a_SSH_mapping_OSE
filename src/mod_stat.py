@@ -6,6 +6,7 @@ import pyinterp
 import xarray as xr
 from netCDF4 import Dataset
 from scipy import stats
+from src.mod_filter import *
 
 logging.basicConfig(format='%(asctime)s %(levelname)-8s %(message)s',
                     level=logging.INFO,

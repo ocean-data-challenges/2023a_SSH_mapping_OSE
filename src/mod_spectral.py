@@ -17,8 +17,8 @@ import scipy.signal as sps
 import scipy.linalg as spl
 import scipy.signal as signal
 sys.path.append('..')
-import mod_powerspec as ps 
-import mod_xscale as xfft
+import src.mod_powerspec as ps 
+import src.mod_xscale as xfft
 
 #from src.mod_interp import *
 

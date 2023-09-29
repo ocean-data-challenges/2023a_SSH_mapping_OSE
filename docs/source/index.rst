@@ -67,6 +67,7 @@ The altimeter data from Saral/AltiKa and surface current velocity data mentioned
    :caption: Generic evaluation
 
    eval_generic_global.md
+   eval_generic_NA.md
    eval_generic_GS.md
 
 .. toctree::

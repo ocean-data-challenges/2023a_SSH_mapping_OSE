@@ -53,8 +53,8 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Generic evaluation</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../eval_generic_global.html">Global scale</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../eval_generic_GS.html">Gulf Stream region</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../eval_generic_global.html">Global scale evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../eval_generic_GS.html">Gulf Stream evaluation</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Specific focus</span></p>
 <ul>
@@ -754,8 +754,8 @@ if (window.Jupyter !== undefined) {
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
-<span class="n">path_catalog</span> <span class="o">=</span> <span class="s2">&quot;https://ige-meom-opendap.univ-grenoble-alpes.fr/thredds/catalog/meomopendap/extract/ocean-data-challenges/dc_Map_global_OSE/independent_alongtrack/alg/2019/catalog.html&quot;</span>
-<span class="n">path_data</span> <span class="o">=</span>    <span class="s2">&quot;https://ige-meom-opendap.univ-grenoble-alpes.fr/thredds/fileServer/meomopendap/extract/ocean-data-challenges/dc_Map_global_OSE/independent_alongtrack/alg/2019/&quot;</span>
+<span class="n">path_catalog</span> <span class="o">=</span> <span class="s2">&quot;https://ige-meom-opendap.univ-grenoble-alpes.fr/thredds/catalog/meomopendap/extract/MEOM/OCEAN_DATA_CHALLENGES/2023a_SSH_mapping_OSE/independent_alongtrack/alg/2019/catalog.html&quot;</span>
+<span class="n">path_data</span> <span class="o">=</span>    <span class="s2">&quot;https://ige-meom-opendap.univ-grenoble-alpes.fr/thredds/fileServer/meomopendap/extract/MEOM/OCEAN_DATA_CHALLENGES/2023a_SSH_mapping_OSE/independent_alongtrack/alg/2019/&quot;</span>
 
 
 <span class="n">list_of_files</span> <span class="o">=</span> <span class="n">retrieve_list_of_files_from_url</span><span class="p">(</span><span class="n">path_catalog</span><span class="p">,</span> <span class="n">path_data</span><span class="p">)</span>
@@ -793,8 +793,8 @@ Wall time: 10min 5s
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
-<span class="n">path_catalog</span> <span class="o">=</span> <span class="s2">&quot;https://ige-meom-opendap.univ-grenoble-alpes.fr/thredds/catalog/meomopendap/extract/ocean-data-challenges/dc_Map_global_OSE/independent_drifters/catalog.html&quot;</span>
-<span class="n">path_data</span> <span class="o">=</span>    <span class="s2">&quot;https://ige-meom-opendap.univ-grenoble-alpes.fr/thredds/fileServer/meomopendap/extract/ocean-data-challenges/dc_Map_global_OSE/independent_drifters/&quot;</span>
+<span class="n">path_catalog</span> <span class="o">=</span> <span class="s2">&quot;https://ige-meom-opendap.univ-grenoble-alpes.fr/thredds/catalog/meomopendap/extract/MEOM/OCEAN_DATA_CHALLENGES/2023a_SSH_mapping_OSE/independent_drifters/catalog.html&quot;</span>
+<span class="n">path_data</span> <span class="o">=</span>    <span class="s2">&quot;https://ige-meom-opendap.univ-grenoble-alpes.fr/thredds/fileServer/meomopendap/extract/MEOM/OCEAN_DATA_CHALLENGES/2023a_SSH_mapping_OSE/independent_drifters/&quot;</span>
 
 
 <span class="n">list_of_files</span> <span class="o">=</span> <span class="n">retrieve_list_of_files_from_url</span><span class="p">(</span><span class="n">path_catalog</span><span class="p">,</span> <span class="n">path_data</span><span class="p">,</span><span class="s1">&#39;uv_&#39;</span><span class="p">)</span>
@@ -931,8 +931,8 @@ File <span class="ansi-green-fg">src/netCDF4/_netCDF4.pyx:2026</span>, in <span 
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
-<span class="n">path_catalog</span> <span class="o">=</span> <span class="s2">&quot;https://ige-meom-opendap.univ-grenoble-alpes.fr/thredds/catalog/meomopendap/extract/ocean-data-challenges/dc_Map_global_OSE/maps/DUACS_global_allsat-alg/catalog.html&quot;</span>
-<span class="n">path_data</span> <span class="o">=</span>    <span class="s2">&quot;https://ige-meom-opendap.univ-grenoble-alpes.fr/thredds/fileServer/meomopendap/extract/ocean-data-challenges/dc_Map_global_OSE/maps/DUACS_global_allsat-alg/&quot;</span>
+<span class="n">path_catalog</span> <span class="o">=</span> <span class="s2">&quot;https://ige-meom-opendap.univ-grenoble-alpes.fr/thredds/fileServer/meomopendap/catalog/MEOM/OCEAN_DATA_CHALLENGES/2023a_SSH_mapping_OSE/maps/DUACS_global_allsat-alg/catalog.html&quot;</span>
+<span class="n">path_data</span> <span class="o">=</span>    <span class="s2">&quot;https://ige-meom-opendap.univ-grenoble-alpes.fr/thredds/fileServer/meomopendap/extract/MEOM/OCEAN_DATA_CHALLENGES/2023a_SSH_mapping_OSE/maps/DUACS_global_allsat-alg/&quot;</span>
 
 
 <span class="n">list_of_files</span> <span class="o">=</span> <span class="n">retrieve_list_of_files_from_url</span><span class="p">(</span><span class="n">path_catalog</span><span class="p">,</span> <span class="n">path_data</span><span class="p">)</span>

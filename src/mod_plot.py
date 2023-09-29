@@ -9,6 +9,7 @@ import matplotlib.pyplot as plt
 import matplotlib.ticker as mticker
 from cartopy.mpl.gridliner import LONGITUDE_FORMATTER, LATITUDE_FORMATTER
 import cartopy.feature as cfeature 
+from src.mod_compare import *
 
 import warnings
 warnings.filterwarnings("ignore")
@@ -253,7 +254,9 @@ def plot_effective_resolution_png(filename,region='glob',box_lonlat=None):
         lon_max = box_lonlat['lon_max']
         lat_min = box_lonlat['lat_min']
         lat_max = box_lonlat['lat_max']
-        ds = ds.sel({'lon':slice(lon_min,lon_max),'lat':slice(lat_min,lat_max)}) 
+        #ds = ds.sel({'lon':slice(lon_min,lon_max),'lat':slice(lat_min,lat_max)}) 
+        
+        ds = regional_zoom(ds, [lon_min,lon_max], [lat_min,lat_max], namelon='lon', namelat='lat', change_lon=True)
     
     
     fig, axs = plt.subplots(nrows=1,ncols=1,
@@ -323,7 +326,9 @@ def plot_psd_scores(filename):
         lon_max = box_lonlat['lon_max']
         lat_min = box_lonlat['lat_min']
         lat_max = box_lonlat['lat_max']
-        ds = ds.sel({'lon':slice(lon_min,lon_max),'lat':slice(lat_min,lat_max)}) 
+        #ds = ds.sel({'lon':slice(lon_min,lon_max),'lat':slice(lat_min,lat_max)}) 
+        
+        ds = regional_zoom(ds, [lon_min,lon_max], [lat_min,lat_max], namelon='lon', namelat='lat', change_lon=True)
     
     
     fig, axs = plt.subplots(nrows=1,ncols=1,
@@ -668,8 +673,8 @@ def plot_stat_score_map_uv_png(filename,region='glob',box_lonlat=None):
         lon_min = box_lonlat['lon_min']
         lon_max = box_lonlat['lon_max']
         lat_min = box_lonlat['lat_min']
-        lat_max = box_lonlat['lat_max']
-        ds_binning_allscale = ds_binning_allscale.sel({'lon':slice(lon_min,lon_max),'lat':slice(lat_min,lat_max)}) 
+        lat_max = box_lonlat['lat_max'] 
+        ds_binning_allscale = regional_zoom(ds_binning_allscale, [lon_min,lon_max], [lat_min,lat_max], namelon='lon', namelat='lat', change_lon=True)
     
     
     
@@ -947,7 +952,6 @@ def plot_psd_scores_currents_png(filename,region='glob'):
     plt.savefig("../figures/Maps_"+str(method_name)+"_effres_"+region+"_uv.png", bbox_inches='tight')
     
        
-
     
 def plot_stat_score_map_png(filename,region='glob',box_lonlat=None): 
     """
@@ -1003,9 +1007,9 @@ def plot_stat_score_map_png(filename,region='glob',box_lonlat=None):
         lon_max = box_lonlat['lon_max']
         lat_min = box_lonlat['lat_min']
         lat_max = box_lonlat['lat_max']
-        ds_binning_allscale = ds_binning_allscale.sel({'lon':slice(lon_min,lon_max),'lat':slice(lat_min,lat_max)})
-        ds_binning_filtered = ds_binning_filtered.sel({'lon':slice(lon_min,lon_max),'lat':slice(lat_min,lat_max)})
-    
+        ds_binning_allscale = regional_zoom(ds_binning_allscale, [lon_min,lon_max], [lat_min,lat_max], namelon='lon', namelat='lat', change_lon=True)
+        ds_binning_filtered = regional_zoom(ds_binning_filtered, [lon_min,lon_max], [lat_min,lat_max], namelon='lon', namelat='lat', change_lon=True)
+   
     
     
     fig, axs = plt.subplots(nrows=1,ncols=2,
@@ -1115,6 +1119,8 @@ def plot_stat_score_map_png(filename,region='glob',box_lonlat=None):
                     wspace=0.02, hspace=0.01)
         
     plt.savefig("../figures/Maps_"+str(method_name)+"_explvar_"+region+".png", bbox_inches='tight')
+    
+    
     
 def compare_stat_score_map(study_filename, ref_filename):
     """
