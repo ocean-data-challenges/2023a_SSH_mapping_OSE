@@ -2,20 +2,18 @@
 mod_switchvar.py - Ocean Variable Conversion Module
 
 This module provides functions for converting ocean variables:
+ 
+ssh_to_currents(ssh, lon, lat)
+    Compute ocean current components from sea surface height (SSH).
 
-    Functions
-    ---------
-    ssh_to_currents(ssh, lon, lat)
-        Compute ocean current components from sea surface height (SSH).
+currents_to_potential_vorticity(u, v, lon, lat, h)
+    Compute oceanic potential vorticity (PV) from ocean current components.
 
-    currents_to_potential_vorticity(u, v, lon, lat, h)
-        Compute oceanic potential vorticity (PV) from ocean current components.
+currents_to_relative_vorticity(u, v, lon, lat)
+    Compute oceanic relative vorticity (zeta) from ocean current components.
 
-    currents_to_relative_vorticity(u, v, lon, lat)
-        Compute oceanic relative vorticity (zeta) from ocean current components.
-
-    lonlat2dxdy(lon, lat)
-        Compute spatial grid spacings (dx, dy) from longitude and latitude arrays.
+lonlat2dxdy(lon, lat)
+    Compute spatial grid spacings (dx, dy) from longitude and latitude arrays.
     
 """
 
