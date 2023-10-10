@@ -96,14 +96,4 @@ The altimeter data from Saral/AltiKa and surface current velocity data mentioned
    :maxdepth: 2
    :caption: Scripts
 
-   mod_compare.rst
-   mod_filter.rst
-   mod_interp.rst
-   mod_plot.rst
-   mod_powerspec.rst
-   mod_read.rst
-   mod_spectral.rst
-   mod_stat.rst 
-   mod_traj.rst
-   mod_utils.rst
-   mod_xscale.rst 
+   modules.rst

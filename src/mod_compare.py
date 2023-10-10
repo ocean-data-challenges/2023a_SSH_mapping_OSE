@@ -62,7 +62,6 @@ def regional_zoom(ds_glob, boxlon, boxlat, namelon='lon', namelat='lat', change_
     #ds_reg = ds_reg.sortby(ds_reg['time'])
 
     return ds_reg
-  
 
 
 def convert_longitude(ds, lon_name):

@@ -10,9 +10,7 @@ import matplotlib.ticker as mticker
 from cartopy.mpl.gridliner import LONGITUDE_FORMATTER, LATITUDE_FORMATTER
 import cartopy.feature as cfeature 
 from src.mod_compare import *
-
-import warnings
-warnings.filterwarnings("ignore")
+ 
 
 def plot_stat_score_map(filename):
     """
@@ -1914,4 +1912,95 @@ def compare_psd_score_png(study_filename, ref_filename):
     
     
 
- 
+def movie(ds, name_var, method='DUACS', region='Global', dir_output='../results/',dim_name=['time','latitude','longitude'],
+          framerate=24,Display=True,clim=None,cmap='Spectral', newmovie=False):
+
+    # For memory leak when saving multiple png files...
+    import matplotlib
+    matplotlib.use('Agg')
+    import matplotlib.gridspec as gridspec
+    import gc
+    import os
+    import subprocess
+    from IPython.display import Video
+    
+    
+    moviename = f'movie_{method}_{region}_{name_var}.mp4'
+    
+    if not os.path.isfile(os.path.join(dir_output, moviename)) or  newmovie: 
+     
+        # Create merged dataset 
+        name_dim_rmse = (dim_name[0],)
+        coords = (dim_name[0],dim_name[1],dim_name[2])
+
+        ds = ds.chunk({dim_name[0]:1})
+
+        if name_var == 'uv':
+            ds = ds.assign(uv=1/2*np.sqrt(ds["ugos"]**2+ds["vgos"]**2))
+            ds.uv.attrs = ds.vgos.attrs
+            ds.uv.attrs['long_name'] = 'Absolute geostrophic velocity magnitud'
+            ds.uv.attrs['standard_name'] = 'surface_geostrophic_sea_water_velocity_magnitud'
+
+        if clim is None:
+            clim = (ds[name_var].to_dataset().apply(np.nanmin)[name_var].values,ds[name_var].to_dataset().apply(np.nanmax)[name_var].values) 
+
+        # Plotting function
+        def _save_single_frame(ds, tt,clim=clim,cmap=cmap):
+
+            if tt==0:
+                return
+
+            fig = plt.figure(figsize=(8,6))
+            gs = gridspec.GridSpec(1,1,width_ratios=(1,))
+
+            date = str(ds[dim_name[0]][tt].values)[:13]
+
+            ids = ds.isel(time=tt) # dim_name[0] ?
+
+            ax1 = fig.add_subplot(gs[0, 0])
+            
+            extend_style = 'both'
+            if clim[0] == 0:
+                extend_style = 'max'
+            if clim[1] == 0:
+                extend_style = 'min'
+            ids[name_var].plot(ax=ax1,cmap=cmap,vmin=clim[0],vmax=clim[1],add_colorbar=True, extend=extend_style)
+            ax1.set_title(method+': '+date)  
+
+            fig.savefig(f'{dir_output}/frame_{method}_{region}_{name_var}_{str(tt).zfill(5)}.png',dpi=100)
+
+            plt.close(fig)
+            del fig
+            gc.collect(2)
+
+
+        # Compute and save frames 
+        for tt in range(ds[dim_name[0]].size):
+            _save_single_frame(ds, tt)
+
+        # Create movie
+        sourcefolder = dir_output
+        frame_pattern = f'frame_{method}_{region}_{name_var}_*.png'
+        ffmpeg_options="-c:v libx264 -preset veryslow -crf 15 -pix_fmt yuv420p -loglevel quiet"
+
+        command = 'ffmpeg -f image2 -r %i -pattern_type glob -i %s -y %s -r %i %s' % (
+                framerate,
+                os.path.join(sourcefolder, frame_pattern),
+                ffmpeg_options,
+                framerate,
+                os.path.join(dir_output, moviename),
+            )
+        #print(command)
+
+        _ = subprocess.run(command.split(' '),stdout=subprocess.DEVNULL)
+         
+
+        # Delete frames
+        os.system(f'rm {os.path.join(sourcefolder, frame_pattern)}')
+        
+    else:  
+        print("Movie already exists. Playing the existing movie (if Display==True). To rewrite movie set newmovie argument to True.") 
+
+    # Display movie
+    if Display: 
+        return Video(os.path.join(dir_output, moviename),embed=True)

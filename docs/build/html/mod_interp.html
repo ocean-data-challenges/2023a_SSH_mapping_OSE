@@ -52,8 +52,9 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Generic evaluation</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="eval_generic_global.html">Global scale</a></li>
-<li class="toctree-l1"><a class="reference internal" href="eval_generic_GS.html">Gulf Stream region</a></li>
+<li class="toctree-l1"><a class="reference internal" href="eval_generic_global.html">Global scale evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="eval_generic_NA.html">North Atlantic evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="eval_generic_GS.html">Gulf Stream evaluation</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Specific focus</span></p>
 <ul>
@@ -172,6 +173,29 @@
 <dd><p>Loading the time series into memory for the defined period.</p>
 </dd></dl>
 
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mod_interp.interp2d">
+<span class="sig-prename descclassname"><span class="pre">mod_interp.</span></span><span class="sig-name descname"><span class="pre">interp2d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name_vars</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lon_out</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lat_out</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mod_interp.interp2d" title="Permalink to this definition"></a></dt>
+<dd><p>Interpolate 2D data on a new grid defined by lon_out and lat_out.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ds</strong> (<em>xarray.Dataset</em>) – Dataset containing the data to be interpolated.</p></li>
+<li><p><strong>name_vars</strong> (<em>dict</em>) – A dictionary specifying the variable names and dimension names.
+Example: {‘lon’: ‘longitude’, ‘lat’: ‘latitude’, ‘var’: ‘data_variable’}</p></li>
+<li><p><strong>lon_out</strong> (<em>numpy.ndarray</em>) – 2D array of longitudes for the output grid.</p></li>
+<li><p><strong>lat_out</strong> (<em>numpy.ndarray</em>) – 2D array of latitudes for the output grid.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>var_out</strong> – 2D array of the interpolated data on the new grid.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">

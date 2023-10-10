@@ -2,7 +2,7 @@ import datetime
 import logging
 from datetime import timedelta
 
-import numpy
+import numpy as np 
 import pandas
 import pyinterp
 import pyinterp.backends.xarray
@@ -66,8 +66,8 @@ class TimeSeries:
             True if the array is sorted, False otherwise.
         """
         
-        indices = numpy.argsort(array)
-        return numpy.all(indices == numpy.arange(len(indices)))
+        indices = np.argsort(array)
+        return np.all(indices == np.arange(len(indices)))
 
     def _load_ts(self):
         """
@@ -85,7 +85,7 @@ class TimeSeries:
 
         series = pandas.Series(time)
         frequency = set(
-            numpy.diff(series.values.astype("datetime64[s]")).astype("int64"))
+            np.diff(series.values.astype("datetime64[s]")).astype("int64"))
         if len(frequency) != 1:
             raise RuntimeError(
                 "Time series does not have a constant step between two "
@@ -191,7 +191,7 @@ def interpolate(df, time_series, start, end, var='sla'):
         num_threads=0)
     
     if var == 'ssh':
-        df.msla_interpolated = df.msla_interpolated - df.mdt
+        df.msla_interpolated = df.msla_interpolated + df.mdt
     
     
 def run_interpolation(ds_maps, ds_alongtrack, frequency='M', var='sla'):
@@ -284,7 +284,7 @@ def reformat_drifter_dataset(ds):
     ds = ds.rename({'TIME':'time'})
     ds['longitude'] = (("time"), lon)
     ds['latitude'] = (("time"), lat)
-    ds['sensor_id'] = (("time"), ds.platform_code*numpy.ones(ds['time'].size))
+    ds['sensor_id'] = (("time"), ds.platform_code*np.ones(ds['time'].size))
     return ds
  
 
@@ -321,3 +321,70 @@ def run_interpolation_drifters(ds_maps, ds_drifter, time_min, time_max, frequenc
     ds = df.to_xarray()
     
     return ds
+
+
+def interp2d(ds,name_vars,lon_out,lat_out):
+    """
+    Interpolate 2D data on a new grid defined by lon_out and lat_out.
+
+    Parameters
+    ----------
+    ds : xarray.Dataset
+        Dataset containing the data to be interpolated.
+    name_vars : dict
+        A dictionary specifying the variable names and dimension names.
+        Example: {'lon': 'longitude', 'lat': 'latitude', 'var': 'data_variable'}
+    lon_out : numpy.ndarray
+        2D array of longitudes for the output grid.
+    lat_out : numpy.ndarray
+        2D array of latitudes for the output grid.
+
+    Returns
+    -------
+    var_out : numpy.ndarray
+        2D array of the interpolated data on the new grid.
+    """
+    
+    from scipy import interpolate
+    ds = ds.assign_coords(
+                 {name_vars['lon']:ds[name_vars['lon']], # or {name_vars['lon']:(ds[name_vars['lon']] % 360), be careful of that!
+                  name_vars['lat']:ds[name_vars['lat']]})
+            
+    if ds[name_vars['var']].shape[0]!=ds[name_vars['lat']].shape[0]:
+        ds[name_vars['var']] = ds[name_vars['var']].transpose()
+        
+    if len(ds[name_vars['lon']].shape)==2:
+        dlon = (ds[name_vars['lon']][:,1:].values - ds[name_vars['lon']][:,:-1].values).max()
+        dlat = (ds[name_vars['lat']][1:,:].values - ds[name_vars['lat']][:-1,:].values).max()
+
+        
+        ds = ds.where((ds[name_vars['lon']]<=lon_out.max()+dlon) &\
+                      (ds[name_vars['lon']]>=lon_out.min()-dlon) &\
+                      (ds[name_vars['lat']]<=lat_out.max()+dlat) &\
+                      (ds[name_vars['lat']]>=lat_out.min()-dlat),drop=True)
+            
+        lon_sel = ds[name_vars['lon']].values
+        lat_sel = ds[name_vars['lat']].values
+            
+    else: 
+        dlon = (ds[name_vars['lon']][1:].values - ds[name_vars['lon']][:-1].values).max()
+        dlat = (ds[name_vars['lat']][1:].values - ds[name_vars['lat']][:-1].values).max()
+         
+        
+        ds = ds.where((ds[name_vars['lon']]<=lon_out.max()+dlon) &\
+                      (ds[name_vars['lon']]>=lon_out.min()-dlon) &\
+                      (ds[name_vars['lat']]<=lat_out.max()+dlat) &\
+                      (ds[name_vars['lat']]>=lat_out.min()-dlat),drop=True)
+            
+        lon_sel,lat_sel = np.meshgrid(
+            ds[name_vars['lon']].values,
+            ds[name_vars['lat']].values)
+    
+    var_sel = ds[name_vars['var']].values
+
+    # Interpolate to state grid   
+    var_out = interpolate.griddata((lon_sel.ravel(),lat_sel.ravel()),
+                   var_sel.ravel(),
+                   (lon_out.ravel(),lat_out.ravel())).reshape((lat_out.shape))
+    
+    return var_out

@@ -183,25 +183,10 @@ Cross-functional modules are gathered in the `src` directory. They include tools
 
 
 
-# 3. Global evaluation 
+# 3.  Mapping evaluation 
 
-## Leaderboards: [Here](docs/eval_glob_leaderboards.md)
- 
+## Check mapping evaluation [here](https://2023a-ssh-mapping-ose.readthedocs.io).
 
-## DUACS detailed evaluation: [Here](docs/eval_glob_duacs.md)
-
-## MIOST detailed evaluation: [Here](docs/eval_glob_miost.md)
-
-## MIOST-EqW detailed evaluation: [Here](docs/eval_glob_miosteqw.md)
- 
-
-# 4. Gulf stream evaluation 
-
-
-## Leaderboards: [Here](docs/eval_GS_leaderboards.md)
- 
-
-## DUACS detailed evaluation: [Here](docs/eval_GS_duacs.md)
 
 
 # Acknowledgement
