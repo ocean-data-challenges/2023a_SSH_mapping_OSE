@@ -4,3 +4,4 @@ myst_parser>=0.15.2
 ipykernel
 nbsphinx
 sphinx-gallery
+sphinx-rtd-theme
