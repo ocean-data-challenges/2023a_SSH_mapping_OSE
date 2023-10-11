@@ -44,7 +44,7 @@ extensions = [
     "nbsphinx",
     "sphinx_gallery.load_style",
 ]
-
+ 
 
 napoleon_google_docstring = False
 
