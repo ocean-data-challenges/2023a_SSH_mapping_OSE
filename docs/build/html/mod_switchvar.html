@@ -54,6 +54,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="eval_generic_global.html">Global scale evaluation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="eval_generic_NA.html">North Atlantic evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="eval_generic_WM.html">Western Mediterranean evaluation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="eval_generic_GS.html">Gulf Stream evaluation</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Specific focus</span></p>
@@ -116,8 +117,7 @@
 <span id="mod-switchvar-module"></span><h1>mod_switchvar module<a class="headerlink" href="#module-mod_switchvar" title="Permalink to this headline"></a></h1>
 <p>mod_switchvar.py - Ocean Variable Conversion Module</p>
 <p>This module provides functions for converting ocean variables:</p>
-<blockquote>
-<div><dl class="simple">
+<dl class="simple">
 <dt>ssh_to_currents(ssh, lon, lat)</dt><dd><p>Compute ocean current components from sea surface height (SSH).</p>
 </dd>
 <dt>currents_to_potential_vorticity(u, v, lon, lat, h)</dt><dd><p>Compute oceanic potential vorticity (PV) from ocean current components.</p>
@@ -127,7 +127,6 @@
 <dt>lonlat2dxdy(lon, lat)</dt><dd><p>Compute spatial grid spacings (dx, dy) from longitude and latitude arrays.</p>
 </dd>
 </dl>
-</div></blockquote>
 <dl class="py function">
 <dt class="sig sig-object py" id="mod_switchvar.currents_to_potential_vorticity">
 <span class="sig-prename descclassname"><span class="pre">mod_switchvar.</span></span><span class="sig-name descname"><span class="pre">currents_to_potential_vorticity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">u</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">h</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mod_switchvar.currents_to_potential_vorticity" title="Permalink to this definition"></a></dt>
