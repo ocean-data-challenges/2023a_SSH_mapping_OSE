@@ -7,7 +7,7 @@
 
 
 
-## North Atlantic quantitative overview 
+## North Atlantic overview 
 
 <br>
 
@@ -16,6 +16,10 @@
 <br>
 
 ### [&#x2022;  Maps](eval_NA_maps.md)
+
+<br>
+
+### [&#x2022;  Drifter trajectory deviation](eval_NA_driftdev.md)
 
 <br>
 

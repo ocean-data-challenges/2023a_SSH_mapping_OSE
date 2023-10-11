@@ -40,7 +40,3 @@ orphan: true
 | Ocean regime          | Methods  |   Err variance score u (All scales) |   Err variance score v (All scales) |
 |:----------------------|----------|:---------------------------------:|:-------------------------------:|
 
-
-## Trajectory evaluation with drifters
-
-![NA deviation horizons](figures/deviation_horizon_NA.png)
