@@ -220,7 +220,7 @@ def plot_effective_resolution(filename):
  
 
 
-def plot_effective_resolution_png(filename,region='glob',box_lonlat=None):
+def plot_effective_resolution_png(filename,region='glob',box_lonlat=None, change_lon=True):
     """
     Generate and save a PNG image of effective resolution.
 
@@ -254,7 +254,7 @@ def plot_effective_resolution_png(filename,region='glob',box_lonlat=None):
         lat_max = box_lonlat['lat_max']
         #ds = ds.sel({'lon':slice(lon_min,lon_max),'lat':slice(lat_min,lat_max)}) 
         
-        ds = regional_zoom(ds, [lon_min,lon_max], [lat_min,lat_max], namelon='lon', namelat='lat', change_lon=True)
+        ds = regional_zoom(ds, [lon_min,lon_max], [lat_min,lat_max], namelon='lon', namelat='lat', change_lon=change_lon)
     
     
     fig, axs = plt.subplots(nrows=1,ncols=1,
@@ -291,6 +291,8 @@ def plot_effective_resolution_png(filename,region='glob',box_lonlat=None):
                     wspace=0.02, hspace=0.01)
     
     plt.savefig("../figures/Maps_"+str(method_name)+"_effres_"+region+".png", bbox_inches='tight')
+    
+    print('Averaged effective resolution:',np.nanmean(ds.effective_resolution),'km')
 
 
 
@@ -951,7 +953,7 @@ def plot_psd_scores_currents_png(filename,region='glob'):
     
        
     
-def plot_stat_score_map_png(filename,region='glob',box_lonlat=None): 
+def plot_stat_score_map_png(filename,region='glob',box_lonlat=None, change_lon=True): 
     """
     Plot statistical score maps for zonal and meridional currents and save them as PNG files.
 
@@ -1005,8 +1007,8 @@ def plot_stat_score_map_png(filename,region='glob',box_lonlat=None):
         lon_max = box_lonlat['lon_max']
         lat_min = box_lonlat['lat_min']
         lat_max = box_lonlat['lat_max']
-        ds_binning_allscale = regional_zoom(ds_binning_allscale, [lon_min,lon_max], [lat_min,lat_max], namelon='lon', namelat='lat', change_lon=True)
-        ds_binning_filtered = regional_zoom(ds_binning_filtered, [lon_min,lon_max], [lat_min,lat_max], namelon='lon', namelat='lat', change_lon=True)
+        ds_binning_allscale = regional_zoom(ds_binning_allscale, [lon_min,lon_max], [lat_min,lat_max], namelon='lon', namelat='lat', change_lon=change_lon)
+        ds_binning_filtered = regional_zoom(ds_binning_filtered, [lon_min,lon_max], [lat_min,lat_max], namelon='lon', namelat='lat', change_lon=change_lon)
    
     
     
