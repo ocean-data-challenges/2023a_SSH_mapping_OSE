@@ -205,6 +205,11 @@ def compute_stat_scores(ds_interp, lambda_min, lambda_max, output_file, method_n
     logging.info("Compute mapping error all scales")
     ds_interp['mapping_err'] = ds_interp['msla_interpolated'] - (ds_interp['sla_unfiltered'] - ds_interp['lwe'])
     
+    
+    print('Total RMSE=',np.sqrt(np.mean(ds_interp['mapping_err'].values**2)),'m')
+    
+    print('Total RMSE score=',1-np.sqrt(np.mean(ds_interp['mapping_err'].values**2))/np.sqrt(np.mean((ds_interp['sla_unfiltered'] - ds_interp['lwe']).values**2)),'m')
+    
     logging.info("Compute mapping error for scales between %s and %s km", str(lambda_min), str(lambda_max))
     # Apply bandpass filter
     ds_interp = apply_bandpass_filter(ds_interp, lambda_min=lambda_min, lambda_max=lambda_max)

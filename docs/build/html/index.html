@@ -123,8 +123,8 @@
 <p>The Copernicus Marine Service (CMEMS) is committed to providing high-quality, state-of-the-art ocean products through the validation and verification of physical oceanic parameters on both global and regional scales. Among the variables distributed by the service, ocean surface topography and surface currents are of great interest to the oceanographic communities for practical applications and for scientific research.</p>
 <p>Several mapping techniques, such as statistical interpolation methods or ocean model assimilation methods, are currently proposed to provide operational maps of ocean surface heights and currents. New mapping techniques (e.g. data-driven methods) are emerging and being tested in a research and development context.
 It is therefore becoming important to inform users and developers about the accuracy of scale represented by each mapping system.</p>
-<a class="reference internal image-reference" href="_images/dc_2023_ose_global_duacs_sla_map.jpg"><img alt="_images/dc_2023_ose_global_duacs_sla_map.jpg" src="_images/dc_2023_ose_global_duacs_sla_map.jpg" style="width: 800px;" /></a>
 <p>The goal of the present data-challenge is to investigate how to best reconstruct sequences of Sea Surface Height (SSH) and surface current maps from partial satellite altimetry observations and from a global perspective. This data challenge follows a Real Data Experiment framework: Satellite observations are from real sea surface height data from altimeter. The practical goal of the challenge is to investigate the best mapping method according to scores described below and in Jupyter notebooks.</p>
+<a class="reference internal image-reference" href="_images/dc_2023_ose_global_duacs_sla_map.jpg"><img alt="_images/dc_2023_ose_global_duacs_sla_map.jpg" class="align-center" src="_images/dc_2023_ose_global_duacs_sla_map.jpg" style="width: 600px;" /></a>
 </section>
 <section id="observations">
 <h2>Observations<a class="headerlink" href="#observations" title="Permalink to this headline"></a></h2>
@@ -136,7 +136,14 @@ It is therefore becoming important to inform users and developers about the accu
 <p>The SSH reconstructions are assessed at global scale and over the period from 2019-01-01 to 2019-12-31.</p>
 <p>For reconstruction methods that need a spin-up, the <strong>observations</strong> from other period can be used.</p>
 <p>The altimeter data from Saral/AltiKa and surface current velocity data mentioned above should never be used so that any reconstruction can be considered uncorrelated to the evaluation period.</p>
-<hr class="docutils" />
+</section>
+<section id="regional-evaluations-select-your-region">
+<h2>Regional evaluations: select your region<a class="headerlink" href="#regional-evaluations-select-your-region" title="Permalink to this headline"></a></h2>
+<embed>
+    <center>
+    <div id="image_map"> <map name="map_example"> <area href="https://2023a-ssh-mapping-ose.readthedocs.io/en/latest/2_eval_generic/eval_generic_GS.html" target="_blank" alt="DC-GulfStream" shape=poly coords="310,155, 310,135, 340,135, 340,155"> <area href="https://2023a-ssh-mapping-ose.readthedocs.io/en/latest/2_eval_generic/eval_generic_WM.html" target="_blank" alt="DC-Western Mediterranean" shape=poly coords="490,150, 490,115, 530,115, 530,150"> <area href="https://2023a-ssh-mapping-ose.readthedocs.io/en/latest/2_eval_generic/eval_generic_NA.html" target="_blank" alt="DC-North Atlantic" shape=poly coords="225,220, 225,45, 475,45, 475,220"> <area href="https://2023a-ssh-mapping-ose.readthedocs.io/en/latest/2_eval_generic/eval_generic_global.html" target="_blank" alt="DC-Global" shape=poly coords="0,1000, 0,0, 1000,0, 1000,1000"> <img src="gallery/dc_2023_ose_global_duacs_sla_map.png" title="Gulf Stream" alt="image map example" width=1000 height=632 usemap="#map_example"></map> </div> </center>
+
+</embed><hr class="docutils" />
 <p><span class="raw-html"><br /></span></p>
 <div class="toctree-wrapper compound">
 <p class="caption" role="heading"><span class="caption-text">Get started</span></p>

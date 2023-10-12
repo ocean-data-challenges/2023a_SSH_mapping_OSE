@@ -26,10 +26,13 @@ Several mapping techniques, such as statistical interpolation methods or ocean m
 It is therefore becoming important to inform users and developers about the accuracy of scale represented by each mapping system.
 
 
-.. image:: ../../figures/dc_2023_ose_global_duacs_sla_map.jpg
-    :width: 800
-
 The goal of the present data-challenge is to investigate how to best reconstruct sequences of Sea Surface Height (SSH) and surface current maps from partial satellite altimetry observations and from a global perspective. This data challenge follows a Real Data Experiment framework: Satellite observations are from real sea surface height data from altimeter. The practical goal of the challenge is to investigate the best mapping method according to scores described below and in Jupyter notebooks.
+
+
+.. image:: ../../figures/dc_2023_ose_global_duacs_sla_map.jpg
+    :width: 600
+    :align: center
+
 
 Observations
 ------------
@@ -47,6 +50,19 @@ The SSH reconstructions are assessed at global scale and over the period from 20
 For reconstruction methods that need a spin-up, the **observations** from other period can be used.
 
 The altimeter data from Saral/AltiKa and surface current velocity data mentioned above should never be used so that any reconstruction can be considered uncorrelated to the evaluation period.
+
+
+
+Regional evaluations: select your region
+-----------------------------------------
+
+.. raw:: html
+
+    <embed> 
+        <center>
+        <div id="image_map"> <map name="map_example"> <area href="https://2023a-ssh-mapping-ose.readthedocs.io/en/latest/2_eval_generic/eval_generic_GS.html" target="_blank" alt="DC-GulfStream" shape=poly coords="310,155, 310,135, 340,135, 340,155"> <area href="https://2023a-ssh-mapping-ose.readthedocs.io/en/latest/2_eval_generic/eval_generic_WM.html" target="_blank" alt="DC-Western Mediterranean" shape=poly coords="490,150, 490,115, 530,115, 530,150"> <area href="https://2023a-ssh-mapping-ose.readthedocs.io/en/latest/2_eval_generic/eval_generic_NA.html" target="_blank" alt="DC-North Atlantic" shape=poly coords="225,220, 225,45, 475,45, 475,220"> <area href="https://2023a-ssh-mapping-ose.readthedocs.io/en/latest/2_eval_generic/eval_generic_global.html" target="_blank" alt="DC-Global" shape=poly coords="0,1000, 0,0, 1000,0, 1000,1000"> <img src="gallery/dc_2023_ose_global_duacs_sla_map.png" title="Gulf Stream" alt="image map example" width=1000 height=632 usemap="#map_example"></map> </div> </center>
+
+    </embed>
 
 
 ----------------- 
