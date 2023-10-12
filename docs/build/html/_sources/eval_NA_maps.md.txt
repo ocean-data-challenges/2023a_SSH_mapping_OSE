@@ -14,7 +14,7 @@ orphan: true
 
 
 <video controls width="500">
-  <source src="gallery/movie_DUACS_NA_sla.mp4" type="video/mp4" /> 
+  <source src="figures/movie_DUACS_NA_sla.mp4" type="video/mp4" /> 
   
 </video>
 
@@ -24,10 +24,10 @@ orphan: true
 
 
 <video controls width="500">
-  <source src="gallery/movie_DUACS_NA_uv.mp4" type="video/mp4" /> 
+  <source src="figures/movie_DUACS_NA_uv.mp4" type="video/mp4" /> 
 </video> 
 <video controls width="500">
-  <source src="gallery/movie_NIO-WOC_NA_uv.mp4" type="video/mp4" /> 
+  <source src="figures/movie_NIO-WOC_NA_uv.mp4" type="video/mp4" /> 
 </video>
 
  
@@ -39,10 +39,10 @@ orphan: true
 
 
 <video controls width="500">
-  <source src="gallery/movie_DUACS_NA_rv.mp4" type="video/mp4" /> 
+  <source src="figures/movie_DUACS_NA_rv.mp4" type="video/mp4" /> 
 </video> 
 <video controls width="500">
-  <source src="gallery/movie_NIO-WOC_NA_rv.mp4" type="video/mp4" /> 
+  <source src="figures/movie_NIO-WOC_NA_rv.mp4" type="video/mp4" /> 
 </video>
 
  
