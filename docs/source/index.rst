@@ -58,43 +58,43 @@ The altimeter data from Saral/AltiKa and surface current velocity data mentioned
    :maxdepth: 2
    :caption: Get started
 
-   getstarted_install.md
-   getstarted_data.md 
-   getstarted_eval.md
+   1_getstarted/getstarted_install.md
+   1_getstarted/getstarted_data.md 
+   1_getstarted/getstarted_eval.md
 
 .. toctree::
    :maxdepth: 1
    :caption: Generic evaluation
 
-   eval_generic_global.md
-   eval_generic_NA.md
-   eval_generic_WM.md
-   eval_generic_GS.md
+   2_eval_generic/eval_generic_global.md
+   2_eval_generic/eval_generic_NA.md
+   2_eval_generic/eval_generic_WM.md
+   2_eval_generic/eval_generic_GS.md
 
 .. toctree::
    :maxdepth: 1
    :caption: Specific focus
 
-   eval_nio_rotaryspec.md
+   3_spec_focus/eval_nio_rotaryspec.md
  
 
 .. toctree::
    :maxdepth: 1
    :caption: Notebooks
 
-   notebooks_evaluation.md
-   notebooks_download_data.md
+   4_notebooks/notebooks_evaluation.md
+   4_notebooks/notebooks_download_data.md
    
 .. toctree::
    :maxdepth: 1
    :caption: Metrics details
 
-   metrics_alongtrack.md
-   metrics_alongdrifter.md
-   metrics_driftertraj.md
+   5_metrics_det/metrics_alongtrack.md
+   5_metrics_det/metrics_alongdrifter.md
+   5_metrics_det/metrics_driftertraj.md
 
 .. toctree::
    :maxdepth: 2
    :caption: Scripts
 
-   modules.rst
+   6_scripts/modules.rst
