@@ -56,6 +56,18 @@ The altimeter data from Saral/AltiKa and surface current velocity data mentioned
 Regional evaluations: select your region
 -----------------------------------------
   
+
+.. image:: ../../figures/dc_2023_ose_global_duacs_sla_map_regions.png
+    :width: 600
+    :align: center
+    
+.. raw:: html
+
+    <embed> 
+        <center>
+        <img src="gallery/dc_2023_ose_global_duacs_sla_map_regions.png" title="Gulf Stream" alt="image map example" width=1000 height=632 usemap="#map_example"></center>
+
+    </embed>
  
 .. raw:: html
 
