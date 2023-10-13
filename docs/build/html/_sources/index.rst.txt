@@ -55,25 +55,12 @@ The altimeter data from Saral/AltiKa and surface current velocity data mentioned
 
 Regional evaluations: select your region
 -----------------------------------------
-  
-
-.. image:: ../../figures/dc_2023_ose_global_duacs_sla_map_regions.png
-    :width: 600
-    :align: center
     
 .. raw:: html
 
     <embed> 
         <center>
-        <img src="gallery/dc_2023_ose_global_duacs_sla_map_regions.png" title="Gulf Stream" alt="image map example" width=1000 height=632 usemap="#map_example"></center>
-
-    </embed>
- 
-.. raw:: html
-
-    <embed> 
-        <center>
-        <div id="image_map"> <map name="map_example"> <area href="https://2023a-ssh-mapping-ose.readthedocs.io/en/latest/2_eval_generic/eval_generic_GS.html" target="_blank" alt="DC-GulfStream" shape=poly coords="310,155, 310,135, 340,135, 340,155"> <area href="https://2023a-ssh-mapping-ose.readthedocs.io/en/latest/2_eval_generic/eval_generic_WM.html" target="_blank" alt="DC-Western Mediterranean" shape=poly coords="490,150, 490,115, 530,115, 530,150"> <area href="https://2023a-ssh-mapping-ose.readthedocs.io/en/latest/2_eval_generic/eval_generic_NA.html" target="_blank" alt="DC-North Atlantic" shape=poly coords="225,220, 225,45, 475,45, 475,220"> <area href="https://2023a-ssh-mapping-ose.readthedocs.io/en/latest/2_eval_generic/eval_generic_global.html" target="_blank" alt="DC-Global" shape=poly coords="0,1000, 0,0, 1000,0, 1000,1000"> <img src="gallery/dc_2023_ose_global_duacs_sla_map_regions.png" title="Gulf Stream" alt="image map example" width=1000 height=632 usemap="#map_example"></map> </div> </center>
+        <div id="image_map"> <map name="map_example"> <area href="https://2023a-ssh-mapping-ose.readthedocs.io/en/latest/2_eval_generic/eval_generic_GS.html" target="_blank" alt="DC-GulfStream" shape=poly coords="310,155, 310,135, 340,135, 340,155"> <area href="https://2023a-ssh-mapping-ose.readthedocs.io/en/latest/2_eval_generic/eval_generic_WM.html" target="_blank" alt="DC-Western Mediterranean" shape=poly coords="490,150, 490,115, 530,115, 530,150"> <area href="https://2023a-ssh-mapping-ose.readthedocs.io/en/latest/2_eval_generic/eval_generic_NA.html" target="_blank" alt="DC-North Atlantic" shape=poly coords="225,220, 225,45, 475,45, 475,220"> <area href="https://2023a-ssh-mapping-ose.readthedocs.io/en/latest/2_eval_generic/eval_generic_global.html" target="_blank" alt="DC-Global" shape=poly coords="0,1000, 0,0, 1000,0, 1000,1000"> <img src="https://github.com/ocean-data-challenges/2023a_SSH_mapping_OSE/assets/33433820/0e3eb6c9-4ffc-4b11-bac2-b5fc8584f434" title="Gulf Stream" alt="image map example" width=1000 height=632 usemap="#map_example"></map> </div> </center>
 
     </embed>
 
