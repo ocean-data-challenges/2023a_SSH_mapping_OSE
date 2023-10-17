@@ -191,7 +191,7 @@ def interpolate(df, time_series, start, end, var='sla'):
         num_threads=0)
     
     if var == 'ssh':
-        df.msla_interpolated = df.msla_interpolated + df.mdt
+        df.msla_interpolated = df.msla_interpolated - df.mdt
     
     
 def run_interpolation(ds_maps, ds_alongtrack, frequency='M', var='sla'):
