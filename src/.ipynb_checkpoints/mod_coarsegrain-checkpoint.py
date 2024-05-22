@@ -1,7 +1,6 @@
 import numpy as np
 from scipy.optimize import curve_fit
 from numpy.fft import fft, ifft, fftfreq, fftshift
-from tqdm import tqdm
 from joblib import Parallel, delayed
 import pyfftw
 
