@@ -2,7 +2,14 @@ import numpy as np
 from scipy.optimize import curve_fit
 from numpy.fft import fft, ifft, fftfreq, fftshift
 from joblib import Parallel, delayed
-import pyfftw
+import xarray as xr
+# Attempt to import PyFFTW
+try:
+    import pyfftw
+    pyfftw_available = True
+except ImportError:
+    pyfftw_available = False
+
 
 def first_below_threshold(snr, threshold):
     """Finds the first index where an array falls below a threshold.
@@ -77,11 +84,14 @@ def compute_effective_coarse_graining_scale(lon, lat, wavenumber, psd_diff, psd_
 def g_tanh(x, l):
     return 1-np.tanh(10*(np.abs(x)/(l/2)-1))
 
-# dummy data to instantiate the pyFFTW object
-x = np.linspace(-10000,10000,100001)
-l = 100
-y = g_tanh(x,l)
-fft_object = pyfftw.builders.fft(fftshift(y), planner_effort='FFTW_ESTIMATE') 
+if pyfftw_available:
+    # dummy data to instantiate the pyFFTW object
+    x = np.linspace(-10000,10000,100001)
+    l = 100
+    y = g_tanh(x,l)
+    fft_object = pyfftw.builders.fft(fftshift(y), planner_effort='FFTW_ESTIMATE') 
+else:
+    fft_object = fft
 
 # Fourier transform of filter kernel
 def g_fourier_transform_tanh(k_sampled, l, fft_object):
