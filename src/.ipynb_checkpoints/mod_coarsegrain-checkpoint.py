@@ -10,34 +10,10 @@ try:
 except ImportError:
     pyfftw_available = False
 
-
-def first_below_threshold(snr, threshold):
-    """Finds the first index where an array falls below a threshold.
-
-    Args:
-        snr: The array to search.
-        threshold: The threshold value.
-
-    Returns:
-        The first index where the array falls below the threshold, 
-        or None if the array never falls below the threshold.
-    """
-
-    indices_below_threshold = np.where(snr < threshold)[0]  # Find indices where snr < threshold
-
-    if len(indices_below_threshold) > 0:
-        return indices_below_threshold[0]  # Return the first index
-    else:
-        return None  
-
-
 def compute_effective_coarse_graining_scale_single_lat(args):
     jj, wavenumber, snr, coarse_graining_kernel = args
     """Computes the effective coarse graining scale for a single latitude index."""
-    
-    snr_threshold = 0.1
-    min_curve_fit_length = 5
-    
+
     if coarse_graining_kernel == 'tanh':
         def fit_function(x, l):
             return f_tanh(x, l)
