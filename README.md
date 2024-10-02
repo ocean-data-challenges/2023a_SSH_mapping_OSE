@@ -195,6 +195,8 @@ Cross-functional modules are gathered in the `src` directory. They include tools
 
 # Acknowledgement
 
+T
+
 
 
 <!---
@@ -289,6 +291,5 @@ Cross-functional modules are gathered in the `src` directory. They include tools
 
 The structure of this data challenge was to a large extent inspired by [WeatherBench](https://github.com/pangeo-data/WeatherBench).
 
-T
 
 --->
