@@ -195,7 +195,6 @@ Cross-functional modules are gathered in the `src` directory. They include tools
 
 # Acknowledgement
 
-T
 
 
 
